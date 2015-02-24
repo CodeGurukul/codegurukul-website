@@ -1,0 +1,281 @@
+/*************************************************************/
+/********************* TABLE OF CONTENTS *********************/
+/*************************************************************/
+/**                                                         **/
+/** General Styles                                          **/
+/** Generic Styles                                          **/
+/** Menus                                                   **/
+/**  - Nav Pills                                            **/
+/**  - Codegurukul Main Menu                                     **/
+/** Portfolio                                               **/
+/**  - Portfolio Page                                       **/
+/**  - Our Work 1                                           **/
+/** Team                                                    **/
+/** Social Networks                                         **/
+/**  - Social Networks Top Header                           **/
+/**  - Social Networks Footer                               **/
+/** Pagination                                              **/
+/** Tabs                                                    **/
+/** Accordions                                              **/
+/** Pricing tables                                          **/
+/**  - Layout 1                                             **/
+/** Buttons                                                 **/
+/** Labels                                                  **/
+/** Progress Bars                                           **/
+/** Forms                                                   **/
+/** Colors & Backgrounds                                    **/
+/**  - Text Color Palette                                   **/
+/**  - Text Colors                                          **/
+/**  - Background Colors                                    **/
+/**                                                         **/
+/*************************************************************/
+/*************************************************************/
+
+
+
+/*************************************************************/
+/*********************** General Styles **********************/
+/*************************************************************/
+
+a {
+  color: #4fd8bf;
+}
+
+
+
+/*************************************************************/
+/*********************** Generic Styles **********************/
+/*************************************************************/
+
+.overlay-color-theme {
+  background: rgba(79,216,191,.8);
+}
+
+
+
+/*************************************************************/
+/*************************** Menus ***************************/
+/*************************************************************/
+
+/** Nav Pills **/
+.nav-pills > li > a:hover,
+.nav-pills > li > a:focus,
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  color: #4fd8bf;
+}
+
+/** Codegurukul Main Menu **/
+.codegurukul-main-menu .active > a,
+.codegurukul-main-menu .nav .open > a,
+.codegurukul-main-menu .nav .open > a:hover,
+.codegurukul-main-menu .nav .open > a:focus,
+.codegurukul-main-menu .nav > li > a:hover,
+.codegurukul-main-menu .nav > li > a:focus,
+.codegurukul-main-menu .nav > li:hover > a,
+.codegurukul-main-menu .nav > li:focus > a {
+  color: #4fd8bf;
+}
+
+.codegurukul-main-menu .dropdown-menu > .active > a,
+.codegurukul-main-menu .dropdown-menu > li > a:hover,
+.codegurukul-main-menu .dropdown-menu > li > a:focus {
+  color: #4fd8bf;
+}
+
+@media (max-width: 767px) {
+  
+  .codegurukul-main-menu .navbar-toggle {
+    border: 1px solid #4fd8bf;
+    background: #4fd8bf;
+  }
+  
+}
+
+
+
+/*************************************************************/
+/************************* Portfolio *************************/
+/*************************************************************/
+
+/** Portfolio Page **/
+.portfolio-overlay {
+  background: rgba(79,216,191,.8);
+}
+
+/** Our Work 1 **/
+.our-work-1-overlay {
+  background: rgba(79,216,191,.8);
+}
+
+
+
+/*************************************************************/
+/**************************** Team ***************************/
+/*************************************************************/
+
+.team-item-overlay {
+  background: rgba(79,216,191,.8);
+}
+
+
+
+/*************************************************************/
+/********************** Social Networks **********************/
+/*************************************************************/
+
+/** Social Networks Top Header **/
+.social-networks-top-header a:hover,
+.social-networks-top-header a:focus,
+.social-networks-top-header a:active {
+  color: #4fd8bf;
+}
+
+/** Social Networks Footer **/
+.social-networks-footer a:hover,
+.social-networks-footer a:focus,
+.social-networks-footer a:active {
+  color: #4fd8bf;
+}
+
+
+
+/*************************************************************/
+/************************* Pagination ************************/
+/*************************************************************/
+
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus,
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  color: #4fd8bf;
+}
+
+
+
+/*************************************************************/
+/**************************** Tabs ***************************/
+/*************************************************************/
+
+.nav-tabs > li > a:hover {
+  color: #4fd8bf;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  border: 1px solid #4fd8bf;
+  color: #4fd8bf;
+}
+
+.nav-tabs.nav-justified > li > a:hover {
+  color: #4fd8bf;
+}
+
+.nav-tabs.nav-justified > .active >a,
+.nav-tabs.nav-justified > .active > a:hover,
+.nav-tabs.nav-justified > .active > a:focus {
+  border: 1px solid #4fd8bf;
+  color: #4fd8bf;
+}
+
+
+
+/*************************************************************/
+/************************* Accordions ************************/
+/*************************************************************/
+
+.panel-primary > .panel-heading {
+  border: 1px solid #4fd8bf;
+}
+
+
+
+/*************************************************************/
+/*********************** Pricing tables **********************/
+/*************************************************************/
+
+/** Layout 1 **/
+.pricing-tables-1 .pricing-table-promotional .pricing-table-price {
+  background-color: #4fd8bf;
+}
+
+
+
+/*************************************************************/
+/************************** Buttons **************************/
+/*************************************************************/
+
+.btn-primary {
+  border-color: #4fd8bf;
+  color: #4fd8bf;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  border-color: #4fd8bf;
+  background-color: #4fd8bf;
+}
+
+.btn-link {
+  color: #4fd8bf;
+}
+
+
+
+/*************************************************************/
+/*************************** Labels **************************/
+/*************************************************************/
+
+.label-primary {
+  background-color: #4fd8bf;
+}
+
+
+
+/*************************************************************/
+/*********************** Progress Bars ***********************/
+/*************************************************************/
+
+.progress-bar-primary {
+  background-color: #4fd8bf;
+}
+
+
+
+/*************************************************************/
+/*************************** Forms ***************************/
+/*************************************************************/
+
+.form-control:focus {
+  border-color: #4fd8bf;
+}
+
+
+
+/*************************************************************/
+/******************** Colors & Backgrounds *******************/
+/*************************************************************/
+
+/** Text Color Palette **/
+.text-color-light .social-networks-footer a:hover,
+.text-color-light .social-networks-footer a:focus,
+.text-color-light .social-networks-footer a:active {
+  color: #4fd8bf;
+}
+
+/** Text Colors **/
+.text-color-theme      { color: #4fd8bf; }
+
+/** Background Colors **/
+.bg-color-theme        { background-color: #4fd8bf; }

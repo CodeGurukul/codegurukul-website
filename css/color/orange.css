@@ -1,0 +1,274 @@
+/*************************************************************/
+/********************* TABLE OF CONTENTS *********************/
+/*************************************************************/
+/**                                                         **/
+/** General Styles                                          **/
+/** Generic Styles                                          **/
+/** Menus                                                   **/
+/**  - Nav Pills                                            **/
+/**  - Codegurukul Main Menu                                     **/
+/** Portfolio                                               **/
+/**  - Portfolio Page                                       **/
+/**  - Our Work 1                                           **/
+/** Team                                                    **/
+/** Social Networks                                         **/
+/**  - Social Networks Top Header                           **/
+/**  - Social Networks Footer                               **/
+/** Pagination                                              **/
+/** Tabs                                                    **/
+/** Accordions                                              **/
+/** Pricing tables                                          **/
+/**  - Layout 1                                             **/
+/** Buttons                                                 **/
+/** Labels                                                  **/
+/** Progress Bars                                           **/
+/** Forms                                                   **/
+/** Colors & Backgrounds                                    **/
+/**  - Text Color Palette                                   **/
+/**  - Text Colors                                          **/
+/**  - Background Colors                                    **/
+/**                                                         **/
+/*************************************************************/
+/*************************************************************/
+
+
+
+/*************************************************************/
+/*********************** General Styles **********************/
+/*************************************************************/
+
+a {
+  color: #ffb141;
+}
+
+
+
+/*************************************************************/
+/*********************** Generic Styles **********************/
+/*************************************************************/
+
+.overlay-color-theme {
+  background: rgba(255,177,55,.8);
+}
+
+
+
+/*************************************************************/
+/*************************** Menus ***************************/
+/*************************************************************/
+
+/** Nav Pills **/
+.nav-pills > li > a:hover,
+.nav-pills > li > a:focus,
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  color: #ffb141;
+}
+
+/** Codegurukul Main Menu **/
+.codegurukul-main-menu .active > a,
+.codegurukul-main-menu .nav .open > a,
+.codegurukul-main-menu .nav .open > a:hover,
+.codegurukul-main-menu .nav .open > a:focus,
+.codegurukul-main-menu .nav > li > a:hover,
+.codegurukul-main-menu .nav > li > a:focus,
+.codegurukul-main-menu .nav > li:hover > a,
+.codegurukul-main-menu .nav > li:focus > a {
+  color: #ffb141;
+}
+
+.codegurukul-main-menu .dropdown-menu > .active > a,
+.codegurukul-main-menu .dropdown-menu > li > a:hover,
+.codegurukul-main-menu .dropdown-menu > li > a:focus {
+  color: #ffb141;
+}
+
+@media (max-width: 767px) {
+  
+  .codegurukul-main-menu .navbar-toggle {
+    border: 1px solid #ffb141;
+    background: #ffb141;
+  }
+  
+}
+
+
+
+/*************************************************************/
+/************************* Portfolio *************************/
+/*************************************************************/
+
+/** Portfolio Page **/
+.portfolio-overlay {
+  background: rgba(255,177,55,.8);
+}
+
+/** Our Work 1 **/
+.our-work-1-overlay {
+  background: rgba(255,177,55,.8);
+}
+
+
+
+/*************************************************************/
+/**************************** Team ***************************/
+/*************************************************************/
+
+.team-item-overlay {
+  background: rgba(255,177,55,.8);
+}
+
+
+
+/*************************************************************/
+/********************** Social Networks **********************/
+/*************************************************************/
+
+/** Social Networks Top Header **/
+.social-networks-top-header a:hover,
+.social-networks-top-header a:focus,
+.social-networks-top-header a:active {
+  color: #ffb141;
+}
+
+
+
+/*************************************************************/
+/************************* Pagination ************************/
+/*************************************************************/
+
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus,
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  color: #ffb141;
+}
+
+
+
+/*************************************************************/
+/**************************** Tabs ***************************/
+/*************************************************************/
+
+.nav-tabs > li > a:hover {
+  color: #ffb141;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  border: 1px solid #ffb141;
+  color: #ffb141;
+}
+
+.nav-tabs.nav-justified > li > a:hover {
+  color: #ffb141;
+}
+
+.nav-tabs.nav-justified > .active >a,
+.nav-tabs.nav-justified > .active > a:hover,
+.nav-tabs.nav-justified > .active > a:focus {
+  border: 1px solid #ffb141;
+  color: #ffb141;
+}
+
+
+
+/*************************************************************/
+/************************* Accordions ************************/
+/*************************************************************/
+
+.panel-primary > .panel-heading {
+  border: 1px solid #ffb141;
+}
+
+
+
+/*************************************************************/
+/*********************** Pricing tables **********************/
+/*************************************************************/
+
+/** Layout 1 **/
+.pricing-tables-1 .pricing-table-promotional .pricing-table-price {
+  background-color: #ffb141;
+}
+
+
+
+/*************************************************************/
+/************************** Buttons **************************/
+/*************************************************************/
+
+.btn-primary {
+  border-color: #ffb141;
+  color: #ffb141;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  border-color: #ffb141;
+  background-color: #ffb141;
+}
+
+.btn-link {
+  color: #ffb141;
+}
+
+
+
+/*************************************************************/
+/*************************** Labels **************************/
+/*************************************************************/
+
+.label-primary {
+  background-color: #ffb141;
+}
+
+
+
+/*************************************************************/
+/*********************** Progress Bars ***********************/
+/*************************************************************/
+
+.progress-bar-primary {
+  background-color: #ffb141;
+}
+
+
+
+/*************************************************************/
+/*************************** Forms ***************************/
+/*************************************************************/
+
+.form-control:focus {
+  border-color: #ffb141;
+}
+
+
+
+/*************************************************************/
+/******************** Colors & Backgrounds *******************/
+/*************************************************************/
+
+/** Text Color Palette **/
+.text-color-light .social-networks-footer a:hover,
+.text-color-light .social-networks-footer a:focus,
+.text-color-light .social-networks-footer a:active {
+  color: #ffb141;
+}
+
+/** Text Colors **/
+.text-color-theme      { color: #ffb141; }
+
+/** Background Colors **/
+.bg-color-theme        { background-color: #ffb141; }

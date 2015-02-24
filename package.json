@@ -1,0 +1,22 @@
+{
+  "name": "codegurukul-website",
+  "version": "1.0.0",
+  "description": "A learning site",
+  "main": "app.js",
+  "scripts": {
+    "start": "node node_modules/http-server/bin/http-server -p 4000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CodeGurukul/codegurukul-website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeGurukul/codegurukul-website/issues"
+  },
+  "homepage": "https://github.com/CodeGurukul/codegurukul-website",
+  "dependencies": {
+    "http-server": "^0.7.5"
+  }
+}
