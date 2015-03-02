@@ -541,7 +541,7 @@ a:active {
 .img-bottom { margin-bottom: -80px; }
 
 .overlay {
-  background: rgba(0,0,0,.5);
+  background: rgba(0,0,0,.6);
   position: absolute;
   top: 0;
   left: 0;
@@ -551,6 +551,38 @@ a:active {
 
 .overlay.overlay-30 {
   background: rgba(0,0,0,.3);
+}
+
+.overlay iframe{
+    border: 3px solid rgb(148, 148, 148);
+    border-radius: 2px;
+    margin: auto;
+}
+
+.home-overlay-content{
+    margin-top: 5%;
+    text-align: center;
+    padding: 20px;
+}
+
+.home-overlay-content p{
+    font-size: 20px;
+    line-height: 2;
+}
+
+.home-overlay-content button{
+    background-color: transparent;
+    color: aliceblue;
+    padding: 10px;
+    font-size: 25px;
+    font-weight: 700;
+    border-radius: 4px;
+    margin: 10px;
+}
+
+.home-overlay-content button:hover{
+    background-color: white !important;
+    color: black;
 }
 
 .show { display: block!important; }
@@ -2094,7 +2126,8 @@ header {
 /*********************** Pricing tables **********************/
 /*************************************************************/
 
-/** Layout 1 **/
+/*
+* Layout 1 *
 .pricing-tables-1 h4,
 .pricing-tables-1 h3,
 .pricing-tables-1 .pricing-table-description ul {
@@ -2129,6 +2162,67 @@ header {
 }
 
 .pricing-tables-1 .pricing-table-button {
+  padding: 30px 10px;
+}
+
+.pricing-table-aqua .pricing-table-price { background-color: #9adada; }
+.pricing-table-blue .pricing-table-price { background-color: #2ac5ee; }
+.pricing-table-brown .pricing-table-price { background-color: #c2b49a; }
+.pricing-table-emerald .pricing-table-price { background-color: #4fd8bf; }
+.pricing-table-green .pricing-table-price { background-color: #a3c95c; }
+.pricing-table-orange .pricing-table-price { background-color: #ffb141; }
+.pricing-table-red .pricing-table-price { background-color: #e74c3c; }
+.pricing-table-violet .pricing-table-price { background-color: #705ab2; }
+.pricing-table-yellow .pricing-table-price { background-color: #f6c83a; }
+
+.pricing-table-aqua .pricing-table-price h3,
+.pricing-table-blue .pricing-table-price h3,
+.pricing-table-brown .pricing-table-price h3,
+.pricing-table-emerald .pricing-table-price h3,
+.pricing-table-green .pricing-table-price h3,
+.pricing-table-orange .pricing-table-price h3,
+.pricing-table-red .pricing-table-price h3,
+.pricing-table-violet .pricing-table-price h3,
+.pricing-table-yellow .pricing-table-price h3 {
+  color: #f0f0f0;
+}
+*/
+
+/** Layout 1 **/
+.pricing-tables-1 h4,
+.pricing-tables-1 h3,
+.pricing-tables-1 .pricing-table-description ul {
+  margin: 0px;
+}
+
+.course-card {
+  text-align: center;
+  border: 1px solid #cdcdcd;
+  box-shadow: 1px 1px 2px #cdcdcd;
+}
+
+.course-title {
+  padding: 20px 10px;
+}
+
+.course-price {
+  padding: 30px 10px;
+  background-color: #f6f6f6;
+}
+
+.pricing-tables-1 .pricing-table-promotional .pricing-table-price h3 {
+  color: #f0f0f0;
+}
+
+.course-description {
+  padding: 20px 10px;
+}
+
+.course-description ul li + li {
+  padding-top: 15px;
+}
+
+.course-button {
   padding: 30px 10px;
 }
 
@@ -3103,4 +3197,32 @@ padding-left: 10px;
 
 .partnership_content .icon{
 font-size:20px;
+}
+
+.mentors h3{
+    text-align: center;
+}
+
+.mentors img{
+    border-radius: 50%;
+}
+
+.mentor{
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.internship-header{
+    background-color: black;
+    margin-bottom: 50px;
+/*    min-height: 300px;*/
+    color: white;
+    padding: 100px;
+    text-align: center !important;
+}
+
+.internship-header h2, .internship-header h5{
+    color: #eee !important;
 }

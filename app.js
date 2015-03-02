@@ -13,8 +13,21 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ng
         templateUrl: 'views/programDetail.html',
         controller: 'ProgramCtrl'
       })
-      .when('/corporate-training', {
-        templateUrl: 'views/corporate-training.html'
+      .when('/internship', {
+        templateUrl: 'views/internship.html',
+        controller: 'HomeCtrl'
+      })
+      .when('/angularjs', {
+        templateUrl: 'views/angularjs.html',
+        controller: 'HomeCtrl'
+      })
+      .when('/rubyonrails', {
+        templateUrl: 'views/rubyonrails.html',
+        controller: 'HomeCtrl'
+      })
+      .when('/testimonials', {
+        templateUrl: 'views/testimonials.html',
+        controller: 'HomeCtrl'
       })
       .when('/camps', {
         templateUrl: 'views/camps.html'
