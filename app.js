@@ -13,8 +13,8 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ng
         templateUrl: 'views/programDetail.html',
         controller: 'ProgramCtrl'
       })
-      .when('/internship', {
-        templateUrl: 'views/internship.html',
+      .when('/internships', {
+        templateUrl: 'views/internships.html',
         controller: 'HomeCtrl'
       })
       .when('/angularjs', {

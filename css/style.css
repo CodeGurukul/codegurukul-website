@@ -3199,6 +3199,17 @@ padding-left: 10px;
 font-size:20px;
 }
 
+
+
+
+
+
+@font-face {
+    font-family: Mouser;
+    src: url(../fonts/Mouser.ttf);
+}
+
+
 .mentors h3{
     text-align: center;
 }
@@ -3215,14 +3226,64 @@ font-size:20px;
 }
 
 .internship-header{
-    background-color: black;
+/*    background-color: black;*/
     margin-bottom: 50px;
 /*    min-height: 300px;*/
     color: white;
-    padding: 100px;
+    padding: 140px;
     text-align: center !important;
+    background-image: url(../img/internships/internship%20header%20image.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
-.internship-header h2, .internship-header h5{
+.internship-header h1, .internship-header h5{
     color: #eee !important;
+    font-family: Mouser;
+    font-size: 70px;
+    font-weight: 600;
+}
+
+.services-2-content{
+    background-image: url(../img/testimonials/noun_57895_cc.svg);
+    background-size: 350px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.testimonial-1 img{
+    border-radius: 50%;
+}
+
+.highlighted-slider-2-content h1{
+    text-align: center;
+}
+
+.week-one-card, .week-two-card{
+    border: 1px solid #e8e8e8;
+    box-shadow: 0px 0px 4px #ECECEC;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.testimonial-content {
+    background-color: #2b2b2b;
+}
+
+.testimonial-content p {
+    font-size: 20px !important;
+}
+
+.testimonial-slider{
+    padding: 125px;
+    min-height: 600px;
+/*    max-height: 550px;*/
+}
+
+.slider-bubble{
+    font-size: 125px;
+}
+
+.testimonial-name{
+    color: #2ac5ee !important;
 }
