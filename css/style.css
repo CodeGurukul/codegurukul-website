@@ -1800,8 +1800,8 @@ header {
 .team-item-overlay p {
   color: #f0f0f0;
   position: absolute;
-  bottom: 10px;
-  right: 25px;
+  bottom: 150px;
+/*  right: 25px;*/
   -webkit-transition: all 0.3s ease-out;
      -moz-transition: all 0.3s ease-out;
        -o-transition: all 0.3s ease-out;
@@ -3286,4 +3286,26 @@ font-size:20px;
 
 .testimonial-name{
     color: #2ac5ee !important;
+}
+
+.mentor-image{
+    width: 200px;
+    border-radius: 50%;
+}
+
+.team-item-name{
+    text-align: center;
+}
+
+.team-item-overlay {
+    background: rgba(54, 54, 54, 0.51) !important;
+    border-radius: 50%;
+}
+
+.internship-header h1 small{
+    color: #e8e8e8 !important;
+}
+
+.comingsoon{
+    margin: 200px 0px 200px 0px;
 }
