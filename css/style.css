@@ -581,7 +581,7 @@ a:active {
 
 .home-overlay-content p{
     font-size: 22px;
-    line-height: 2;
+    line-height: 1.5;
 }
 
 .home-overlay-content button{
@@ -3158,6 +3158,10 @@ margin-bottom: 15px;
 top: 0.2em;
 }
 
+.custom-remove-margin{
+    margin:0px;
+}
+
 .custom_logo{
 margin-top: 30px;
 }
@@ -3231,6 +3235,14 @@ font-size:20px;
 
 .mentors img{
     border-radius: 50%;
+}
+
+ .duration, .pricing{
+  text-align: left !important;
+}
+
+.duration{
+  margin-top: 50px !important;
 }
 
 .mentor{
@@ -3345,4 +3357,51 @@ font-size:20px;
 
 .home-overlay-opacity{
     background-color: rgba(0,0,0,0.5);
+}
+
+.ng-modal-dialog{
+    background-color: #2b2b2b;
+}
+
+.share-background-div{
+    text-align: center;
+    font-weight: 600;
+    color: #e8e8e8;
+/*
+  background-color: black;
+  padding: 25px;
+  border-radius: 50%;
+*/
+}
+
+.share-background-div i{
+    font-size: 50px;
+}
+
+.facebookShare:hover{
+    color: #3B5998 !important;
+    cursor: pointer;
+}
+
+.twitterShare:hover{
+    color: #5EA9DD !important;
+    cursor: pointer;
+}
+
+.googleShare:hover{
+    color: #DD4B39 !important;
+    cursor: pointer;
+}
+
+.share-and-register-buttons{
+    margin-bottom: 50px;
+}
+
+.cancelButton, .successButton{
+    background-color: #bf3431;
+    color: #e8e8e8;
+}
+
+.cancelButton:hover, .successButton:hover{
+    font-weight: 700;
 }

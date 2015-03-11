@@ -1,4 +1,4 @@
-angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap', '720kb.socialshare'])
+angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap', '720kb.socialshare','ngModal'])
   .config(function ($routeProvider, $locationProvider) {
 
     $routeProvider
@@ -15,7 +15,7 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ng
       })
       .when('/worskshops/internships', {
         templateUrl: 'views/internships.html',
-        controller: 'HomeCtrl'
+        controller: 'InternshipsCtrl'
       })
       .when('/worskshops/angularjs', {
         templateUrl: 'views/angularjs.html',

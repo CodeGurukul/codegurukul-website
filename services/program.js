@@ -1,22 +1,22 @@
 angular.module('Codegurukul')
   .factory('Program', function($resource) {
     var list = {
-      f2h :  {
+      fresherTohacker :  {
           tempateUrl: "../views/program-partials/fresher-to-hacker.html",
           published: true,
           other: 'asdasd'
         },
-        ffl : {
+        freelancerForLife : {
           tempateUrl: "../views/program-partials/freelancer-for-life.html",
           published: true,
           other: 'asdasd'
         },
-        ent : {
-          tempateUrl: "../views/program-partials/entrepreneurship.html",
+        career : {
+          tempateUrl: "../views/program-partials/career.html",
           published: true,
           other: 'asdasd'
         },
-        eha : {
+        earlyHacker : {
           tempateUrl: "../views/program-partials/early-hacker.html",
           published: true,
           other: 'asdasd'

@@ -15,31 +15,31 @@
                 
                     <h4> WEEK ONE:</h4>
                 <div class="row">
-                    <div class="col-md-12"><h5> Foundation Course</h5></div>
-                    <div class="col-md-2">
+                    <div class="col-md-10 col-md-offset-1"><h5> Foundation Course</h5></div>
+                    <div class="col-md-2 col-md-offset-1">
                         <img src="../img/internships/HTML5-CSS-JS.png" width="100px">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <p>Refresher course on HTML5, CSS3 and Javascript which will get your creative juices flowing! Ignite the designer in you! </p>
                     </div>
                 </div>                    
                 <hr>
                 <div class="row">    
-                    <div class="col-md-12"><h5> Portfolio time!!</h5></div>
-                    <div class="col-md-2">
+                    <div class="col-md-10 col-md-offset-1"><h5> Portfolio time!!</h5></div>
+                    <div class="col-md-2 col-md-offset-1">
                         <img src="../img/internships/bootstrap_logo.png" width="100px">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <p>Build your very own website by harnessing the power of Bootstrap!</p>
                     </div>
                 </div>
                 <hr>
                 <div class="row">    
-                    <div class="col-md-12"><h5> Social Coding</h5></div>
-                    <div class="col-md-2">
+                    <div class="col-md-10 col-md-offset-1"><h5> Social Coding</h5></div>
+                    <div class="col-md-2 col-md-offset-1">
                         <img src="../img/internships/git_icon.png" width="100px">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <p>Get into the world of version control using Git.</p>
                     </div>
                  </div>   
@@ -49,21 +49,21 @@
                 
                     <h4> WEEK TWO:</h4>
                 <div class="row">
-                    <div class="col-md-12"><h5> Enter the MEAN Stack</h5></div>
-                    <div class="col-md-2">
+                    <div class="col-md-10 col-md-offset-1"><h5> Enter the MEAN Stack</h5></div>
+                    <div class="col-md-2 col-md-offset-1">
                         <img src="../img/internships/meanstack.png" width="100px">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <p>Dive into the complexities of creating a full blown web application using MongoDB, Express, AngularJS and Node.js which is taking over the web! </p>
                     </div>
                 </div>                    
                 <hr>
                 <div class="row">    
-                    <div class="col-md-12"><h5>  Hosting</h5></div>
-                    <div class="col-md-2">
+                    <div class="col-md-10 col-md-offset-1"><h5>  Hosting</h5></div>
+                    <div class="col-md-2 col-md-offset-1">
                         <img src="../img/internships/webhosting.png" width="100px">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <p>So you can't host. And you call yourself a pro. Buckle up and understand the basics of deploying your app to the cloud.</p>
                     </div>
                 </div>
@@ -73,29 +73,34 @@
                 
                     <h4> WEEK THREE AND FOUR:</h4>
                 <div class="row">
-                    <div class="col-md-12"><h5> So you think you can code?</h5></div>
-                    <div class="col-md-2">
+                    <div class="col-md-10 col-md-offset-1"><h5> So you think you can code?</h5></div>
+                    <div class="col-md-2 col-md-offset-1">
                         <img src="../img/internships/coding.png" width="100px">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <p>This is when we let the reigns loose, set you free and let you work on some good projects that will leave you wanting for more. This project is compulsory in order to for you to receive the the internship letter.
 <br>
 At the end of this workshop, you will be ready to take on any web interview that comes your way! </p>
                     </div>
                 </div>                    
             </div>
-                
-            <h3>DURATION</h3>
-                <h5> 4 weeks </h5>
-                
-            <hr>
-                
-            <h3>PRICING</h3>
-                <h5> ₹10,000 </h5>
+            
             </div>
             
             <div class="col-md-4 col-sm-4 col-xs-12 mentors">
-                <h3> MENTORS </h3>
+              
+              <div class="row share-and-register-buttons">
+                <div class="col-md-6">
+                    <button class="btn btn-default" ng-click="shareModal()"> SHARE</button>
+                </div>
+                  
+                <div class="col-md-6">
+                    <button class="btn btn-default" ng-click="registerModal()"> REGISTER WITH US </button>
+                </div>
+              </div>
+              
+              <div class="row">  
+              <h3> MENTORS </h3>
                 <hr>
                 <div class="col-md-12 mentor">
                     <div class="col-md-4">
@@ -117,6 +122,16 @@ At the end of this workshop, you will be ready to take on any web interview that
                     </div>
                 </div>
                 <hr>
+             </div>
+              <div class="row">
+            <h3 class="duration">DURATION</h3>
+                <h5> 4 weeks </h5>
+                
+            <hr>
+                
+            <h3 class="pricing">PRICING</h3>
+                <h5> ₹10,000 </h5>
+                </div>
             </div>
         </div>
     </section>
@@ -278,3 +293,66 @@ At the end of this workshop, you will be ready to take on any web interview that
         </div>
     </div>
 </section>
+
+<!--MODALS BEGIN-->
+<modal-dialog class="socialShareModal" show='socialShareModalShown' dialog-title="Share on" height="auto" width="450px">
+  <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <div class="share-background-div  facebookShare" socialshare
+socialshare-provider="facebook" socialshare-text="Check out CODEGURUKUL!" socialshare-url="http://www.codegurukul.com">
+        <i class="ion-social-facebook"></i>
+        <br>
+        <p>FACEBOOK</p>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <div class="share-background-div twitterShare" socialshare
+socialshare-provider="twitter" socialshare-text="Check out CODEGURUKUL!" socialshare-url="http://www.codegurukul.com">
+        <i class="ion-social-twitter"></i>
+        <br>
+        <p>TWITTER</p>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <div class="share-background-div googleShare" socialshare
+socialshare-provider="googleplus" socialshare-text="Check out CODEGURUKUL!" socialshare-url="http://www.codegurukul.com">
+        <i class="ion-social-googleplus"></i>
+        <br>
+        <p>GOOGLE PLUS</p>
+      </div>
+    </div>
+  </div>
+</modal-dialog>
+
+
+<modal-dialog class="registerModal" show='registerModalShown' dialog-title="Register with us" height="auto" width="450px">
+    <form method="post" name="queryForm">    
+  <div class="problem-statement-modal">
+    <div ng-class="{ &quot;has-error&quot; : queryForm.fullName.$invalid &amp;&amp; queryForm.fullName.$dirty }" class="form-group has-feedback">
+              <input type="text" name="displayName" ng-model="name" placeholder="Name" required="" class="form-control input-lg"/><span class="fa fa-user signupFormIcons form-control-feedback"></span>
+              <div ng-if="queryForm.fullName.$dirty" ng-messages="queryForm.fullName.$error" class="help-block text-danger">
+                <div ng-message="required">You must enter your name.</div>
+              </div>
+    </div>
+    <div ng-class="{ &quot;has-error&quot; : queryForm.email.$invalid &amp;&amp; queryForm.email.$dirty }" class="form-group has-feedback">
+              <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" autofocus="" class="form-control input-lg"/><span class="fa fa-at signupFormIcons form-control-feedback"></span>
+              <div ng-if="queryForm.email.$dirty" ng-messages="queryForm.email.$error" class="help-block text-danger">
+                <div ng-message="required">Your email address is required.</div>
+                <div ng-message="email">Your email address is invalid.</div>
+              </div>
+    </div>
+    <div ng-class="{ &quot;has-error&quot; : queryForm.tel.$invalid &amp;&amp; signupForm.tel.$dirty }" class="form-group has-feedback">
+            <input type="number" name="contact" ng-model="contact" placeholder="Your Contact No" required="" class="form-control input-lg"/><span class="fa fa-phone signupFormIcons form-control-feedback"></span>
+            <div ng-if="queryForm.contact.$dirty" ng-messages="queryForm.contact.$error" class="help-block text-danger" style="color:#a94442">
+              <div ng-message="required">Your Contact No is required.</div>
+              <div ng-message="number">Your Contact No is Invalid</div>
+            </div>
+    </div>
+  </div>
+  <br>
+  <div class="modalButtons">
+    <button class="btn btn-md cancelButton" ng-click="registerModal()"> Cancel </button>
+    <button class="btn btn-md successButton" ng-disabled="queryForm.$invalid" ng-click=""> Send </button>
+  </div>
+    </form>  
+</modal-dialog>
