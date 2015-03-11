@@ -23,6 +23,8 @@
   <link href="/css/flexslider.css" rel="stylesheet" />
   <!-- ionicons font -->
   <link href="/css/ionicons.min.css" rel="stylesheet" />
+  <!-- Pace CSS -->
+  <link href="vendor/pace/themes/blue/pace-theme-corner-indicator.css" rel="stylesheet" />
   <!-- Custom CSS -->
   <link href="/css/style.css" rel="stylesheet" />
   <link href="/css/color/blue.css" rel="stylesheet" />
@@ -55,34 +57,32 @@
                     <a href="/">Home</a>
                   </li>
                   <li class="dropdown">
-<!--                    <a href="/programs" class="dropdown-toggle">Programs</a>-->
-<!--
+                    <a href="/programs" class="dropdown-toggle">Programs</a>
                     <ul class="dropdown-menu">
                       <li><a href="/program/f2h">Fresher to Hacker</a>
                       </li>
                       <li><a href="/program/ffl">Freelancer for Life</a>
                       </li>
-                      <li><a href="/program/ent">Entrepreneurship</a>
+                      <li><a href="/program/ent">Career 2.0</a>
                       </li>
                       <li><a href="/program/eha">Early Hacker</a>
                       </li>
                     </ul>
--->
                   </li>
                  <li class="dropdown">
                      <a href="#" class="dropdown-toggle">Workshops</a>
                 <ul class="dropdown-menu">
                   <li>
-                    <a href="/rubyonrails">Ruby On Rails</a>
+                    <a href="/worskshops/rubyonrails">Ruby On Rails</a>
                   </li>
                   <li>
-                    <a href="/angularjs">AngularJS</a>
+                    <a href="/worskshops/angularjs">AngularJS</a>
+                  </li>
+                  <li>
+                    <a href="/worskshops/internships"><b>Internships</b></a>
                   </li>
                 </ul>
                 </li>
-                  <li>
-                    <a href="/internships"><b>Internships</b></a>
-                  </li>
                   <li>
                     <a href="/camps">Camps</a>
                   </li>
@@ -197,7 +197,7 @@
           <div id="footer-middle-region" class="footer-middle region-bottom-sm-0 region-top-sm-0 col-md-4 col-xs-12 text-center">
             <div class="region">
               <div class="partnership_content block">
-                <a href="/contact-us"><i class="icon ion-briefcase"></i><span class="text">Partner With Us</span></a>
+                <a href="/contact"><i class="icon ion-briefcase"></i><span class="text">Partner With Us</span></a>
               </div>
             </div>
           </div>
@@ -242,7 +242,7 @@
   </div>
 
   <!-- End of Back to top button -->
-
+  <script src="vendor/pace/pace.min.js"></script>
   <!-- jQuery 1.10.2 -->
   <script src="/js/jquery-1.10.2.min.js"></script>
   <!-- jQuery Plugins -->
@@ -264,6 +264,7 @@
   <script src="vendor/angular-resource/angular-resource.js"></script>
   <script src="vendor/angular-route/angular-route.js"></script>
   <script src="vendor/angularjs-socialshare/src/js/angular-socialshare.js"></script>
+  
 
   <script src="app.js"></script>
 

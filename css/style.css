@@ -95,6 +95,18 @@ body {
   word-wrap: break-word;
 }
 
+body > :not(.pace),body:before,body:after {
+  -webkit-transition:opacity .4s ease-in-out;
+  -moz-transition:opacity .4s ease-in-out;
+  -o-transition:opacity .4s ease-in-out;
+  -ms-transition:opacity .4s ease-in-out;
+  transition:opacity .4s ease-in-out
+}
+
+body:not(.pace-done) > :not(.pace),body:not(.pace-done):before,body:not(.pace-done):after {
+  opacity:0
+}
+
 a {
   text-decoration: none;
   -webkit-transition: all 0.3s ease-out;
@@ -553,20 +565,22 @@ a:active {
   background: rgba(0,0,0,.3);
 }
 
-.overlay iframe{
+.home-overlay-content iframe{
     border: 3px solid rgb(148, 148, 148);
     border-radius: 2px;
     margin: auto;
+    margin-bottom: 20px;
 }
 
 .home-overlay-content{
     margin-top: 5%;
     text-align: center;
     padding: 20px;
+    margin-bottom: 5%;
 }
 
 .home-overlay-content p{
-    font-size: 20px;
+    font-size: 22px;
     line-height: 2;
 }
 
@@ -1800,8 +1814,9 @@ header {
 .team-item-overlay p {
   color: #f0f0f0;
   position: absolute;
-  bottom: 150px;
+/*  bottom: 150px;*/
 /*  right: 25px;*/
+    top: 40%;
   -webkit-transition: all 0.3s ease-out;
      -moz-transition: all 0.3s ease-out;
        -o-transition: all 0.3s ease-out;
@@ -3226,9 +3241,7 @@ font-size:20px;
 }
 
 .internship-header{
-/*    background-color: black;*/
     margin-bottom: 50px;
-/*    min-height: 300px;*/
     color: white;
     padding: 140px;
     text-align: center !important;
@@ -3242,6 +3255,20 @@ font-size:20px;
     font-family: Mouser;
     font-size: 70px;
     font-weight: 600;
+}
+
+@media screen and (max-width:800px){
+    .internship-header{
+        padding: 70px;
+    }
+    
+    .internship-header h1{
+        font-size: 29px;
+    }
+    
+    .home-overlay-content button{
+        font-size: 20px;
+    }
 }
 
 .services-2-content{
@@ -3275,7 +3302,7 @@ font-size:20px;
 }
 
 .testimonial-slider{
-    padding: 125px;
+    padding: 45px;
     min-height: 600px;
 /*    max-height: 550px;*/
 }
@@ -3308,4 +3335,14 @@ font-size:20px;
 
 .comingsoon{
     margin: 200px 0px 200px 0px;
+}
+
+.home-header{
+    background-image: url(../img/camps/image_7.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.home-overlay-opacity{
+    background-color: rgba(0,0,0,0.5);
 }
