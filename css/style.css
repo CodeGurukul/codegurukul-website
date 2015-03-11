@@ -3299,8 +3299,8 @@ font-size:20px;
 }
 
 .week-one-card, .week-two-card{
-    border: 1px solid #e8e8e8;
-    box-shadow: 0px 0px 4px #ECECEC;
+/*    border: 1px solid #e8e8e8;*/
+/*    box-shadow: 0px 0px 4px #ECECEC;*/
     padding: 20px;
     margin-bottom: 20px;
 }
@@ -3397,6 +3397,17 @@ font-size:20px;
     margin-bottom: 50px;
 }
 
+.share-and-register-buttons button{
+    background-color: #bf3431;
+    color: #e8e8e8;
+    border: 0px;
+}
+
+.share-and-register-buttons button:hover{
+    background-color: #2b2b2b;
+    color: #e8e8e8;
+}
+
 .cancelButton, .successButton{
     background-color: #bf3431;
     color: #e8e8e8;
@@ -3404,4 +3415,15 @@ font-size:20px;
 
 .cancelButton:hover, .successButton:hover{
     font-weight: 700;
+}
+
+.registerModal form{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+}
+
+.registerModal input{
+    margin-bottom: 20px;
+    margin-top: 20px;
 }

@@ -325,9 +325,9 @@ socialshare-provider="googleplus" socialshare-text="Check out CODEGURUKUL!" soci
 </modal-dialog>
 
 
-<modal-dialog class="registerModal" show='registerModalShown' dialog-title="Register with us" height="auto" width="450px">
+<modal-dialog class="registerModal" show='registerModalShown' dialog-title="Register with us" height="auto" width="350px">
     <form method="post" name="queryForm">    
-  <div class="problem-statement-modal">
+  <div class="register-modal">
     <div ng-class="{ &quot;has-error&quot; : queryForm.fullName.$invalid &amp;&amp; queryForm.fullName.$dirty }" class="form-group has-feedback">
               <input type="text" name="displayName" ng-model="name" placeholder="Name" required="" class="form-control input-lg"/><span class="fa fa-user signupFormIcons form-control-feedback"></span>
               <div ng-if="queryForm.fullName.$dirty" ng-messages="queryForm.fullName.$error" class="help-block text-danger">
@@ -356,3 +356,4 @@ socialshare-provider="googleplus" socialshare-text="Check out CODEGURUKUL!" soci
   </div>
     </form>  
 </modal-dialog>
+
