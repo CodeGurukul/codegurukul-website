@@ -3427,3 +3427,11 @@ font-size:20px;
     margin-bottom: 20px;
     margin-top: 20px;
 }
+
+.fixed-div-height-330{
+    min-height: 330px;
+}
+
+.signature-courses-header{
+    margin-top: 50px;
+}
