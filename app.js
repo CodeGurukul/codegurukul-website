@@ -25,6 +25,10 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ng
         templateUrl: 'views/rubyonrails.html',
         controller: 'HomeCtrl'
       })
+      .when('/worskshops/ruby', {
+        templateUrl: 'views/ruby.html',
+        controller: 'RubyCtrl'
+      })
       .when('/testimonials', {
         templateUrl: 'views/testimonials.html',
         controller: 'HomeCtrl'

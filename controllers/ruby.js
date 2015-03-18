@@ -1,5 +1,5 @@
 angular.module('Codegurukul')
-    .controller('AngularjsCtrl', function($scope, $rootScope, $routeParams, Program) {
+    .controller('RubyCtrl', function($scope, $rootScope, $routeParams, Program) {
 
     $scope.socialShareModalShown = false;
     $scope.registerModalShown = false;
