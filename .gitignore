@@ -27,5 +27,9 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
-vendor
+
 Thumbs.db
+config/secrets.js
+public/vendor
+public/app.min.js
+public/images/Thumbs.db
