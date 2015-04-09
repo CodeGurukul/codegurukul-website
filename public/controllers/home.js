@@ -1,3 +1,3 @@
 angular.module('Codegurukul')
-  .controller('HomeCtrl', function($scope,$rootScope) {
+  .controller('HomeCtrl', function($scope) {
   });

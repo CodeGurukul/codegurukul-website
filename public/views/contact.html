@@ -1,149 +1,233 @@
-<div id="top-content-region" class="top-content region-0 padding-top-15 padding-bottom-15 block-15 bg-color-grayLight1">
-  <div class="container">
-    <div class="row">
+<!-- ========== TITLE START ========== -->
 
-      <div id="top-content-left-region" class="top-content-left col-xs-12 col-md-6 text-center-sm">
-        <div class="region">
+		<div class="title">
+			<div class="title-image"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 text-center">
+						Contact
+					</div>
+				</div>
+			</div>
+		</div>
 
-          <div id="page-title-block" class="page-title block">
-            <h1>Contact Us</h1>
-          </div>
-          <!-- /page-title-block -->
+		<!-- ========== TITLE END ========== -->
 
-        </div>
-        <!-- /region -->
-      </div>
-      <!-- /top-content-left-region -->
+		<!-- ========== MAP START ========== -->
 
-      <div id="top-content-right-region" class="top-content-right col-xs-12 col-md-6 text-right text-center-sm">
-        <div class="region">
-
-          <div id="page-breadcrumbs-block" class="page-breadcrumbs block">
-            <div class="breadcrumbs">
-              <a href="index.php">Home</a>
-              <span class="delimiter">›</span> Contact Us
-            </div>
-            <!-- /breadcrumbs -->
-          </div>
-          <!-- /page-breadcrumbs-block -->
-
-        </div>
-        <!-- /region -->
-      </div>
-      <!-- /top-content-right-region -->
-
-    </div>
-    <!-- /row -->
-  </div>
-  <!-- /container -->
-</div>
-<!-- /top-content-region -->
-<div id="top-content-region" class="top-content region-0 padding-top-15 padding-bottom-15 block-15 block">
-  <div class="container">
-    <div class="row">
-
-      <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-2">
-        <h5>Address</h5>
-        <p>Andheri (West), Mumbai - 400053</p>
-      </div>
-
-      <div class="col-xs-12 col-sm-6 col-md-4 margin-top-xs-40">
-        <h5>Get In Touch</h5>
-        <p><b>Phone:</b> +91 8097415085
-          <br>
-          <!--<b>Fax:</b> +91 9819167755-->
-        </p>
-        <p><a href="mailto:info@codegurukul.com">info@codegurukul.com</a>
-<!--          <br><a href="mailto:info@codegurukul.com">support@codegurukul.com</a>-->
-        </p>
-      </div>
-
-    </div>
-  </div>
-  <!-- /container -->
-</div>
-<!-- /top-content-region -->
-
-<div id="content-region" class="content region">
-
-
-
-  <div id="contact-content-block" class="contact-content block custom-padding-top-0 ">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-xs-12 col-md-8 col-md-offset-2">
-
-<!--          <?php if (isset($_POST[ 'submit'])) { if ($_POST[ 'contact-name'] !="" ) { $_POST[ 'name']=f ilter_var($_POST[ 'contact-name'], FILTER_SANITIZE_STRING); if ($_POST[ 'contact-name']=="" ) { $errors .='Please enter a valid name.<br/><br/>' ; } } else { $errors .='Please enter your name.<br/>' ; } if ($_POST[ 'contact-email'] !="" ) { $email=f ilter_var($_POST[ 'contact-email'], FILTER_SANITIZE_EMAIL); if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { $errors .="$email is <strong>NOT</strong> a valid email address.<br/><br/>" ; } } else { $errors .='Please enter your email address.<br/>' ; } if ($_POST[ 'contact-subject'] !="" ) { $_POST[ 'contact-subject']=f ilter_var($_POST[ 'contact-subject'], FILTER_SANITIZE_STRING); if ($_POST[ 'contact-subject']=="" ) { $errors .='Please enter a subject.<br/>' ; } } else { $errors .='Please enter a subject.<br/>' ; } if ($_POST[ 'contact-message'] !="" ) { $_POST[ 'contact-message']=f ilter_var($_POST[ 'contact-message'], FILTER_SANITIZE_STRING); if ($_POST[ 'contact-message']=="" ) { $errors .='Please enter a message to send.<br/>' ; } } else { $errors .='Please enter a message to send.<br/>' ; } if (!$errors) { $mail_to='info@codegurukul.com' ; $subject="Codegurukul HTML: " . $_POST[ 'contact-subject']; $message='From: ' . $_POST[ 'contact-name'] . "\n"; $message .='Email: ' . $_POST[ 'contact-email'] . "\n"; $message .="Message:\n" . $_POST[ 'contact-message'] . "\n\n"; $header="From:" . $_POST[ 'contact-email'] . "\r\n"; mail($mail_to, $subject, $message, $header) or die( "Error!"); ?>-->
+		<!-- Google Map Script -->
+		
 <!--
-          <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>Success!</strong> Thank you for your email.
-          </div>
-          <?php } else { ?>
-          <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>Error!</strong>
-            <br />
-            <?php echo $errors; ?>
-          </div>
-          <?php } } ?>
+		<script type="text/javascript">
+        function initialize() {
+
+				// Create an array of styles.
+				var styles = [
+					{
+						"featureType": "water",
+						"stylers": [
+							{ "hue": "#89909a" },
+							{ "lightness": 60 }
+						]
+					},{
+						featureType: "road",
+						elementType: "geometry",
+						stylers: [
+							{ lightness: 50 },
+							{ visibility: "simplified" }
+						]
+					},{
+						featureType: "road",
+						elementType: "labels",
+						stylers: [
+							{ visibility: "off" }
+						]
+					}
+				];
+
+				// Create a new StyledMapType object, passing it the array of styles,
+				// as well as the name to be displayed on the map type control.
+				var styledMap = new google.maps.StyledMapType(styles,
+				{name: "Styled Map"});
+
+
+							var mapOptions = {
+								scrollwheel: false,
+								zoom: 18,
+								center: new google.maps.LatLng(19.1359314, 72.8325012),
+				mapTypeControlOptions: {
+				  mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+				}
+				}
+				var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+				//Associate the styled map with the MapTypeId and set it to display.
+				map.mapTypes.set('map_style', styledMap);
+				map.setMapTypeId('map_style');
+
+				setMarkers(map, places);
+			}
+
+			var places = [
+				['Karthik Complex,KL Walawalkar Marg, Veer Desai Industrial Estate, Andheri West, Mumbai, Maharashtra 400102', 19.1359314, 72.8325012, 1]
+			];
+
+			function setMarkers(map, locations) {
+				// Add markers to the map
+				var image = {
+					url: 'images/marker.png',
+					// This marker is 40 pixels wide by 42 pixels tall.
+					size: new google.maps.Size(40, 42),
+					// The origin for this image is 0,0.
+					origin: new google.maps.Point(0,0),
+					// The anchor for this image is the base of the pin at 20,42.
+					anchor: new google.maps.Point(15, 42)
+				};
+
+					var infowindow = new google.maps.InfoWindow();
+
+					var marker, i;
+					var markers = new Array();
+
+					for (var i = 0; i < locations.length; i++) {
+						var place = locations[i];
+						var myLatLng = new google.maps.LatLng(place[1], place[2], place[3]);
+						var marker = new google.maps.Marker({
+							position: myLatLng,
+							map: map,
+							icon: image,
+							title: place[0],
+							zIndex: place[3],
+							animation: google.maps.Animation.DROP
+						});
+
+						markers.push(marker);
+
+						google.maps.event.addListener(marker, 'click', (function(marker, i) {
+							return function() {
+								infowindow.setContent(locations[i][0]);
+								infowindow.open(map, marker);
+							}
+						})(marker, i));
+					}
+			}
+
+			google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
 -->
 
-          <form class="form-horizontal" method="post" role="form">
-            <div class="form-group">
-              <div class="col-md-6 margin-bottom-sm-20">
-                <input type="text" class="form-control" id="contact-name" name="contact-name" placeholder="Name" />
-              </div>
-              <!-- /col-md-6 -->
-              <div class="col-md-6">
-                <input type="email" class="form-control" id="contact-email" name="contact-email" placeholder="Email" />
-              </div>
-              <!-- /col-md-6 -->
-            </div>
-            <!-- /form-group -->
-
-            <div class="form-group">
-              <div class="col-xs-12">
-                <input type="text" class="form-control" id="contact-subject" name="contact-subject" placeholder="Subject" />
-              </div>
-              <!-- /col-xs-12 -->
-            </div>
-            <!-- /form-group -->
-
-            <div class="form-group">
-              <div class="col-xs-12">
-                <textarea class="form-control" rows="8" id="contact-message" name="contact-message" placeholder="Message"></textarea>
-              </div>
-              <!-- /col-xs-12 -->
-            </div>
-            <!-- /form-group -->
-
-            <div class="form-group">
-              <div class="col-xs-12">
-                <input type="submit" class="btn btn-primary btn-sm" id="submit" name="submit" value="Send" />
-              </div>
-              <!-- /col-xs-12 -->
-            </div>
-            <!-- /form-group -->
-          </form>
-
-        </div>
-        <!-- /col-xs-12 -->
-
-      </div>
-      <!-- /row -->
-    </div>
-    <!-- /container -->
-  </div>
-  <!-- /contact-content-block -->
-
-</div>
-<!-- /content-region -->
 <!--
+<ui-gmap-google-map center="map.center" zoom="map.zoom" options="options"></ui-gmap-google-map>
 
-<div id="map-region">
-  <div id="map_canvas" class="google-map"></div>
-</div>
+		<div id="map-canvas"></div>
 -->
-<!-- /map-region -->
+
+		<!-- ========== MAP END ========== -->
+
+		<!-- ========== CONTENT START ========== -->
+
+		<section id="content">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-5">
+						<div class="row">
+							<div class="col-xs-12">
+								<h1>Contact Details</h1>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-2 col-xs-3">
+								<i class="fa fa-map-marker fa-5x primary-color"></i>
+							</div>
+							<div class="col-lg-10 col-xs-9">
+								<h3 class="no-margin">Address</h3>
+								Karthik Complex,<br>
+                                KL Walawalkar Marg,<br>
+                                Veer Desai Industrial Estate,<br>
+                                Andheri West,<br>
+                                Mumbai,<br>
+                                Maharashtra 400102
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<hr>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-2 col-xs-3">
+								<i class="fa fa-phone fa-5x primary-color"></i>
+							</div>
+							<div class="col-lg-10 col-xs-9">
+								<h3 class="no-margin">Phone &amp; Fax</h3>
+								Phone: <a href="tel:+91 8097415085">+91 8097415085</a><br>
+								Phone: <a href="tel:+91 9819167755">+91 9819167755</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<hr>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-2 col-xs-3">
+								<i class="fa fa-envelope fa-4x primary-color"></i>
+							</div>
+							<div class="col-lg-10 col-xs-9">
+								<h3 class="no-margin">Email</h3>
+								Email: <a href="mailto:info@smartway.com">info@codegurukul.com</a><br>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-7">
+						<p>&nbsp;</p>
+						<img src="img/Mumbai_skyline.jpg" alt="" class="img-responsive" />
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ========== CONTENT END ========== -->
+
+		<!-- ========== CONTACT FORM START ========== -->
+
+		<section id="contact" class="alt-background">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 text-center">
+						<h2>Contact Form</h2>
+					</div>
+				</div>
+				<form role="form" name="contact-form" id="contact-form" action="http://coffeecreamthemes.com/themes/smartway/site/process-contact.php">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group" id="contact-name-group">
+								<label for="contact-input-name">Name</label>
+								<input type="text" class="form-control" id="contact-input-name" placeholder="Enter your name">
+							</div>
+							<div class="form-group" id="contact-email-group">
+								<label for="contact-input-email">Email</label>
+								<input type="email" class="form-control" id="contact-input-email" placeholder="Enter your email">
+							</div>
+							<div class="form-group" id="contact-subject-group">
+								<label for="contact-input-subject">Subject</label>
+								<input type="text" class="form-control" id="contact-input-subject" placeholder="Enter your subject">
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group" id="contact-message-group">
+								<label for="contact-input-message">Message</label>
+								<textarea class="form-control" id="contact-input-message" rows="8"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</section>
+
+		<!-- ========== CONTACT FORM END ========== -->

@@ -5,7 +5,7 @@
 @import url("animate.css");
 @import url("jquery.fancybox.css");
 @import url("animate.css");
-@import url("http://fonts.googleapis.com/css?family=Lato:400,900,400italic,900italic");
+@import url("../../../../../fonts.googleapis.com/cssb4a9.css?family=Lato:400,900,400italic,900italic.css");
 @import url("font-awesome.min.css");
 @import url("school-icons.css");
 
@@ -1271,55 +1271,3 @@ footer {
 		}
 
 	}
-
-
-/*Custom CSS*/
-
-.codegurukul-logo{
-    width: 250px;
-    padding-top: 30px;
-}
-
-
-.ng-modal-dialog{
-    background-color: #fff;
-}
-.ng-modal-title{
-    text-align: center;
-}
-
-.share-background-div{
-    text-align: center;
-    font-weight: 600;
-    color: #e8e8e8;
-    /*
-    background-color: black;
-    padding: 25px;
-    border-radius: 50%;
-    */
-}
-
-
-.cancelButton, .successButton{
-    background-color: #81A27B;
-    color: #e8e8e8;
-    font-weight: 700;
-    width: 100px;
-    margin-right: 20px;
-}
-
-.cancelButton:hover, .successButton:hover{
-    background-color: #74916e;
-    color: #e8e8e8;
-}
-
-.registerModal form{
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 20px;
-}
-
-.registerModal input{
-    margin-bottom: 20px;
-    margin-top: 20px;
-}

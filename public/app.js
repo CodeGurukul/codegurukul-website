@@ -1,4 +1,4 @@
-angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal'])
+angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps'])
   .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
     $urlRouterProvider.otherwise('/free-ruby-workshop');
@@ -6,19 +6,27 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
     $stateProvider
         .state('free-ruby-workshop', {
             url: '/free-ruby-workshop',
-            templateUrl: 'views/free-ruby-workshop.html'
-        })        
+            templateUrl: 'views/free-ruby-workshop.html',
+            controller: 'RubyCtrl'
+       })        
         .state('angularjs-workshop', {
             url: '/angularjs-workshop',
-            templateUrl: 'views/angularjs-workshop.html'
+            templateUrl: 'views/angularjs-workshop.html',
+            controller: 'AngularjsCtrl'
+        })           
+        .state('home', {
+            url: '/free-ruby-workshop',
+            templateUrl: 'views/free-ruby-workshop.html'
         })        
         .state('contact', {
             url: '/contact',
-            templateUrl: 'contact.html'
+            templateUrl: 'views/contact.html',
+            controller: 'ContactCtrl'
         })
         
   })
-  .config(function ($httpProvider) {
+  
+    .config(function ($httpProvider) {
     $httpProvider.interceptors.push(function ($rootScope, $q, $window, $location) {
       return {
         request: function(config) {
@@ -35,6 +43,17 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         }
       }
     });
-  });
+  })
+
+
+.config(function(uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+            key: 'AIzaSyDMvVbBJWCPE5VjC7EQPo1ohZj8hu17FXg',
+        v: '3.17',
+        libraries: 'weather,geometry,visualization'
+    });
+});
+
+
 
   

@@ -1,315 +1,222 @@
 <!DOCTYPE html>
 <html ng-app="Codegurukul">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>CodeGurukul | AngularJS Workshop</title>
+        <link rel="shortcut icon" href="images/favicon.png">
 
-    <html>
+        <link rel="stylesheet" href="vendor/ngModal/dist/ng-modal.css">
+        <!-- Main Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
 
-        <head>
-            <base href="/">
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
 
-            <!-- SEO -->
-            <title>Codegurukul</title>
+    </head>
+    <body >
 
-            <meta name="description" content="CodeGurukul is a premium coding school designed to train students without programming skills." />
-            <meta name="description" content="CodeGurukul is a premium coding school designed to train students without programming skills for a job as a Junior Programmer ($65K+/year) in 6-24 weeks period by providing a highly focused learning programs in an immersive programming environment." property="twitter:description"/>
-            <meta name="description" content="CodeGurukul is a premium coding school designed to train students without programming skills for a job as a Junior Programmer ($65K+/year) in 6-24 weeks period by providing a highly focused learning programs in an immersive programming environment." property="facebook:description"/>
-            <meta content="CodeGurukul" property="twitter:title" />
-            <meta name="keywords" content="Code Academy, NodeJS, AngularJS" />
+        <!-- ========== HEADER START ========== -->
 
-
-            <meta name="description" content="CodeGurukul is a premium coding school designed to train students without programming skills." />
-
-            <!-- Twitter Card data -->
-            <meta name="twitter:card" content="summary">
-            <meta name="twitter:site" content="@Codegurukul">
-            <meta name="twitter:title" content="CodeGurukul">
-            <meta name="twitter:description" content="CodeGurukul is a premium coding school designed to train students without programming skills.">
-            <!--<meta name="twitter:creator" content="@author_handle">-->
-            <!-- Twitter Summary card images must be at least 120x120px -->
-            <!--<meta name="twitter:image" content="http://www.example.com/image.jpg">-->
-
-            <!-- Open Graph data -->
-            <meta property="og:title" content="CodeGurukul" />
-            <meta property="og:type" content="article" />
-            <meta property="og:url" content="http://www.codegurukul.com/" />
-            <!--<meta property="og:image" content="http://example.com/image.jpg" />-->
-            <meta property="og:description" content="CodeGurukul is a premium coding school designed to train students without programming skills." /> 
-            <meta property="og:site_name" content="CG" />
-            <!--<meta property="fb:admins" content="Facebook numeric ID" />-->
-
-            <link type="text/plain" rel="author" href="humans.txt" />
-
-            <link href="favicon.png" rel="icon" type="image/png" />
-            <base href="<?php echo SITE_URL;?>" />
-            <link href='http://fonts.googleapis.com/css?family=Lato:100,300,700%7cBitter:400,700' rel='stylesheet' type='text/css'>
-            <!-- Bootstrap 3.1.0 -->
-            <link href="/css/bootstrap.min.css" rel="stylesheet" />
-            <!-- Flexslider 2 -->
-            <link href="/css/flexslider.css" rel="stylesheet" />
-            <!-- ionicons font -->
-            <link href="/css/ionicons.min.css" rel="stylesheet" />
-            <!-- Pace CSS -->
-            <link href="vendor/pace/themes/blue/pace-theme-corner-indicator.css" />
-            <!-- ngModal CSS -->
-            <link href="vendor/ngModal/dist/ng-modal.css" rel="stylesheet" />
-            <!-- Custom CSS -->
-            <link href="/css/style.css" rel="stylesheet" />
-            <link href="/css/color/blue.css" rel="stylesheet" />
-        </head>
-
-        <body>
-
-            <div class="main-wrapper">
-                <header>
-                    <div class="container">
-                        <div class="row">
-
-                            <div id="logo-region" class="logo col-md-3 text-center-sm">
-                                <a href="/"><img src="/img/codegurukul.png" alt="logo" class="img-responsive custom_logo" />
-                                </a>
-                            </div>
-                            <!-- /logo-region -->
-
-                            <div id="menu-region" class="col-md-9">
-                                <nav class="navbar codegurukul-main-menu" role="navigation">
-                                    <!-- Menu button for mobile display -->
-                                    <div class="navbar-header">
-                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">MENU</button>
-                                    </div>
-
-                                    <!-- Navigation links -->
-                                    <div class="collapse navbar-collapse navbar-ex1-collapse">
-                                        <ul class="nav navbar-right navbar-nav">
-                                            <li>
-                                                <a href="/">Home</a>
-                                            </li>
-                                            <li class="dropdown">
-                                                <a href="/programs" class="dropdown-toggle">Programs</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="/program/fresherTohacker">Fresher to Hacker</a>
-                                                    </li>
-                                                    <li><a href="/program/freelancerForLife">Freelancer for Life</a>
-                                                    </li>
-                                                    <li><a href="/program/career">Career 2.0</a>
-                                                    </li>
-                                                    <li><a href="/program/earlyHacker">Early Hacker</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle">Workshops</a>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <a href="/worskshops/ruby">Ruby</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/worskshops/rubyonrails">Ruby On Rails</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/worskshops/angularjs">AngularJS</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/worskshops/internships"><b>Internships</b></a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="/camps">Camps</a>
-                                            </li>
-                                            <li>
-                                                <a href="/about">About Us</a>
-                                                <!--  <ul class="dropdown-menu">
-<li><a href="/about-us/curricullum.php">Curricullum</a></li>
-</ul>   -->
-                                            </li>
-                                            <!--
-<li>
-<a href="/faq">FAQ</a>
-</li>
--->
-                                            <li>
-                                                <a href="/contact">Contact Us</a>
-                                            </li>
-                                            <li>
-                                                <a href="/testimonials">Testimonials</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- /navbar-collapse -->
-                                </nav>
-                            </div>
-                            <!-- /menu-region -->
-
-                        </div>
-                        <!-- /row -->
-                    </div>
-                    <!-- container -->
-                </header>
-                <div ng-view class="{{pageClass}}"></div>
-<div ui-view></div>
-                <div id="footer-columns-region" class="footer-columns region-30 block-30 bg-color-grayDark2 text-color-light">
-                    <div class="container">
-                        <div class="row">
-
-                            <div id="footer-first-column-region" class="footer-first-column col-xs-12 col-md-4 text-center">
-                                <div class="region">
-
-                                    <div id="footer-address-block" class="footer-address block">
-                                        <i class="icon ion-ios7-location-outline size-32 margin-bottom-20"></i>
-                                        <p> Andheri (West), Mumbai - 400053</p>
-                                    </div>
-                                    <!-- /footer-address-block -->
-
-                                </div>
-                                <!-- /region -->
-                            </div>
-                            <!-- /footer-first-column-region -->
-
-                            <div id="footer-second-column-region" class="footer-second-column col-xs-12 col-md-4 text-center">
-                                <div class="region">
-
-                                    <div id="footer-mail-block" class="footer-mail block">
-                                        <i class="icon ion-ios7-email-outline size-32 margin-bottom-20"></i>
-                                        <p><a href="mailto:info@codegurukul.com">info@codegurukul.com</a>
-                                            <!--                  <br /><a href="mailto:info@codegurukul.com">support@codegurukul.com</a>-->
-                                        </p>
-                                    </div>
-                                    <!-- /footer-mail-block -->
-
-                                </div>
-                                <!-- /region -->
-                            </div>
-                            <!-- /footer-second-column-region -->
-
-                            <div id="footer-third-column-region" class="footer-third-column col-xs-12 col-md-4 text-center">
-                                <div class="region">
-
-                                    <div id="footer-phone-block" class="footer-phone block">
-                                        <i class="icon ion-ios7-telephone-outline size-32 margin-bottom-20"></i>
-                                        <p>+91 8097415085
-                                            <br />+91 9819167755</p>
-                                    </div>
-                                    <!-- /footer-phone-block -->
-
-                                </div>
-                                <!-- /region -->
-                            </div>
-                            <!-- /footer-third-column-region -->
-
-                        </div>
-                        <!-- /row -->
-                    </div>
-                    <!-- /container -->
+        <header>
+            <!-- ==== TOOLS START ==== -->
+            <div class="tools">
+                <div class="container">
+                    <ul class="pull-right">
+                        <li><a href="tel:1800123456"><i class="fa fa-phone"></i><span>+91 8097415085</span></a></li>
+                        <li><a href="mailto:info@smartway.com"><i class="fa fa-envelope"></i><span>info@codegurukul.com</span></a></li>
+                    </ul>
                 </div>
-                <!-- /footer-columns-region -->
+            </div>
+            <!-- ==== TOOLS END ==== -->
 
 
 
-                <footer class="region-10 block-10 bg-color-grayDark1 text-color-light">
-                    <div class="container">
-                        <div class="row">
-
-                            <div id="footer-left-region" class="footer-left region-bottom-sm-0 col-xs-12 col-md-4 text-center-sm">
-                                <div class="region">
-
-                                    <div id="copyright-block" class="block">
-                                        <p>Developed by
-                                            <a href="http://www.bitbrothers.in">Bit Brothers Tech Pvt. Ltd.</a>
-                                        </p>
-                                    </div>
-                                    <!-- /copyright-block -->
-
-                                </div>
-                                <!-- /region -->
-                            </div>
-                            <!-- /footer-left-region -->
-
-                            <div id="footer-middle-region" class="footer-middle region-bottom-sm-0 region-top-sm-0 col-md-4 col-xs-12 text-center">
-                                <div class="region">
-                                    <div class="partnership_content block">
-                                        <a href="/contact"><i class="icon ion-briefcase"></i><span class="text">Partner With Us</span></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="footer-right-region" class="footer-right region-top-sm-0 col-xs-12 col-md-4 text-right text-center-sm">
-                                <div class="region">
-
-                                    <div id="social-networks-footer-block" class="social-networks-footer block">
-                                        <a href="http://facebook.com/codegurukul"><i class="icon ion-social-facebook"></i></a>
-                                        <a href="http://twitter.com/codegurukul"><i class="icon ion-social-twitter"></i></a>
-                                        <a href="http://github.com/codegurukul"><i class="icon ion-social-github"></i></a>
-                                        <!--
-<a href="http://twitter.com"><i class="icon ion-social-twitter"></i></a>
-<a href="http://linkedin.com"><i class="icon ion-social-linkedin"></i></a>
-<a href="http://pinterest.com"><i class="icon ion-social-pinterest"></i></a>
-<a href="http://vimeo.com"><i class="icon ion-social-vimeo"></i></a>
-<a href="http://dribbble.com"><i class="icon ion-social-dribbble-outline"></i></a>
-<a href="http://github.com"><i class="icon ion-social-github"></i></a>
--->
-                                    </div>
-                                    <!-- /social-networks-footer -->
-
-                                </div>
-                                <!-- /region -->
-                            </div>
-                            <!-- /footer-right-region -->
-
-                        </div>
-                        <!-- /row -->
+            <!-- ==== NAVBAR START ==== -->
+            <div class="navbar navbar-default navbar-static-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a ui-sref="home" class="navbar-brand codegurukul-logo"><img src="img/codegurukul1.png" alt="" class="img-responsive logo" /></a>
                     </div>
-                    <!-- /container -->
-                </footer>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a ui-sref="contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <!-- /main-wrapper -->
+            <!-- ==== NAVBAR END ==== -->
+
+        </header>
+        <div ui-view></div>
 
 
+        <!-- ========== PREFOOTER START ========== -->
 
-            <!-- Back to top button -->
+        <div id="prefooter">
+            <div class="container">
+                <div class="row">
 
-            <div id="back-to-top">
-                <i class="ion-ios7-arrow-up"></i>
+                    <!-- ==== ABOUT START == -->
+                    <div class="col-sm-6">
+                        <h3>About Us</h3>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <p><img src="img/codeshot.jpg" alt="" class="img-responsive " /></p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p>Codegurukul trains passionate and creative people in web and mobile development. We bring together people with diverse perspectives and backgrounds who are passionate about technology. We also offer part-time courses, corporate training, and a Pre-College Program for high school students.<br>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ==== ABOUT END == -->
+
+                    <!-- ==== APPLY FOR TEACHER START == -->
+                    <div class="col-sm-3">
+                        <h3>Apply for a Mentor</h3>
+                        <form role="form" name="teacher-form" id="teacher-form" action="http://coffeecreamthemes.com/themes/smartway/site/process-teacher.php">
+                            <div class="form-group" id="teacher-name-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="teacher-input-name" placeholder="Name">
+                                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="teacher-email-group">
+                                <div class="input-group">
+                                    <input type="email" class="form-control" id="teacher-input-email" placeholder="Email">
+                                    <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="teacher-phone-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="teacher-input-phone" placeholder="Phone">
+                                    <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                    <!-- ==== APPLY FOR TEACHER END == -->
+
+                    <!-- ==== CONTACT START == -->
+                    <div class="col-sm-3">
+                        <h3>Contact</h3>
+                        <p>Andheri (West)<br>
+                            Mumbai 400053</p>
+
+                        <p>Phone: <a href="tel:1800123456">+91 8097415085</a><br>
+                            Phone: <a href="tel:1800123456">+91 9819167755</a><br>
+                            Email: <a href="mailto:info@codegurukul.com">info@codegurukul.com</a></p>
+
+                    </div>
+                    <!-- ==== CONTACT END == -->
+
+                </div>
             </div>
+        </div>
 
-            <!-- End of Back to top button -->
-            <script src="vendor/pace/pace.min.js"></script>
-            <!-- jQuery 1.10.2 -->
-            <script src="/js/jquery-1.10.2.min.js"></script>
-            <!-- jQuery Plugins -->
-            <script src="/js/bootstrap.min.js"></script>
-            <script src="/js/jquery.flexverticalcenter.js"></script>
-            <script src="/js/jquery.flexslider-min.js"></script>
-            <script src="/js/retina-1.1.0.min.js"></script>
-            <script src="/js/jquery.stellar.min.js"></script>
-            <script src="/js/jquery.mixitup.min.js"></script>
-            <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-            <script src="/js/app.js"></script>
-            <!-- Demo Switcher -->
-            <script src="/js/demo-switcher.js"></script>
+        <!-- ========== PREFOOTER END ========== -->
 
-            <script src="vendor/angular/angular.js"></script>
-            <script src="vendor/angular-strap/dist/angular-strap.js"></script>
-            <script src="vendor/angular-strap/dist/angular-strap.tpl.js"></script>
-            <script src="vendor/angular-messages/angular-messages.js"></script>
-            <script src="vendor/angular-resource/angular-resource.js"></script>
-            <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
-            <script src="vendor/angularjs-socialshare/src/js/angular-socialshare.js"></script>
-            <script src="vendor/ngModal/dist/ng-modal.min.js"></script>
+        <!-- ========== FOOTER START ========== -->
 
+        <footer>
+            <div class="container">
+                <div class="row">
 
-            <script src="app.js"></script>
+                    <!-- ==== CREDITS START == -->
+                    <div class="col-sm-8">
+                        &copy; 2015 Developed by<a href="http://bitbrothers.in">Bit Brothers Tech Pvt. Ltd. </a>
+                    </div>
+                    <!-- ==== CREDITS END == -->
 
-            <script src="controllers/home.js"></script>
-            <script src="controllers/program.js"></script>
-            <script src="controllers/internships.js"></script>
-            <script src="controllers/angularjs.js"></script>
-            <script src="controllers/ruby.js"></script>
+                    <!-- ==== SOCIAL ICONS START == -->
+                    <div class="col-sm-4 text-right">
+                        <a href="http://www.facebook.com/codegurukul"><i class="fa fa-facebook fa-lg"></i></a>
+                        <a href="http://www.twitter.com/codegurukul"><i class="fa fa-twitter fa-lg"></i></a>
+                    </div>
+                    <!-- ==== SOCIAL ICONS END == -->
 
+                </div>
+            </div>
+        </footer>
 
+        <!-- ========== FOOTER END ========== -->
 
-            <script src="services/program.js"></script>
+        <!-- Modernizr Plugin -->
+        <script src="js/modernizr.custom.97074.js"></script>
 
-        </body>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery-1.11.1.min.js"></script>
 
-    </html>
+        <!-- Bootstrap Plugins -->
+        <script src="js/bootstrap.min.js"></script>
+
+        <!-- Retina Plugin -->
+        <script src="js/retina-1.1.0.min.js"></script>
+
+        <!-- Superslides Plugin -->
+        <script src="js/jquery.easing.1.3.js"></script>
+        <script src="js/jquery.animate-enhanced.min.js"></script>
+        <script src="js/jquery.superslides.js"></script>
+
+        <!-- Owl Carousel Plugin -->
+        <script src="js/owl.carousel.min.js"></script>
+
+        <!-- Parallax ImageScroll Plugin -->
+        <script src="js/jquery.parallax-1.1.3.js"></script>
+
+        <!-- Fancybox Plugin -->
+        <script src="js/jquery.fancybox.js"></script>
+
+        <!-- ImagesLoaded Plugin -->
+        <script src="js/imagesloaded.pkgd.min.js"></script>
+
+        <!-- Masonry Plugin -->
+        <script src="js/masonry.pkgd.min.js"></script>
+
+        <!-- Progressbar Plugin -->
+        <script src="js/bootstrap-progressbar.js"></script>
+
+        <!-- Scroll Reveal Plugin -->
+        <script src="js/scrollReveal.js"></script>
+
+        <!-- Magic Form Processing -->
+        <script src="js/magic.js"></script>
+
+        <!-- jQuery Settings -->
+        <script src="js/settings.js"></script>
+        
+        <!-- Controllers -->
+        
+        <script src="vendor/angular/angular.js"></script>
+        <script src="vendor/angular-strap/dist/angular-strap.js"></script>
+        <script src="vendor/angular-strap/dist/angular-strap.tpl.js"></script>
+        <script src="vendor/angular-messages/angular-messages.js"></script>
+        <script src="vendor/angular-resource/angular-resource.js"></script>
+        <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="vendor/angularjs-socialshare/src/js/angular-socialshare.js"></script>
+        <script src="vendor/ngModal/dist/ng-modal.min.js"></script>
+        <script src="vendor/angular-google-maps/dist/angular-google-maps.min.js"></script>
+
+        
+        <script src="app.js"></script>
+        <script src="controllers/angularjs.js"></script>
+        <script src="controllers/ruby.js"></script>
+        <script src="controllers/contact.js"></script>
+        
+        <script src="services/email.js"></script>
+        
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoRMxiPsqJ9SUuaK1KsCAjd3gqnecjlBw&amp;sensor=false"></script>
+
+    </body>
+</html>
