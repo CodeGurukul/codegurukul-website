@@ -1,54 +1,22 @@
-angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap', '720kb.socialshare','ngModal'])
-  .config(function ($routeProvider, $locationProvider) {
+angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal'])
+  .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/home.html',
-        controller: 'HomeCtrl'
-      })
-      .when('/programs', {
-        templateUrl: 'views/programs.html'
-      })
-      .when('/program/:pslug', {
-        templateUrl: 'views/programDetail.html',
-        controller: 'ProgramCtrl'
-      })
-      .when('/worskshops/internships', {
-        templateUrl: 'views/internships.html',
-        controller: 'InternshipsCtrl'
-      })
-      .when('/worskshops/angularjs', {
-        templateUrl: 'views/angularjs.html',
-        controller: 'AngularjsCtrl'
-      })
-      .when('/worskshops/rubyonrails', {
-        templateUrl: 'views/rubyonrails.html',
-        controller: 'HomeCtrl'
-      })
-      .when('/worskshops/ruby', {
-        templateUrl: 'views/ruby.html',
-        controller: 'RubyCtrl'
-      })
-      .when('/testimonials', {
-        templateUrl: 'views/testimonials.html',
-        controller: 'HomeCtrl'
-      })
-      .when('/camps', {
-        templateUrl: 'views/camps.html'
-      })
-      .when('/about', {
-        templateUrl: 'views/about-us.html'
-      })
-      .when('/contact', {
-        templateUrl: 'views/contact-us.html'
-      })
-      .when('/faq', {
-        templateUrl: 'views/faq.html'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-    $locationProvider.html5Mode(true);
+    $urlRouterProvider.otherwise('/free-ruby-workshop');
+    
+    $stateProvider
+        .state('free-ruby-workshop', {
+            url: '/free-ruby-workshop',
+            templateUrl: 'views/free-ruby-workshop.html'
+        })        
+        .state('angularjs-workshop', {
+            url: '/angularjs-workshop',
+            templateUrl: 'views/angularjs-workshop.html'
+        })        
+        .state('contact', {
+            url: '/contact',
+            templateUrl: 'contact.html'
+        })
+        
   })
   .config(function ($httpProvider) {
     $httpProvider.interceptors.push(function ($rootScope, $q, $window, $location) {
