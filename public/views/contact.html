@@ -16,111 +16,14 @@
 		<!-- ========== MAP START ========== -->
 
 		<!-- Google Map Script -->
-		
-<!--
-		<script type="text/javascript">
-        function initialize() {
 
-				// Create an array of styles.
-				var styles = [
-					{
-						"featureType": "water",
-						"stylers": [
-							{ "hue": "#89909a" },
-							{ "lightness": 60 }
-						]
-					},{
-						featureType: "road",
-						elementType: "geometry",
-						stylers: [
-							{ lightness: 50 },
-							{ visibility: "simplified" }
-						]
-					},{
-						featureType: "road",
-						elementType: "labels",
-						stylers: [
-							{ visibility: "off" }
-						]
-					}
-				];
-
-				// Create a new StyledMapType object, passing it the array of styles,
-				// as well as the name to be displayed on the map type control.
-				var styledMap = new google.maps.StyledMapType(styles,
-				{name: "Styled Map"});
+<!-- 
 
 
-							var mapOptions = {
-								scrollwheel: false,
-								zoom: 18,
-								center: new google.maps.LatLng(19.1359314, 72.8325012),
-				mapTypeControlOptions: {
-				  mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
-				}
-				}
-				var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-				//Associate the styled map with the MapTypeId and set it to display.
-				map.mapTypes.set('map_style', styledMap);
-				map.setMapTypeId('map_style');
-
-				setMarkers(map, places);
-			}
-
-			var places = [
-				['Karthik Complex,KL Walawalkar Marg, Veer Desai Industrial Estate, Andheri West, Mumbai, Maharashtra 400102', 19.1359314, 72.8325012, 1]
-			];
-
-			function setMarkers(map, locations) {
-				// Add markers to the map
-				var image = {
-					url: 'images/marker.png',
-					// This marker is 40 pixels wide by 42 pixels tall.
-					size: new google.maps.Size(40, 42),
-					// The origin for this image is 0,0.
-					origin: new google.maps.Point(0,0),
-					// The anchor for this image is the base of the pin at 20,42.
-					anchor: new google.maps.Point(15, 42)
-				};
-
-					var infowindow = new google.maps.InfoWindow();
-
-					var marker, i;
-					var markers = new Array();
-
-					for (var i = 0; i < locations.length; i++) {
-						var place = locations[i];
-						var myLatLng = new google.maps.LatLng(place[1], place[2], place[3]);
-						var marker = new google.maps.Marker({
-							position: myLatLng,
-							map: map,
-							icon: image,
-							title: place[0],
-							zIndex: place[3],
-							animation: google.maps.Animation.DROP
-						});
-
-						markers.push(marker);
-
-						google.maps.event.addListener(marker, 'click', (function(marker, i) {
-							return function() {
-								infowindow.setContent(locations[i][0]);
-								infowindow.open(map, marker);
-							}
-						})(marker, i));
-					}
-			}
-
-			google.maps.event.addDomListener(window, 'load', initialize);
-		</script>
--->
-
-<!--
 <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options"></ui-gmap-google-map>
 
 		<div id="map-canvas"></div>
--->
+ -->
 
 		<!-- ========== MAP END ========== -->
 
@@ -142,11 +45,10 @@
 							<div class="col-lg-10 col-xs-9">
 								<h3 class="no-margin">Address</h3>
 								Karthik Complex,<br>
-                                KL Walawalkar Marg,<br>
-                                Veer Desai Industrial Estate,<br>
+                                Opp. Laxmi Industrial Estate,<br>
                                 Andheri West,<br>
                                 Mumbai,<br>
-                                Maharashtra 400102
+                                Maharashtra 400053
 							</div>
 						</div>
 						<div class="row">
@@ -198,32 +100,32 @@
 						<h2>Contact Form</h2>
 					</div>
 				</div>
-				<form role="form" name="contact-form" id="contact-form" action="http://coffeecreamthemes.com/themes/smartway/site/process-contact.php">
+				<form role="form" name="contact-form" id="contact-form">
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group" id="contact-name-group">
 								<label for="contact-input-name">Name</label>
-								<input type="text" class="form-control" id="contact-input-name" placeholder="Enter your name">
+								<input type="text" ng-model="name" class="form-control" id="contact-input-name" placeholder="Enter your name">
 							</div>
 							<div class="form-group" id="contact-email-group">
 								<label for="contact-input-email">Email</label>
-								<input type="email" class="form-control" id="contact-input-email" placeholder="Enter your email">
+								<input type="email" ng-model="email" class="form-control" id="contact-input-email" placeholder="Enter your email">
 							</div>
 							<div class="form-group" id="contact-subject-group">
-								<label for="contact-input-subject">Subject</label>
-								<input type="text" class="form-control" id="contact-input-subject" placeholder="Enter your subject">
+								<label for="contact-input-subject">Contact</label>
+								<input type="number" ng-model="contact" class="form-control" id="contact-input-subject" placeholder="Enter your contact">
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group" id="contact-message-group">
 								<label for="contact-input-message">Message</label>
-								<textarea class="form-control" id="contact-input-message" rows="8"></textarea>
+								<textarea class="form-control" ng-model="message" id="contact-input-message" rows="8"></textarea>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-primary">Submit</button>
+							<button type="submit" ng-click="sendEmail()" class="btn btn-primary">Submit</button>
 						</div>
 					</div>
 				</form>
