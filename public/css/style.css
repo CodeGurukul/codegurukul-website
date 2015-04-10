@@ -1323,3 +1323,12 @@ footer {
     margin-bottom: 20px;
     margin-top: 20px;
 }
+
+.startup-training-testimonials blockquote{
+    padding-left: 50px;
+}
+.startup-training-testimonials img{
+    border-radius: 50%;
+    max-width: 150px;
+    display: inline !important;
+}

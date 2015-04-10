@@ -1,4 +1,4 @@
-angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps'])
+angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps','angular-carousel'])
   .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
     $urlRouterProvider.otherwise('/free-ruby-workshop');
@@ -22,6 +22,10 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
             url: '/contact',
             templateUrl: 'views/contact.html',
             controller: 'ContactCtrl'
+        })        
+        .state('startup-team-training', {
+            url: '/startup-team-training',
+            templateUrl: 'views/startup-team-training.html'
         })
         
   })
