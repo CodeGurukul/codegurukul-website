@@ -71,7 +71,10 @@ app.get('/', function(request, response){
     response.render('home');
 });
 
+var emailController = require('./controllers/email');
 
+
+app.post('/api/email', emailController.contactUs, emailController.sendEmail);
 
 
 
