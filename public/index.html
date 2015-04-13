@@ -51,7 +51,7 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a ui-sref="startup-team-training">Startup Team Training</a></li>
+<!--                            <li><a ui-sref="startup-team-training">Startup Team Training</a></li>-->
                             <li><a ui-sref="contact">Contact</a></li>
                         </ul>
                     </div>
@@ -89,19 +89,19 @@
                         <form role="form" name="teacher-form" id="teacher-form" ng-controller="FooterCtrl">
                             <div class="form-group" id="teacher-name-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="teacher-input-name" placeholder="Name" ng-model="name">
+                                    <input type="text" class="form-control" id="teacher-input-name" placeholder="Name" ng-model="name" required="">
                                     <div class="input-group-addon"><i class="fa fa-user"></i></div>
                                 </div>
                             </div>
                             <div class="form-group" id="teacher-email-group">
                                 <div class="input-group">
-                                    <input type="email" class="form-control" id="teacher-input-email" placeholder="Email" ng-model="email">
+                                    <input type="email" class="form-control" id="teacher-input-email" placeholder="Email" ng-model="email" required="">
                                     <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
                                 </div>
                             </div>
                             <div class="form-group" id="teacher-phone-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="teacher-input-phone" placeholder="Phone" ng-model="contact">
+                                    <input type="text" class="form-control" id="teacher-input-phone" placeholder="Phone" ng-model="contact" required="">
                                     <div class="input-group-addon"><i class="fa fa-phone"></i></div>
                                 </div>
                             </div>

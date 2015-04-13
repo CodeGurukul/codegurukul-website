@@ -13,7 +13,8 @@ angular.module('Codegurukul')
         Email.save({
             name: name,
             email: email,
-            contact: contact
+            contact: contact,
+            message: 'I want to register for the Ruby Workshop'
         },function(data){
             console.log(data);
             $alert({

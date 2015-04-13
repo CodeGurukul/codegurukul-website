@@ -6,7 +6,8 @@ angular.module('Codegurukul')
         Email.save({
             name: $scope.name,
             email: $scope.email,
-            contact: $scope.contact
+            contact: $scope.contact,
+            message: 'I want to apply to be a mentor.'
         },function(data){
             $alert({
                 content: 'Success',
