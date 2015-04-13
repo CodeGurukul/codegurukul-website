@@ -25,9 +25,9 @@ var transporter = nodemailer.createTransport({
  */
 exports.contactUs = function(req, res, next){
   console.log(req);
-  req.to = 'info@codegurukul.com';
+  req.to = 'info@codegurukul.com'
   req.subject = req.body.subject;
-  req.email = 'Name: ' + req.body.name + '\nEmail: ' + req.body.email + '\nContact: ' + req.body.contact + '\nMessage: ' + req.body.message ;
+  req.email = 'Name: ' + req.body.name + '\nEmail: ' + req.body.email + '\nContact: ' + req.body.contact + '\nMessage: I want to apply as a Mentor' ;
   next();
 };
 // info@codegurukul.com

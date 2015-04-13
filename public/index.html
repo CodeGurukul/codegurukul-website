@@ -86,26 +86,26 @@
                     <!-- ==== APPLY FOR TEACHER START == -->
                     <div class="col-sm-3">
                         <h3>Apply for a Mentor</h3>
-                        <form role="form" name="teacher-form" id="teacher-form" action="http://coffeecreamthemes.com/themes/smartway/site/process-teacher.php">
+                        <form role="form" name="teacher-form" id="teacher-form" ng-controller="FooterCtrl">
                             <div class="form-group" id="teacher-name-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="teacher-input-name" placeholder="Name">
+                                    <input type="text" class="form-control" id="teacher-input-name" placeholder="Name" ng-model="name">
                                     <div class="input-group-addon"><i class="fa fa-user"></i></div>
                                 </div>
                             </div>
                             <div class="form-group" id="teacher-email-group">
                                 <div class="input-group">
-                                    <input type="email" class="form-control" id="teacher-input-email" placeholder="Email">
+                                    <input type="email" class="form-control" id="teacher-input-email" placeholder="Email" ng-model="email">
                                     <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
                                 </div>
                             </div>
                             <div class="form-group" id="teacher-phone-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="teacher-input-phone" placeholder="Phone">
+                                    <input type="text" class="form-control" id="teacher-input-phone" placeholder="Phone" ng-model="contact">
                                     <div class="input-group-addon"><i class="fa fa-phone"></i></div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button ng-click="applyAsMentor()" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                     <!-- ==== APPLY FOR TEACHER END == -->
@@ -193,7 +193,7 @@
         <script src="js/scrollReveal.js"></script>
 
         <!-- Magic Form Processing -->
-        <script src="js/magic.js"></script>
+<!--        <script src="js/magic.js"></script>-->
 
         <!-- jQuery Settings -->
         <script src="js/settings.js"></script>
@@ -218,6 +218,7 @@
         <script src="controllers/angularjs.js"></script>
         <script src="controllers/ruby.js"></script>
         <script src="controllers/contact.js"></script>
+        <script src="controllers/footer.js"></script>
         
         <script src="services/email.js"></script>
         
