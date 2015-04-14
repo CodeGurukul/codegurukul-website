@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="vendor/angular-carousel/dist/angular-carousel.min.css">
         <!-- Main Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+        <link href="css/pace-theme.css" rel="stylesheet" />
 
         <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -24,7 +25,7 @@
 
         <!-- ========== HEADER START ========== -->
 
-        <header>
+        <header ng-cloak>
             <!-- ==== TOOLS START ==== -->
             <div class="tools">
                 <div class="container">
@@ -51,7 +52,7 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-<!--                            <li><a ui-sref="startup-team-training">Startup Team Training</a></li>-->
+                            <!--                            <li><a ui-sref="startup-team-training">Startup Team Training</a></li>-->
                             <li><a ui-sref="angularjs-workshop">Angular Workshop</a></li>
                             <li><a ui-sref="contact">Contact</a></li>
                         </ul>
@@ -66,7 +67,7 @@
 
         <!-- ========== PREFOOTER START ========== -->
 
-        <div id="prefooter">
+        <div id="prefooter" ng-cloak>
             <div class="container">
                 <div class="row">
 
@@ -132,7 +133,7 @@
 
         <!-- ========== FOOTER START ========== -->
 
-        <footer>
+        <footer ng-cloak>
             <div class="container">
                 <div class="row">
 
@@ -154,6 +155,9 @@
         </footer>
 
         <!-- ========== FOOTER END ========== -->
+        
+        <!-- Pace -->
+        <script src="directives/pace-1.0.min.js"></script>
 
         <!-- Modernizr Plugin -->
         <script src="js/modernizr.custom.97074.js"></script>
@@ -194,14 +198,14 @@
         <script src="js/scrollReveal.js"></script>
 
         <!-- Magic Form Processing -->
-<!--        <script src="js/magic.js"></script>-->
+        <!--        <script src="js/magic.js"></script>-->
 
         <!-- jQuery Settings -->
         <script src="js/settings.js"></script>
-        
-        
+
+
         <!-- Controllers -->
-        
+
         <script src="vendor/angular/angular.js"></script>
         <script src="vendor/angular-strap/dist/angular-strap.js"></script>
         <script src="vendor/angular-strap/dist/angular-strap.tpl.js"></script>
@@ -214,18 +218,18 @@
         <script src="vendor/lodash/dist/lodash.min.js"></script>
 
 
-        
+
         <script src="app.js"></script>
         <script src="controllers/angularjs.js"></script>
         <script src="controllers/ruby.js"></script>
         <script src="controllers/contact.js"></script>
         <script src="controllers/footer.js"></script>
         <script src="controllers/payment.js"></script>
-        
+
         <script src="services/email.js"></script>
-        
+
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoRMxiPsqJ9SUuaK1KsCAjd3gqnecjlBw&amp;sensor=false"></script>
-        
+
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
         <!-- Angular Carousel -->
