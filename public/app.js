@@ -13,6 +13,16 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
             url: '/angularjs-workshop',
             templateUrl: 'views/angularjs-workshop.html',
             controller: 'AngularjsCtrl'
+        })          
+        .state('internships', {
+            url: '/internships',
+            templateUrl: 'views/internships.html',
+            controller: 'InternshipsCtrl'
+        })            
+        .state('internships1', {
+            url: '/internships1',
+            templateUrl: 'views/internships1.html',
+            controller: 'AngularjsCtrl'
         })           
         .state('home', {
             url: '/free-ruby-workshop',

@@ -1,15 +1,17 @@
 angular.module('Codegurukul')
-    .controller('InternshipsCtrl', function($scope, $rootScope, $routeParams, Program) {
+    .controller('InternshipsCtrl', function($scope, $rootScope) {
 
-    $scope.socialShareModalShown = false;
+
     $scope.registerModalShown = false;
+    $rootScope.coursePrice = '';
+    $rootScope.courseName = '';
 
-    $scope.shareModal = function(){
-        $scope.socialShareModalShown = true;
-    };
 
     $scope.registerModal = function(){
         $scope.registerModalShown = !$scope.registerModalShown;
+        $rootScope.coursePrice = '800000';
+        $rootScope.courseName = 'Internship';
     };
+
 
 });
