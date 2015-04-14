@@ -191,7 +191,7 @@
                                 </li>
                                 <li class="course-data">
                                     <span class="icon fa fa-calendar"></span>
-                                    <span class="pull-right">25th & 26th April</span>
+                                    <span class="pull-right">1st & 2nd May</span>
                                 </li>
                                 <li class="course-data">
                                     <span class="icon icon-006"></span>
@@ -241,17 +241,17 @@
 
 
 
-<modal-dialog class="registerModal" show='registerModalShown' dialog-title="AngularJS Workshop Registration" height="auto" width="350px">
+<modal-dialog class="registerModal" show='registerModalShown' dialog-title="AngularJS Workshop Registration" height="auto" width="350px" >
     <form method="post" name="queryForm">    
         <div class="register-modal">
             <div ng-class="{ &quot;has-error&quot; : queryForm.fullName.$invalid &amp;&amp; queryForm.fullName.$dirty }" class="form-group has-feedback">
-                <input type="text" name="displayName" ng-model="name" placeholder="Name" required="" class="form-control input-lg"/>
+                <input type="text" name="displayName" ng-model="name" placeholder="Name" required="" autofocus="" class="form-control input-lg"/>
                 <div ng-if="queryForm.fullName.$dirty" ng-messages="queryForm.fullName.$error" class="help-block text-danger">
                     <div ng-message="required">You must enter your name.</div>
                 </div>
             </div>
             <div ng-class="{ &quot;has-error&quot; : queryForm.email.$invalid &amp;&amp; queryForm.email.$dirty }" class="form-group has-feedback">
-                <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" autofocus="" class="form-control input-lg"/>
+                <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" class="form-control input-lg"/>
                 <div ng-if="queryForm.email.$dirty" ng-messages="queryForm.email.$error" class="help-block text-danger">
                     <div ng-message="required">Your email address is required.</div>
                     <div ng-message="email">Your email address is invalid.</div>
@@ -267,8 +267,8 @@
         </div>
         <br>
         <div class="modalButtons">
-            <button class="btn btn-md cancelButton" ng-click="registerModal()"> Cancel </button>
-            <button class="btn btn-md successButton" ng-disabled="queryForm.$invalid" ng-click="sendEmail(name,email,contact)"> Send </button>
+            <button class="btn btn-md angularCancelButton cancelButton" ng-click="registerModal()"> Cancel </button>
+            <button ng-controller="PaymentCtrl" class="btn btn-md successButton angularSuccessButton" ng-disabled="queryForm.$invalid" ng-click="sendEmail(name,email,contact); registerModal(); pay();"> Proceed to Payment </button>
         </div>
     </form>  
 </modal-dialog>

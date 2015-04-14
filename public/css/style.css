@@ -1308,6 +1308,16 @@ footer {
     margin-right: 20px;
 }
 
+.angularCancelButton{
+    margin: 0px !important;
+    margin-right: 26px !important;
+}
+
+.angularSuccessButton{
+    width: 171px !important;
+    margin-right: 0px !important;
+}
+
 .cancelButton:hover, .successButton:hover{
     background-color: #74916e;
     color: #e8e8e8;
