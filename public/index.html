@@ -52,7 +52,19 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <!--                            <li><a ui-sref="startup-team-training">Startup Team Training</a></li>-->
+<!--
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a ui-sref="fresher-to-hacker">Fresher to Hacker</a></li>
+                                    <li><a href="#">Carreer 2.0</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">MS Students</a></li>
+                                    <li class="divider"></li>
+                                    <li><a ui-sref="all-courses">View All Courses</a></li>
+                                </ul>
+                            </li>
+                            <li><a ui-sref="startup-team-training">Startup Team Training</a></li>
+-->
                             <li><a ui-sref="angularjs-workshop">Angular Workshop</a></li>
                             <li><a ui-sref="internships">Internships</a></li>
                             <li><a ui-sref="contact">Contact</a></li>
@@ -77,7 +89,7 @@
                         <h3>About Us</h3>
                         <div class="row">
                             <div class="col-sm-5">
-                                <p><img src="img/codeshot.jpg" alt="" class="img-responsive " /></p>
+                                <p><img src="img/codeshot_thumb.jpg" alt="" class="img-responsive " /></p>
                             </div>
                             <div class="col-sm-7">
                                 <p>Codegurukul trains passionate and creative people in web and mobile development. We bring together people with diverse perspectives and backgrounds who are passionate about technology. We also offer part-time courses, corporate training, and a Pre-College Program for high school students.<br>
@@ -156,7 +168,7 @@
         </footer>
 
         <!-- ========== FOOTER END ========== -->
-        
+
         <!-- Pace -->
         <script src="directives/pace-1.0.min.js"></script>
 
@@ -227,8 +239,12 @@
         <script src="controllers/footer.js"></script>
         <script src="controllers/payment.js"></script>
         <script src="controllers/internships.js"></script>
+        <script src="controllers/startup-team-training.js"></script>
+        <script src="controllers/fresher-to-hacker.js"></script>
+        <script src="controllers/all-courses.js"></script>
 
         <script src="services/email.js"></script>
+        <!--        <script src="services/courses.js"></script>-->
 
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoRMxiPsqJ9SUuaK1KsCAjd3gqnecjlBw&amp;sensor=false"></script>
 
