@@ -1343,3 +1343,23 @@ footer {
     display: inline !important;
 }
 
+body > :not(.pace),body:before,body:after {
+    -webkit-transition:opacity .4s ease-in-out;
+    -moz-transition:opacity .4s ease-in-out;
+    -o-transition:opacity .4s ease-in-out;
+    -ms-transition:opacity .4s ease-in-out;
+    transition:opacity .4s ease-in-out
+}
+
+body:not(.pace-done) > :not(.pace),body:not(.pace-done):before,body:not(.pace-done):after {
+    opacity:0
+}
+
+body > .right {
+  display: block;
+  width: 30vw;
+  position: fixed;
+  z-index: 10000;
+  bottom: 10px;
+  right: 10px;
+}
