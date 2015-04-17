@@ -25,7 +25,7 @@ var transporter = nodemailer.createTransport({
  */
 exports.contactUs = function(req, res, next){
   console.log(req);
-  req.to = 'sobingt@bitbrothers.in'
+  req.to = 'info@codegurukul.com';
   req.subject = req.body.subject;
   req.email = 'Name: ' + req.body.name + '\nEmail: ' + req.body.email + '\nContact: ' + req.body.contact + '\nMessage: ' + req.body.message ;
   next();
@@ -45,9 +45,14 @@ exports.sendEmail = function(req, res) {
     if (err) 
       res.send(err);
     else {
+      if(req.pass){
+
+      }
+      else{
         res.json({
           message:'Mail Sent'
         });
+      }
       }
   });
 };

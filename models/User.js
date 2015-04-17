@@ -10,7 +10,6 @@ var userSchema = new mongoose.Schema({
   },
   
   password: String,
-  role: {type: String,default:'citizen',lowercase: true},
   courses:[{
     _id:{type: mongoose.Schema.Types.ObjectId, ref: 'Complaint'}
   }],
@@ -19,13 +18,13 @@ var userSchema = new mongoose.Schema({
     entry: String,
     date:{type: Date, default: Date.now}
   }],
-    facebook: String,
-    twitter: String,
-    google: String,
-    github: String,
-    instagram: String,
-    linkedin: String,
-    tokens: Array,
+  facebook: String,
+  twitter: String,
+  google: String,
+  github: String,
+  instagram: String,
+  linkedin: String,
+  tokens: Array,
   
   profile: {
     joinDate:{type: Date,default: Date.now()},
@@ -39,10 +38,6 @@ var userSchema = new mongoose.Schema({
       type: String,
       default: ''
     },
-    gender: {
-      type: String,
-      default: ''
-    },
     location: {
       type: String,
       default: ''
@@ -50,12 +45,7 @@ var userSchema = new mongoose.Schema({
     website: {
       type: String,
       default: ''
-    },
-    picture: {
-      type: String,
-      default: ''
     }
-
   },
     location: String,
     pincode: Number,

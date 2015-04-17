@@ -49,7 +49,7 @@ exports.isLogin = function(req, res, next) {
         }
     } else {
         if(req.flag){
-            next();
+            // next();
         }
         else{
         res.status(401).send(datas.unauth);   
@@ -82,13 +82,88 @@ exports.login = function(req, res) {
             if (!isMatch) return res.status(401).send(datas.inep);
             var token = createJwtToken(user);
             var tempy = {
-                profile: user.profile,
-                role: user.role
+                profile: user.profile
             };
             res.send({
                 token: token,
                 user: tempy
             });
+        });
+    });
+};
+
+exports.githubAuth = function(req, res){
+    var profile = req.body.profile;
+    User.findOne({
+        email: profile.emails[0].value
+    }, function(err, existingUser) {
+        if (err) res.send(err);
+
+        if (existingUser) {
+            console.log('heere');
+            var token = createJwtToken(existingUser);
+            var tempy = {
+                profile: existingUser.profile
+            };
+            return res.send({
+                token: token,
+                user: tempy
+            });
+        }
+        var user = new User();
+        user.profile.name = profile.displayName;
+        user.email = profile.emails[0].value;
+        user.save(function(err) {
+            if (err) return next(err);
+            else{
+                var token = createJwtToken(user);
+            var tempy = {
+                profile: user.profile
+            };
+            res.send({
+                token: token,
+                user: tempy
+            });
+            }
+            
+        });
+    });
+};
+
+exports.linkedinAuth = function(req, res){
+    var profile = req.body.profile;
+    User.findOne({
+        email: profile.emails[0].value
+    }, function(err, existingUser) {
+        if (err) res.send(err);
+
+        if (existingUser) {
+            console.log('heere');
+            var token = createJwtToken(existingUser);
+            var tempy = {
+                profile: existingUser.profile
+            };
+            return res.send({
+                token: token,
+                user: tempy
+            });
+        }
+        var user = new User();
+        user.profile.name = profile.displayName;
+        user.email = profile.emails[0].value;
+        user.save(function(err) {
+            if (err) return next(err);
+            else{
+                var token = createJwtToken(user);
+            var tempy = {
+                profile: user.profile
+            };
+            res.send({
+                token: token,
+                user: tempy
+            });
+            }
+            
         });
     });
 };
@@ -113,8 +188,7 @@ exports.facebookAuth = function(req, res) {
         if (existingUser) {
             var token = createJwtToken(existingUser);
             var tempy = {
-                profile: existingUser.profile,
-                role: existingUser.role
+                profile: existingUser.profile
             };
             return res.send({
                 token: token,
@@ -130,8 +204,7 @@ exports.facebookAuth = function(req, res) {
             else{
                 var token = createJwtToken(user);
                 var tempy = {
-                    profile: user.profile,
-                    role: user.role
+                    profile: user.profile
                 };
                 res.send({
                     token: token,
@@ -154,8 +227,7 @@ exports.googleAuth = function(req, res) {
             console.log('heere');
             var token = createJwtToken(existingUser);
             var tempy = {
-                profile: existingUser.profile,
-                role: existingUser.role
+                profile: existingUser.profile
             };
             return res.send({
                 token: token,
@@ -170,8 +242,7 @@ exports.googleAuth = function(req, res) {
             else{
                 var token = createJwtToken(user);
             var tempy = {
-                profile: user.profile,
-                role: user.role
+                profile: user.profile
             };
             res.send({
                 token: token,
@@ -182,8 +253,6 @@ exports.googleAuth = function(req, res) {
         });
     });
 };
-
-
 
 exports.hasEmail = function(req, res, next) {
     if (!req.query.email) {
@@ -206,11 +275,7 @@ exports.hasEmail = function(req, res, next) {
 exports.getUser = function(req, res){
     if(req.user.slug == req.params.uslug){
         User.findById(req.user._id)
-        .select('-_id profile role complaints')
-        .populate({
-            path:'complaints._id',
-            select: 'slug title description category subcategory location status startdate enddate userId anonymous'
-        })
+        .select('-_id profile courses')
         .exec(function(err, user){
             if(err)
                 res.send(err);
@@ -218,99 +283,13 @@ exports.getUser = function(req, res){
                 res.status(404).send(datas.unf);
             }
             else{
-                User.populate(user.complaints,{
-            path:'_id.userId',
-            model:'User',
-            select:'profile.slug profile.username'
-        },function(err, user1){
-            if(err)
-                res.send(err);
-            else{
-                // console.log(user1);
-                var comp = [];
-                for(var i=0;i<user1.length;i++){
-                    console.log(user1[i]._id);
-                        if(user1[i]._id.anonymous.id(req.user._id)){
-    
-                           comp.push({
-                            slug: user1[i]._id.slug,
-                            title: user1[i]._id.title,
-                            userId:{
-                                profile: {
-                                slug:datas.anonymous,
-                                username: datas.anonymous,
-                            }},
-                            category: user1[i]._id.category,
-                            subcategory: user1[i]._id.subcategory,
-                            location: user1[i]._id.location,
-                            startdate: user1[i]._id.startdate,
-                            enddate: user1[i]._id.enddate,
-                            status: user1[i]._id.status
-                           }); 
-                        }
-                        else{
-                        
-                            comp.push(user1[i]._id);
-                        }
-
-                    
-                    // console.log(comp[i]);
-                };
-                user1.length = 0;
-                res.json({
-                    user:user,
-                    complaints:comp
-                }); 
-            }
-
-        });
 
             }
         });
     }
     else{
         res.status(401).send(datas.unauth);
-        //  User.findOne({'profile.slug':req.params.uslug})
-        // .select('-_id profile role complaints')
-        // .populate({
-        //     path:'complaints._id',
-        //     select: 'slug title description category subcategory location status startdate enddate userId anonymous'
-        // })
-        // .exec(function(err, user){
-        //     if(err)
-        //         res.send(err);
-        //     else if(!user){
-        //         res.status(404).send(datas.unf);
-        //     }
-        //     else{
-        //         User.populate(user.complaints,{
-        //     path:'_id.userId',
-        //     model:'User',
-        //     select:'profile.slug profile.username'
-        // },function(err, user1){
-        //     if(err)
-        //         res.send(err);
-        //     else{
-        //         // console.log(user1);
-        //         var comp = [];
-        //         for(var i=0;i<user1.length;i++){
-        //                 if(!user1[i]._id.anonymous.id(user._id)){
-        //                     comp.push(user1[i]._id);
-        //                 }                
-        //         };
-        //         user1.length = 0;
-        //         res.json({
-        //             user:user,
-        //             complaints:comp
-        //         }); 
-        //     }
-
-        // });
-
-        //     }
-        // });
     }
-
 };
 
 exports.getUserLog = function(req, res){
@@ -326,7 +305,7 @@ exports.getUserLog = function(req, res){
 };
 
 exports.changeUserPassword = function(req, res, next){
-    console.log(req.body);
+    // console.log(req.body);
     User.findById(req.user._id,function(err, user){
         if(err)
             res.send(err);
@@ -355,11 +334,39 @@ exports.changeUserPassword = function(req, res, next){
                     });
                 }
             });
-
         }
     });
 };
 
+exports.updateProfile = function(req, res) {
+    User.findById(req.user._id, function(err, user) {
+        if (err) res.send(err);
+        else if(!user){
+            res.status(404).send(datas.unf);
+        }
+        else {
+            user.profile.firstname = req.body.firstname;
+            user.profile.lastname = req.body.lastname;
+            user.profile.location = req.body.location;
+            user.profile.website = req.body.website;
+            // user.profile.occupation = req.body.occupation;
+            // user.profile.experience = req.body.experience;
+            // user.profile.employers = req.body.employers;
+            // user.profile.skills.splice(0, user.profile.skills.length);
+            // for (var i = 0; i <= req.body.skills.length - 1; i++) {
+            //     user.profile.skills.push(req.body.skills[i].text);
+            // };
+            user.save(function(err) {
+                if (err) res.send(err);
+                res.json({
+                    message: 'User updTED'
+                });
+            });
+        }
+
+
+    });
+};
 
 
 

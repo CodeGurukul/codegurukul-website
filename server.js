@@ -72,11 +72,23 @@ app.get('/', function(request, response){
 });
 
 var emailController = require('./controllers/email');
+var userController = require('./controllers/user');
 
+//Login APIs  //Github and linkedin auth needs testing...awaiting front end code
+app.post('/api/auth/github', userController.githubAuth);
+app.post('/api/auth/linkedin', userController.linkedinAuth);
+app.post('/api/auth/signup', userController.signup);
+app.post('/api/auth/login', userController.login);
+app.post('/api/auth/facebook', userController.facebookAuth);
+app.post('/api/auth/google', userController.googleAuth);
+app.get('/api/users', userController.hasEmail);
 
 app.post('/api/email', emailController.contactUs, emailController.sendEmail);
 
-
+//User APIs
+app.post('/api/user/password', userController.isLogin, userController.changeUserPassword, emailController.sendEmail);
+app.get('/api/user/:uslug', userController.isLogin, userController.getUser);
+app.put('/api/user/:uslug', userController.isLogin, userController.updateProfile);
 
 app.use(errorHandler());
 
