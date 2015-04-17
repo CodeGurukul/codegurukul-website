@@ -11,8 +11,10 @@
         <link rel="stylesheet" href="vendor/ngModal/dist/ng-modal.css">
         <link rel="stylesheet" href="vendor/angular-carousel/dist/angular-carousel.min.css">
         <!-- Main Stylesheet -->
-        <link href="css/style.css" rel="stylesheet">
         <link href="css/pace-theme.css" rel="stylesheet" />
+        <link href="css/font-awesome.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="vendor/bootstrap-social/bootstrap-social.css" />
+        <link href="css/style.css" rel="stylesheet">
 
         <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -28,10 +30,14 @@
         <header ng-cloak>
             <!-- ==== TOOLS START ==== -->
             <div class="tools">
-                <div class="container">
-                    <ul class="pull-right">
+                <div class="container" ng-controller="NavbarCtrl">
+                    <ul class="pull-left">
                         <li><a href="tel:1800123456"><i class="fa fa-phone"></i><span>+91 8097415085</span></a></li>
                         <li><a href="mailto:info@smartway.com"><i class="fa fa-envelope"></i><span>info@codegurukul.com</span></a></li>
+                    </ul>
+                    <ul class="pull-right" ng-show="currentUser">
+                        <li> Hi {{currentUser.profile.username}} </li>
+                        <li ng-click="logout()" class="logout-link"> Logout </li>
                     </ul>
                 </div>
             </div>
@@ -242,10 +248,14 @@
         <script src="controllers/startup-team-training.js"></script>
         <script src="controllers/fresher-to-hacker.js"></script>
         <script src="controllers/all-courses.js"></script>
+        <script src="controllers/signup.js"></script>
+        <script src="controllers/login.js"></script>
+        <script src="controllers/navbar.js"></script>
 
         <script src="services/email.js"></script>
+        <script src="services/auth.js"></script>
         <!--        <script src="services/courses.js"></script>-->
-
+        
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoRMxiPsqJ9SUuaK1KsCAjd3gqnecjlBw&amp;sensor=false"></script>
 
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>

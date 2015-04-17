@@ -37,6 +37,10 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         url: '/fresher-to-hacker',
         templateUrl: 'views/fresher-to-hacker.html',
         controller: 'FresherToHackerCtrl'
+    })           
+        .state('mentors', {
+        url: '/mentors',
+        templateUrl: 'views/mentors.html'
     })       
         .state('all-courses', {
         url: '/all-courses',

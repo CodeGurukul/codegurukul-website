@@ -1363,3 +1363,32 @@ body > .right {
   bottom: 10px;
   right: 10px;
 }
+
+.custom-remove-margin{
+    margin: 0px !important;
+}
+
+.signupModal small{
+    cursor: pointer;
+}
+
+.signupModal p{
+    margin-top: 10px;
+}
+
+.signupModal small:hover{
+    text-decoration: underline;
+}
+
+ .social-signup:hover{
+    color: #fff !important;
+}
+
+.signup-button{
+    width: 100%;
+}
+
+.logout-link:hover{
+    cursor: pointer;
+    color: #fbcd52;
+}
