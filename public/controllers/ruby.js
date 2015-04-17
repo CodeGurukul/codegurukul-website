@@ -7,7 +7,7 @@ angular.module('Codegurukul')
     $scope.registerModal = function(){
         $scope.registerModalShown = !$scope.registerModalShown;
     };
-    
+
     $scope.sendEmail = function(name, email, contact){
         console.log(email);
         Email.save({
@@ -23,6 +23,7 @@ angular.module('Codegurukul')
                 type: 'success',
                 duration: 5
             });
+            console.log("here");
         },function(error){
             $alert({
                 content: 'There was an error please try again later.',
@@ -32,8 +33,7 @@ angular.module('Codegurukul')
             });
         });
 
-       $scope.registerModalShown = !$scope.registerModalShown;
-        console.log("here");
+        $scope.registerModalShown = !$scope.registerModalShown;
     };   
 
 });

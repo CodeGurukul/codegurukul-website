@@ -1,0 +1,223 @@
+{
+    "name" : "ANGULARJS WORKSHOP",    
+    "description" : "This training aims at equipping the participants with the necessary knowledge and skills required to build rich internet applications using cutting edge RIA framework from google 'Angular.js'.",
+    "course-content" : [
+        {
+            "title" : "INTRODUCTION TO ANGULAR.JS",
+            "time" : "100 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "How Angular.js is opinionated"
+                },
+                {
+                    "data" : "Difference between Backbone.js and Angular.js"
+                }
+            ]
+        },
+
+        {
+            "title" : "ANGULAR.JS BUILDING BLOCKS",
+            "time" : "100 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Controller Component"
+                },
+                {
+                    "data" : "Model Component"
+                },
+                {
+                    "data" : "View Component"
+                },
+                {
+                    "data" : "Directives"
+                },
+                {
+                    "data" : "Filters"
+                },
+                {
+                    "data" : "Services"
+                },
+                {
+                    "data" : "DI in Angular.js"
+                }
+            ]
+        },
+
+        {
+            "title" : "ANATOMY OF AN ANGULAR.JS APPLICATIONS",
+            "time" : "100 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Creating Boundaries using ng-app"
+                },
+                {
+                    "data" : "Model View Controller"
+                },
+                {
+                    "data" : "Templates and Data Binding"
+                },
+                {
+                    "data" : "Repeating elements in templates"
+                },
+                {
+                    "data" : "Using Expressions, CSS Classes and Styles"
+                },
+                {
+                    "data" : "Using Controllers for UI responsibility separation"
+                },
+                {
+                    "data" : "Responding to model changes"
+                }
+            ]
+        },
+
+        {
+            "title" : "DATA BINDING IN ANGULAR.JS",
+            "time" : "100 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Understanding Built-in Directives"
+                },
+                {
+                    "data" : "Scope resolution"
+                },
+                {
+                    "data" : "One way and Two way data binding"
+                }
+            ]
+        },
+
+        {
+            "title" : "USING FILTERS",
+            "time" : "100 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Filters Overview"
+                },
+                {
+                    "data" : "Understanding Filter Expressions"
+                },
+                {
+                    "data" : "Building custom Filters"
+                }
+            ]
+        },
+
+        {
+            "title" : "SERVICES",
+            "time" : "100 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Services Overview"
+                },
+                {
+                    "data" : "Modularity using Services"
+                },
+                {
+                    "data" : "Injecting Services"
+                }
+            ]
+        },
+
+        {
+            "title" : "DIRECTIVES",
+            "time" : "100 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Directives Overview"
+                },
+                {
+                    "data" : "Creating Directives"
+                },
+                {
+                    "data" : "The Directive Definition Object"
+                },
+                {
+                    "data" : "Compilation and Linking"
+                },
+                {
+                    "data" : "Creating Components"
+                }
+            ]
+        },
+
+        {
+            "title" : "COMMUNICATING WITH SERVERS",
+            "time" : "100 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Communicating over $http"
+                },
+                {
+                    "data" : "Configuring the requests"
+                },
+                {
+                    "data" : "Sending Http Headers"
+                },
+                {
+                    "data" : "Caching Responses"
+                },
+                {
+                    "data" : "Request and Response Transformation"
+                },
+                {
+                    "data" : "Using RESTful Resources"
+                },
+                {
+                    "data" : "Communication over WebSockets"
+                }
+            ]
+        },
+
+        {
+            "title" : "UNIT TESTING",
+            "time" : "100 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Testing Models using Jasmine"
+                },
+                {
+                    "data" : "Test considerations for Directives and Filters"
+                },
+                {
+                    "data" : "Using Angular Mocks"
+                }
+            ]
+        },
+
+        {
+            "title" : "MODULAR JAVASCRIPT",
+            "time" : "100 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Techniques for modularizing JavaScirpt code"
+                }
+            ]
+        },
+
+        {
+            "title" : "MISCELLANEOUS",
+            "time" : "100 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Overview of OSS Angular Modules"
+                },
+                {
+                    "data" : "Customizing Angular Modules"
+                }
+            ]
+        }
+
+    ]
+}
