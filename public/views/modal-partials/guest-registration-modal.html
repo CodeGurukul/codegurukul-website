@@ -1,0 +1,34 @@
+
+<!-- ========== REGISTER AS GUEST MODAL ========== -->
+<modal-dialog class="registerModal" show='registerModalShown' dialog-title="Registration" height="auto" width="350px" >
+    <form method="post" name="queryForm">    
+        <div class="register-modal">
+            <div ng-class="{ &quot;has-error&quot; : queryForm.fullName.$invalid &amp;&amp; queryForm.fullName.$dirty }" class="form-group has-feedback">
+                <input type="text" name="displayName" ng-model="name" placeholder="Name" required="" autofocus="" class="form-control input-lg"/>
+                <div ng-if="queryForm.fullName.$dirty" ng-messages="queryForm.fullName.$error" class="help-block text-danger">
+                    <div ng-message="required">You must enter your name.</div>
+                </div>
+            </div>
+            <div ng-class="{ &quot;has-error&quot; : queryForm.email.$invalid &amp;&amp; queryForm.email.$dirty }" class="form-group has-feedback">
+                <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" class="form-control input-lg"/>
+                <div ng-if="queryForm.email.$dirty" ng-messages="queryForm.email.$error" class="help-block text-danger">
+                    <div ng-message="required">Your email address is required.</div>
+                    <div ng-message="email">Your email address is invalid.</div>
+                </div>
+            </div>
+            <div ng-class="{ &quot;has-error&quot; : queryForm.tel.$invalid &amp;&amp; signupForm.tel.$dirty }" class="form-group has-feedback">
+                <input type="number" name="contact" ng-model="contact" placeholder="Your Contact No" required="" class="form-control input-lg"/>
+                <div ng-if="queryForm.contact.$dirty" ng-messages="queryForm.contact.$error" class="help-block text-danger" style="color:#a94442">
+                    <div ng-message="required">Your Contact No is required.</div>
+                    <div ng-message="number">Your Contact No is Invalid</div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="modalButtons">
+            <button class="btn btn-md angularCancelButton cancelButton" ng-click="registerModal()"> Cancel </button>
+            <button ng-controller="PaymentCtrl" class="btn btn-md successButton angularSuccessButton" ng-disabled="queryForm.$invalid" ng-click="sendEmail(name,email,contact); registerModal(); pay();"> Proceed to Payment </button>
+        </div>
+    </form>  
+</modal-dialog>
+<!-- ========== REGISTER AS GUEST MODAL ENDS ========== -->
