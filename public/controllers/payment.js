@@ -32,7 +32,7 @@ angular.module('Codegurukul')
     
     $scope.pay = function(){
         $scope.options = {
-            "key": "rzp_live_sZFQUuhcZ9XIYd",
+            "key": "rzp_test_RYIGbvgxqTBJha",
             "amount": $rootScope.coursePrice,
             "name": "Bit Brothers Tech Pvt. Ltd.",
             "description": $rootScope.courseName,

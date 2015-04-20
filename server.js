@@ -73,6 +73,7 @@ app.get('/', function(request, response){
 
 var emailController = require('./controllers/email');
 var userController = require('./controllers/user');
+var razorController = require('./controllers/razor');
 
 //Login APIs  //Github and linkedin auth needs testing...awaiting front end code
 app.post('/api/auth/github', userController.githubAuth);
@@ -82,7 +83,7 @@ app.post('/api/auth/login', userController.login);
 app.post('/api/auth/facebook', userController.facebookAuth);
 app.post('/api/auth/google', userController.googleAuth);
 app.get('/api/users', userController.hasEmail);
-
+app.post('/api/payment', razorController.verifyPay);
 app.post('/api/email', emailController.contactUs, emailController.sendEmail);
 
 //User APIs
