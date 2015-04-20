@@ -8,13 +8,15 @@ angular.module('Codegurukul')
         $scope.registerModalShown = !$scope.registerModalShown;
     };
 
+
+
     $scope.sendEmail = function(name, email, contact){
         console.log(email);
-        Email.save({
+        Email.newsletter.save({
             name: name,
             email: email,
             contact: contact,
-            message: 'I want to register for the Ruby Workshop'
+            type: 'ruby'
         },function(data){
             console.log(data);
             $alert({
