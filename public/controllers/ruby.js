@@ -1,5 +1,5 @@
 angular.module('Codegurukul')
-    .controller('RubyCtrl', function($scope, Email, $alert) {
+    .controller('RubyCtrl', function($scope, Email, $alert, $stateParams, Course) {
 
     $scope.registerModalShown = false;
 
@@ -37,5 +37,7 @@ angular.module('Codegurukul')
 
         $scope.registerModalShown = !$scope.registerModalShown;
     };   
+
+    
 
 });

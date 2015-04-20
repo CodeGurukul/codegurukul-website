@@ -1,0 +1,17 @@
+{
+    "name" : "INTERNSHIPS",    
+    "description" : "This training aims at equipping the participants with the necessary knowledge and skills required to build rich internet applications using cutting edge RIA framework from google 'Angular.js'.",
+    "courseContent" : [
+        {
+            "title" : "DIFFERENCE BETWEEN RUBY AND OTHER TRADITIONAL LANGUAGES",
+            "time" : "36 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Find out what makes Ruby different from other traditional programming languages such as Java and PHP."
+                }
+            ]
+        }
+
+    ]
+}

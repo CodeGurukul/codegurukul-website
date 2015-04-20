@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                Ruby Workshop 
+                Ruby Workshop {{course.name}}
             </div>
         </div>
     </div>
@@ -33,41 +33,56 @@
                 </ul>
                 <hr>
                 <h3>What you will be taught</h3>
-                <h5 class="lesson-title"><a href="#">Difference between Ruby and other traditional languages</a></h5>
-                <div class="meta">
-                    <span><i class="fa fa-clock-o"></i>36 Minutes</span>
-                    <span><i class="fa fa-dashboard"></i>Easy</span>
+
+                <div ng-repeat="content in course.courseContent">
+                    <h5 class="lesson-title"><a href="#">{{content.title}}</a></h5>
+                    <div class="meta">
+                        <span><i class="fa fa-clock-o"></i>{{content.time}}</span>
+                        <span><i class="fa fa-dashboard"></i>{{content.difficulty}}</span>
+                    </div>
+                    <p ng-repeat="item in content.content">{{item.data}}</p>
+                    <hr>
                 </div>
-                <p>Find out what makes Ruby different from other traditional programming languages such as Java and PHP.</p>
-                <hr>
-                <h5 class="lesson-title"><a href="#">Ruby Fundamentals</a></h5>
-                <div class="meta">
-                    <span><i class="fa fa-clock-o"></i>36 Minutes</span>
-                    <span><i class="fa fa-dashboard"></i>Easy</span>
-                </div>
-                <p> We'll dive into variables, symbols, functions, classes, modules, blocks and more in less than an hour.</p>
-                <hr>
-                <h5 class="lesson-title"><a href="#">Hands on Programming</a></h5>
-                <div class="meta">
-                    <span><i class="fa fa-clock-o"></i>36 Minutes</span>
-                    <span><i class="fa fa-dashboard"></i>Easy</span>
-                </div>
-                <p>Write your first Ruby program.</p>
-                <hr>
-                <h5 class="lesson-title"><a href="#">Building a Ruby app</a></h5>
-                <div class="meta">
-                    <span><i class="fa fa-clock-o"></i>36 Minutes</span>
-                    <span><i class="fa fa-dashboard"></i>Easy</span>
-                </div>
-                <p>You'll build your own Ruby app using Sinatra - we'll create a mini comic book store app - we'll even use mongodb</p>
-                <hr>
-                <h5 class="lesson-title"><a href="#">Ruby Frameworks</a></h5>
-                <div class="meta">
-                    <span><i class="fa fa-clock-o"></i>36 Minutes</span>
-                    <span><i class="fa fa-dashboard"></i>Easy</span>
-                </div>
-                <p>Sneak a peek into new ruby frameworks in 2015 like Volt and Lotus</p>
-                <hr>
+
+                <!--
+
+<h5 class="lesson-title"><a href="#">Difference between Ruby and other traditional languages</a></h5>
+<div class="meta">
+<span><i class="fa fa-clock-o"></i>36 Minutes</span>
+<span><i class="fa fa-dashboard"></i>Easy</span>
+</div>
+<p>Find out what makes Ruby different from other traditional programming languages such as Java and PHP.</p>
+<hr>
+
+<h5 class="lesson-title"><a href="#">Ruby Fundamentals</a></h5>
+<div class="meta">
+<span><i class="fa fa-clock-o"></i>36 Minutes</span>
+<span><i class="fa fa-dashboard"></i>Easy</span>
+</div>
+<p> We'll dive into variables, symbols, functions, classes, modules, blocks and more in less than an hour.</p>
+<hr>
+<h5 class="lesson-title"><a href="#">Hands on Programming</a></h5>
+<div class="meta">
+<span><i class="fa fa-clock-o"></i>36 Minutes</span>
+<span><i class="fa fa-dashboard"></i>Easy</span>
+</div>
+<p>Write your first Ruby program.</p>
+<hr>
+<h5 class="lesson-title"><a href="#">Building a Ruby app</a></h5>
+<div class="meta">
+<span><i class="fa fa-clock-o"></i>36 Minutes</span>
+<span><i class="fa fa-dashboard"></i>Easy</span>
+</div>
+<p>You'll build your own Ruby app using Sinatra - we'll create a mini comic book store app - we'll even use mongodb</p>
+<hr>
+<h5 class="lesson-title"><a href="#">Ruby Frameworks</a></h5>
+<div class="meta">
+<span><i class="fa fa-clock-o"></i>36 Minutes</span>
+<span><i class="fa fa-dashboard"></i>Easy</span>
+</div>
+<p>Sneak a peek into new ruby frameworks in 2015 like Volt and Lotus</p>
+<hr>
+-->
             </div>
 
             <!-- ==== COURSES END == -->
@@ -80,7 +95,7 @@
                 <div class="widget" data-scroll-reveal>
                     <ul>
                         <li class="price">
-                            Price <span class="pull-right">FREE</span>
+                            Price <span class="pull-right"> {{course.price}} </span>
                         </li>
                         <li class="course-data">
                             <span class="icon icon-068"></span>
@@ -94,22 +109,22 @@
                         </li>
                         <li class="course-data">
                             <span class="icon icon-032"></span>
-                            <span class="pull-right">Web Development</span>
+                            <span class="pull-right"> {{course.domain}} </span>
                         </li>
                         <li class="course-data">
                             <span class="icon icon-038"></span>
-                            <span class="pull-right">3 Hours</span>
+                            <span class="pull-right"> {{course.courseDuration}} </span>
                         </li>
                         <li class="course-data">
                             <span class="icon fa fa-calendar"></span>
-                            <span class="pull-right">Coming Soon</span>
+                            <span class="pull-right"> {{course.courseDate}} </span>
                         </li>
                         <li class="course-data">
                             <span class="icon icon-006"></span>
-                            <span class="pull-right">20 Students</span>
+                            <span class="pull-right"> {{course.batchSize}} </span>
                         </li>
                     </ul>
-                   <!--  <p class="text-center"> <i class="fa fa-clock-o"></i> Hurry! Only 3 spots remaining!</p> -->
+                    <!--  <p class="text-center"> <i class="fa fa-clock-o"></i> Hurry! Only 3 spots remaining!</p> -->
                     <p><a class="btn btn-primary take-course" ng-click="registerModal()">Notify Me!</a></p>
                     <p class="text-center share">		
                         <a href="http://www.facebook.com/codegurukul"><i class="fa fa-facebook fa-lg"></i></a>

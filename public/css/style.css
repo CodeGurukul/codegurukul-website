@@ -1388,7 +1388,11 @@ body > .right {
     width: 100%;
 }
 
-.logout-link:hover{
+.logout-link:hover, .navbar-signup:hover, .navbar-login:hover{
     cursor: pointer;
     color: #fbcd52;
+}
+
+.custom-right-padding-20{
+    padding-right: 20px;
 }

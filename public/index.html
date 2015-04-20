@@ -36,9 +36,15 @@
                         <li><a href="mailto:info@smartway.com"><i class="fa fa-envelope"></i><span>info@codegurukul.com</span></a></li>
                     </ul>
                     <ul class="pull-right" ng-show="currentUser">
-                        <li> Hi {{currentUser.profile.username}} </li>
+                        <li class="custom-right-padding-20"> Hi {{currentUser.profile.username}} </li>
                         <li ng-click="logout()" class="logout-link"> Logout </li>
                     </ul>
+                    <ul class="pull-right" ng-show="!currentUser">
+                        <li ng-click="signupWithEmailModal()" class="custom-right-padding-20 navbar-signup"> Signup </li>
+                        <li ng-click="loginModal()" class="navbar-login"> Login </li>
+                    </ul>
+                    <ng-include src="'views/modal-partials/email-signup-modal.html'"></ng-include>
+                    <ng-include src="'views/modal-partials/login-modal.html'"></ng-include>
                 </div>
             </div>
             <!-- ==== TOOLS END ==== -->
@@ -58,20 +64,20 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-<!--
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a ui-sref="fresher-to-hacker">Fresher to Hacker</a></li>
-                                    <li><a href="#">Carreer 2.0</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">MS Students</a></li>
-                                    <li class="divider"></li>
-                                    <li><a ui-sref="all-courses">View All Courses</a></li>
-                                </ul>
-                            </li>
-                            <li><a ui-sref="startup-team-training">Startup Team Training</a></li>
+                            <!--
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses<b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a ui-sref="fresher-to-hacker">Fresher to Hacker</a></li>
+<li><a href="#">Carreer 2.0</a></li>
+<li class="divider"></li>
+<li><a href="#">MS Students</a></li>
+<li class="divider"></li>
+<li><a ui-sref="all-courses">View All Courses</a></li>
+</ul>
+</li>
+<li><a ui-sref="startup-team-training">Startup Team Training</a></li>
 -->
-                            <li><a ui-sref="free-ruby-workshop">Ruby Workshop</a></li>
+                            <li><a ui-sref="programs({course:'free-ruby-workshop'})">Ruby Workshop</a></li>
                             <li><a ui-sref="internships">Internships</a></li>
                             <li><a ui-sref="contact">Contact</a></li>
                         </ul>
@@ -81,7 +87,8 @@
             <!-- ==== NAVBAR END ==== -->
 
         </header>
-        <div ui-view></div>
+        <div ui-view>
+        </div>
 
 
         <!-- ========== PREFOOTER START ========== -->
@@ -255,8 +262,8 @@
         <script src="services/email.js"></script>
         <script src="services/auth.js"></script>
         <script src="services/pay.js"></script>
-        <!--        <script src="services/courses.js"></script>-->
-        
+        <script src="services/course.js"></script>
+
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoRMxiPsqJ9SUuaK1KsCAjd3gqnecjlBw&amp;sensor=false"></script>
 
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -264,28 +271,28 @@
         <!-- Angular Carousel -->
         <script src="vendor/angular-carousel/dist/angular-carousel.min.js"></script>
         <script src="vendor/angular-touch/angular-touch.min.js"></script>
-            <script src="services/program.js"></script>
-            <script>
-              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <script src="services/program.js"></script>
+        <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-              ga('create', 'UA-42607288-2', 'auto');
-              ga('send', 'pageview');
+ga('create', 'UA-42607288-2', 'auto');
+ga('send', 'pageview');
 
-            </script>
-            <script src="services/program.js"></script>
-            <script>
-              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        </script>
+        <script src="services/program.js"></script>
+        <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-              ga('create', 'UA-42607288-2', 'auto');
-              ga('send', 'pageview');
+ga('create', 'UA-42607288-2', 'auto');
+ga('send', 'pageview');
 
-            </script>
- 
-   </body>
+        </script>
+
+    </body>
 </html>

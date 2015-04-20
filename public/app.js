@@ -4,6 +4,11 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
     $urlRouterProvider.otherwise('/angularjs-workshop');
 
     $stateProvider
+        .state('programs', {
+        url: '/programs/:course',
+        templateUrl: 'views/program-details.html',
+        controller: 'ProgramCtrl'
+    }) 
         .state('free-ruby-workshop', {
         url: '/free-ruby-workshop',
         templateUrl: 'views/free-ruby-workshop.html',

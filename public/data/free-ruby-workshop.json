@@ -1,0 +1,67 @@
+{
+    "name" : "RUBY WORKSHOP",    
+    "description" : "This training aims at equipping the participants with the necessary knowledge and skills required to build rich internet applications using cutting edge RIA framework from google 'Angular.js'.",
+    "courseContent" : [
+        {
+            "title" : "DIFFERENCE BETWEEN RUBY AND OTHER TRADITIONAL LANGUAGES",
+            "time" : "36 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Find out what makes Ruby different from other traditional programming languages such as Java and PHP."
+                }
+            ]
+        },
+
+        {
+            "title" : "RUBY FUNDAMENTALS",
+            "time" : "36 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "We'll dive into variables, symbols, functions, classes, modules, blocks and more in less than an hour."
+                }
+            ]
+        },
+
+        {
+            "title" : "HANDS ON PROGRAMMING",
+            "time" : "36 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Write your first Ruby program."
+                }
+            ]
+        },
+
+        {
+            "title" : "BUILDING A RUBY APP",
+            "time" : "36 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "You'll build your own Ruby app using Sinatra - we'll create a mini comic book store app - we'll even use mongodb."
+                }
+            ]
+        },
+
+        {
+            "title" : "RUBY FRAMEWORKS",
+            "time" : "36 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Sneak a peek into new ruby frameworks in 2015 like Volt and Lotus"
+                }
+            ]
+        }
+
+    ],
+    "price" : "FREE",
+    "domain" : "Web Development",
+    "courseDuration" : "3 Hours",
+    "courseDate" : "COMING SOON",
+    "batchSize" : "20 Students",
+    "remainingSpots" : "3"
+}
