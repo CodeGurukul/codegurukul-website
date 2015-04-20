@@ -1,0 +1,28 @@
+
+<!-- ========== LOGIN MODAL ========== -->
+
+<modal-dialog class="loginModal" show='loginModalShown' dialog-title="Login with your details" height="auto" width="350px">
+    <form method="post" name="loginForm" ng-controller="LoginCtrl">    
+        <div class="register-modal">
+            <div ng-class="{ &quot;has-error&quot; : loginForm.email.$invalid &amp;&amp; loginForm.email.$dirty }" class="form-group has-feedback">
+                <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" autofocus= "" class="form-control input-lg"/>
+                <div ng-if="loginForm.email.$dirty" ng-messages="loginForm.email.$error" class="help-block text-danger">
+                    <div ng-message="required">Your email address is required.</div>
+                    <div ng-message="email">Your email address is invalid.</div>
+                </div>
+            </div>
+            <div ng-class="{ &quot;has-error&quot; : loginForm.tel.$invalid &amp;&amp; loginForm.tel.$dirty }" class="form-group has-feedback">
+                <input type="password" name="password" ng-model="password" placeholder="Password" required="" class="form-control input-lg"/>
+                <div ng-if="loginForm.password.$dirty" ng-messages="loginForm.password.$error" class="help-block text-danger" style="color:#a94442">
+                    <div ng-message="required">Please enter your password.</div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="modalButtons">
+            <button class="btn btn-md angularCancelButton cancelButton" ng-click="loginModal()" type="button"> Cancel </button>
+            <button class="btn btn-md successButton " ng-disabled="loginForm.$invalid" ng-click="login();loginModal();registerModal()" type="submit"> Login </button>
+        </div>
+    </form>  
+</modal-dialog>
+<!-- ========== LOGIN MODAL ENDS ========== -->

@@ -1,0 +1,38 @@
+
+<!-- ========== SIGNUP MODAL ========== -->
+
+<modal-dialog class="signupModal" show='signupModalShown' dialog-title="Register for the Workshop" height="auto" width="350px" >
+    <div class="register-modal text-center">
+        <button class="btn btn-lg signup-button social-signup btn-github"> <span><i class="fa fa-github-square"></i></span> <span>Github</span> </button>
+        <div class="col-sm-12">
+            <p>or</p>
+        </div>
+        <button class="btn btn-lg signup-button social-signup btn-linkedin"> <span><i class="fa fa-linkedin-square"></i></span> <span>Linkedin</span> </button>
+        <div class="col-sm-12">
+            <p>or</p>
+        </div>
+
+        <button class="btn btn-lg signup-button" ng-click="signupModal();signupWithEmailModal()" > <span><i class="fa fa-envelope-o"></i></span> <span>Signup with your email</span> </button>
+
+    </div>
+    <div class="col-sm-12">
+        <p class="text-center">or</p>
+    </div>
+    <button class="btn btn-lg signup-button" ng-click="loginModal();signupModal()" > Login </button>
+    <br>
+    <div class="col-sm-12 text-center">
+        <small ng-click="signupModal();registerModal()">or Register as a Guest User</small>
+    </div>
+    <br>
+    <br>
+    <div class="modalButtons text-center">
+        <button class="btn btn-md angularCancelButton cancelButton custom-remove-margin" ng-click="signupModal()"> Cancel </button>
+    </div>
+</modal-dialog>
+<!-- ========== SIGNUP MODAL ENDS ========== -->
+
+
+<!--
+<register-modal ng-data-name="Angularjs">
+</register-modal>
+-->
