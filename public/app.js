@@ -1,7 +1,7 @@
 angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps','angular-carousel'])
     .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
-    $urlRouterProvider.otherwise('/free-ruby-workshop');
+    $urlRouterProvider.otherwise('/angularjs-workshop');
 
     $stateProvider
         .state('free-ruby-workshop', {
@@ -20,8 +20,8 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         controller: 'InternshipsCtrl'
     })           
         .state('home', {
-        url: '/free-ruby-workshop',
-        templateUrl: 'views/free-ruby-workshop.html'
+        url: '/angularjs-workshop',
+        templateUrl: 'views/angularjs-workshop.html'
     })        
         .state('contact', {
         url: '/contact',
