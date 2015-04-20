@@ -6,12 +6,12 @@ var MailChimpAPI = require('mailchimp').MailChimpAPI;
 var secret = require('../config/secrets');
 var config = new secret();
 // var config = require('../config/secrets');
-// var apiKey = config.mailchimp.api; 
-// try {
-//     var mcApi = new MailChimpAPI(apiKey, { version : '1.3', secure : false });
-// } catch (error) {
-//     console.log(error.message);
-// }
+var apiKey = config.mailchimp.api; 
+try {
+    var mcApi = new MailChimpAPI(apiKey, { version : '1.3', secure : false });
+} catch (error) {
+    console.log(error.message);
+}
 
 var transporter = nodemailer.createTransport({
   service: 'Mandrill',
@@ -64,22 +64,23 @@ exports.sendEmail = function(req, res) {
   });
 };
 
-// exports.addNewsletter = function(req, res){
-// //   var mcReq = {
-// //     id: config.mailchimp.id,
-// //     email: { email: req.body.email },
-// //     merge_vars: {
-// //         EMAIL: req.body.email,
-// //         FNAME: req.body.name
-// //     }
-// // };
-
-// // submit subscription request to mail chimp
-// mcApi.listSubscribe({id: config.mailchimp.id, email_address:req.body.email, double_optin: false}, function(err,data) {
-//   if(err)
-//     res.send(err);
-//   else{
-//     res.send(data);
-//   }
-// });
+exports.addNewsletter = function(req, res){
+//   var mcReq = {
+//     id: config.mailchimp.id,
+//     email: { email: req.body.email },
+//     merge_vars: {
+//         EMAIL: req.body.email,
+//         FNAME: req.body.name
+//     }
 // };
+
+// submit subscription request to mail chimp
+mcApi.listSubscribe({id: config.mailchimp.id, email_address:req.body.email, double_optin: false}, function(err,data) {
+  if(err)
+    res.send(err);
+  else{
+    console.log(data);
+    res.json({message:'Success'});
+  }
+});
+};

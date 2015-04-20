@@ -89,7 +89,7 @@ app.post('/api/email', emailController.contactUs, emailController.sendEmail);
 app.post('/api/user/password', userController.isLogin, userController.changeUserPassword, emailController.sendEmail);
 app.get('/api/user/:uslug', userController.isLogin, userController.getUser);
 app.put('/api/user/:uslug', userController.isLogin, userController.updateProfile);
-// app.post('/api/newsletter', emailController.addNewsletter);
+app.post('/api/newsletter', emailController.addNewsletter);
 
 app.use(errorHandler());
 

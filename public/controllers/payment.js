@@ -4,7 +4,7 @@ angular.module('Codegurukul')
     
     $scope.sendEmail = function(name, email, contact, query){
         console.log(email);
-        Email.save({
+        Email.default.save({
             name: name,
             email: email,
             contact: contact,

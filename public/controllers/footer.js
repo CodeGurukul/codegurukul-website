@@ -3,7 +3,7 @@ angular.module('Codegurukul')
 
 
     $scope.applyAsMentor = function(name, email, contact, query){
-        Email.save({
+        Email.default.save({
             name: $scope.name,
             email: $scope.email,
             contact: $scope.contact,
