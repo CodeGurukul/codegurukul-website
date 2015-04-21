@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                Ruby Workshop {{course.name}}
+                {{course.name}}
             </div>
         </div>
     </div>
@@ -22,15 +22,7 @@
             <!-- ==== COURSES START == -->
 
             <div class="col-sm-8">
-                <h1>PHP devs, this is why your should learn Ruby in 2015:</h1>
-                <ul>
-                    <li>It's one of the friendliest programming languages on earth to learn</li>
-                    <li>Its makes learning the big Ruby on Rails framework easier. Rails is written in 100% ruby.</li>
-                    <li>You can use ruby for everything! From building web applications and websites to controlling robots or even a swarm of servers.</li>
-                    <li>Its got a big ecosystem - that means open source software that solves almost any problem under the sun. We call these plugins gems - (gems --> ruby - get it?)
-                    </li>
-
-                </ul>
+                <p ng-bind-html="descriptionHtml"></p>
                 <hr>
                 <h3>What you will be taught</h3>
 
@@ -95,7 +87,7 @@
                 <div class="widget" data-scroll-reveal>
                     <ul>
                         <li class="price">
-                            Price <span class="pull-right"> {{course.price}} </span>
+                            Price <span class="pull-right"> <span ng-show="registerButton">₹</span>{{course.price}} </span>
                         </li>
                         <li class="course-data">
                             <span class="icon icon-068"></span>
@@ -123,9 +115,14 @@
                             <span class="icon icon-006"></span>
                             <span class="pull-right"> {{course.batchSize}} </span>
                         </li>
+                        <li class="course-data" ng-show="course.place">
+                            <span class="icon icon-010"></span>
+                            <span class="pull-right">{{course.place}}</span>
+                        </li>
                     </ul>
-                    <!--  <p class="text-center"> <i class="fa fa-clock-o"></i> Hurry! Only 3 spots remaining!</p> -->
-                    <p><a class="btn btn-primary take-course" ng-click="registerModal()">Notify Me!</a></p>
+                      <p class="text-center" ng-show="registerButton"> <i class="fa fa-clock-o"></i> Hurry! Only {{course.remainingSpots}} spots remaining!</p> 
+                    <p ng-show="notifyButton"><a class="btn btn-primary take-course" ng-click="registerModal()">Notify Me!</a></p>
+                    <p ng-show="registerButton" ng-controller="PaymentCtrl"><a class="btn btn-primary take-course" ng-click="pay();">Register</a></p>
                     <p class="text-center share">		
                         <a href="http://www.facebook.com/codegurukul"><i class="fa fa-facebook fa-lg"></i></a>
                         <a href="http://www.twitter.com/codegurukul"><i class="fa fa-twitter fa-lg"></i></a>
@@ -135,12 +132,13 @@
 
                 <!-- ==== TEACHER START == -->
                 <div class="widget" data-scroll-reveal>
-                    <h3>Mentor</h3>
-                    <div class="teacher row">
+                    <h3>Mentors</h3>
+                    <div class="teacher row" ng-repeat="mentor in course.mentors">
                         <div class="col-sm-12">
-                            <img src="img/amit_erandole_thumb.jpg" alt="" class="pull-left" />
-                            <h5>Amit Erandole</h5>
-                            <p>Mad Web Scienist with 20 years of experience</p>
+                            <img src="{{mentor.imageLocation}}" alt="" class="pull-left" />
+                            <h5> {{mentor.mentorName}} </h5>
+                            <p> {{mentor.mentorDescription}} </p>
+                        <hr>
                         </div>
                     </div>
                 </div>
@@ -157,35 +155,10 @@
 <!-- ========== CONTENT END ========== -->
 
 
+<ng-include src="'../views/modal-partials/signup-modal.html'"></ng-include>
+<ng-include src="'../views/modal-partials/email-signup-modal.html'"></ng-include>
+<ng-include src="'../views/modal-partials/login-modal.html'"></ng-include>
+<ng-include src="'../views/modal-partials/guest-registration-modal.html'"></ng-include>
+<ng-include src="'../views/modal-partials/notification-modal.html'"></ng-include>
 
-<modal-dialog class="registerModal" show='registerModalShown' dialog-title="Ruby Workshop Registration" height="auto" width="350px">
-    <form method="post" name="queryForm">    
-        <div class="register-modal">
-            <div ng-class="{ &quot;has-error&quot; : queryForm.fullName.$invalid &amp;&amp; queryForm.fullName.$dirty }" class="form-group has-feedback">
-                <input autofocus="" type="text" name="displayName" ng-model="name" placeholder="Name" required="" class="form-control input-lg"/>
-                <div ng-if="queryForm.fullName.$dirty" ng-messages="queryForm.fullName.$error" class="help-block text-danger">
-                    <div ng-message="required">You must enter your name.</div>
-                </div>
-            </div>
-            <div ng-class="{ &quot;has-error&quot; : queryForm.email.$invalid &amp;&amp; queryForm.email.$dirty }" class="form-group has-feedback">
-                <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" class="form-control input-lg"/>
-                <div ng-if="queryForm.email.$dirty" ng-messages="queryForm.email.$error" class="help-block text-danger">
-                    <div ng-message="required">Your email address is required.</div>
-                    <div ng-message="email">Your email address is invalid.</div>
-                </div>
-            </div>
-            <div ng-class="{ &quot;has-error&quot; : queryForm.tel.$invalid &amp;&amp; signupForm.tel.$dirty }" class="form-group has-feedback">
-                <input type="number" name="contact" ng-model="contact" placeholder="Your Contact No" required="" class="form-control input-lg"/>
-                <div ng-if="queryForm.contact.$dirty" ng-messages="queryForm.contact.$error" class="help-block text-danger" style="color:#a94442">
-                    <div ng-message="required">Your Contact No is required.</div>
-                    <div ng-message="number">Your Contact No is Invalid</div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="modalButtons">
-            <button class="btn btn-md cancelButton" ng-click="registerModal()"> Cancel </button>
-            <button class="btn btn-md successButton" ng-disabled="queryForm.$invalid" ng-click="sendEmail(name,email,contact)"> Send </button>
-        </div>
-    </form>  
-</modal-dialog>
+

@@ -1,6 +1,6 @@
 {
     "name" : "RUBY WORKSHOP",    
-    "description" : "This training aims at equipping the participants with the necessary knowledge and skills required to build rich internet applications using cutting edge RIA framework from google 'Angular.js'.",
+    "description" : "<h1>PHP devs, this is why your should learn Ruby in 2015:</h1>\n                <ul>\n                    <li>It's one of the friendliest programming languages on earth to learn</li>\n                    <li>Its makes learning the big Ruby on Rails framework easier. Rails is written in 100% ruby.</li>\n                    <li>You can use ruby for everything! From building web applications and websites to controlling robots or even a swarm of servers.</li>\n                    <li>Its got a big ecosystem - that means open source software that solves almost any problem under the sun. We call these plugins gems - (gems --> ruby - get it?)\n                    </li>\n\n                </ul>",
     "courseContent" : [
         {
             "title" : "DIFFERENCE BETWEEN RUBY AND OTHER TRADITIONAL LANGUAGES",
@@ -63,5 +63,12 @@
     "courseDuration" : "3 Hours",
     "courseDate" : "COMING SOON",
     "batchSize" : "20 Students",
-    "remainingSpots" : "3"
+    "remainingSpots" : "3",
+    "mentors" : [
+        {
+            "mentorName": "Amit Erandole",
+            "mentorDescription" : "Mad Web Scientist with 20+ years of experience",
+            "imageLocation" : "img/amit_erandole_thumb.jpg"
+        }
+    ]
 }

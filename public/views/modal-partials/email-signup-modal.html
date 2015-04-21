@@ -1,31 +1,30 @@
 
 <!-- ========== SIGNUP WITH EMAIL MODAL ========== -->
 
-<modal-dialog class="signupWithEmailModal" show='signupWithEmailModalShown' dialog-title="Signup with your email" height="auto" width="350px">
+<modal-dialog class="signupWithEmailModal" show='signupWithEmailModalShown' dialog-title="Signup" height="auto" width="350px">
     <form method="post" name="signupWithEmailForm" ng-controller="SignupCtrl">    
         <div class="register-modal">
             <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.username.$invalid &amp;&amp; signupWithEmailForm.username.$dirty }" class="form-group has-feedback">
-                <input type="text" name="username" ng-model="username" placeholder="Username" required="" autofocus="" class="form-control input-lg"/>
+                <input type="text" name="username" ng-model="username" placeholder="Username" required="" autofocus="" class="form-control input-md"/>
                 <div ng-if="signupWithEmailForm.username.$dirty" ng-messages="signupWithEmailForm.username.$error" class="help-block text-danger">
                     <div ng-message="required">You must enter a username.</div>
                 </div>
             </div>
             <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.email.$invalid &amp;&amp; signupWithEmailForm.email.$dirty }" class="form-group has-feedback">
-                <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" class="form-control input-lg"/>
+                <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" class="form-control input-md"/>
                 <div ng-if="signupWithEmailForm.email.$dirty" ng-messages="signupWithEmailForm.email.$error" class="help-block text-danger">
                     <div ng-message="required">Your email address is required.</div>
                     <div ng-message="email">Your email address is invalid.</div>
                 </div>
             </div>
             <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.tel.$invalid &amp;&amp; signupForm.tel.$dirty }" class="form-group has-feedback">
-                <input type="password" name="password" ng-model="password" placeholder="Password" required="" class="form-control input-lg"/>
+                <input type="password" name="password" ng-model="password" placeholder="Password" required="" class="form-control input-md"/>
                 <div ng-if="signupWithEmailForm.password.$dirty" ng-messages="signupWithEmailForm.password.$error" class="help-block text-danger" style="color:#a94442">
                     <div ng-message="required">A Password is required.</div>
                 </div>
             </div>
         </div>
-        <br>
-        <div class="modalButtons">
+        <div class="modalButtons text-center">
             <button class="btn btn-md angularCancelButton cancelButton" type="button" ng-click="signupWithEmailModal()"> Cancel </button>
             <button class="btn btn-md successButton " ng-disabled="signupWithEmailForm.$invalid" ng-click="signup();signupWithEmailModal();loginModal()"> Signup </button>
         </div>

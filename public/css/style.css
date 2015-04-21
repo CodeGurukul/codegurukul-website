@@ -1396,3 +1396,7 @@ body > .right {
 .custom-right-padding-20{
     padding-right: 20px;
 }
+
+.social-login-buttons{
+    margin-bottom: 10px;
+}
