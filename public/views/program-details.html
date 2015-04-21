@@ -1,0 +1,164 @@
+<!-- ========== TITLE START ========== -->
+
+<div class="title">
+    <div class="title-image"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                {{course.name}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== TITLE END ========== -->
+
+<!-- ========== CONTENT START ========== -->
+
+<section id="content">
+    <div class="container">
+        <div class="row">
+
+            <!-- ==== COURSES START == -->
+
+            <div class="col-sm-8">
+                <p ng-bind-html="descriptionHtml"></p>
+                <hr>
+                <h3>What you will be taught</h3>
+
+                <div ng-repeat="content in course.courseContent">
+                    <h5 class="lesson-title"><a href="#">{{content.title}}</a></h5>
+                    <div class="meta">
+                        <span><i class="fa fa-clock-o"></i>{{content.time}}</span>
+                        <span><i class="fa fa-dashboard"></i>{{content.difficulty}}</span>
+                    </div>
+                    <p ng-repeat="item in content.content">{{item.data}}</p>
+                    <hr>
+                </div>
+
+                <!--
+
+<h5 class="lesson-title"><a href="#">Difference between Ruby and other traditional languages</a></h5>
+<div class="meta">
+<span><i class="fa fa-clock-o"></i>36 Minutes</span>
+<span><i class="fa fa-dashboard"></i>Easy</span>
+</div>
+<p>Find out what makes Ruby different from other traditional programming languages such as Java and PHP.</p>
+<hr>
+
+<h5 class="lesson-title"><a href="#">Ruby Fundamentals</a></h5>
+<div class="meta">
+<span><i class="fa fa-clock-o"></i>36 Minutes</span>
+<span><i class="fa fa-dashboard"></i>Easy</span>
+</div>
+<p> We'll dive into variables, symbols, functions, classes, modules, blocks and more in less than an hour.</p>
+<hr>
+<h5 class="lesson-title"><a href="#">Hands on Programming</a></h5>
+<div class="meta">
+<span><i class="fa fa-clock-o"></i>36 Minutes</span>
+<span><i class="fa fa-dashboard"></i>Easy</span>
+</div>
+<p>Write your first Ruby program.</p>
+<hr>
+<h5 class="lesson-title"><a href="#">Building a Ruby app</a></h5>
+<div class="meta">
+<span><i class="fa fa-clock-o"></i>36 Minutes</span>
+<span><i class="fa fa-dashboard"></i>Easy</span>
+</div>
+<p>You'll build your own Ruby app using Sinatra - we'll create a mini comic book store app - we'll even use mongodb</p>
+<hr>
+<h5 class="lesson-title"><a href="#">Ruby Frameworks</a></h5>
+<div class="meta">
+<span><i class="fa fa-clock-o"></i>36 Minutes</span>
+<span><i class="fa fa-dashboard"></i>Easy</span>
+</div>
+<p>Sneak a peek into new ruby frameworks in 2015 like Volt and Lotus</p>
+<hr>
+-->
+            </div>
+
+            <!-- ==== COURSES END == -->
+
+            <!-- ==== SIDEBAR START == -->
+
+            <div class="col-sm-4">
+
+                <!-- ==== COURSE DATA START == -->
+                <div class="widget" data-scroll-reveal>
+                    <ul>
+                        <li class="price">
+                            Price <span class="pull-right"> <span ng-show="registerButton">₹</span>{{course.price}} </span>
+                        </li>
+                        <li class="course-data">
+                            <span class="icon icon-068"></span>
+                            <span class="pull-right">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </li>
+                        <li class="course-data">
+                            <span class="icon icon-032"></span>
+                            <span class="pull-right"> {{course.domain}} </span>
+                        </li>
+                        <li class="course-data">
+                            <span class="icon icon-038"></span>
+                            <span class="pull-right"> {{course.courseDuration}} </span>
+                        </li>
+                        <li class="course-data">
+                            <span class="icon fa fa-calendar"></span>
+                            <span class="pull-right"> {{course.courseDate}} </span>
+                        </li>
+                        <li class="course-data">
+                            <span class="icon icon-006"></span>
+                            <span class="pull-right"> {{course.batchSize}} </span>
+                        </li>
+                        <li class="course-data" ng-show="course.place">
+                            <span class="icon icon-010"></span>
+                            <span class="pull-right">{{course.place}}</span>
+                        </li>
+                    </ul>
+                      <p class="text-center" ng-show="registerButton"> <i class="fa fa-clock-o"></i> Hurry! Only {{course.remainingSpots}} spots remaining!</p> 
+                    <p ng-show="notifyButton"><a class="btn btn-primary take-course" ng-click="registerModal()">Notify Me!</a></p>
+                    <p ng-show="registerButton" ng-controller="PaymentCtrl"><a class="btn btn-primary take-course" ng-click="pay();">Register</a></p>
+                    <p class="text-center share">		
+                        <a href="http://www.facebook.com/codegurukul"><i class="fa fa-facebook fa-lg"></i></a>
+                        <a href="http://www.twitter.com/codegurukul"><i class="fa fa-twitter fa-lg"></i></a>
+                    </p>
+                </div>
+                <!-- ==== COURSE DATA END == -->
+
+                <!-- ==== TEACHER START == -->
+                <div class="widget" data-scroll-reveal>
+                    <h3>Mentors</h3>
+                    <div class="teacher row" ng-repeat="mentor in course.mentors">
+                        <div class="col-sm-12">
+                            <img src="{{mentor.imageLocation}}" alt="" class="pull-left" />
+                            <h5> {{mentor.mentorName}} </h5>
+                            <p> {{mentor.mentorDescription}} </p>
+                        <hr>
+                        </div>
+                    </div>
+                </div>
+                <!-- ==== TEACHER END == -->
+
+            </div>
+
+            <!-- ==== SIDEBAR END == -->
+
+        </div>
+    </div>
+</section>
+
+<!-- ========== CONTENT END ========== -->
+
+
+<ng-include src="'../views/modal-partials/signup-modal.html'"></ng-include>
+<ng-include src="'../views/modal-partials/email-signup-modal.html'"></ng-include>
+<ng-include src="'../views/modal-partials/login-modal.html'"></ng-include>
+<ng-include src="'../views/modal-partials/guest-registration-modal.html'"></ng-include>
+<ng-include src="'../views/modal-partials/notification-modal.html'"></ng-include>
+
+

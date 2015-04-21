@@ -1,0 +1,74 @@
+{
+    "name" : "RUBY WORKSHOP",    
+    "description" : "<h1>PHP devs, this is why your should learn Ruby in 2015:</h1>\n                <ul>\n                    <li>It's one of the friendliest programming languages on earth to learn</li>\n                    <li>Its makes learning the big Ruby on Rails framework easier. Rails is written in 100% ruby.</li>\n                    <li>You can use ruby for everything! From building web applications and websites to controlling robots or even a swarm of servers.</li>\n                    <li>Its got a big ecosystem - that means open source software that solves almost any problem under the sun. We call these plugins gems - (gems --> ruby - get it?)\n                    </li>\n\n                </ul>",
+    "courseContent" : [
+        {
+            "title" : "DIFFERENCE BETWEEN RUBY AND OTHER TRADITIONAL LANGUAGES",
+            "time" : "36 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Find out what makes Ruby different from other traditional programming languages such as Java and PHP."
+                }
+            ]
+        },
+
+        {
+            "title" : "RUBY FUNDAMENTALS",
+            "time" : "36 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "We'll dive into variables, symbols, functions, classes, modules, blocks and more in less than an hour."
+                }
+            ]
+        },
+
+        {
+            "title" : "HANDS ON PROGRAMMING",
+            "time" : "36 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Write your first Ruby program."
+                }
+            ]
+        },
+
+        {
+            "title" : "BUILDING A RUBY APP",
+            "time" : "36 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "You'll build your own Ruby app using Sinatra - we'll create a mini comic book store app - we'll even use mongodb."
+                }
+            ]
+        },
+
+        {
+            "title" : "RUBY FRAMEWORKS",
+            "time" : "36 Minutes",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Sneak a peek into new ruby frameworks in 2015 like Volt and Lotus"
+                }
+            ]
+        }
+
+    ],
+    "price" : "FREE",
+    "domain" : "Web Development",
+    "courseDuration" : "3 Hours",
+    "courseDate" : "COMING SOON",
+    "batchSize" : "20 Students",
+    "remainingSpots" : "3",
+    "mentors" : [
+        {
+            "mentorName": "Amit Erandole",
+            "mentorDescription" : "Mad Web Scientist with 20+ years of experience",
+            "imageLocation" : "img/amit_erandole_thumb.jpg"
+        }
+    ]
+}

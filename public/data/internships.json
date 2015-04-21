@@ -1,0 +1,195 @@
+{
+    "name" : "INTERNSHIPS",    
+    "description" : "<h1>THE CODEGURUKUL INTERNSHIP ADVANTAGE</h1>\n                <p>This Internship is organized by Codegurukul, to train and mentor the best students in Mumbai. The program is a one month internship conducted by experienced faculty. Students will be trained on the latest web technologies that power the most popular websites like LinkedIn, Facebook and eBay. Each student will be able to set up their own web application at the end of the course and will also be offered an option to opt in for more advanced topics over the course of this internship.</p>\n<h3>Week One:</h3>\n                <p>The first week will be a Foundation Course in which the basics of website development like front end development and version control will be covered. Students will also work on a project which will be based on what they learn in the week. The course is designed with the assumption that the student has no prior knowledge of the subject. The refresher course on HTML5, CSS3 and Javascript will get your creative juices flowing! Ignite the designer in you!</p>\n<h3>Week Two:</h3>\n                <p>The second week will feature topics like deployment and optimization. Students will be working on another set of projects which will be based on these new topics. Also optional add-on paid courses will be offered in the second week. These courses will be focused towards leveraging the basic technologies learnt during the first week and will cover some advanced topics. They will in no way affect the certification of the internship.</p>\n <h3>Week Three:</h3>\n                <p>Week three will conclude with finishing notes on development, design languages and a little bit about cloud architecture. It will also include optional cloud technology courses base on deployment.</p>",
+    "courseContent" : [
+        {
+            "title" : "HTML5",
+            "time" : "2 Hours",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "HTML5 is a trending topic in the web community. We begin the course with basic HTML tags which will enable the student to create web pages using tables, forms, inputs and traditional HTML tags. We will then add more features using the new HTML5 tags which will highlight the features of HTML5 over HTML."
+                }
+            ]
+        },
+        {
+            "title" : "CSS3",
+            "time" : "3 Hours",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "CSS will be used in conjunction with HTML/HTML5 for styling web pages. We will teach the techniques to add styling to web pages and the importance of separation in styling. The students can then apply these styling techniques to make their websites appealing."
+                }
+            ]
+        },
+        {
+            "title" : "JAVASCRIPT",
+            "time" : "4 Hours",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "JavaScript is a dynamic programming language which will be used to create interactive web pages. In this course, we will cover the basics of JavaScript and create a simple application."
+                }
+            ]
+        },
+        {
+            "title" : "BOOTSTRAP",
+            "time" : "2 Hours",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Bootstrap is the most popular front end framework in the world and is inherently a combination of HTML, CSS and JavaScript. We will learn how to use Bootstrap to create our own templates. We will also build your own personal website by harnessing its powers!"
+                }
+            ]
+        },
+        {
+            "title" : "SOCIAL CODING USING GIT AND GITHUB",
+            "time" : "2 Hours",
+            "difficulty" : "Intermediate",
+            "content" : [
+                {
+                    "data" : "Git is a free and open source distributed version control system designed to handle various projects with speed and efficiency. In this course, we will learn how to use Git to commit our projects and manage various versions of our software. We will also learn various Git commands which will aid our projects. GitHub is a Git based code host which is used to build and collaborate on projects as a team. Under this topic, we will learn how to use GitHub for the above features and how to make your resume/profile stand out in GitHub."
+                }
+            ]
+        },
+        {
+            "title" : "JADE",
+            "time" : "1 Hours",
+            "difficulty" : "Easy",
+            "content" : [
+                {
+                    "data" : "Jade is a template engine used to create HTML pages. It gets rid of the “annoying HTML tags” so that the code looks clean and readable. In this course, we explore the rules, techniques and skills for using jade."
+                }
+            ]
+        },
+        {
+            "title" : "LESS",
+            "time" : "1.5 Hours",
+            "difficulty" : "Intermediate",
+            "content" : [
+                {
+                    "data" : "LESS is a dynamic stylesheet language and is built over the concept of CSS. In this course, we will explore the intricacies of Less. Step by step guidelines will be provided to complete the projects using all of the above technologies. This will ensure that the students get a hands on training and gain expertise in the above technologies."
+                }
+            ]
+        },
+        {
+            "title" : "NODE.JS",
+            "time" : "5 Hours",
+            "difficulty" : "Intermediate",
+            "content" : [
+                {
+                    "data" : "The face of web development today is quite different thanks to JavaScript running on both the server and browser. Node.js, which is primarily written in JavaScript, is a runtime environment for server side and networking applications. In this course, we study more about Node.js, its asynchronous paradigm and implementation to equip the students to create fast, efficient and scalable web applications."
+                }
+            ]
+        },
+        {
+            "title" : "MONGODB",
+            "time" : "2 Hours",
+            "difficulty" : "Intermediate",
+            "content" : [
+                {
+                    "data" : "MongoDB (from “humongous”) is an open source document database written in C++ and the leading NoSQL database. In this course, you learn about NoSQL databases, JSON formats and creating databases in NoSQL language so that you take a break from those annoying “relationships”!"
+                }
+            ]
+        },
+        {
+            "title" : "EXPRESS",
+            "time" : "1 Hours",
+            "difficulty" : "Intermediate",
+            "content" : [
+                {
+                    "data" : "Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications. In this course, we will develop applications using express and Node.js."
+                }
+            ]
+        },
+        {
+            "title" : "APISOCIAL LOGIN",
+            "time" : "2 Hours",
+            "difficulty" : "Intermediate",
+            "content" : [
+                {
+                    "data" : "In this age of social integration, one cannot imagine developing a standalone product or application without including social media. To facilitate this need, we will be enlightening the students on how to integrate social media like facebook, twitter, google+ etc in your website. The course will equip them to create handles and logins for the respective medium."
+                }
+            ]
+        },
+        {
+            "title" : "ANGULAR.JS (OPTIONAL COURSE FOR WEEK 2)",
+            "time" : "6 Hours",
+            "difficulty" : "Intermediate",
+            "content" : [
+                {
+                    "data" : "HTML is great for declaring static documents, but it falters when we try to use it for declaring dynamic views in web-applications. AngularJS lets you extend HTML vocabulary for your application. In this course, we will learn more about this Google maintained web development framework and its implementation."
+                }
+            ]
+        },
+        {
+            "title" : "D3.JS (OPTIONAL COURSE FOR WEEK 2)",
+            "time" : "4 Hours",
+            "difficulty" : "Intermediate",
+            "content" : [
+                {
+                    "data" : "D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG and CSS. In this course, we cover D3.js in depth."
+                }
+            ]
+        },
+        {
+            "title" : "CLOUD ARCHITECTURE",
+            "time" : "4 Hours",
+            "difficulty" : "Intermediate",
+            "content" : [
+                {
+                    "data" : "Cloud computing architecture refers to the components and subcomponents required for cloud computing. These components typically consist of a front end platform (fat client, thin client, mobile device), back end platforms (servers, storage), a cloud based delivery, and a network (Internet, Intranet, Intercloud). We will delve into the depths of this architecture using our designed curriculum."
+                }
+            ]
+        },
+        {
+            "title" : "AMAZON WEB SERVICES (OPTIONAL COURSE FOR WEEK 3)",
+            "time" : "6 Hours",
+            "difficulty" : "Intermediate",
+            "content" : [
+                {
+                    "data" : "Amazon Web Services (AWS) is a collection of remote computing services (also called web services) that together make up a cloud computing platform, offered over the Internet by Amazon.com. In this course, we will be studying one of the two services in depth viz. Amazon EC2 or Amazon S3."
+                }
+            ]
+        },
+        {
+            "title" : "BLUE MIX (OPTIONAL COURSE FOR WEEK 3)",
+            "time" : "4 Hours",
+            "difficulty" : "Intermediate",
+            "content" : [
+                {
+                    "data" : "IBM Bluemix is an open-standards, cloud-based platform for building, managing and running apps and services of all types (web, mobile, big data, new smart devices). Capabilities include Java, mobile backend development, application monitoring, as well as capabilities from ecosystem partners and open source — all through an as-a-service model in the cloud. We will learn how to build applications using these technologies in our course."
+                }
+            ]
+        },
+        {
+            "title" : "CLOUD STORAGE WITH API (OPTIONAL COURSE FOR WEEK 3)",
+            "time" : "4 Hours",
+            "difficulty" : "Intermediate",
+            "content" : [
+                {
+                    "data" : "A Cloud storage is a model of data storage where the digital data is stored in logical pools, the physical storage spans multiple servers (and often locations), and the physical environment is typically owned and managed by a hosting company. Hosting companies include Amazon Web Services, Dropbox, Google Drive, Microsoft SkyDrive and so on. In this course, we will learn how to work with Dropbox API in particular."
+                }
+            ]
+        }
+    ],
+    "price" : "8000",
+    "domain" : "Web Development",
+    "courseDuration" : "3 Weeks",
+    "courseDate" : "mid-June",
+    "batchSize" : "50 Students",
+    "place" : "Mumbai, Goa",
+    "remainingSpots" : "5",
+    "mentors" : [
+        {
+            "mentorName": "Stanly Samuel",
+            "mentorDescription" : "Knowledge imparter with 6+ years of experience in teaching",
+            "imageLocation" : "img/stanly_thumb.jpg"
+        },
+        {
+            "mentorName": "Sobin G. Thomas",
+            "mentorDescription" : "Tech Guru with 7+ years of industry experience",
+            "imageLocation" : "img/sobin_thumb.png"
+        }
+    ]
+}

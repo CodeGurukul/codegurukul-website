@@ -1,14 +1,19 @@
-angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps','angular-carousel'])
+angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps','angular-carousel', 'ngSanitize'])
     .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
     $urlRouterProvider.otherwise('/angularjs-workshop');
 
     $stateProvider
-        .state('free-ruby-workshop', {
-        url: '/free-ruby-workshop',
-        templateUrl: 'views/free-ruby-workshop.html',
-        controller: 'RubyCtrl'
-    })        
+        .state('programs', {
+        url: '/programs/:course',
+        templateUrl: 'views/program-details.html',
+        controller: 'ProgramCtrl'
+    }) 
+//        .state('free-ruby-workshop', {
+//        url: '/free-ruby-workshop',
+//        templateUrl: 'views/free-ruby-workshop.html',
+//        controller: 'RubyCtrl'
+//    })        
         .state('angularjs-workshop', {
         url: '/angularjs-workshop',
         templateUrl: 'views/angularjs-workshop.html',

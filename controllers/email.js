@@ -56,7 +56,9 @@ exports.sendEmail = function(req, res) {
 
       }
       else if(req.pay){
-        console.log('herre!!!!');
+        res.json({
+          message:'Payment Success'
+        });
       }
       else{
         res.json({
@@ -66,19 +68,22 @@ exports.sendEmail = function(req, res) {
       }
   });
 
-          var mailOpts = {
+if(req.pay){    
+console.log(req.data);      
+  var mailOpts = {
           to:'fonzie.jacinto@bitbrothers.in',
           from:from,
           subject: req.subject,
-          email: req.email + req.data
-        };
-        transporter.sendMail(mailOpts, function(err){
-          if(err)
-            res.send(err);
-          else{
-            console.log('done payment');
-          }
-        });
+          email: req.data
+  };
+  transporter.sendMail(mailOpts, function(err){
+    if(err)
+      res.send(err);
+    else{
+      console.log('done payment');
+    }
+  });
+}
 };
 
 exports.addNewsletter = function(req, res){

@@ -1,7 +1,7 @@
 {
     "name" : "ANGULARJS WORKSHOP",    
     "description" : "This training aims at equipping the participants with the necessary knowledge and skills required to build rich internet applications using cutting edge RIA framework from google 'Angular.js'.",
-    "course-content" : [
+    "courseContent" : [
         {
             "title" : "INTRODUCTION TO ANGULAR.JS",
             "time" : "100 Minutes",
