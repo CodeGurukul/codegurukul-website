@@ -83,7 +83,7 @@ app.post('/api/auth/login', userController.login);
 app.post('/api/auth/facebook', userController.facebookAuth);
 app.post('/api/auth/google', userController.googleAuth);
 app.get('/api/users', userController.hasEmail);
-app.post('/api/payment', razorController.verifyPay);
+app.post('/api/payment', userController.isLogin,razorController.verifyPay,emailController.sendEmail);
 app.post('/api/email', emailController.contactUs, emailController.sendEmail);
 
 //User APIs

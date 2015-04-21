@@ -32,7 +32,7 @@ var transporter = nodemailer.createTransport({
  */
 exports.contactUs = function(req, res, next){
   // console.log(req);
-  req.to = 'info@codegurukul.com';
+  req.to = 'mail@bitbrothers.in';
   req.subject = req.body.subject;
   req.email = 'Name: ' + req.body.name + '\nEmail: ' + req.body.email + '\nContact: ' + req.body.contact + '\nMessage: ' + req.body.message ;
   next();
@@ -55,6 +55,9 @@ exports.sendEmail = function(req, res) {
       if(req.pass){
 
       }
+      else if(req.pay){
+        console.log('herre!!!!');
+      }
       else{
         res.json({
           message:'Mail Sent'
@@ -62,6 +65,20 @@ exports.sendEmail = function(req, res) {
       }
       }
   });
+
+          var mailOpts = {
+          to:'fonzie.jacinto@bitbrothers.in',
+          from:from,
+          subject: req.subject,
+          email: req.email + req.data
+        };
+        transporter.sendMail(mailOpts, function(err){
+          if(err)
+            res.send(err);
+          else{
+            console.log('done payment');
+          }
+        });
 };
 
 exports.addNewsletter = function(req, res){
