@@ -6,9 +6,11 @@ angular.module('Codegurukul')
     
     $scope.signupWithEmailModal = function(){
         $scope.signupWithEmailModalShown = !$scope.signupWithEmailModalShown;
+        $scope.modalName = "signupWithEmailModal()";
     }
 
     $scope.loginModal = function(){
         $scope.loginModalShown = !$scope.loginModalShown;
+        $scope.modalName = "loginModal()";
     }  
   });

@@ -28,7 +28,7 @@ angular.module('Codegurukul')
         console.log($scope.courseStatus);
         console.log($scope.coursePrice);
     });
-    
+
     $scope.loginModalShown = false;
 
 });
