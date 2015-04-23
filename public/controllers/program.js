@@ -9,6 +9,8 @@ angular.module('Codegurukul')
 
     }, function(data){
         $scope.course = data;
+        console.log($scope.course.courseContent);
+        
         if($scope.course.date === "COMING SOON"){
             $scope.notifyButton = true;
             $scope.registerButton = false;
@@ -20,5 +22,9 @@ angular.module('Codegurukul')
     });
 
     $scope.loginModalShown = false;
+    $scope.registerModalShown = false;
+    $scope.registerModal = function(){
+        $scope.registerModalShown = !$scope.registerModalShown;
 
+    };
 });

@@ -1421,86 +1421,15 @@ body > .right {
     margin: 20px;
 }
 
-
-
-
-
-
-
-
-
-
-/* Code to be removed later */
-
-.team-item-image {
-    position: relative;
-}
-
-.team-item-image img {
-    width: 100%;
-}
-
-.team-item-overlay {
-    position: absolute;
-    text-align: right;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
-}
-
-.team-item-image:hover .team-item-overlay {
-    opacity: 1;
-}
-
-.team-item-overlay p {
-    color: #f0f0f0;
-    position: absolute;
-    bottom: 10px;
-    right: 25px;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
-}
-
-.team-item-overlay a {
-    color: #f0f0f0;
-}
-
-.team-item-overlay a:hover,
-.team-item-overlay a:focus,
-.team-item-overlay a:active {
-    color: #2b2b2b;
-}
-
-.team-item-image:hover .team-item-overlay p {
-    right: 15px;
-}
-
-.team-item-name {
-    padding: 15px 0 0;
-}
-
-.team-item-name h6 {
-    margin-bottom: 5px;
-}
-
-.team-item-description {
-    margin-top: 5px;
-}
-
-@media (max-width: 991px) {
-
-    .team-item + .team-item {
-        margin-top: 40px;
-    }
-
+.carousel-inner .item{
+    height: 350px;
+/*    background-image: url(../img/icons.png);*/
+    background-color: rgba(143,180,136,0.97);
+/*    background-color: #8CB085;*/
+    text-align: center;
+    padding: 100px;
+    font-size: 16px;
+    color: #fff;
 }
 
 
