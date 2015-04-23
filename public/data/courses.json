@@ -1,0 +1,38 @@
+[
+    {
+        "name" : "ANGULARJS WORKSHOP",    
+        "description" : "This training aims at equipping the participants with the necessary knowledge and skills required to build rich internet applications using cutting edge RIA framework from google 'Angular.js'.",
+        "domain" : "AngularJS, Javascript",
+        "lessons" : "10",
+        "link" : "programs({course:'angularjs-workshop'})",
+        "img" : "/img/angularjs.png",
+        "price" : 3500
+    },
+    {
+        "name" : "RUBY WORKSHOP",    
+        "description" : "PHP DEVS, THIS IS WHY YOUR SHOULD LEARN RUBY IN 2015: It's one of the friendliest programming languages on earth to learn. Its makes learning the big Ruby on Rails framework easier. Rails is written in 100% ruby. You can use ruby for everything! From building web applications and websites to controlling robots or even a swarm of servers. Its got a big ecosystem - that means open source software that solves almost any problem under the sun. We call these plugins gems - (gems --> ruby - get it?)",
+        "domain" : "Ruby",
+        "lessons" : "5",
+        "link" : "programs({course:'free-ruby-workshop'})",
+        "img" : "/img/rails-logo.jpg",
+        "price" : 0
+    },
+    {
+        "name" : "Internship",    
+        "description" : "This Internship is organized by Codegurukul, to train and mentor the best students in Mumbai. The program is a one month internship conducted by experienced faculty. Students will be trained on the latest web technologies that power the most popular websites like LinkedIn, Facebook and eBay. Each student will be able to set up their own web application at the end of the course and will also be offered an option to opt in for more advanced topics over the course of this internship.",
+        "domain" : "HTML, CSS, Javascript, Node, MongoDB, Express, AngularJS",
+        "lessons" : "17",
+        "link" : "programs({course:'internships'})",
+        "img" : "img/codeshot_thumb.jpg",
+        "price" : 8000
+    },
+    {
+        "name" : "Startup Team Training",    
+        "description" : "We love working with startups. As the number of technological startups keep growing year on year, we thought, why not help show them the right way. In a startup, employing experienced talent could be challenging. Therefore we usually try to get in the most talented freshers. Let this not hamper your project nor your product.",
+        "domain" : "HTML, CSS, Javascript, Node, MongoDB, Express, AngularJS, Ruby, AWS",
+        "lessons" : "3",
+        "link" : "startup-team-training",
+        "img" : "img/codeshot_thumb.jpg",
+        "price" : "On demand"
+    }
+]

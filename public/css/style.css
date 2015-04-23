@@ -1502,3 +1502,15 @@ body > .right {
     }
 
 }
+
+
+/* All courses page start*/
+
+.meta span a{
+    text-transform: capitalize;
+}
+
+.filters ul li label {
+    text-transform: capitalize;
+}
+/* All courses page end*/

@@ -1,4 +1,8 @@
 angular.module('Codegurukul')
   .factory('Courses', function($resource) {
-    return $resource('/api/courses');
+    var Courses = {
+        default: $resource('../data/courses.json'),
+        domains: $resource('../data/domains.json')
+    };
+    return Courses;
   });
