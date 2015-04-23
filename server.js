@@ -73,6 +73,7 @@ app.get('/', function(request, response){
 
 var emailController = require('./controllers/email');
 var userController = require('./controllers/user');
+var courseController = require('./controllers/course');
 
 //Login APIs  //Github and linkedin auth needs testing...awaiting front end code
 app.post('/api/auth/github', userController.githubAuth);
@@ -93,6 +94,9 @@ app.post('/api/newsletter', emailController.addNewsletter);
 
 app.use(errorHandler());
 
+//Courses
+app.get('/api/courses/:cslug', courseController.getCourse);
+app.get('/api/courses', courseController.getCourses);
 /**
  * Start Express server.
  */

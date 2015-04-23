@@ -14,6 +14,11 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
     //        templateUrl: 'views/free-ruby-workshop.html',
     //        controller: 'RubyCtrl'
     //    })        
+        .state('user', {
+        url: '/user/:uslug',
+        templateUrl: 'views/user-profile.html',
+        controller: 'UserCtrl'
+    })
         .state('angularjs-workshop', {
         url: '/angularjs-workshop',
         templateUrl: 'views/angularjs-workshop.html',

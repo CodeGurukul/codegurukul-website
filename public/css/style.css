@@ -1514,3 +1514,20 @@ body > .right {
     text-transform: capitalize;
 }
 /* All courses page end*/
+
+/*User profile start*/
+.badges img {
+    width: 100%;
+    max-width: 150px;
+}
+.badges .locked {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+}
+.badges .locked:hover {
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    -o-filter: grayscale(0%);
+}
+/*User profile end*/

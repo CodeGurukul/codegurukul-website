@@ -36,7 +36,7 @@
                         <li><a href="mailto:info@smartway.com"><i class="fa fa-envelope"></i><span>info@codegurukul.com</span></a></li>
                     </ul>
                     <ul class="pull-right" ng-show="currentUser">
-                        <li class="custom-right-padding-20"> Hi {{currentUser.profile.username}} </li>
+                        <li class="custom-right-padding-20"> <a ui-sref="user({uslug:'{{currentUser.profile.slug}}'})"> Hi {{currentUser.profile.username}}</a></li>
                         <li ng-click="logout()" class="logout-link"> Logout </li>
                     </ul>
                     <ul class="pull-right" ng-show="!currentUser">
@@ -261,12 +261,14 @@
         <script src="controllers/signup.js"></script>
         <script src="controllers/login.js"></script>
         <script src="controllers/navbar.js"></script>
+        <script src="controllers/user.js"></script>
         <script src="controllers/program.js"></script>
 
         <script src="services/email.js"></script>
         <script src="services/auth.js"></script>
         <script src="services/pay.js"></script>
         <script src="services/course.js"></script>
+        <script src="services/user.js"></script>
         <script src="services/courses.js"></script>
 
         <!--        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoRMxiPsqJ9SUuaK1KsCAjd3gqnecjlBw&amp;sensor=false"></script>-->

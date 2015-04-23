@@ -16,7 +16,7 @@
             <!-- ==== SIDEBAR START == -->
 
           <div class="col-md-3 col-sm-4 filters">
-              <!-- ==== FITER START == -->
+            <!-- ==== FITER START == -->
             <div class="widget">
               <form role="form">
                 <ul>
@@ -56,14 +56,14 @@
                 <!-- Course Start -->
               <div ng-repeat="course in courses | filter:courseFilter" class="course row">
                 <div class="col-sm-4">
-                  <a ui-sref="{{course.link}}"><img ng-src="{{course.img}}" alt="" class="img-responsive"></a>
+                  <a ui-sref="programs({course:'{{course.slug}}'})"><img ng-src="{{course.thumb}}" alt="" class="img-responsive"></a>
                 </div>
                 <div class="col-sm-8">
                   <div class="row">
                     <div class="col-md-9 col-sm-8">
-                      <h3><a ui-sref="{{course.link}}">{{course.name}}</a></h3>
+                      <h3><a ui-sref="programs({course:'{{course.slug}}'})">{{course.name}}</a></h3>
                       <div class="meta">
-                        <span><i class="fa fa-file-text"></i>{{course.lessons}} Lessons</span>
+                        <span><i class="fa fa-file-text"></i>{{course.content.length}} Lessons</span>
                         <span><i class="fa fa-folder"></i>{{course.domain}}</span>
                       </div>
                     </div>
@@ -72,9 +72,7 @@
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
-                      <p ng-bind-html="course.description"<br>
-                      <a href="courses-details-left-sidebar.html">Read more <i class="fa fa-angle-right"></i></a>
-                      </p>
+                      <p ng-bind-html="course.description"></p>
                     </div>
                   </div>
                 </div>

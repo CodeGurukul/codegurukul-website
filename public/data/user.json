@@ -1,0 +1,89 @@
+{
+    "name" : "Warren Gonsalves",    
+    "badges" : [
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge1.png",
+            "link" : "programs({course:'angularjs-workshop'})",
+            "locked" : true
+        },
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge2.png",
+            "link" : "programs({course:'angularjs-workshop'})",
+            "locked" : false
+        },
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge3.png",
+            "link" : "programs({course:'angularjs-workshop'})",
+            "locked" : false
+        },
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge4.png",
+            "link" : "programs({course:'angularjs-workshop'})",
+            "locked" : true
+        },
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge4.png",
+            "link" : "programs({course:'angularjs-workshop'})",
+            "locked" : false
+        },
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge3.png",
+            "link" : "programs({course:'angularjs-workshop'})",
+            "locked" : true
+        },
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge2.png",
+            "link" : "programs({course:'angularjs-workshop'})",
+            "locked" : true
+        },
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge1.png",
+            "link" : "programs({course:'angularjs-workshop'})",
+            "locked" : false
+        },
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge3.png",
+            "link" : "programs({course:'angularjs-workshop'})",
+            "locked" : true
+        },
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge2.png",
+            "link" : "programs({course:'angularjs-workshop'})",
+            "locked" : true
+        },
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge1.png",
+            "link" : "programs({course:'angularjs-workshop'})",
+            "locked" : false
+        }
+    ],
+    "prizes" : [
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge1.png"
+        },
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge2.png"
+        },
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge3.png"
+        },
+        {
+            "name" : "Angular",
+            "img" : "img/badges/badge4.png"
+        }
+    ]
+}

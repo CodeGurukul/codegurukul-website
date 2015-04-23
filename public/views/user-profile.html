@@ -1,0 +1,30 @@
+<div class="title">
+  <div class="title-image"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        {{user.name}}
+      </div>
+    </div>
+  </div>
+</div>  
+<section class="badges">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2 class="carousel-title">
+					Badges
+					<button class="btn btn-link btn-xs" ng-click="all = !all">View All Badges</button>
+				</h2>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div ng-repeat="badge in user.badges | filter:filterLocked" class="col-md-2 col-sm-2 col-xs-4">
+				<a ui-sref="{{badge.link}}">
+					<p><img ng-src="{{badge.img}}" alt="" ng-class="{locked:badge.locked}"></p>
+					<h3>{{badge.name}}</h3>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
