@@ -1459,4 +1459,10 @@ body > .right {
     -moz-filter: grayscale(0%);
     -o-filter: grayscale(0%);
 }
+.profile-details label{
+    display: inline;
+}
+.profile-details{
+    margin: 5px 0px;
+}
 /*User profile end*/

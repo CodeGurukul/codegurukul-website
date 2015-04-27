@@ -27,9 +27,27 @@ function createJwtToken(user) {
     return jwt.encode(payload, tokenSecret);
 };
 
-exports.isLogin2 = function(req, res, next) {
- req.flag = true;
- next();
+exports.isLoginOptional = function(req, res, next) {
+    if (req.headers.authorization) {
+        var token = req.headers.authorization;
+        //.split(' ')[1];
+        try {
+            var decoded = jwt.decode(token, tokenSecret);
+            if (decoded.exp <= Date.now()) {
+                res.status(400).send(datas.et);
+            } else {
+                req.user = decoded.user;
+                return next();
+            }
+        } catch (err) {
+            req.user = false;
+            return next();
+        }
+    } else {
+        req.user = false;
+        return next();
+        
+    }
 };
 
 exports.isLogin = function(req, res, next) {

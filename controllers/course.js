@@ -15,7 +15,6 @@ exports.getCourses = function(req, res) {
 };
 
 exports.getCourse = function(req, res) {
-	console.log(req.params.cslug);
   Course.findOne({slug: req.params.cslug})
   .populate({
     path:'attendees._id'
@@ -27,8 +26,44 @@ exports.getCourse = function(req, res) {
       res.status(404).send('Course Not Found');
     }
     else{
-			console.log(course);
-      res.send(course);
+      var temp = {};
+      temp.course = course;
+      if (req.user)
+        if(course.attendees.id(req.user._id)) temp.joined = true;
+			console.log(temp);
+      res.send(temp);
     }
   });
 };
+
+exports.joinCourse = function(req, res) {
+  Course.findOne({slug:req.params.cslug},function(err, course) {
+    if (err) res.send(err);
+    else if (!course) res.send(404).send('Course not found.');
+    else {
+      User.findOne(req.user._id, function (err, user) {
+        if (err) res.send(err);
+        else if (!user) res.status(404).send('User not found.');
+        else if(user.courses.id(course._id)) res.status(412).send('Course Already Joined');
+        else{
+          console.log('ready to save');
+          user.courses.push({_id:course._id});
+          console.log(course._id);
+          console.log(user);
+          course.attendees.push({_id:user._id});
+          course.save(function (err) {
+            if(err) res.send(err);
+            else{
+              user.save(function (err) {
+                if (err) res.send(err);
+                else{
+                  res.json({message:'Course joined.'})
+                }
+              })
+            }
+          })
+        }
+      })
+    }
+  })
+}

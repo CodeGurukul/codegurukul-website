@@ -1,0 +1,55 @@
+<form role="form">
+	<h3>{{user.profile.fullname}}</h3>
+	<h2>Points <span class="pull-right">{{user.points}}</span></h2>
+	<ul>
+		<li class="profile-details">
+			<input class="form-control" type="text" placeholder="Where you at?" ng-model="profile.location">
+		</li>
+		<li class="profile-details">
+			<input class="form-control" type="email" placeholder="Email goes here" ng-model="profile.email">
+		</li>
+		<li class="profile-details">
+			<select class="form-control">
+			  <option>Female</option>
+			  <option>Male</option>
+			  <option>Other</option>
+			  <option>Its a secret</option>
+			  <option>Not sure</option>
+			</select>
+		</li>
+		<li class="profile-details">
+			<input class="form-control" type="date" placeholder="How old u are?" ng-model="profile.dob">
+		</li>
+		<li class="profile-details">
+			<input class="form-control" type="url" placeholder="You have a website?" ng-model="profile.website">
+		</li>
+		<li class="profile-details">
+			<input class="form-control" type="url" placeholder="The book of faces" ng-model="profile.facebook">
+		</li>
+		<li class="profile-details">
+			<input class="form-control" type="url" placeholder="Twitter" ng-model="profile.twitter">
+		</li>
+		<li class="profile-details">
+			<input class="form-control" type="url" placeholder="Google" ng-model="profile.google">
+		</li>
+		<li class="profile-details">
+			<input class="form-control" type="text" placeholder="Github" ng-model="profile.github">
+		</li>
+		<li class="profile-details">
+			<input class="form-control" type="text" placeholder="Where you work?" ng-model="profile.orginization">
+		</li>
+		<li class="profile-details">
+			<input class="form-control" type="text" placeholder="Where you study?" ng-model="profile.college">
+		</li>
+		<li class="profile-details">
+			<input class="form-control" type="text" placeholder="What you at?" ng-model="profile.branch">
+		</li>
+		<li class="profile-details">
+			<input class="form-control" type="text" placeholder="What you can do?" ng-model="profile.skills">
+		</li>
+		<li class="profile-details">
+			<input class="form-control" type="text" placeholder="How long you work?" ng-model="profile.experience">
+		</li>
+	</ul>
+	<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Save</button>
+</form>

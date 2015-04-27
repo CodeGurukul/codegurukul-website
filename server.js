@@ -95,7 +95,8 @@ app.post('/api/newsletter', emailController.addNewsletter);
 app.use(errorHandler());
 
 //Courses
-app.get('/api/courses/:cslug', courseController.getCourse);
+app.put('/api/courses/:cslug/join', userController.isLogin, courseController.joinCourse);
+app.get('/api/courses/:cslug', userController.isLoginOptional, courseController.getCourse);
 app.get('/api/courses', courseController.getCourses);
 /**
  * Start Express server.

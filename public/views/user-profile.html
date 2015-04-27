@@ -11,19 +11,77 @@
 <section class="badges">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12">
-				<h2 class="carousel-title">
-					Badges
-					<button class="btn btn-link btn-xs" ng-click="all = !all">View All Badges</button>
-				</h2>
+			<div class="col-md-3 col-sm-4">
+				<span class="pull-right"><button class="btn btn-primary btn-xs" ng-click="edit=!edit"><i class="fa fa-pencil"></i></button></span>
+				<div class="widget" ng-hide="edit">
+					<!-- <form role="form"> -->
+						<h3>{{user.name}}</h3>
+						<h2>Points <span class="pull-right">{{user.points}}</span></h2>
+						<ul>
+							<li class="profile-details">
+								<label>Location <span class="pull-right">{{user.profile.location}}</span></label>
+							</li>
+							<li class="profile-details">
+								<label>Email <span class="pull-right">{{user.email}}</span></label>
+							</li>
+							<li class="profile-details">
+								<label>Gender <span class="pull-right">{{user.profile.gender}}</span></label>
+							</li>
+							<li class="profile-details">
+								<label>DoB <span class="pull-right">{{user.profile.dob}}</span></label>
+							</li>
+							<li class="profile-details">
+								<label>Website <span class="pull-right">{{user.profile.website}}</span></label>
+							</li>
+							<li class="profile-details">
+								<label>Facebook <span class="pull-right">{{user.profile.facebook}}</span></label>
+							</li>
+							<li class="profile-details">
+								<label>Twitter <span class="pull-right">{{user.profile.twitter}}</span></label>
+							</li>
+							<li class="profile-details">
+								<label>Google <span class="pull-right">{{user.profile.google}}</span></label>
+							</li>
+							<li class="profile-details">
+								<label>Github <span class="pull-right">{{user.profile.github}}</span></label>
+							</li>
+							<li class="profile-details">
+								<label>Orginization <span class="pull-right">{{user.profile.orginization}}</span></label>
+							</li>
+							<li class="profile-details">
+								<label>College <span class="pull-right">{{user.profile.college}}</span></label>
+							</li>
+							<li class="profile-details">
+								<label>Branch <span class="pull-right">{{user.profile.branch}}</span></label>
+							</li>
+							<li class="profile-details">
+								<label>Skills <span class="pull-right">{{user.profile.skills}}</span></label>
+							</li>
+							<li class="profile-details">
+								<label>Experience <span class="pull-right">{{user.profile.experience}}</span></label>
+							</li>
+						</ul>
+					<!-- </form> -->
+				</div>
+				<div class="widget" ng-if="edit">
+          <div ng-include="'../views/partials/edit-profile-details.html'"></div>
+				</div>
 			</div>
-		</div>
-		<div class="row text-center">
-			<div ng-repeat="badge in user.badges | filter:filterLocked" class="col-md-2 col-sm-2 col-xs-4">
-				<a ui-sref="{{badge.link}}">
-					<p><img ng-src="{{badge.img}}" alt="" ng-class="{locked:badge.locked}"></p>
-					<h3>{{badge.name}}</h3>
-				</a>
+			<div class="col-md-9 col-sm-8">
+				<div class="col-sm-12">
+					<h2 class="carousel-title">
+						Badges
+						<button class="btn btn-link btn-xs" ng-click="all = !all">View All Badges</button>
+					</h2>
+				</div>
+				<div class="text-center">
+					<div ng-repeat="badge in user.badges | filter:filterLocked" class="col-md-2 col-sm-2 col-xs-4">
+						<a ui-sref="{{badge.link}}">
+							<p><img ng-src="{{badge.img}}" alt="profile-details" ng-class="{locked:badge.locked}"></p>
+							<h3>{{badge.name}}</h3>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

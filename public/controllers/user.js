@@ -1,6 +1,7 @@
 angular.module('Codegurukul')
   .controller('UserCtrl', function($scope, User) {
   	$scope.all = false;
+  	$scope.edit = false;
   	User.default.get(function(data){
 			$scope.user = data;
 		});

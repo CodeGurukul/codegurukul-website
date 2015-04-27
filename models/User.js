@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto'); 
+var Course = require('./Course');
 
 var userSchema = new mongoose.Schema({
   email: {
@@ -11,7 +12,7 @@ var userSchema = new mongoose.Schema({
   
   password: String,
   courses:[{
-    _id:{type: mongoose.Schema.Types.ObjectId, ref: 'Complaint'}
+    _id:{type: mongoose.Schema.Types.ObjectId, ref: 'Course'}
   }],
   log:[{
     _id: false,

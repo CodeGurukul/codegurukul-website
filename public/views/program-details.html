@@ -26,13 +26,13 @@
                 <hr>
                 <h3>What you will be taught</h3>
 
-                <div ng-repeat="content in course.courseContent">
+                <div ng-repeat="content in course.content">
                     <h5 class="lesson-title"><a href="#">{{content.title}}</a></h5>
                     <div class="meta">
-                        <span><i class="fa fa-clock-o"></i>{{content.time}}</span>
+                        <span><i class="fa fa-clock-o"></i>{{content.duration}}</span>
                         <span><i class="fa fa-dashboard"></i>{{content.difficulty}}</span>
                     </div>
-                    <p ng-bind-html="content.description">{{content.content.data}}</p>
+                    <p ng-bind-html="content.description"></p>
                     <hr>
                 </div>
             </div>
@@ -66,11 +66,11 @@
                         </li>
                         <li class="course-data">
                             <span class="icon icon-038"></span>
-                            <span class="pull-right"> {{course.courseDuration}} </span>
+                            <span class="pull-right"> {{course.duration}} </span>
                         </li>
                         <li class="course-data">
                             <span class="icon fa fa-calendar"></span>
-                            <span class="pull-right"> {{course.courseDate}} </span>
+                            <span class="pull-right"> {{course.date}} </span>
                         </li>
                         <li class="course-data">
                             <span class="icon icon-006"></span>
@@ -82,8 +82,12 @@
                         </li>
                     </ul>
                     <p class="text-center" ng-show="registerButton"> <i class="fa fa-clock-o"></i> Hurry! Only {{course.remainingSpots}} spots remaining!</p> 
-                    <p ng-show="notifyButton"><a class="btn btn-primary take-course" ng-click="registerModal()">Notify Me!</a></p>
-                    <p ng-show="registerButton" ng-controller="PaymentCtrl"><a class="btn btn-primary take-course" ng-click="pay();">Register</a></p>
+
+                    <p ng-if="course.status=='new'"><a class="btn btn-primary take-course" ng-click="registerModal()">Notify Me!</a></p>
+                    <p ng-if="course.status=='open' && course.price>0"><a class="btn btn-primary take-course" ng-click="pay();">Pay</a></p>
+                    <p ng-if="course.status=='open' && course.price=='0'"><a class="btn btn-primary take-course" ng-click="joinCourse()">Register</a></p>
+                    <p ng-if="course.status=='closed'"><a class="btn btn-primary take-course" ng-disabled="true">Closed</a></p>
+
                     <p class="text-center share">		
                         <a href="http://www.facebook.com/codegurukul"><i class="fa fa-facebook fa-lg"></i></a>
                         <a href="http://www.twitter.com/codegurukul"><i class="fa fa-twitter fa-lg"></i></a>
@@ -96,9 +100,9 @@
                     <h3>Mentors</h3>
                     <div class="teacher row" ng-repeat="mentor in course.mentors">
                         <div class="col-sm-12">
-                            <img ng-src="{{mentor.imageLocation}}" alt="" class="pull-left" />
-                            <h5> {{mentor.mentorName}} </h5>
-                            <p> {{mentor.mentorDescription}} </p>
+                            <img ng-src="{{mentor.image}}" alt="" class="pull-left" />
+                            <h5> {{mentor.name}} </h5>
+                            <p> {{mentor.description}} </p>
                             <hr>
                         </div>
                     </div>
@@ -111,6 +115,7 @@
 
         </div>
     </div>
+</section>
 <section ng-show="course.name == 'INTERNSHIPS'">
 
     <h2 class="carousel-title text-center">
@@ -164,7 +169,6 @@
     </div>
 
 
-</section>
 </section>
 
 

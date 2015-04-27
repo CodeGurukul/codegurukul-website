@@ -1,5 +1,28 @@
 {
-    "name" : "Warren Gonsalves",    
+    "name" : "Warren Gonsalves", 
+    "points" : 200,
+    "slug" : "war78",
+    "email" : "war@war.war",
+    "profile" : {
+        "slug" : "war78",
+        "fullname" : "Warren Gonsalves",
+        "facebook" : "facebook.com",
+        "twitter" : "twitter.com",
+        "github" : "github.com",
+        "google" : "google.com",
+        "organization" : "",
+        "dob" : "11-8-89",
+        "college" : "xie",
+        "branch" : "comps",
+        "experience" : "2",
+        "skills" : ["blah", "blah"],
+        "occupation" : "coder",
+        "website" : "w.com",
+        "location" : "mumbai",
+        "gender" : "male",
+        "nameFull" : "",
+        "name" : "war"
+    },  
     "badges" : [
         {
             "name" : "Angular",
@@ -66,24 +89,6 @@
             "img" : "img/badges/badge1.png",
             "link" : "programs({course:'angularjs-workshop'})",
             "locked" : false
-        }
-    ],
-    "prizes" : [
-        {
-            "name" : "Angular",
-            "img" : "img/badges/badge1.png"
-        },
-        {
-            "name" : "Angular",
-            "img" : "img/badges/badge2.png"
-        },
-        {
-            "name" : "Angular",
-            "img" : "img/badges/badge3.png"
-        },
-        {
-            "name" : "Angular",
-            "img" : "img/badges/badge4.png"
         }
     ]
 }
