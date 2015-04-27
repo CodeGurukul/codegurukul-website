@@ -97,6 +97,7 @@ app.use(errorHandler());
 
 //Courses
 app.put('/api/courses/:cslug/join', userController.isLogin, courseController.joinCourse, emailController.sendEmail);
+app.get('/api/courses/:cslug/canjoin', userController.isLogin, courseController.canJoin);
 app.get('/api/courses/:cslug', userController.isLoginOptional, courseController.getCourse);
 app.get('/api/courses', courseController.getCourses);
 /**

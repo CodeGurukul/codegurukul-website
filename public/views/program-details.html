@@ -84,7 +84,7 @@
                     <p class="text-center" ng-show="registerButton"> <i class="fa fa-clock-o"></i> Hurry! Only {{course.remainingSpots}} spots remaining!</p> 
 
                     <p ng-if="course.status=='new'"><a class="btn btn-primary take-course" ng-click="registerModal()">Notify Me!</a></p>
-                    <p ng-if="course.status=='open' && course.price>0"><a class="btn btn-primary take-course" ng-click="pay();">Pay</a></p>
+                    <p ng-if="course.status=='open' && course.price>0"><a class="btn btn-primary take-course" ng-click="canJoin();">Pay</a></p>
                     <p ng-if="course.status=='open' && course.price=='0'"><a class="btn btn-primary take-course" ng-click="joinCourse()">Register</a></p>
                     <p ng-if="course.status=='closed'"><a class="btn btn-primary take-course" ng-disabled="true">Closed</a></p>
 

@@ -14,6 +14,22 @@ exports.getCourses = function(req, res) {
   });
 };
 
+exports.canJoin = function(req, res) {
+  console.log('canJoin');
+  Course.findOne({slug:req.params.cslug},function(err, course) {
+    if (err) res.send(err);
+    else if (!course) res.send(404).send('Course not found.');
+    else {
+      User.findOne(req.user._id, function (err, user) {
+        if (err) res.send(err);
+        else if (!user) res.status(404).send('User not found.');
+        else if(user.courses.id(course._id)) res.status(412).send('Course Already Joined');
+        else res.send(200);
+      })
+    }
+  })
+}
+
 exports.getCourse = function(req, res) {
   Course.findOne({slug: req.params.cslug})
   .populate({
