@@ -36,8 +36,12 @@ exports.getCourse = function(req, res) {
   });
 };
 
-exports.joinCourse = function(req, res) {
-  Course.findOne({slug:req.params.cslug},function(err, course) {
+exports.joinCourse = function(req, res, next) {
+  var cslug;
+  if (req.params.cslug) cslug = req.params.cslug;
+  if (req.body.cslug) cslug = req.body.cslug;
+  console.log(cslug);
+  Course.findOne({slug:cslug},function(err, course) {
     if (err) res.send(err);
     else if (!course) res.send(404).send('Course not found.');
     else {
@@ -46,18 +50,21 @@ exports.joinCourse = function(req, res) {
         else if (!user) res.status(404).send('User not found.');
         else if(user.courses.id(course._id)) res.status(412).send('Course Already Joined');
         else{
-          console.log('ready to save');
           user.courses.push({_id:course._id});
-          console.log(course._id);
-          console.log(user);
           course.attendees.push({_id:user._id});
           course.save(function (err) {
             if(err) res.send(err);
             else{
+              console.log('HEREEEEEEEEEE');
               user.save(function (err) {
                 if (err) res.send(err);
                 else{
-                  res.json({message:'Course joined.'})
+                  console.log('course joined');
+                  req.pay = false;
+                  req.to = user.email;
+                  req.subject = 'Registration success';
+                  req.email = 'You have registered for '+course.name;
+                  next();
                 }
               })
             }

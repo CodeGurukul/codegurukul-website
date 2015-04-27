@@ -1,7 +1,7 @@
 angular.module('Codegurukul')
   .factory('Pay', function($resource) {
     var Pay = {
-        default: $resource('/api/payment', {payment_id: '@payment_id'})
+        default: $resource('/api/payment')
     };
     return Pay;
   });

@@ -74,6 +74,7 @@ app.get('/', function(request, response){
 var emailController = require('./controllers/email');
 var userController = require('./controllers/user');
 var courseController = require('./controllers/course');
+var razorController = require('./controllers/razor');
 
 //Login APIs  //Github and linkedin auth needs testing...awaiting front end code
 app.post('/api/auth/github', userController.githubAuth);
@@ -83,7 +84,7 @@ app.post('/api/auth/login', userController.login);
 app.post('/api/auth/facebook', userController.facebookAuth);
 app.post('/api/auth/google', userController.googleAuth);
 app.get('/api/users', userController.hasEmail);
-
+app.post('/api/payment', userController.isLogin,razorController.verifyPay,emailController.sendEmail,courseController.joinCourse, emailController.sendEmail);
 app.post('/api/email', emailController.contactUs, emailController.sendEmail);
 
 //User APIs
@@ -95,7 +96,7 @@ app.post('/api/newsletter', emailController.addNewsletter);
 app.use(errorHandler());
 
 //Courses
-app.put('/api/courses/:cslug/join', userController.isLogin, courseController.joinCourse);
+app.put('/api/courses/:cslug/join', userController.isLogin, courseController.joinCourse, emailController.sendEmail);
 app.get('/api/courses/:cslug', userController.isLoginOptional, courseController.getCourse);
 app.get('/api/courses', courseController.getCourses);
 /**

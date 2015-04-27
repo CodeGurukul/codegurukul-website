@@ -65,15 +65,17 @@ angular.module('Codegurukul')
 
     $scope.pay = function(){
       if($rootScope.currentUser){
+        console.log($scope.course.price);
         $scope.options = {
             "key": "rzp_test_RYIGbvgxqTBJha",
-            "amount": $scope.course.price,
+            "amount": $scope.course.price*100,
             "name": "Bit Brothers Tech Pvt. Ltd.",
             "description": $scope.course.slug,
             "image": "img/logo.png",
             "handler": function (response){
                 Pay.default.save({
-                    payment_id: response.razorpay_payment_id
+                    payment_id: response.razorpay_payment_id,
+                    cslug: $stateParams.course
                 },function(data){
                     $alert({
                         content: 'Your payment was a success!',

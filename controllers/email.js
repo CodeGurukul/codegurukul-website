@@ -31,14 +31,14 @@ var transporter = nodemailer.createTransport({
  * @param message
  */
 exports.contactUs = function(req, res, next){
-  console.log(req);
-  req.to = 'info@codegurukul.com';
+  // console.log(req);
+  req.to = 'mail@bitbrothers.in';
   req.subject = req.body.subject;
   req.email = 'Name: ' + req.body.name + '\nEmail: ' + req.body.email + '\nContact: ' + req.body.contact + '\nMessage: ' + req.body.message ;
   next();
 };
 // info@codegurukul.com
-exports.sendEmail = function(req, res) {
+exports.sendEmail = function(req, res, next) {
   var from = 'info@codegurukul.com';
 
   var mailOptions = {
@@ -47,40 +47,40 @@ exports.sendEmail = function(req, res) {
     subject: req.subject ,
     text: req.email
   };
-
+  console.log('send email');
   transporter.sendMail(mailOptions, function(err) {
     if (err) 
       res.send(err);
     else {
-      if(req.pass){
-
+      if(req.pay){
+        next();
       }
       else{
         res.json({
           message:'Mail Sent'
         });
       }
-      }
+    }
   });
 };
 
 exports.addNewsletter = function(req, res){
-//   var mcReq = {
-//     id: config.mailchimp.id,
-//     email: { email: req.body.email },
-//     merge_vars: {
-//         EMAIL: req.body.email,
-//         FNAME: req.body.name
-//     }
-// };
+  //   var mcReq = {
+  //     id: config.mailchimp.id,
+  //     email: { email: req.body.email },
+  //     merge_vars: {
+  //         EMAIL: req.body.email,
+  //         FNAME: req.body.name
+  //     }
+  // };
 
-// submit subscription request to mail chimp
-mcApi.listSubscribe({id: config.mailchimp.id, email_address:req.body.email, double_optin: false}, function(err,data) {
-  if(err)
-    res.send(err);
-  else{
-    console.log(data);
-    res.json({message:'Success'});
-  }
-});
+  // submit subscription request to mail chimp
+  mcApi.listSubscribe({id: config.mailchimp.id, email_address:req.body.email, double_optin: false}, function(err,data) {
+    if(err)
+      res.send(err);
+    else{
+      console.log(data);
+      res.json({message:'Success'});
+    }
+  });
 };

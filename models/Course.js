@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var User = require('./User');
-var Course = require('./Course');
+// var Course = require('./Course');
 
 var courseSchema = new mongoose.Schema({
 
@@ -10,7 +10,7 @@ var courseSchema = new mongoose.Schema({
   thumb: String,
   slug: String,
   price: Number,
-  domain: String,
+  tech: String,                  //cant use domain clashes with node
   duration: String,
   date: String,
   batchSize: Number,
@@ -37,7 +37,6 @@ var courseSchema = new mongoose.Schema({
 
 //Slug function
 function slugify(text) {
-
   return text.toString().toLowerCase()
     .replace(/\s+/g, '-') // Replace spaces with -
     .replace(/[^\w\-]+/g, '') // Remove all non-word chars
@@ -48,8 +47,8 @@ function slugify(text) {
 
 
 courseSchema.pre('save', function(next) {
-    this.slug = slugify(this.name);
-    next();
+  this.slug = slugify(this.name);
+  next();
 });
 
 module.exports = mongoose.model('Course', courseSchema);
