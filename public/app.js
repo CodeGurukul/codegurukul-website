@@ -1,4 +1,4 @@
-angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps','angular-carousel', 'ngSanitize'])
+angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps','angular-carousel', 'ngSanitize', 'ngTagsInput'])
     .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
     $urlRouterProvider.otherwise('/angularjs-workshop');

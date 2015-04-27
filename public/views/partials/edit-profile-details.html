@@ -1,12 +1,12 @@
 <form role="form">
 	<h3>{{user.profile.fullname}}</h3>
 	<h2>Points <span class="pull-right">{{user.points}}</span></h2>
-	<ul>
+	<ul data-toggle="validator">
 		<li class="profile-details">
 			<input class="form-control" type="text" placeholder="Where you at?" ng-model="profile.location">
 		</li>
 		<li class="profile-details">
-			<input class="form-control" type="email" placeholder="Email goes here" ng-model="profile.email">
+			<input class="form-control" type="email" placeholder="Email goes here" ng-model="profile.email" data-error="Bruh, that email address is invalid" required>
 		</li>
 		<li class="profile-details">
 			<select class="form-control">
@@ -45,7 +45,7 @@
 			<input class="form-control" type="text" placeholder="What you at?" ng-model="profile.branch">
 		</li>
 		<li class="profile-details">
-			<input class="form-control" type="text" placeholder="What you can do?" ng-model="profile.skills">
+            <tags-input class="form-control" type="text" placeholder="What you can do?" ng-model="user.profile.skills"></tags-input>
 		</li>
 		<li class="profile-details">
 			<input class="form-control" type="text" placeholder="How long you work?" ng-model="profile.experience">

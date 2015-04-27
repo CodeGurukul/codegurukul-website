@@ -16,7 +16,8 @@
 				<div class="widget" ng-hide="edit">
 					<!-- <form role="form"> -->
 						<h3>{{user.name}}</h3>
-						<h2>Points <span class="pull-right">{{user.points}}</span></h2>
+						<h2>Points <span class="pull-right">{{user.points}}</span><br><span><h6><a href="#">Earn some more points!</a></h6></span></h2>
+                    
 						<ul>
 							<li class="profile-details">
 								<label>Location <span class="pull-right">{{user.profile.location}}</span></label>
@@ -55,7 +56,7 @@
 								<label>Branch <span class="pull-right">{{user.profile.branch}}</span></label>
 							</li>
 							<li class="profile-details">
-								<label>Skills <span class="pull-right">{{user.profile.skills}}</span></label>
+								<label>Skills <p class="pull-right" ng-repeat="skill in user.profile.skills"> {{skill}} </p></label>
 							</li>
 							<li class="profile-details">
 								<label>Experience <span class="pull-right">{{user.profile.experience}}</span></label>
