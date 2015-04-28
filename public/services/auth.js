@@ -4,7 +4,6 @@ angular.module('Codegurukul')
     var user = $window.localStorage.user;
     if (user) {
         $rootScope.currentUser = JSON.parse(user);
-        console.log($rootScope.currentUser);
     }
 
     // Asynchronously initialize Facebook SDK
