@@ -23,6 +23,8 @@ gulp.task('css', function(){
     gulp.src([
     'public/css/style.css',
     'public/css/pace-theme.css',
+    'public/css/lato-font.css',
+    'public/css/normalize.css',
     'public/css/font-awesome.min.css',
     'public/vendor/bootstrap-social/bootstrap-social.css',
     'public/vendor/ng-tags-input/ng-tags-input.css',

@@ -1,11 +1,6 @@
-@import url("magic-bootstrap.css");
 @import url("superslides.css");
-@import url("owl.carousel.min.css");
-@import url("owl.theme.default.min.css");
-@import url("animate.css");
-@import url("jquery.fancybox.css");
-@import url("animate.css");
-@import "http://fonts.googleapis.com/css?family=Lato:400,900,400italic,900italic";
+@import url("lato-font.css");
+@import url("normalize.css");
 @import url("font-awesome.min.css");
 @import url("school-icons.css");
 
@@ -1329,6 +1324,7 @@ footer a {
     margin-top: 20px;
 }
 
+
 .startup-training-testimonials blockquote{
     padding-left: 50px;
 }
@@ -1392,8 +1388,22 @@ body > .right {
     padding-right: 20px;
 }
 
+.register-modal .form-group {
+  width: 224px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
+}
 .social-login-buttons{
     margin-bottom: 10px;
+    margin-top: 18px;
+}
+
+.social-login-buttons .btn {
+    width: 227px;
+    margin: auto;
+    margin-bottom: 15px;
 }
 
 .ng-modal-title{
