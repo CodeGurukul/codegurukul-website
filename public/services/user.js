@@ -1,12 +1,13 @@
 angular.module('Codegurukul')
-  .factory('User', function($resource) {
+    .factory('User', function($resource) {
     var User = {
         default: $resource('../data/user.json')
     };
     return User;
-  });
+});
 
-//    .factory('User', function($resource, $window) {
+//angular.module('Codegurukul')
+//    .factory('User', function($resource) {
 //    return $resource('/api/user/:uslug', null,
 //                     {
 //        'update': { method:'PUT' }

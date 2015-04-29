@@ -18,7 +18,7 @@
             </select>
         </li>
         <li class="profile-details">
-            <input class="form-control" type="date" placeholder="How old u are?" ng-model="user.profile.dob" pattern="dd/MM/YYYY">
+            <input class="form-control" type="date" placeholder="How old u are?" value="{{user.profile.dob}}">
         </li>
         <li class="profile-details">
             <input class="form-control" type="url" placeholder="You have a website?" ng-model="user.profile.website">
@@ -51,5 +51,5 @@
         </li>
         <tags-input  type="text" placeholder="What you can do?" ng-model="user.profile.skills"></tags-input>
     </ul>
-    <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Save</button>
+    <button type="submit" class="btn btn-primary btn-sm" ng-click="newDate()"> <i class="fa fa-pencil"></i> Save</button>
 </form>
