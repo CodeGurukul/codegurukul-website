@@ -8,14 +8,13 @@
         <title>CodeGurukul</title>
         <link rel="shortcut icon" href="images/favicon.png">
 
-        <link rel="stylesheet" href="vendor/ngModal/dist/ng-modal.css">
-        <link rel="stylesheet" href="vendor/angular-carousel/dist/angular-carousel.min.css">
-        <!-- Main Stylesheet -->
+        <link href="style.min.css" rel="stylesheet">
+        <!-- Main Stylesheet
         <link href="css/pace-theme.css" rel="stylesheet" />
         <link href="css/font-awesome.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="vendor/bootstrap-social/bootstrap-social.css" />
         <link rel="stylesheet" href="vendor/ng-tags-input/ng-tags-input.css">
-        <link href="css/style.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet"> --->
 
         <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -33,8 +32,8 @@
             <div class="tools">
                 <div class="container" ng-controller="NavbarCtrl">
                     <ul class="pull-left">
-                        <li><a href="tel:1800123456"><i class="fa fa-phone"></i><span>+91 8097415085</span></a></li>
-                        <li><a href="mailto:info@smartway.com"><i class="fa fa-envelope"></i><span>info@codegurukul.com</span></a></li>
+                        <li><a href="tel:+91809741508"><i class="fa fa-phone"></i><span>+91 8097415085</span></a></li>
+                        <li><a href="mailto:info@codegurukul.com"><i class="fa fa-envelope"></i><span>info@codegurukul.com</span></a></li>
                     </ul>
                     <ul class="pull-right" ng-show="currentUser">
                         <li class="custom-right-padding-20"> <a ui-sref="user({uslug:'{{currentUser.profile.slug}}'})"> Hi {{currentUser.profile.username}}</a></li>
@@ -147,8 +146,8 @@
                         <p>Andheri (West)<br>
                             Mumbai 400053</p>
 
-                        <p>Phone: <a href="tel:1800123456">+91 8097415085</a><br>
-                            Phone: <a href="tel:1800123456">+91 9819167755</a><br>
+                        <p>Phone: <a href="tel:+918097415085">+91 8097415085</a><br>
+                            Phone: <a href="tel:+919819167755">+91 9819167755</a><br>
                             Email: <a href="mailto:info@codegurukul.com">info@codegurukul.com</a></p>
 
                     </div>
@@ -168,7 +167,7 @@
 
                     <!-- ==== CREDITS START == -->
                     <div class="col-sm-8">
-                        &copy; 2015 Developed by<a href="http://bitbrothers.in">Bit Brothers Tech Pvt. Ltd. </a>
+                        &copy; 2015. Initiative by <a href="http://bitbrothers.in">Bit Brothers Tech Pvt. Ltd. </a>
                     </div>
                     <!-- ==== CREDITS END == -->
 
@@ -184,56 +183,16 @@
         </footer>
 
         <!-- ========== FOOTER END ========== -->
-
-        <!-- Pace -->
+            
+ <!--           
         <script src="directives/pace-1.0.min.js"></script>
-
-        <!-- Modernizr Plugin -->
-        <script src="js/modernizr.custom.97074.js"></script>
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="js/jquery-1.11.1.min.js"></script>
-
-        <!-- Bootstrap Plugins -->
         <script src="js/bootstrap.min.js"></script>
-
-        <!-- Retina Plugin -->
         <script src="js/retina-1.1.0.min.js"></script>
-
-        <!-- Superslides Plugin -->
         <script src="js/jquery.easing.1.3.js"></script>
         <script src="js/jquery.animate-enhanced.min.js"></script>
         <script src="js/jquery.superslides.js"></script>
-
-        <!-- Owl Carousel Plugin -->
-        <!--        <script src="js/owl.carousel.min.js"></script>-->
-
-        <!-- Parallax ImageScroll Plugin -->
-        <script src="js/jquery.parallax-1.1.3.js"></script>
-
-        <!-- Fancybox Plugin -->
-        <script src="js/jquery.fancybox.js"></script>
-
-        <!-- ImagesLoaded Plugin -->
-        <script src="js/imagesloaded.pkgd.min.js"></script>
-
-        <!-- Masonry Plugin -->
-        <script src="js/masonry.pkgd.min.js"></script>
-
-        <!-- Progressbar Plugin -->
-        <!--        <script src="js/bootstrap-progressbar.js"></script>-->
-
-        <!-- Scroll Reveal Plugin -->
-        <script src="js/scrollReveal.js"></script>
-
-        <!-- Magic Form Processing -->
-        <!--        <script src="js/magic.js"></script>-->
-
-        <!-- jQuery Settings -->
-        <!--        <script src="js/settings.js"></script>-->
-
-
-        <!-- Controllers -->
+        
 
         <script src="vendor/angular/angular.js"></script>
         <script src="vendor/angular-strap/dist/angular-strap.js"></script>
@@ -247,8 +206,8 @@
         <script src="vendor/lodash/dist/lodash.min.js"></script>
         <script src="vendor/angular-sanitize/angular-sanitize.js"></script>
         <script src="vendor/ng-tags-input/ng-tags-input.min.js"></script>
-
-
+        <script src="vendor/angular-carousel/dist/angular-carousel.min.js"></script>
+        <script src="vendor/angular-touch/angular-touch.min.js"></script>
 
         <script src="app.js"></script>
         <script src="controllers/angularjs-workshop.js"></script>
@@ -271,38 +230,26 @@
         <script src="services/pay.js"></script>
         <script src="services/course.js"></script>
         <script src="services/user.js"></script>
-        <script src="services/courses.js"></script>
+        <script src="services/courses.js"></script>-->
+        
+        
+            
+        
+            <script src="app.min.js"></script>
+            <script src="templates.js"></script>
+        
+            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+            <script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        <!--        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoRMxiPsqJ9SUuaK1KsCAjd3gqnecjlBw&amp;sensor=false"></script>-->
+              ga('create', 'UA-42607288-2', 'auto');
+              ga('send', 'pageview');
 
-        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+            </script>
 
-        <!-- Angular Carousel -->
-        <script src="vendor/angular-carousel/dist/angular-carousel.min.js"></script>
-        <script src="vendor/angular-touch/angular-touch.min.js"></script>
-
-        <script src="services/program.js"></script>
-        <script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-42607288-2', 'auto');
-ga('send', 'pageview');
-
-        </script>
-        <script src="services/program.js"></script>
-        <script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-42607288-2', 'auto');
-ga('send', 'pageview');
-
-        </script>
-
-    </body>
+ 
+   </body>
 </html>

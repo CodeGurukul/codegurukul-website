@@ -5,19 +5,14 @@
 @import url("animate.css");
 @import url("jquery.fancybox.css");
 @import url("animate.css");
-@import url("http://fonts.googleapis.com/css?family=Lato:400,900,400italic,900italic");
+@import "http://fonts.googleapis.com/css?family=Lato:400,900,400italic,900italic";
 @import url("font-awesome.min.css");
 @import url("school-icons.css");
 
 /*------------------------------------------------------------------
 
-[Master Stylesheet]
-
-Project:			Smartway - Learning & Courses HTML Template
-Version:			1.0
-Last change:		20/10/2014
-Author:				Coffeecream Themes
-Assigned to:		Marcin Banaszek
+Project:		Codegurukul
+Version:		1.0
 
 ------------------------------------------------------------------
 
@@ -1465,4 +1460,12 @@ body > .right {
 .profile-details{
     margin: 5px 0px;
 }
+
 /*User profile end*/
+@media (max-width: 991px) {
+
+    .team-item + .team-item {
+        margin-top: 40px;
+    }
+
+}

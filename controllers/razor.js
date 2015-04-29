@@ -3,7 +3,7 @@ var secret = require('../config/secrets');
 var config = new secret();
 var User = require('../models/User');
 
-var auth = config.razorpay.live_id + ':' + config.razorpay.live_secret;
+var auth = config.razorpay.id + ':' + config.razorpay.secret;
 
 exports.verifyPay = function(req,res,next){
 	// console.log(req.body);
