@@ -83,9 +83,9 @@
                     </ul>
                     <p class="text-center" ng-show="showRemainingSpots"> <i class="fa fa-clock-o"></i> Hurry! Only {{remainingSpots}} spot(s) remaining!</p> 
 
-                    <p ng-if="course.status=='new'"><a class="btn btn-primary take-course" ng-click="registerModal()">Notify Me!</a></p>
-                    <p ng-if="course.status=='open' && course.price>0"><a class="btn btn-primary take-course" ng-click="canJoin();">Pay</a></p>
-                    <p ng-if="course.status=='open' && course.price=='0'"><a class="btn btn-primary take-course" ng-click="joinCourse()">Register</a></p>
+                    <p ng-if="course.status=='new'"><a class="btn btn-primary take-course" ng-click="notify()">Notify Me!<span ng-class="{processSpinner:processing}"></span></a></p>
+                    <p ng-if="course.status=='open' && course.price>0"><a class="btn btn-primary take-course" ng-click="canJoin();">Pay<span ng-class="{processSpinner:processing}"></span></a></p>
+                    <p ng-if="course.status=='open' && course.price=='0'"><a class="btn btn-primary take-course" ng-click="joinCourse()">Register<span ng-class="{processSpinner:processing}"></span></a></p>
                     <p ng-if="course.status=='closed'"><a class="btn btn-primary take-course" ng-disabled="true">Closed</a></p>
 
                     <p class="text-center share">		
@@ -137,57 +137,7 @@
                 <p>" {{testimonial.testimonial}} "</p> 
                 <p ng-bind-html="testimonial.studentPlace"></p>
             </div>
-            <!--
-
-<div class="item active">
-<p>"I am lucky to be the part of this workshop. I learnt the whole Web devlopment ( front end + back end) properly in 2 weeks.We were taught HTML, CSS, Javascript, Bootstrap , Git, Node.js and Angular.js. Many would doubt if someone can learn detail web dev in two weeks. But trust me its possible with codegurukul."</p> 
-<p> <em>- Amod Shinde <br> <small>Padre Conceicao College of Engineering, <br> Goa</small></em></p>
-</div>
-
-<div class="item">
-<p>"The 2 week-long internship on web development was very educative. The various topics covered during the course such as node.js,express and mongoose will certainly be helpful to me in the long run. Hope you people conduct more of such workshops in the future. It was indeed an enriching experience. Thanks and kudos to you people!! :)" </p>
-<p> <em>- Sameetha Dessai <br> <small>Goa</small></em></p>
-</div>
-
-<div class="item">
-<p>"Joining CodeGurukul's internship was the best decision ever. I used to consider web development to be very difficult. But Stanly made everything very easy to understand. He is a fantastic trainer. Within no time we were able to do our very own web applications. The internship was definitely very beneficial and encouraging for me. Thanks to CodeGurukul I am currently working as a web developer. Thank you CodeGurukul for making me realize the possibilities!"</p>
-<p> <em>- Shraddha Naik <br> <small>Software Engineer, <br> Goa Tech Solutions</small></em></p>
-</div>
-
-<div class="item">
-<p>"Within 2 weeks after the internship I appeared for an interview for the role of a web developer and have been working since over here at G4 InfoTech, Mapusa-Goa; also I'm very certain when I say this internship very directly helped me in getting this job. A big thumbs up from me to code gurukul, Stanly sir and Sobin sir."</p>
-<p> <em>- Anuj Kelkar <br> <small>G4 InfoTech, <br> Goa</small></em></p>
-</div>
--->
         </div>
-
-        <!-- Left and right controls -->
-        <!--
-<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-<span class="sr-only">Previous</span>
-</a>
-<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-<span class="sr-only">Next</span>
-</a>
--->
     </div>
-
-
 </section>
-
-
-
-<!-- ========== CONTENT END ========== -->
-
-<!--
-
-<ng-include src="'../views/modal-partials/signup-modal.html'"></ng-include>
-<ng-include src="'../views/modal-partials/email-signup-modal.html'"></ng-include>
-<ng-include src="'../views/modal-partials/login-modal.html'"></ng-include>
-<ng-include src="'../views/modal-partials/guest-registration-modal.html'"></ng-include>
-<ng-include src="'../views/modal-partials/notification-modal.html'"></ng-include>
--->
-
 

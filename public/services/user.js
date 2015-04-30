@@ -1,7 +1,10 @@
 angular.module('Codegurukul')
     .factory('User', function($resource) {
     var User = {
-        default: $resource('../data/user.json')
+        default: $resource('/api/user/:uslug', null,
+	    {
+	        'update': { method:'PUT' }
+	    })
     };
     return User;
 });

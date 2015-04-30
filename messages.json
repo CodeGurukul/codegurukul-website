@@ -9,6 +9,6 @@
 	"inep" : "Invalid email and/or password",
 	"iop" : "Invalid old password",
 	"uncomp" : "Sorry! This Complaint has not yet approved",
-	"unresolved" : "unresolved"
-
+	"unresolved" : "unresolved",
+	"inem" : "Invalid email"
 }

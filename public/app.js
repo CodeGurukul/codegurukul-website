@@ -73,6 +73,9 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
                 if (response.status === 401 || response.status === 403) {
                     $location.path('/login');
                 }
+                if (response.status === 404) {
+                    $location.path('home');
+                }
                 return $q.reject(response);
             }
         }

@@ -2,6 +2,7 @@ var path           = require('path')
   , templatesDir   = path.resolve(__dirname, '..', 'templates')
  /* , emailTemplates = require('email-templates') */ //Not Used currently
   , nodemailer     = require('nodemailer');
+var User = require('../models/User');
 var MailChimpAPI = require('mailchimp').MailChimpAPI;
 var secret = require('../config/secrets');
 var config = new secret();
@@ -65,6 +66,25 @@ exports.sendEmail = function(req, res, next) {
 };
 
 exports.addNewsletter = function(req, res){
+  User.findOne(req.user._id, function (err, user) {
+    if (err) res.send(err);
+    else if (!user) res.status(404).send('User not found.');
+    else{
+      // submit subscription request to mail chimp
+      mcApi.listSubscribe({
+        id: config.mailchimp.id, 
+        email_address:user.email, 
+        double_optin: false
+      }, function(err,data) {
+        if(err)
+          res.send(err);
+        else{
+          console.log(data);
+          res.json({message:'You have been added to the mailing list.'});
+        }
+      });
+    }
+  });
   //   var mcReq = {
   //     id: config.mailchimp.id,
   //     email: { email: req.body.email },
@@ -74,13 +94,5 @@ exports.addNewsletter = function(req, res){
   //     }
   // };
 
-  // submit subscription request to mail chimp
-  mcApi.listSubscribe({id: config.mailchimp.id, email_address:req.body.email, double_optin: false}, function(err,data) {
-    if(err)
-      res.send(err);
-    else{
-      console.log(data);
-      res.json({message:'Success'});
-    }
-  });
+  // 
 };

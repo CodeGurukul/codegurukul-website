@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
-var crypto = require('crypto'); 
+var crypto = require('crypto');
 var Course = require('./Course');
 
 var userSchema = new mongoose.Schema({
@@ -9,57 +9,57 @@ var userSchema = new mongoose.Schema({
     unique: true,
     lowercase: true
   },
-  
+  username: String,
+  slug: String,
   password: String,
-  courses:[{
-    _id:{type: mongoose.Schema.Types.ObjectId, ref: 'Course'}
+  courses: [{
+    _id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Course'
+    }
   }],
-  log:[{
+  log: [{
     _id: false,
     entry: String,
-    date:{type: Date, default: Date.now}
-  }],
-  facebook: String,
-  twitter: String,
-  google: String,
-  github: String,
-  instagram: String,
-  linkedin: String,
-  tokens: Array,
-  
-  profile: {
-    joinDate:{type: Date,default: Date.now()},
-    slug: String,
-    username: String,
-    firstname: {
-      type: String,
-      default: ''
-    },
-    lastname: {
-      type: String,
-      default: ''
-    },
-    location: {
-      type: String,
-      default: ''
-    },
-    website: {
-      type: String,
-      default: ''
+    date: {
+      type: Date,
+      default: Date.now
     }
-  },
-    location: String,
-    pincode: Number,
-    phoneNo: Number,
-  resetPasswordToken: String,
-resetPasswordExpires: Date
+  }],
+  tokens: Array,
 
+  profile: {
+    joinDate: {
+      type: Date,
+      default: Date.now()
+    },
+    fullname: String,
+    location: String,
+    gender: String,
+    dob: Date,
+    website: String,
+    facebook: String,
+    twitter: String,
+    google: String,
+    github: String,
+    instagram: String,
+    linkedin: String,
+    organization: String,
+    college: String,
+    branch: String,
+    skills: [String],
+    experience: String
+  },
+  phone: Number,
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
+  points: Number
 
 });
 
 //Slug function
 function slugify(text) {
-console.log(text);
+  console.log(text);
   return text.toString().toLowerCase()
     .replace(/\s+/g, '-') // Replace spaces with -
     .replace(/[^\w\-]+/g, '') // Remove all non-word chars
@@ -72,8 +72,8 @@ console.log(text);
 
 userSchema.pre('save', function(next) {
   var user = this;
-  if(user.profile.slug == null || user.profile.slug == undefined){
-  user.profile.slug = slugify(user.profile.username + Math.floor((Math.random() * 100) + 1));
+  if (user.slug == null || user.slug == undefined) {
+    user.slug = slugify(user.username + Math.floor((Math.random() * 100) + 1));
   }
   if (!user.isModified('password')) return next();
 
@@ -95,5 +95,3 @@ userSchema.methods.comparePassword = function(candidatePassword, cb) {
 };
 
 module.exports = mongoose.model('User', userSchema);
-
-

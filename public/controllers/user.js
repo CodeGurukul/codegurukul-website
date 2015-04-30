@@ -2,21 +2,13 @@ angular.module('Codegurukul')
     .controller('UserCtrl', function($scope, User, $stateParams) {
     $scope.all = false;
     $scope.edit = false;
-
-        User.default.get(function(data){
-            $scope.user = data;
-    
-        });
-
-//    User.default.get({
-//        uslug : $stateParams.uslug
-//    },
-//                    function(data) {
-//
-//        $scope.user = data;
-//        console.log($scope.user);
-//        console.log($stateParams.uslug);
-//    });
+    console.log($stateParams.uslug);
+    User.default.get({
+      uslug: $stateParams.uslug
+      }, 
+      function(data){
+        $scope.user = data;
+    });
 
     $scope.allBadges = function () {
         Badges.default.get(function(data){
