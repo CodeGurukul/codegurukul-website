@@ -299,13 +299,23 @@ exports.hasEmail = function(req, res, next) {
 exports.getUser = function(req, res) {
   if (req.user.slug == req.params.uslug) {
     User.findById(req.user._id)
-      .select('-_id profile courses points slug username phone email')
+      .select('-_id profile courses points slug username phone email badges')
+      .populate({
+        path: 'badges._id'
+      })
       .exec(function(err, user) {
         if (err)
           res.send(err);
         else if (!user) {
           res.status(404).send(msg.unf);
         } else {
+          console.log(user);
+          var temp = user;
+          if (user.badges.length) 
+            for (var i = 0; i < user.badges.length; i++) {
+              temp.badges[i] = user.badges[i]._id;
+            };
+          console.log(temp)
           res.json(user);
         }
       });

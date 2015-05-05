@@ -74,6 +74,7 @@ app.get('/', function(request, response){
 var emailController = require('./controllers/email');
 var userController = require('./controllers/user');
 var courseController = require('./controllers/course');
+var badgeController = require('./controllers/badge');
 var razorController = require('./controllers/razor');
 
 //Login APIs  //Github and linkedin auth needs testing...awaiting front end code
@@ -100,6 +101,10 @@ app.put('/api/courses/:cslug/join', userController.isLogin, courseController.joi
 app.get('/api/courses/:cslug/canjoin', userController.isLogin, courseController.canJoin);
 app.get('/api/courses/:cslug', userController.isLoginOptional, courseController.getCourse);
 app.get('/api/courses', courseController.getCourses);
+
+//Badges
+app.get('/api/badges', userController.isLogin, badgeController.getBadges);
+
 /**
  * Start Express server.
  */
