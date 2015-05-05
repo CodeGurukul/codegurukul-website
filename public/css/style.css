@@ -1438,6 +1438,19 @@ body > .right {
     color: #fff;
 }
 
+.remove-button{
+    display: initial !important;
+}
+
+.skills-display{
+    border: 0px !important;
+}
+
+.user-skills ul{
+    margin: 0px;
+    text-align: right;
+}
+
 /*Spin loader css*/
 @-webkit-keyframes processSpinner {
   0% {

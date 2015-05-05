@@ -1,11 +1,12 @@
 angular.module('Codegurukul')
     .factory('User', function($resource) {
     var User = {
-        default: $resource('/api/user/:uslug', null,
-	    {
-	        'update': { method:'PUT' }
-	    })
-    };
+        default: $resource('/api/user/:uslug', {
+            uslug: '@uslug'
+        },{
+            'update': { method:'PUT' }
+        })
+    }
     return User;
 });
 

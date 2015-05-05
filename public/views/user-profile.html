@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                {{user.name}}
+                {{user.profile.fullname}}
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
                 <span class="pull-right"><button class="btn btn-primary btn-xs" ng-click="edit=!edit"><i class="fa fa-pencil"></i></button></span>
                 <div class="widget" ng-hide="edit">
                     <!-- <form role="form"> -->
-                    <h3>{{user.name}}</h3>
+                    <h3>{{user.profile.fullname}}</h3>
                     <h2>Points <span class="pull-right">{{user.points}}</span><br><span><h6><a href="#">Earn some more points!</a></h6></span></h2>
 
                     <ul>
@@ -55,8 +55,13 @@
                         <li class="profile-details">
                             <label>Branch <span class="pull-right">{{user.profile.branch}}</span></label>
                         </li>
-                        <li class="profile-details">
-                            <label>Skills <p class="pull-right" ng-repeat="skill in user.profile.skills"> {{skill}} </p></label>
+                        <li class="profile-details user-skills">
+                            <label>Skills 
+                                <ul>
+                                    <li class="skills-display" ng-repeat="skill in user.profile.skills"> <label>{{skill}} </label> </li>
+                                </ul>
+                            </label>
+                            <!--                            <strong class="pull-right" ng-repeat="skill in user.profile.skills"> {{skill}} </strong>-->
                         </li>
                         <li class="profile-details">
                             <label>Experience <span class="pull-right">{{user.profile.experience}}</span></label>

@@ -3,6 +3,9 @@
     <h2>Points <span class="pull-right">{{user.points}}</span></h2>
     <ul data-toggle="validator">
         <li class="profile-details">
+            <input class="form-control" type="text" placeholder="Your entire name" ng-model="user.profile.fullname">
+        </li>
+        <li class="profile-details">
             <input class="form-control" type="text" placeholder="Where you at?" ng-model="user.profile.location">
         </li>
         <li class="profile-details">
@@ -49,7 +52,7 @@
         <li class="profile-details">
             <input class="form-control" type="text" placeholder="How long you work?" ng-model="user.profile.experience">
         </li>
-        <tags-input  type="text" placeholder="What you can do?" ng-model="user.profile.skills"></tags-input>
+        <tags-input class="skills-tags" type="text" placeholder="What you can do?" ng-model="user.profile.skills"></tags-input>
     </ul>
-    <button type="submit" class="btn btn-primary btn-sm" ng-click="newDate()"> <i class="fa fa-pencil"></i> Save</button>
+    <button type="submit" class="btn btn-primary btn-sm" ng-click="update()"> <i class="fa fa-pencil"></i> Save</button>
 </form>
