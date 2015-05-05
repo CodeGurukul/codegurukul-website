@@ -8,6 +8,7 @@ angular.module('Codegurukul')
       }, 
       function(data){
         $scope.user = data;
+        console.log($scope.user);
     });
 
     $scope.allBadges = function () {

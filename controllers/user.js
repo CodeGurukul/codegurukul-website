@@ -82,7 +82,7 @@ exports.signup = function(req, res, next) {
   var user = new User({
     email: req.body.email,
     password: req.body.password,
-    'profile.username': req.body.username
+    username: req.body.username
   });
   user.save(function(err, user, numberAffected) {
     if (err) res.send(err);
@@ -101,12 +101,14 @@ exports.login = function(req, res) {
     user.comparePassword(req.body.password, function(err, isMatch) {
       if (!isMatch) return res.status(401).send(msg.inep);
       var token = createJwtToken(user);
-      var tempy = {
-        profile: user.profile
+      var temp = {
+        username: user.username,
+        slug: user.slug
       };
+      console.log(temp);
       res.send({
         token: token,
-        user: tempy
+        user: temp
       });
     });
   });
@@ -297,7 +299,7 @@ exports.hasEmail = function(req, res, next) {
 exports.getUser = function(req, res) {
   if (req.user.slug == req.params.uslug) {
     User.findById(req.user._id)
-      .select('-_id profile courses points slug username phone')
+      .select('-_id profile courses points slug username phone email')
       .exec(function(err, user) {
         if (err)
           res.send(err);

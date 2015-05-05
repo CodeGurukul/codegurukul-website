@@ -96,6 +96,7 @@ angular.module('Codegurukul')
                 .success(function(data) {
                 $window.localStorage.token = data.token;
                 $window.localStorage.user = JSON.stringify(data.user);
+                console.log(data.user);
                 $rootScope.currentUser = data.user;
                 //            $location.path('/');
                 $alert({
