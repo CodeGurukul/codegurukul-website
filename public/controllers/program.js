@@ -47,7 +47,7 @@ angular.module('Codegurukul')
               type: 'success',
               duration: 5
             });
-            $scope.course.joined = true;
+            // $scope.course.joined = true;
             $scope.processing = false;
           },
           function(error) {

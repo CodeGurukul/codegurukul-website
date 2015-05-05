@@ -4,9 +4,9 @@ var fs = require('fs');
 var moment = require('moment');
 var secret = require('../config/secrets');
 var config = new secret();
+var badge = require('../controllers/badge');
 
 exports.getCourses = function(req, res) {
-  console.log('HEREEEEEEEEEE');
   var query = Course.find().select('name slug description domain price content thumb');
   query.exec(function(err, courses) {
     if (err) return err;
@@ -33,6 +33,7 @@ exports.canJoin = function(req, res) {
 }
 
 exports.getCourse = function(req, res) {
+  console.log('get course');
   Course.findOne({
       slug: req.params.cslug
     })
@@ -47,9 +48,8 @@ exports.getCourse = function(req, res) {
       } else {
         var temp = {};
         temp.course = course;
-        if (req.user)
-          if (course.attendees.id(req.user._id)) temp.joined = true;
-        console.log(temp);
+        // if (req.user)
+        //   if (course.attendees.id(req.user._id)) temp.joined = true;
         res.send(temp);
       }
     });
@@ -66,11 +66,13 @@ exports.joinCourse = function(req, res, next) {
     if (err) res.send(err);
     else if (!course) res.send(404).send('Course not found.');
     else {
-      User.findOne(req.user._id, function(err, user) {
+      console.log(req.user);
+      User.findById(req.user._id, function(err, user) {
         if (err) res.send(err);
         else if (!user) res.status(404).send('User not found.');
-        else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
+        // else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
         else {
+          console.log(user.id);
           user.courses.push({
             _id: course._id
           });
@@ -80,7 +82,6 @@ exports.joinCourse = function(req, res, next) {
           course.save(function(err) {
             if (err) res.send(err);
             else {
-              console.log('HEREEEEEEEEEE');
               user.save(function(err) {
                 if (err) res.send(err);
                 else {
@@ -90,6 +91,7 @@ exports.joinCourse = function(req, res, next) {
                   req.subject = 'Registration success';
                   req.email = 'You have registered for ' + course.name;
                   next();
+                  badge.assign(course._id, user._id);
                 }
               })
             }

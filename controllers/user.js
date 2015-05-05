@@ -114,7 +114,7 @@ exports.login = function(req, res) {
   });
 };
 
-exports.githubAuth = function(req, res) {
+exports.githubAuth = function(req, res) {         //user model structure changed (slug, username moved out of profile)
   var profile = req.body.profile;
   User.findOne({
     email: profile.emails[0].value
@@ -152,7 +152,7 @@ exports.githubAuth = function(req, res) {
   });
 };
 
-exports.linkedinAuth = function(req, res) {
+exports.linkedinAuth = function(req, res) {       //user model structure changed (slug, username moved out of profile)
   var profile = req.body.profile;
   User.findOne({
     email: profile.emails[0].value
@@ -190,7 +190,7 @@ exports.linkedinAuth = function(req, res) {
   });
 };
 
-exports.facebookAuth = function(req, res) {
+exports.facebookAuth = function(req, res) {       //user model structure changed (slug, username moved out of profile)
   var profile = req.body.profile;
   var signedRequest = req.body.signedRequest;
   var encodedSignature = signedRequest.split('.')[0];
@@ -238,7 +238,7 @@ exports.facebookAuth = function(req, res) {
   });
 };
 
-exports.googleAuth = function(req, res) {
+exports.googleAuth = function(req, res) {   //user model structure changed (slug, username moved out of profile)
   var profile = req.body.profile;
   User.findOne({
     email: profile.emails[0].value
