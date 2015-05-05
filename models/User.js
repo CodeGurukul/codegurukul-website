@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto');
 var Course = require('./Course');
+var Badge = require('./Badge');
 
 var userSchema = new mongoose.Schema({
   email: {
@@ -17,6 +18,9 @@ var userSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Course'
     }
+  }],
+  badges: [{
+    _id : {type: mongoose.Schema.Types.ObjectId, ref: 'Badge' }
   }],
   log: [{
     _id: false,
