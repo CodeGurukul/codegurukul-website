@@ -1,20 +1,60 @@
 angular.module('Codegurukul')
-    .controller('UserCtrl', function($scope, User, $stateParams, $alert, $location, $state) {
+    .controller('UserCtrl', function($scope, User, $stateParams, $alert, $location, $state, Badges) {
     $scope.all = false;
     $scope.edit = false;
-    console.log($stateParams.uslug);
+    $scope.progressModal = false;
+
+    $scope.toggleProgressModal = function(){
+        $scope.progressModal = !$scope.progressModal;
+    }
+
+//    console.log($stateParams.uslug);
     User.default.get({
         uslug: $stateParams.uslug
     }, 
                      function(data){
         $scope.user = data;
-        console.log($scope.user);
+//        console.log($scope.user);
+
+
+        $scope.progressData = 1;
+
+        if ($scope.user.profile.fullname)
+            $scope.progressData++;
+        if ($scope.user.profile.website)
+            $scope.progressData++;
+        if ($scope.user.profile.facebook && $scope.user.profile.twitter)
+            $scope.progressData++;
+        if ($scope.user.profile.google && $scope.user.profile.github)
+            $scope.progressData++;
+        if ($scope.user.profile.organization)
+            $scope.progressData++;
+        if ($scope.user.profile.college && $scope.user.profile.branch)
+            $scope.progressData++;
+        if ($scope.user.profile.gender && $scope.user.profile.dob && $scope.user.profile.location)
+            $scope.progressData++;
+        if ($scope.user.profile.experience)
+            $scope.progressData++;
+        if ($scope.user.profile.skills)
+            $scope.progressData++;
+
+        $scope.progressData = $scope.progressData * 10;
+        if($scope.progressData != 100)
+            $scope.progressModal = true;
+        if ($scope.progressData == 100)
+            $scope.progressModal = false;
+        if ($stateParams.slug != $scope.user.profile.slug)
+            $scope.progressModal = false;
+
     });
 
     $scope.allBadges = function () {
-        Badges.default.get(function(data){
-            $scope.user.temp = data;
-        });
+        $scope.all = true;
+        Badges.default.query(
+            function(badges){
+                $scope.badges = badges;
+//                console.log($scope.badges);
+            });
     }
 
     $scope.filterLocked = function (badge) {
@@ -23,9 +63,10 @@ angular.module('Codegurukul')
     }
 
 
+    
+    
+    
     $scope.skill = [String];
-
-
 
     $scope.update = function() {
         User.default.update({
@@ -69,5 +110,7 @@ angular.module('Codegurukul')
             });
         });
 
-    };
+    };  //update function ends
+
+
 });
