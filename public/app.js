@@ -19,6 +19,15 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         templateUrl: 'views/user-profile.html',
         controller: 'UserCtrl'
     })
+        .state('home', {
+        url: '/angularjs-workshop',
+        templateUrl: 'views/angularjs-workshop.html'
+    })    
+        .state('landing', {
+        url: '/landing-page',
+        templateUrl: 'views/landing.html',
+        controller: 'LandingCtrl'
+    })        
         .state('angularjs-workshop', {
         url: '/angularjs-workshop',
         templateUrl: 'views/angularjs-workshop.html',
@@ -29,10 +38,6 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         templateUrl: 'views/internships.html',
         controller: 'InternshipsCtrl'
     })           
-        .state('home', {
-        url: '/angularjs-workshop',
-        templateUrl: 'views/angularjs-workshop.html'
-    })        
         .state('contact', {
         url: '/contact',
         templateUrl: 'views/contact.html',
