@@ -87,7 +87,7 @@
                 <div class="widget" data-scroll-reveal>
                     <ul>
                         <li class="price">
-                            Price <span class="pull-right"> <span ng-show="registerButton">₹</span>{{course.price}} </span>
+                            Price <span class="pull-right"> <span ng-show="registerButton">INR </span>{{course.price}} </span>
                         </li>
                         <li class="course-data">
                             <span class="icon icon-068"></span>
@@ -121,11 +121,13 @@
                         </li>
                     </ul>
                     <p ng-show="notifyButton"><a class="btn btn-primary take-course" ng-click="registerModal()">Notify Me!</a></p>
-                    <p ng-show="registerButton" ng-controller="PaymentCtrl"><a class="btn btn-primary take-course" ng-click="pay();">Register</a></p>
+<!--                    <p ng-show="registerButton" ng-controller="PaymentCtrl"><a class="btn btn-primary take-course" ng-click="info();">Register</a></p>-->
+                    <p ng-show="registerButton"><a class="btn btn-primary take-course" ng-click="info();">Register</a></p>
                     <p class="text-center share">		
                         <a href="http://www.facebook.com/codegurukul"><i class="fa fa-facebook fa-lg"></i></a>
                         <a href="http://www.twitter.com/codegurukul"><i class="fa fa-twitter fa-lg"></i></a>
                     </p>
+                    <small class="pull-right" ng-show="course.name == 'INTERNSHIP'">*excluding optional courses.</small>
                 </div>
                 <!-- ==== COURSE DATA END == -->
 
@@ -136,7 +138,8 @@
                         <div class="col-sm-12">
                             <img src="{{mentor.imageLocation}}" alt="" class="pull-left" />
                             <h5> {{mentor.mentorName}} </h5>
-                            <p> {{mentor.mentorDescription}} </p>
+                            <p> {{mentor.mentorDescription}} <br> 
+                            <a href="{{mentor.profile}}" target="_blank"> View Profile</a></p>
                         <hr>
                         </div>
                     </div>
@@ -151,7 +154,52 @@
     </div>
 </section>
 
+<div ng-show="course.name == 'INTERNSHIP'">
+
+    <h2 class="carousel-title text-center">
+        Testimonials
+    </h2>
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item" ng-class="{active:!$index}" ng-repeat = "testimonial in course.testimonials">
+                <p>" {{testimonial.testimonial}} "</p> 
+                <p ng-bind-html="testimonial.studentPlace"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!-- ========== CONTENT END ========== -->
+
+
+
+
+<!-- ========== LOGIN MODAL ========== -->
+
+<modal-dialog class="sendResumeModal" show='sendResumeModalShown' dialog-title="Initial screening in progress" height="auto" width="350px">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-center">Initial <strong>screening in progress</strong>. If you're interested, drop in your resume at info@codegurukul.com. Registration window for online payment will open from 28th May for selected students.</p>
+            <p class="text-center">Regards,<br>The CodeGurukul Team</p>
+        </div>
+        <div class="col-md-12 text-center">
+            <button class="btn btn-primary btn-md" ng-click="info()"> OK </button>
+        </div>
+    </div>
+</modal-dialog>
+<!-- ========== LOGIN MODAL ENDS ========== -->
+
 
 
 <ng-include src="'../views/modal-partials/signup-modal.html'"></ng-include>

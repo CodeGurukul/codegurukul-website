@@ -1400,3 +1400,15 @@ body > .right {
 .social-login-buttons{
     margin-bottom: 10px;
 }
+
+.carousel-inner .item{
+    min-height: 350px;
+    /*    background-image: url(../img/icons.png);*/
+    background-color: rgba(143,180,136,0.97);
+    /*    background-color: #8CB085;*/
+    text-align: center;
+    padding: 70px;
+    height: auto;
+    font-size: 16px;
+    color: #fff;
+}

@@ -28,7 +28,12 @@ angular.module('Codegurukul')
         console.log($scope.courseStatus);
         console.log($scope.coursePrice);
     });
-    
-    $scope.loginModalShown = false;
 
+    $scope.loginModalShown = false;
+    $scope.sendResumeModalShown = false;
+    $scope.info = function(){
+        console.log('here');
+        $scope.sendResumeModalShown = !$scope.sendResumeModalShown;
+
+    };
 });
