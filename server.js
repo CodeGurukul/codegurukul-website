@@ -80,7 +80,7 @@ var razorController = require('./controllers/razor');
 //Login APIs  //Github and linkedin auth needs testing...awaiting front end code
 app.post('/api/auth/github', userController.githubAuth);
 app.post('/api/auth/linkedin', userController.linkedinAuth);
-app.post('/api/auth/signup', userController.signup);
+app.post('/api/auth/signup', userController.signup, emailController.sendSignupEmail);
 app.post('/api/auth/login', userController.login);
 app.post('/api/auth/facebook', userController.facebookAuth);
 app.post('/api/auth/google', userController.googleAuth);
