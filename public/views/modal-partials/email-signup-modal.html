@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.email.$invalid &amp;&amp; signupWithEmailForm.email.$dirty }" class="form-group has-feedback">
-                <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" class="form-control input-md"/>
+                <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" unique-email="" required="" class="form-control input-md"/>
                 <div ng-if="signupWithEmailForm.email.$dirty" ng-messages="signupWithEmailForm.email.$error" class="help-block text-danger">
                     <div ng-message="required">Your email address is required.</div>
                     <div ng-message="email">Your email address is invalid.</div>

@@ -1,5 +1,5 @@
 angular.module('Codegurukul')
-    .factory('Auth', function($http, $location, $rootScope, $alert, $window) {
+    .factory('Auth', function($http, $location, $rootScope, $alert, $window, $state) {
     var token = $window.localStorage.token;
     var user = $window.localStorage.user;
     if (user) {
@@ -159,6 +159,7 @@ angular.module('Codegurukul')
             delete $window.localStorage.token;
             delete $window.localStorage.user;
             $rootScope.currentUser = null;
+            $state.go('home')
             $alert({
                 content: 'You have been logged out.',
                 animation: 'fadeZoomFadeDown',
