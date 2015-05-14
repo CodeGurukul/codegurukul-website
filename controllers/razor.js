@@ -14,25 +14,26 @@ exports.verifyPay = function(req,res,next){
 		else{
 			// console.log('Response:', JSON.parse(body));
 			var data = JSON.parse(body);
-			if(data.id == req.body.payment_id){
-				User.findById(req.user._id,function(err, user){
-					if(err)
-						res.send(err);
-					else if(!user){
-						res.status(404).send('User Not Found');
-					}
-					else{
-						req.pay = true;
-						req.to = user.email;
-						req.subject = 'Payment Confirmation';
-						req.data = body;
-						req.email = 'Your Payment has been recieved';
-						next();
-					}
-				});
-			}
-			else{
-				res.status(412).send('Id didnt Match');
+			console.log(data);
+			if (data.status == "failed") {
+				return res.status(400).send("There was an error with your transaction")
+			} else {
+				if(data.id == req.body.payment_id){
+					User.findById(req.user._id,function(err, user){
+						if(err)
+							res.send(err);
+						else if(!user){
+							res.status(404).send('User Not Found');
+						}
+						else{
+							req.pay = true;
+							next();
+						}
+					});
+				}
+				else{
+					res.status(412).send('Id didnt Match');
+				}
 			}
 		}
 

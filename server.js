@@ -85,11 +85,11 @@ app.post('/api/auth/login', userController.login);
 app.post('/api/auth/facebook', userController.facebookAuth);
 app.post('/api/auth/google', userController.googleAuth);
 app.get('/api/users', userController.hasEmail);
-app.post('/api/payment', userController.isLogin,razorController.verifyPay,emailController.sendEmail,courseController.joinCourse, emailController.sendEmail);
+app.post('/api/payment', userController.isLogin,razorController.verifyPay, courseController.joinCourse, emailController.sendRecieptEmail, emailController.sendRegistrationEmail);
 app.post('/api/email', emailController.contactUs, emailController.sendEmail);
 
 //User APIs
-app.post('/api/user/password', userController.isLogin, userController.changeUserPassword, emailController.sendEmail);
+//app.post('/api/user/password', userController.isLogin, userController.changeUserPassword, emailController.sendEmail);
 app.get('/api/user/:uslug', userController.isLogin, userController.getUser);
 app.put('/api/user/:uslug', userController.isLogin, userController.updateProfile);
 app.post('/api/newsletter', userController.isLogin, emailController.addNewsletter);
@@ -97,7 +97,7 @@ app.post('/api/newsletter', userController.isLogin, emailController.addNewslette
 app.use(errorHandler());
 
 //Courses
-app.put('/api/courses/:cslug/join', userController.isLogin, courseController.joinCourse, emailController.sendEmail);
+app.put('/api/courses/:cslug/join', userController.isLogin, courseController.joinCourse, emailController.sendRegistrationEmail);
 app.get('/api/courses/:cslug/canjoin', userController.isLogin, courseController.canJoin);
 app.get('/api/courses/:cslug', userController.isLoginOptional, courseController.getCourse);
 app.get('/api/courses', courseController.getCourses);
