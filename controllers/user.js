@@ -88,6 +88,9 @@ exports.signup = function(req, res, next) {
     if (err) res.send(err);
     else {
       res.status(200).send(msg.signup);
+      req.to = user.email;
+      req.name = user.username;
+      next();
     }
 
   });
@@ -277,6 +280,7 @@ exports.googleAuth = function(req, res) {   //user model structure changed (slug
 };
 
 exports.hasEmail = function(req, res, next) {
+  console.log("hasEmail");
   if (!req.query.email) {
     return res.send(400, {
       message: 'Email parameter is required.'
@@ -374,7 +378,7 @@ exports.updateProfile = function(req, res) {
     else if (!user) {
       res.status(404).send(msg.unf);
     } else {
-      if(validator.validate(req.body.email))
+      if(req.body.email && validator.validate(req.body.email))
         user.email = req.body.email;
       else return res.status(400).send(msg.inem);
       user.profile.fullname = req.body.fullname;
@@ -392,9 +396,9 @@ exports.updateProfile = function(req, res) {
       user.profile.college = req.body.college;
       user.profile.branch = req.body.branch;
       user.profile.skills.splice(0, user.profile.skills.length);
-            for (var i = 0; i <= req.body.skills.length - 1; i++) {
-                user.profile.skills.push(req.body.skills[i].text);
-            };
+      for (var i = 0; i <= req.body.skills.length - 1; i++) {
+        user.profile.skills.push(req.body.skills[i].text);
+      };
       user.profile.exp = req.body.exp;
       user.save(function(err) {
         if (err) res.send(err);

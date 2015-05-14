@@ -135,36 +135,58 @@ exports.sendEmail = function(req, res, next) {
   });
 };
 
-exports.sendRecieptEmail = function(req, res, next) {
-  // var from = 'info@codegurukul.com';
+exports.sendSignupEmail = function(req, res, next) {
+  var template_name = "welcome_template";
+  var template_content = [];
+  var message = {
+    "from_email": "info@codegurukul.com",
+    "from_name": "Codegurukul Team",
+    "to": [{
+      "email": req.to,
+      "name": req.name,
+      "type": "to"
+    }],
+    "headers": {
+      "Reply-To": "info@codegurukul.com"
+    },
+    "auto_text": true,
+    "inline_css": true,
+    "merge": true,
+    "merge_language": "handlebars",
+    "global_merge_vars": [{
+      "name": "companyName",
+      "content": "Codegurukul"
+    }, {
+      "name": "subject",
+      "content": "Welcome to Codegurukul"
+    }],
+    "merge_vars": [{
+      "rcpt": req.to,
+      "vars": [{
+        "name": "name",
+        "content": req.name
+      }]
+    }]
+  };
+  var async = false;
+  mandrill_client.messages.sendTemplate({
+    "template_name": template_name,
+    "template_content": template_content,
+    "message": message,
+    "async": async
+  }, function(result) {
+    console.log(result);
+  }, function(e) {
+    // Mandrill returns the error as an object with name and message keys
+    console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
+    // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
+  });
+};
 
-  // var mailOptions = {
-  //   to: req.to,
-  //   from: from,
-  //   subject: req.subject ,
-  //   text: req.email
-  // };
-  // console.log('send email');
-  // transporter.sendMail(mailOptions, function(err) {
-  //   if (err) 
-  //     res.send(err);
-  //   else {
-  //     if(req.pay){
-  //       next();
-  //     }
-  //     else{
-  //       res.json({
-  //         message:'Mail Sent'
-  //       });
-  //     }
-  //   }
-  // });
+exports.sendRecieptEmail = function(req, res, next) {
   var template_name = "invoice_template";
   var template_content = [];
   var message = {
-    // "html": "<p>Example HTML content</p>",
-    // "text": "Example text content",
-    // "subject": "example subject",
     "from_email": "info@codegurukul.com",
     "from_name": "Codegurukul Team",
     "to": [{
@@ -218,14 +240,6 @@ exports.sendRecieptEmail = function(req, res, next) {
   }, function(result) {
     console.log(result);
     next();
-    /*
-    [{
-            "email": "recipient.email@example.com",
-            "status": "sent",
-            "reject_reason": "hard-bounce",
-            "_id": "abc123abc123abc123abc123abc123"
-        }]
-    */
   }, function(e) {
     // Mandrill returns the error as an object with name and message keys
     console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
