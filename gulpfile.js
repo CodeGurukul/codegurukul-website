@@ -29,6 +29,7 @@ gulp.task('css', function(){
     'public/vendor/bootstrap-social/bootstrap-social.css',
     'public/vendor/ng-tags-input/ng-tags-input.css',
     'public/vendor/ngModal/dist/ng-modal.css',
+    'public/vendor/angular-tooltips/src/css/angular-tooltips.css',
     'public/vendor/angular-carousel/dist/angular-carousel.min.css'
     ])
     .pipe(plumber({
@@ -51,6 +52,7 @@ gulp.task('compress', function() {
     'public/vendor/angular-resource/angular-resource.js',
     'public/vendor/angular-ui-router/release/angular-ui-router.js',
     'public/vendor/angularjs-socialshare/src/js/angular-socialshare.js',
+    'public/vendor/angular-tooltips/src/js/angular-tooltips.js',
     'public/vendor/ng-tags-input/ng-tags-input.min.js',
     'public/vendor/ngModal/dist/ng-modal.min.js',
     'public/vendor/angular-google-maps/dist/angular-google-maps.min.js',
