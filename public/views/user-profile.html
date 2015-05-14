@@ -55,6 +55,9 @@
                         <li class="profile-details">
                             <label>Branch <span class="pull-right">{{user.profile.branch}}</span></label>
                         </li>
+                        <li class="profile-details">
+                            <label>Experience <span class="pull-right">{{user.profile.experience}}</span></label>
+                        </li>
                         <li class="profile-details user-skills">
                             <label>Skills 
                                 <ul>
@@ -62,9 +65,6 @@
                                 </ul>
                             </label>
                             <!--                            <strong class="pull-right" ng-repeat="skill in user.profile.skills"> {{skill}} </strong>-->
-                        </li>
-                        <li class="profile-details">
-                            <label>Experience <span class="pull-right">{{user.profile.experience}}</span></label>
                         </li>
                     </ul>
                     <!-- </form> -->
@@ -75,16 +75,22 @@
             </div>
             <div class="col-md-8 col-sm-8">
                 <div class="col-sm-12">
-                    <h2 class="carousel-title">
-                        Badges
-                        <button class="btn btn-link btn-xs" ng-click="all = !all">View All Badges</button>
+                    <h2 class="carousel-title text-center">
+                        Badges <br>
+                        <button ng-hide="all" class="btn btn-link btn-xs" ng-click="allBadges()">View All Badges</button><button class="btn btn-link btn-xs" ng-show="all" ng-click="all = ! all">Back To My Badges</button>
                     </h2>
                 </div>
                 <div class="text-center">
-                    <div ng-repeat="badge in user.badges | filter:filterLocked" class="col-md-2 col-sm-2 col-xs-4">
+                    <div ng-hide="all" ng-repeat="badge in user.badges | filter:filterLocked" class="col-md-2 col-sm-2 col-xs-4">
                         <a ui-sref="{{badge.link}}">
-                            <p><img ng-src="{{badge.img}}" alt="profile-details" ng-class="{locked:badge.locked}"></p>
-                            <h3>{{badge.name}}</h3>
+                            <p><img ng-src="{{badge.thumb}}" alt="profile-details" ng-class="{locked:badge.locked}"></p>
+                            <h3 class="text-center">{{badge.name}}</h3>
+                        </a>
+                    </div>
+                    <div ng-show="all" ng-repeat="badge in badges | filter:filterLocked" class="col-md-2 col-sm-2 col-xs-4">
+                        <a ui-sref="{{badge.link}}">
+                            <p><img ng-src="{{badge.thumb}}" alt="profile-details" ng-class="{locked:badge.locked}"></p>
+                            <h3 class="text-center">{{badge.name}}</h3>
                         </a>
                     </div>
                 </div>
@@ -92,3 +98,11 @@
         </div>
     </div>
 </section>
+
+<modal-dialog show="progressModal" dialog-title="Complete Profile">
+  <h2>Your profile is {{progressData}}% complete</h2>
+  <div class="progress">
+    <div role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{progressData}}%" class="progress-bar progress-bar-success progress-bar-stripes"><span class="sr-only">40% Complete (success)</span></div>
+  </div>
+    <a ng-click="toggleProgressModal()" style="left:0px;" class="btn btn-md btn-primary pull-right">Okay</a>
+</modal-dialog>
