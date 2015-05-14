@@ -50,7 +50,7 @@
                             Price <span class="pull-right" ng-if="course.price">{{course.price | currency : "₹ " : 2}}</span>
                             <span class="pull-right" ng-if="!course.price"> FREE</span>
                         </li>
-                        <li class="course-data">
+                        <li class="course-data" tooltips tooltip-title="Rating" tooltip-try="true" tooltip-side="top">
                             <span class="icon icon-068"></span>
                             <span class="pull-right">
                                 <i class="fa fa-star"></i>
@@ -60,23 +60,23 @@
                                 <i class="fa fa-star"></i>
                             </span>
                         </li>
-                        <li class="course-data">
+                        <li class="course-data" tooltips tooltip-title="Domain" tooltip-side="top">
                             <span class="icon icon-032"></span>
                             <span class="pull-right"> {{course.tech}} </span>
                         </li>
-                        <li class="course-data">
+                        <li class="course-data" tooltips tooltip-title="Duration" tooltip-side="top">
                             <span class="icon icon-038"></span>
                             <span class="pull-right"> {{course.duration}} </span>
                         </li>
-                        <li class="course-data">
+                        <li class="course-data" tooltips tooltip-title="Course Date" tooltip-side="top">
                             <span class="icon fa fa-calendar"></span>
                             <span class="pull-right"> {{course.date}} </span>
                         </li>
-                        <li class="course-data">
+                        <li class="course-data" tooltips tooltip-title="Batch Size" tooltip-side="top">
                             <span class="icon icon-006"></span>
                             <span class="pull-right"> {{course.batchSize}} Students</span>
                         </li>
-                        <li class="course-data" ng-show="course.place">
+                        <li class="course-data" ng-show="course.place" tooltips tooltip-title="Location" tooltip-side="top">
                             <span class="icon icon-010"></span>
                             <span class="pull-right">{{course.place}}</span>
                         </li>
@@ -84,8 +84,8 @@
                     <p class="text-center" ng-show="showRemainingSpots"> <i class="fa fa-clock-o"></i> Hurry! Only {{remainingSpots}} spot(s) remaining!</p> 
 
                     <p ng-if="course.status=='new'"><a class="btn btn-primary take-course" ng-click="notify()">Notify Me!<span ng-class="{processSpinner:processing}"></span></a></p>
-                    <p ng-if="course.status=='open' && course.price>0"><a class="btn btn-primary take-course" ng-click="canJoin();">Pay<span ng-class="{processSpinner:processing}"></span></a></p>
-                    <p ng-if="course.status=='open' && course.price=='0'"><a class="btn btn-primary take-course" ng-click="joinCourse()">Register<span ng-class="{processSpinner:processing}"></span></a></p>
+                    <p ng-if="course.status=='open' && course.price>0"><a class="btn btn-primary take-course" ng-click="canJoin();"><i class="fa fa-check" ng-show="showCourseJoinedTickMark"></i> Pay<span ng-class="{processSpinner:processing}"></span></a></p>
+                    <p ng-if="course.status=='open' && course.price=='0'"><a class="btn btn-primary take-course" ng-click="joinCourse()"><i class="fa fa-check" ng-show="showCourseJoinedTickMark"></i> Register<span ng-class="{processSpinner:processing}"></span></a></p>
                     <p ng-if="course.status=='closed'"><a class="btn btn-primary take-course" ng-disabled="true">Closed</a></p>
 
                     <p class="text-center share">		
