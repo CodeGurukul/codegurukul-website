@@ -1,4 +1,4 @@
-<form role="form">
+<form role="form" name="editProfileForm" novalidate>
     <h3>{{user.profile.fullname}}</h3>
     <h2>Points <span class="pull-right">{{user.points}}</span></h2>
     <ul data-toggle="validator">
@@ -9,50 +9,57 @@
             <input class="form-control" type="text" placeholder="Where you at?" ng-model="user.profile.location">
         </li>
         <li class="profile-details">
-            <input class="form-control" type="email" placeholder="Email goes here" ng-model="user.email" required>
-        </li>
-        <li class="profile-details">
-            <select class="form-control" ng-model="user.profile.gender">
-                <option>Female</option>
-                <option>Male</option>
-                <option>Other</option>
-                <option>Its a secret</option>
-                <option>Not sure</option>
-            </select>
-        </li>
-        <li class="profile-details">
-            <input class="form-control" type="date" placeholder="How old u are?" value="{{user.profile.dob}}" ng-model="user.profile.dob">
-        </li>
-        <li class="profile-details">
-            <input class="form-control" type="url" placeholder="You have a website?" ng-model="user.profile.website">
-        </li>
-        <li class="profile-details">
-            <input class="form-control" type="url" placeholder="The book of faces" ng-model="user.profile.facebook">
-        </li>
-        <li class="profile-details">
-            <input class="form-control" type="url" placeholder="Twitter" ng-model="user.profile.twitter">
-        </li>
-        <li class="profile-details">
-            <input class="form-control" type="url" placeholder="Google" ng-model="user.profile.google">
-        </li>
-        <li class="profile-details">
-            <input class="form-control" type="text" placeholder="Github" ng-model="user.profile.github">
-        </li>
-        <li class="profile-details">
-            <input class="form-control" type="text" placeholder="Where you work?" ng-model="user.profile.organization">
-        </li>
-        <li class="profile-details">
-            <input class="form-control" type="text" placeholder="Where you study?" ng-model="user.profile.college">
-        </li>
-        <li class="profile-details">
-            <input class="form-control" type="text" placeholder="What you at?" ng-model="user.profile.branch">
-        </li>
-        <!--		<li class="profile-details">-->
-        <!--		</li>-->
-        <li class="profile-details">
-            <input class="form-control" type="text" placeholder="How long you work?" ng-model="user.profile.experience">
-        </li>
-        <tags-input class="skills-tags" type="text" placeholder="What you can do?" ng-model="user.profile.skills"></tags-input>
-    </ul>
-    <button type="submit" class="btn btn-primary btn-sm" ng-click="update()"> <i class="fa fa-pencil"></i> Save</button>
+<!--            <input class="form-control" type="email" placeholder="Email goes here" ng-model="user.email" required>-->
+            <div ng-class="{ &quot;has-error&quot; : editProfileForm.email.$invalid &amp;&amp; editProfileForm.email.$dirty }">
+                <input id="email"  type="email" name="email" ng-model="user.email" placeholder="Email goes here" required="" class="form-control"/>
+                <div ng-if="editProfileForm.email.$dirty" ng-messages="editProfileForm.email.$error" class="help-block text-danger">
+                    <div ng-message="required">Your email address is required.</div>
+                    <div ng-message="email">Your email address is invalid.</div>
+                </div>
+            </div>
+    </li>
+<li class="profile-details">
+    <select class="form-control" ng-model="user.profile.gender">
+        <option>Female</option>
+        <option>Male</option>
+        <option>Other</option>
+        <option>Its a secret</option>
+        <option>Not sure</option>
+    </select>
+</li>
+<li class="profile-details">
+    <input class="form-control" type="date" placeholder="How old u are?" value="{{user.profile.dob}}" ng-model="user.profile.dob">
+</li>
+<li class="profile-details">
+    <input class="form-control" type="url" placeholder="You have a website?" ng-model="user.profile.website">
+</li>
+<li class="profile-details">
+    <input class="form-control" type="url" placeholder="The book of faces" ng-model="user.profile.facebook">
+</li>
+<li class="profile-details">
+    <input class="form-control" type="url" placeholder="Twitter" ng-model="user.profile.twitter">
+</li>
+<li class="profile-details">
+    <input class="form-control" type="url" placeholder="Google" ng-model="user.profile.google">
+</li>
+<li class="profile-details">
+    <input class="form-control" type="text" placeholder="Github" ng-model="user.profile.github">
+</li>
+<li class="profile-details">
+    <input class="form-control" type="text" placeholder="Where you work?" ng-model="user.profile.organization">
+</li>
+<li class="profile-details">
+    <input class="form-control" type="text" placeholder="Where you study?" ng-model="user.profile.college">
+</li>
+<li class="profile-details">
+    <input class="form-control" type="text" placeholder="What you at?" ng-model="user.profile.branch">
+</li>
+<!--		<li class="profile-details">-->
+<!--		</li>-->
+<li class="profile-details">
+    <input class="form-control" type="text" placeholder="How long you work?" ng-model="user.profile.experience">
+</li>
+<tags-input class="skills-tags" type="text" placeholder="What you can do?" ng-model="user.profile.skills"></tags-input>
+</ul>
+<button type="submit" class="btn btn-primary btn-sm" ng-click="update()" ng-disabled="editProfileForm.$invalid"> <i class="fa fa-pencil"></i> Save</button>
 </form>

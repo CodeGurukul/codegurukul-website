@@ -1597,6 +1597,7 @@ body > .right {
 }
 .profile-details{
     margin: 5px 0px;
+    border-bottom: 0px;
 }
 
 /*User profile end*/

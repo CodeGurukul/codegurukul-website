@@ -126,10 +126,11 @@ angular.module('Codegurukul')
                     type: 'success',
                     duration: 5
                 });
+                $rootScope.loginModal();
             })
                 .error(function(response) {
                 $alert({
-                    content: 'Error! Invalid username or password.',
+                    content: 'Something is not right. Please check the email and password you are entering and try again later.',
                     placement: 'right',
                     type: 'danger',
                     duration: 5
@@ -159,7 +160,7 @@ angular.module('Codegurukul')
             delete $window.localStorage.token;
             delete $window.localStorage.user;
             $rootScope.currentUser = null;
-            $state.go('home')
+            $state.go('home');
             $alert({
                 content: 'You have been logged out.',
                 animation: 'fadeZoomFadeDown',

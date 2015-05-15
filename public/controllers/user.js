@@ -69,6 +69,7 @@ angular.module('Codegurukul')
     $scope.skill = [String];
 
     $scope.update = function() {
+        
         User.default.update({
             uslug: $stateParams.uslug
         },{
