@@ -81,6 +81,7 @@
                             <span class="pull-right">{{course.place}}</span>
                         </li>
                     </ul>
+                    <input type="text" class="form-control input-md" placeholder="Enter Coupon Code">
                     <p class="text-center" ng-show="showRemainingSpots"> <i class="fa fa-clock-o"></i> Hurry! Only {{remainingSpots}} spot(s) remaining!</p> 
 
                     <p ng-if="course.status=='new'"><a class="btn btn-primary take-course" ng-click="notify()">Notify Me!<span ng-class="{processSpinner:processing}"></span></a></p>
@@ -92,6 +93,7 @@
                         <a href="http://www.facebook.com/codegurukul"><i class="fa fa-facebook fa-lg"></i></a>
                         <a href="http://www.twitter.com/codegurukul"><i class="fa fa-twitter fa-lg"></i></a>
                     </p>
+                     <small class="pull-right" ng-show="course.name == 'INTERNSHIP'">*excluding optional courses.</small>
                 </div>
                 <!-- ==== COURSE DATA END == -->
 
@@ -100,10 +102,11 @@
                     <h3>Mentors</h3>
                     <div class="teacher row" ng-repeat="mentor in course.mentors">
                         <div class="col-sm-12">
-                            <img ng-src="{{mentor.image}}" alt="" class="pull-left" />
+                            <img src="{{mentor.image}}" alt="" class="pull-left" />
                             <h5> {{mentor.name}} </h5>
-                            <p> {{mentor.description}} </p>
-                            <hr>
+                            <p> {{mentor.description}} <br> 
+                            <a href="{{mentor.profile}}" target="_blank"> View Profile</a></p>
+                        <hr>
                         </div>
                     </div>
                 </div>
@@ -116,7 +119,7 @@
         </div>
     </div>
 </section>
-<section ng-show="course.name == 'INTERNSHIPS'">
+<section ng-show="course.name == 'INTERNSHIP'">
 
     <h2 class="carousel-title text-center">
         Testimonials

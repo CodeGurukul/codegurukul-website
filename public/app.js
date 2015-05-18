@@ -43,6 +43,14 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         templateUrl: 'views/contact.html',
         controller: 'ContactCtrl'
     })        
+        .state('stories', {
+        url: '/stories',
+        templateUrl: 'views/stories.html'
+    })        
+        .state('about-us', {
+        url: '/about-us',
+        templateUrl: 'views/about-us.html'
+    })        
         .state('startup-team-training', {
         url: '/startup-team-training',
         templateUrl: 'views/startup-team-training.html',

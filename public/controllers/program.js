@@ -2,14 +2,15 @@ angular.module('Codegurukul')
     .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Program, Courses, Pay, $alert, Email) {
     $scope.processing = false;
     $scope.showCourseJoinedTickMark = false;
-    
+    console.log($stateParams.course);
+
     Courses.getAll.get({
         cslug: $stateParams.course
 
     }, function(data) {
         $scope.course = data.course;
         $scope.course.joined = data.joined;
-        console.log($scope.course.courseContent);
+        console.log($scope.course);
 
         if ($scope.course.date === "COMING SOON") {
             $scope.notifyButton = true;
@@ -18,9 +19,9 @@ angular.module('Codegurukul')
             $scope.registerButton = true;
             $scope.notifyButton = false;
         }
-        
+
         console.log("before "+$scope.showCourseJoinedTickMark);
-        
+
         if($scope.course.joined == true){
             $scope.showCourseJoinedTickMark = true;
             console.log("after " + $scope.showCourseJoinedTickMark);

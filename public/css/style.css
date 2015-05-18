@@ -1624,3 +1624,15 @@ body > .right {
       padding: 1px 10px 30px !important;
 }
 
+.terms-and-conditions:hover{
+    cursor: pointer;
+}
+
+.testimonial-image{
+    width: 300px;
+    border-radius: 50%;
+}
+
+.mentor-image{
+    width: 241px;
+}

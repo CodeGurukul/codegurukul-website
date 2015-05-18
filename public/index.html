@@ -36,12 +36,12 @@
                         <li><a href="mailto:info@codegurukul.com"><i class="fa fa-envelope"></i><span>info@codegurukul.com</span></a></li>
                     </ul>
                     <ul class="pull-right" ng-show="currentUser">
-                        <li class="custom-right-padding-20"> <a ui-sref="user({uslug:'{{currentUser.slug}}'})"> Hi {{currentUser.username}}</a></li>
-                        <li ng-click="logout()" class="logout-link"> Logout </li>
+                        <li class="custom-right-padding-20"> <a ui-sref="user({uslug:'{{currentUser.slug}}'})"> <i class="fa fa-user"></i> Hi {{currentUser.username}}</a></li>
+                        <li ng-click="logout()" class="logout-link"> <i class="fa fa-lock"></i> Logout </li>
                     </ul>
                     <ul class="pull-right" ng-show="!currentUser">
-                        <li ng-click="signupWithEmailModal()" class="custom-right-padding-20 navbar-signup"> Signup </li>
-                        <li ng-click="loginModal()" class="navbar-login"> Login </li>
+                        <li ng-click="signupWithEmailModal()" class="custom-right-padding-20 navbar-signup"> <i class="fa fa-user"></i> Signup </li>
+                        <li ng-click="loginModal()" class="navbar-login"> <i class="fa fa-lock"></i> Login </li>
                     </ul>
                     <ng-include src="'views/modal-partials/email-signup-modal.html'"></ng-include>
                     <ng-include src="'views/modal-partials/login-modal.html'"></ng-include>
@@ -64,13 +64,19 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-<!--                            <li><a ui-sref="landing">Landing Page</a></li>-->
-                            
-                            <li><a ui-sref="startup-team-training">Startup Team Training</a></li>
-
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Programs<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a ui-sref="programs({course:'ruby-workshop'})">Ruby Workshop</a></li>
+                                    <li><a ui-sref="programs({course:'internship'})">Internships</a></li>
+                                    <li><a ui-sref="startup-team-training">Startup Team Training</a></li>
+                                </ul>
+                            </li>
+                            <!--                            <li><a ui-sref="landing">Landing Page</a></li>-->
                             <li><a ui-sref="programs({course:'ruby-workshop'})">Ruby Workshop</a></li>
-                            <li><a ui-sref="programs({course:'internships'})">Internships</a></li>
-                            <li><a ui-sref="contact">Contact</a></li>
+                            <li><a ui-sref="stories">Stories </a></li>
+                            <li><a ui-sref="faq">FAQ</a></li>
+                            <li><a ui-sref="about-us">About Us</a></li>
+                            <li><a ui-sref="contact">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -104,7 +110,7 @@
 
                     <!-- ==== APPLY FOR TEACHER START == -->
                     <div class="col-sm-3">
-                        <h3>Apply for a Mentor</h3>
+                        <h3>Apply to become a Mentor</h3>
                         <form role="form" name="teacher-form" id="teacher-form" ng-controller="FooterCtrl">
                             <div class="form-group" id="teacher-name-group">
                                 <div class="input-group">
@@ -164,6 +170,8 @@
                     <div class="col-sm-4 text-right">
                         <a href="http://www.facebook.com/codegurukul"><i class="fa fa-facebook fa-lg"></i></a>
                         <a href="http://www.twitter.com/codegurukul"><i class="fa fa-twitter fa-lg"></i></a>
+                        <a ui-sref="#" class="terms-and-conditions"> <small> Terms & Conditions </small> </a>
+                        <a ui-sref="#" class="terms-and-conditions"> <small> Privacy Policy </small> </a>
                     </div>
                     <!-- ==== SOCIAL ICONS END == -->
 
