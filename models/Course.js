@@ -14,6 +14,7 @@ var courseSchema = new mongoose.Schema({
   duration: String,
   date: String,
   batchSize: Number,
+  inviteOnly: Boolean,
   attendees: [{
     _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   }],

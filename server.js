@@ -75,6 +75,7 @@ var emailController = require('./controllers/email');
 var userController = require('./controllers/user');
 var courseController = require('./controllers/course');
 var badgeController = require('./controllers/badge');
+var codeController = require('./controllers/code');
 var razorController = require('./controllers/razor');
 
 //Login APIs  //Github and linkedin auth needs testing...awaiting front end code
@@ -104,6 +105,10 @@ app.get('/api/courses', courseController.getCourses);
 
 //Badges
 app.get('/api/badges', userController.isLogin, badgeController.getBadges);
+
+
+//Codes
+app.get('/api/codes/:cslug/validateCode', codeController.validateCode);
 
 /**
  * Start Express server.
