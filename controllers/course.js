@@ -1,5 +1,6 @@
 var Course = require('../models/Course');
 var User = require('../models/User');
+var email = require('../controllers/email');
 var fs = require('fs');
 var moment = require('moment');
 var secret = require('../config/secrets');
@@ -26,7 +27,7 @@ exports.canJoin = function(req, res) {
         if (err) res.send(err);
         else if (!user) res.status(404).send('User not found.');
         else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
-        else res.send(200);
+        else res.sendStatus(200);
       })
     }
   })
@@ -48,7 +49,7 @@ exports.getCourse = function(req, res) {
       } else {
         var temp = {};
         temp.course = course;
-        if (req.user)
+        if (req.user)            
           if (course.attendees.id(req.user._id)) temp.joined = true;
         res.send(temp);
       }
@@ -88,11 +89,21 @@ exports.joinCourse = function(req, res, next) {
                   console.log('course joined');
                   req.to = user.email;
                   req.name = user.username;
+                  req.userId = user._id;
+                  req.courseId = course._id;
                   req.course = course.name;
                   req.courseDate = course.date;
                   req.courseSlug = course.slug;
-                  if (req.pay) req.coursePrice = course.price;
-                  next();
+                  var emailData = {
+                    to: user.email,
+                    course: course.name,
+                    courseDate: course.date,
+                    courseSlug: course.slug,
+                    userName: user.username
+                  };
+                  email.sendCourseReg(emailData);
+                  if (req.pay) next();
+                  else res.json({ message: 'Registration successfull'});
                   badge.assign(course._id, user._id);
                 }
               })

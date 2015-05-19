@@ -22,6 +22,9 @@ var userSchema = new mongoose.Schema({
   badges: [{
     _id : {type: mongoose.Schema.Types.ObjectId, ref: 'Badge' }
   }],
+  invoices: [{
+    _id : {type: mongoose.Schema.Types.ObjectId, ref: 'Invoice' }
+  }],
   log: [{
     _id: false,
     entry: String,

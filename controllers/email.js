@@ -46,15 +46,15 @@ exports.contactUs = function(req, res, next) {
   next();
 };
 // info@codegurukul.com
-exports.sendRegistrationEmail = function(req, res, next) {
+exports.sendCourseReg = function(data) {
   var template_name = "register_template";
   var template_content = [];
   var message = {
     "from_email": "info@codegurukul.com",
     "from_name": "Codegurukul team",
     "to": [{
-      "email": req.to,
-      "name": req.name,
+      "email": data.to,
+      "name": data.userName,
       "type": "to"
     }],
     "headers": {
@@ -69,22 +69,22 @@ exports.sendRegistrationEmail = function(req, res, next) {
       "content": "Codegurukul"
     }, {
       "name": "subject",
-      "content": "Registration for " + req.course
+      "content": "Registration for " + data.course
     }],
     "merge_vars": [{
-      "rcpt": req.to,
+      "rcpt": data.to,
       "vars": [{
         "name": "name",
-        "content": req.name
+        "content": data.userName
       }, {
         "name": "courseName",
-        "content": req.course
+        "content": data.course
       }, {
         "name": "courseDate",
-        "content": req.courseDate
+        "content": moment(data.courseDate).format("MMM DD, YYYY")
       }, {
         "name": "courseLink",
-        "content": "codegurukul.com/#/programs/" + req.courseSlug
+        "content": "codegurukul.com/#/programs/" + data.courseSlug
       }]
     }]
   };
@@ -95,18 +95,10 @@ exports.sendRegistrationEmail = function(req, res, next) {
     "message": message,
     "async": async
   }, function(result) {
-    console.log(result);
-    res.json({
-      message: 'Mail Sent'
-    });
-
-    var dat = moment().format("MMM DD, YYYY");
-
-    console.log(dat);
+    return;
   }, function(e) {
     // Mandrill returns the error as an object with name and message keys
     console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
-    res.status(400).send("An error occured");
     // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
   });
 };
@@ -183,15 +175,16 @@ exports.sendSignupEmail = function(req, res, next) {
   });
 };
 
-exports.sendRecieptEmail = function(req, res, next) {
+exports.sendInvoice = function(invoice, data) {
   var template_name = "invoice_template";
+  console.log(invoice);
   var template_content = [];
   var message = {
     "from_email": "info@codegurukul.com",
     "from_name": "Codegurukul Team",
     "to": [{
-      "email": req.to,
-      "name": req.name,
+      "email": data.to,
+      "name": data.userName,
       "type": "to"
     }],
     "headers": {
@@ -209,25 +202,25 @@ exports.sendRecieptEmail = function(req, res, next) {
       "content": "Payment reciept for your course."
     }],
     "merge_vars": [{
-      "rcpt": req.to,
+      "rcpt": data.to,
       "vars": [{
         "name": "invNumber",
         "content": "478366238"
       }, {
         "name": "invDate",
-        "content": moment().format("MMM DD, YYYY")
+        "content": moment(invoice.created).format("MMM DD, YYYY")
       }, {
         "name": "courseName",
-        "content": req.course
+        "content": invoice.products[0].product
       }, {
         "name": "coursePrice",
-        "content": req.coursePrice
+        "content": invoice.products[0].total
       }, {
         "name": "courseDate",
-        "content": req.courseDate
+        "content": moment(invoice.products[0].date).format("MMM DD, YYYY")
       }, {
         "name": "name",
-        "content": req.name
+        "content": data.userName
       }]
     }]
   };
@@ -238,8 +231,7 @@ exports.sendRecieptEmail = function(req, res, next) {
     "message": message,
     "async": async
   }, function(result) {
-    console.log(result);
-    next();
+    return;
   }, function(e) {
     // Mandrill returns the error as an object with name and message keys
     console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);

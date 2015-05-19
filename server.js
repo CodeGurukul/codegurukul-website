@@ -77,6 +77,7 @@ var courseController = require('./controllers/course');
 var badgeController = require('./controllers/badge');
 var codeController = require('./controllers/code');
 var razorController = require('./controllers/razor');
+var invoiceController = require('./controllers/invoice');
 
 //Login APIs  //Github and linkedin auth needs testing...awaiting front end code
 app.post('/api/auth/github', userController.githubAuth);
@@ -86,7 +87,7 @@ app.post('/api/auth/login', userController.login);
 app.post('/api/auth/facebook', userController.facebookAuth);
 app.post('/api/auth/google', userController.googleAuth);
 app.get('/api/users', userController.hasEmail);
-app.post('/api/payment', userController.isLogin,razorController.verifyPay, courseController.joinCourse, emailController.sendRecieptEmail, emailController.sendRegistrationEmail);
+app.post('/api/payment', userController.isLogin, razorController.verifyPay, courseController.joinCourse, invoiceController.generate);
 app.post('/api/email', emailController.contactUs, emailController.sendEmail);
 
 //User APIs
@@ -98,7 +99,7 @@ app.post('/api/newsletter', userController.isLogin, emailController.addNewslette
 app.use(errorHandler());
 
 //Courses
-app.put('/api/courses/:cslug/join', userController.isLogin, courseController.joinCourse, emailController.sendRegistrationEmail);
+app.put('/api/courses/:cslug/join', userController.isLogin, courseController.joinCourse);
 app.get('/api/courses/:cslug/canjoin', userController.isLogin, courseController.canJoin);
 app.get('/api/courses/:cslug', userController.isLoginOptional, courseController.getCourse);
 app.get('/api/courses', courseController.getCourses);
