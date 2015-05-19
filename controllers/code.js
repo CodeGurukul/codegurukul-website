@@ -1,37 +1,66 @@
 var Course = require('../models/Course');
 var Code = require('../models/Code');
+var code = require('../controllers/code');
 var secret = require('../config/secrets');
 var config = new secret();
 var mongoose = require('mongoose');
 
-exports.validateCode = function(req, res) {
-  console.log('Validate code');
-  Code.findOne({value: req.body.value})
-    .where({ courses: req.params.cslug })
+exports.validate = function(value, cslug, callback) {
+  console.log("validate code");
+  if (value) {
+    console.log("code exists");
+    Code.findOne({value: value})
+    .where({ courses: cslug })
     .exec(function(err, code) {
-  	if (err) return res.status(400).send("There was an error.");
-  	else if (!code) return res.status(400).send("Invalid code.");
-  	else {
-      Course.findOne({
-        slug: req.params.cslug
-      })
-      .exec(function(err, course) {
-        if (err) res.status(400).send(err);
-        else if (!course) res.status(404).send('Course Not Found');
-        else {
-          var temp = {};
-          if (code.discount) {
-            //calculate discount here
-          };
-          temp.access = true;
-          res.send(temp);
-        }
-      });
-  	}
-  })
+    	if (err) return callback({status:400,value: "There was an error."});
+    	else if (!code) {
+        return callback({status:400,value: "Invalid code."});
+      }
+    	else {
+        Course.findOne({
+          slug: cslug
+        })
+        .exec(function(err, course) {
+          if (err) return err;
+          else if (!course) return callback({status:404,value: 'Course Not Found'});
+          else {
+            var temp = {};
+            if (code.discount) {
+              //calculate discount here
+            };
+            return callback({status:200,value: {/*discounted price*/}});
+          }
+        });
+    	}
+    })
+  } else {
+    console.log("no code entered");
+    console.log(cslug);
+
+    Course.findOne({
+      slug: cslug
+    })
+    .exec(function(err, course) {
+      if (err) return err;
+      else if (!course) return callback({status:404, value: 'Course Not Found'});
+      else if (course.inviteOnly) return callback({status:400, value: 'Course is invite only'});
+      else {
+        return callback({status:200,value: course.price});
+      }
+    });
+  }
   return;
 };
 
+
+exports.validateCode = function (req, res) {
+  if (req.headers.code) {
+    code.validate(req.headers.code, req.params.cslug, function(result) {
+      console.log(result);
+      res.status(result.status).send(result.value);
+    })
+  } else res.status(400).send('Enter a code');
+}
 
 // exports.assign = validateCode;
 
