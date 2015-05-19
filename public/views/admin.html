@@ -1,0 +1,45 @@
+<!-- ========== TITLE START ========== -->
+
+<div class="title">
+    <div class="title-image"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                ADMIN PAGE
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== TITLE END ========== -->
+
+<section>
+
+    <h1 class="text-center"> Course List </h1>
+
+
+    <div class="container">
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>COURSE NAME</th>
+                    <th>COURSE DATE</th>
+                    <th>COURSE PRICE</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="course in courses" class="course-row">
+                    <td><a ui-sref="programs({course:'{{course.slug}}'})"> {{course.name}} </a> </td>
+                    <td> {{course.date}} </td>
+                    <td> {{course.price}} </td>
+                    <td> <a ui-sref="admin-course-details({course:'{{course.slug}}'})"> <i class="fa fa-eye"></i> </a> <a href="#"> <i class="fa fa-pencil"></i> </a> <a href="#"> <i class="fa fa-trash-o"></i> </a> </td>
+                </tr>
+            </tbody>
+            <hr>
+        </table>
+
+
+        <p class="pull-left"> Add a New Course </p>
+    </div>
+</section>

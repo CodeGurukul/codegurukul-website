@@ -1,4 +1,4 @@
-angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps','angular-carousel', 'ngSanitize', 'ngTagsInput','720kb.tooltips'])
+angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps','angular-carousel', 'ngSanitize', 'ngTagsInput','720kb.tooltips', 'datatables'])
     .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
     $urlRouterProvider.otherwise('/angularjs-workshop');
@@ -18,6 +18,16 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         url: '/user/:uslug',
         templateUrl: 'views/user-profile.html',
         controller: 'UserCtrl'
+    })  
+        .state('admin', {
+        url: '/admin',
+        templateUrl: 'views/admin.html',
+        controller: 'AdminCtrl'
+    })
+        .state('admin-course-details', {
+        url: '/admin/view/:course',
+        templateUrl: 'views/admin-view-course-details.html',
+        controller: 'AdminCourseDetailsCtrl'
     })
         .state('home', {
         url: '/angularjs-workshop',

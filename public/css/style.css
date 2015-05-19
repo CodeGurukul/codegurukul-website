@@ -1612,7 +1612,7 @@ body > .right {
 /*    Landing Page Featured Courses CSS*/
 
 @media (min-width: 991px) {
-    
+
     .featured-courses{
         width: 85%;
         margin: auto;
@@ -1621,7 +1621,7 @@ body > .right {
 }
 
 .featured-course-name{
-      padding: 1px 10px 30px !important;
+    padding: 1px 10px 30px !important;
 }
 
 .terms-and-conditions:hover{
@@ -1635,4 +1635,17 @@ body > .right {
 
 .mentor-image{
     width: 241px;
+}
+
+.coupon-input-box{
+    width: 60%;
+}
+
+.coupon-code{
+    border: 1px solid transparent !important;
+    margin-top: 20px;
+}
+
+.course-row i{
+    padding-right: 10px;
 }

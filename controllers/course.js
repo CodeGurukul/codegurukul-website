@@ -7,7 +7,7 @@ var config = new secret();
 var badge = require('../controllers/badge');
 
 exports.getCourses = function(req, res) {
-  var query = Course.find().select('name slug description domain price content thumb');
+  var query = Course.find().select('name slug description domain price content thumb date');
   query.exec(function(err, courses) {
     if (err) return err;
     res.send(courses);

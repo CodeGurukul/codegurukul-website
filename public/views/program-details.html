@@ -47,7 +47,7 @@
                 <div class="widget" data-scroll-reveal>
                     <ul>
                         <li class="price">
-                            Price <span class="pull-right" ng-if="course.price">{{course.price | currency : "₹ " : 2}}</span>
+                            Price <span class="pull-right" ng-if="course.price">{{course.price | currency : "INR " : 2}}</span>
                             <span class="pull-right" ng-if="!course.price"> FREE</span>
                         </li>
                         <li class="course-data" tooltips tooltip-title="Rating" tooltip-try="true" tooltip-side="top">
@@ -80,12 +80,20 @@
                             <span class="icon icon-010"></span>
                             <span class="pull-right">{{course.place}}</span>
                         </li>
+<!--
                     </ul>
-                    <input type="text" class="form-control input-md" placeholder="Enter Coupon Code">
+                    <ul>
+-->
+                        <li class="coupon-code">
+                            <span class="pull-left coupon-input-box"><input type="text" class="form-control" placeholder="Enter Coupon Code" ng-model="couponCode"></span>
+                            <span class="pull-right"><button class="btn btn-primary" ng-click="validate()">Validate</button></span>
+                        </li>
+                    </ul>
+                    <br>
                     <p class="text-center" ng-show="showRemainingSpots"> <i class="fa fa-clock-o"></i> Hurry! Only {{remainingSpots}} spot(s) remaining!</p> 
 
                     <p ng-if="course.status=='new'"><a class="btn btn-primary take-course" ng-click="notify()">Notify Me!<span ng-class="{processSpinner:processing}"></span></a></p>
-                    <p ng-if="course.status=='open' && course.price>0"><a class="btn btn-primary take-course" ng-click="canJoin();"><i class="fa fa-check" ng-show="showCourseJoinedTickMark"></i> Pay<span ng-class="{processSpinner:processing}"></span></a></p>
+                    <p ng-if="course.status=='open' && course.price>0"><a class="btn btn-primary take-course" ng-click="canJoin();"> <span> <i class="fa fa-check" ng-show="showCourseJoinedTickMark"></i> </span> Pay<span ng-class="{processSpinner:processing}"></span></a></p>
                     <p ng-if="course.status=='open' && course.price=='0'"><a class="btn btn-primary take-course" ng-click="joinCourse()"><i class="fa fa-check" ng-show="showCourseJoinedTickMark"></i> Register<span ng-class="{processSpinner:processing}"></span></a></p>
                     <p ng-if="course.status=='closed'"><a class="btn btn-primary take-course" ng-disabled="true">Closed</a></p>
 
@@ -93,7 +101,7 @@
                         <a href="http://www.facebook.com/codegurukul"><i class="fa fa-facebook fa-lg"></i></a>
                         <a href="http://www.twitter.com/codegurukul"><i class="fa fa-twitter fa-lg"></i></a>
                     </p>
-                     <small class="pull-right" ng-show="course.name == 'INTERNSHIP'">*excluding optional courses.</small>
+                    <small class="pull-right" ng-show="course.name == 'INTERNSHIP'">*excluding optional courses.</small>
                 </div>
                 <!-- ==== COURSE DATA END == -->
 
@@ -105,8 +113,8 @@
                             <img src="{{mentor.image}}" alt="" class="pull-left" />
                             <h5> {{mentor.name}} </h5>
                             <p> {{mentor.description}} <br> 
-                            <a href="{{mentor.profile}}" target="_blank"> View Profile</a></p>
-                        <hr>
+                                <a href="{{mentor.profile}}" target="_blank"> View Profile</a></p>
+                            <hr>
                         </div>
                     </div>
                 </div>
@@ -143,4 +151,3 @@
         </div>
     </div>
 </section>
-

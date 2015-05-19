@@ -1,8 +1,17 @@
 angular.module('Codegurukul')
-    .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Program, Courses, Pay, $alert, Email) {
+    .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Program, Courses, Pay, $alert, Email, Codes) {
     $scope.processing = false;
     $scope.showCourseJoinedTickMark = false;
-    console.log($stateParams.course);
+    $scope.couponCode = "";    
+
+    $scope.validate = function(){
+        Codes.default.get({
+            cslug: $stateParams.course;
+        }, function(coupon){
+            $scope.coupon = coupon.coupon;
+            console.log($scope.coupon);
+        })
+    };
 
     Courses.getAll.get({
         cslug: $stateParams.course
@@ -20,11 +29,9 @@ angular.module('Codegurukul')
             $scope.notifyButton = false;
         }
 
-        console.log("before "+$scope.showCourseJoinedTickMark);
 
         if($scope.course.joined == true){
             $scope.showCourseJoinedTickMark = true;
-            console.log("after " + $scope.showCourseJoinedTickMark);
         }
     });
 
@@ -170,4 +177,5 @@ angular.module('Codegurukul')
             });
         }
     };
+
 });
