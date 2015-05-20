@@ -8,9 +8,7 @@ var codeSchema = new mongoose.Schema({
   discount: Boolean,
   discountValue: Number,
   access: Boolean,
-  courses: [{
-    _id : {type: mongoose.Schema.Types.ObjectId, ref: 'Course' }
-  }]
+  courses: [String]
 })
 
 module.exports = mongoose.model('Code', codeSchema);

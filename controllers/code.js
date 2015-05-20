@@ -5,11 +5,11 @@ var secret = require('../config/secrets');
 var config = new secret();
 var mongoose = require('mongoose');
 
-exports.validate = function(value, cslug, callback) {
+exports.validate = function(code, cslug, callback) {
   console.log("validate code");
-  if (value) {
+  if (code) {
     console.log("code exists");
-    Code.findOne({value: value})
+    Code.findOne({value: code.toUpperCase()})
     .where({ courses: cslug })
     .exec(function(err, code) {
     	if (err) return callback({status:400,value: "There was an error."});
@@ -22,13 +22,14 @@ exports.validate = function(value, cslug, callback) {
         })
         .exec(function(err, course) {
           if (err) return err;
-          else if (!course) return callback({status:404,value: 'Course Not Found'});
+          else if (!course) return callback({status:404,value: "Course Not Found"});
           else {
+            var coursePrice = course.price;
             var temp = {};
             if (code.discount) {
-              //calculate discount here
+              coursePrice = course.price - (code.discountValue*course.price)/100;
             };
-            return callback({status:200,value: {/*discounted price*/}});
+            return callback({status:200,value: coursePrice});
           }
         });
     	}
@@ -42,8 +43,8 @@ exports.validate = function(value, cslug, callback) {
     })
     .exec(function(err, course) {
       if (err) return err;
-      else if (!course) return callback({status:404, value: 'Course Not Found'});
-      else if (course.inviteOnly) return callback({status:400, value: 'Course is invite only'});
+      else if (!course) return callback({status:404, value: "Course Not Found"});
+      else if (course.inviteOnly) return callback({status:400, value: "Course is invite only"});
       else {
         return callback({status:200,value: course.price});
       }
@@ -54,12 +55,14 @@ exports.validate = function(value, cslug, callback) {
 
 
 exports.validateCode = function (req, res) {
+  console.log("validateCode");
+  console.log(req.headers.code);
   if (req.headers.code) {
     code.validate(req.headers.code, req.params.cslug, function(result) {
       console.log(result);
-      res.status(result.status).send(result.value);
+      res.status(result.status).send({result:result.value});
     })
-  } else res.status(400).send('Enter a code');
+  } else res.status(400).send("Enter a code");
 }
 
 // exports.assign = validateCode;
