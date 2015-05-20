@@ -2,7 +2,7 @@ angular.module('Codegurukul')
   .controller('LandingCtrl', function($scope, $rootScope, Courses, $stateParams) {
     
     Courses.getAll.get({
-      cslug: "internships"
+      cslug: "internship"
     }, function(data) {
       $scope.course = data.course;
       console.log($scope.course);

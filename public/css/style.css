@@ -1649,3 +1649,11 @@ body > .right {
 .course-row i{
     padding-right: 10px;
 }
+
+.intro-header{
+    background-color: transparent !important;
+}
+
+.landing-carousel{
+    padding-top: 150px;
+}

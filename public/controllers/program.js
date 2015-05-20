@@ -4,14 +4,14 @@ angular.module('Codegurukul')
     $scope.showCourseJoinedTickMark = false;
     $scope.couponCode = "";    
 
-    $scope.validate = function(){
-        Codes.default.get({
-            cslug: $stateParams.course;
-        }, function(coupon){
-            $scope.coupon = coupon.coupon;
-            console.log($scope.coupon);
-        })
-    };
+//    $scope.validate = function(){
+//        Codes.default.get({
+//            cslug: $stateParams.course;
+//        }, function(coupon){
+//            $scope.coupon = coupon.coupon;
+//            console.log($scope.coupon);
+//        })
+//    };
 
     Courses.getAll.get({
         cslug: $stateParams.course

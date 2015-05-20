@@ -4,6 +4,6 @@ angular.module('Codegurukul')
         default: $resource('/api/codes/:cslug/validateCode',{
         cslug: '@cslug'
         })
-    }
+    };
     return Codes;
 });

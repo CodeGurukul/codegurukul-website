@@ -399,7 +399,7 @@ exports.updateProfile = function(req, res) {
       for (var i = 0; i <= req.body.skills.length - 1; i++) {
         user.profile.skills.push(req.body.skills[i].text);
       };
-      user.profile.exp = req.body.exp;
+      user.profile.experience = req.body.experience;
       user.save(function(err) {
         if (err) res.send(err);
         res.json({

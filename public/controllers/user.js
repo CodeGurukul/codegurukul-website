@@ -8,13 +8,18 @@ angular.module('Codegurukul')
         $scope.progressModal = !$scope.progressModal;
     }
 
-//    console.log($stateParams.uslug);
+    //    console.log($stateParams.uslug);
     User.default.get({
         uslug: $stateParams.uslug
     }, 
                      function(data){
         $scope.user = data;
-//        console.log($scope.user);
+        //        console.log($scope.user);
+
+        var stringDate = $scope.user.profile.dob;
+        $scope.user.profile.dob = new Date(stringDate);
+        console.log($scope.user.profile.dob);
+        
 
 
         $scope.progressData = 1;
@@ -53,7 +58,7 @@ angular.module('Codegurukul')
         Badges.default.query(
             function(badges){
                 $scope.badges = badges;
-//                console.log($scope.badges);
+                //                console.log($scope.badges);
             });
     }
 
@@ -63,13 +68,13 @@ angular.module('Codegurukul')
     }
 
 
-    
-    
-    
+
+
+
     $scope.skill = [String];
 
     $scope.update = function() {
-        
+
         User.default.update({
             uslug: $stateParams.uslug
         },{
