@@ -13,6 +13,11 @@ var userSchema = new mongoose.Schema({
   username: String,
   slug: String,
   password: String,
+  role: {
+    type: String,
+    default: 'user',
+    enum: ['admin', 'staff', 'user']
+  },
   courses: [{
     _id: {
       type: mongoose.Schema.Types.ObjectId,
@@ -42,8 +47,15 @@ var userSchema = new mongoose.Schema({
     },
     fullname: String,
     location: String,
-    gender: String,
+    gender: {
+      type: String,
+      enum: ['male', 'female', 'other']
+    },
     dob: Date,
+    type: {
+      type: String,
+      enum: ['student', 'professional', 'other']
+    },
     website: String,
     facebook: String,
     twitter: String,
@@ -53,11 +65,12 @@ var userSchema = new mongoose.Schema({
     linkedin: String,
     organization: String,
     college: String,
-    branch: String,
+    stream: String,
     skills: [String],
+    workDesc: String,
     experience: String
   },
-  phone: Number,
+  mobile: Number,
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   points: Number

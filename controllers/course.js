@@ -38,9 +38,6 @@ exports.getCourse = function(req, res) {
   Course.findOne({
       slug: req.params.cslug
     })
-    .populate({
-      path: 'attendees._id'
-    })
     .exec(function(err, course) {
       if (err)
         res.send(err);

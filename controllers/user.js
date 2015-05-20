@@ -18,7 +18,8 @@ var tokenSecret = config.sessionSecret;
 function createJwtToken(user) {
   var temp = {
     _id: user._id,
-    slug: user.slug
+    slug: user.slug,
+    role: user.role
   };
   var payload = {
     user: temp,
@@ -76,13 +77,47 @@ exports.isLogin = function(req, res, next) {
   }
 };
 
+exports.isAdmin = function(req, res, next) {
+  if (req.headers.authorization) {
+    var token = req.headers.authorization;
+    //.split(' ')[1];
+    try {
+      var decoded = jwt.decode(token, tokenSecret);
+      if (decoded.user.role == 'admin') {
+        if (decoded.exp <= Date.now()) {
+          res.status(400).send(msg.et);
+        } else {
+          req.user = decoded.user;
+          return next();
+        }
+      } else {
+        return res.status(401).send(msg.unauth);
+      }
+    } catch (err) {
+      return res.status(500).send(msg.at);
+    }
+  } else {
+    res.status(401).send(msg.unauth);
+  }
+};
+
 exports.signup = function(req, res, next) {
-  if(!validator.validate(req.body.email))
+  if (!validator.validate(req.body.email))
     return res.status(400).send(msg.inem);
   var user = new User({
     email: req.body.email,
     password: req.body.password,
-    username: req.body.username
+    username: req.body.username,
+    mobile: req.body.mobile,
+    profile: {
+      fullname: req.body.fullname,
+      type: req.body.type,
+      college: req.body.college,
+      year: req.body.year,
+      stream: req.body.stream,
+      organization: req.body.organization,
+      workDesc: req.body.workDesc
+    }
   });
   user.save(function(err, user, numberAffected) {
     if (err) res.send(err);
@@ -117,7 +152,7 @@ exports.login = function(req, res) {
   });
 };
 
-exports.githubAuth = function(req, res) {         //user model structure changed (slug, username moved out of profile)
+exports.githubAuth = function(req, res) { //user model structure changed (slug, username moved out of profile)
   var profile = req.body.profile;
   User.findOne({
     email: profile.emails[0].value
@@ -155,7 +190,7 @@ exports.githubAuth = function(req, res) {         //user model structure changed
   });
 };
 
-exports.linkedinAuth = function(req, res) {       //user model structure changed (slug, username moved out of profile)
+exports.linkedinAuth = function(req, res) { //user model structure changed (slug, username moved out of profile)
   var profile = req.body.profile;
   User.findOne({
     email: profile.emails[0].value
@@ -193,7 +228,7 @@ exports.linkedinAuth = function(req, res) {       //user model structure changed
   });
 };
 
-exports.facebookAuth = function(req, res) {       //user model structure changed (slug, username moved out of profile)
+exports.facebookAuth = function(req, res) { //user model structure changed (slug, username moved out of profile)
   var profile = req.body.profile;
   var signedRequest = req.body.signedRequest;
   var encodedSignature = signedRequest.split('.')[0];
@@ -241,7 +276,7 @@ exports.facebookAuth = function(req, res) {       //user model structure changed
   });
 };
 
-exports.googleAuth = function(req, res) {   //user model structure changed (slug, username moved out of profile)
+exports.googleAuth = function(req, res) { //user model structure changed (slug, username moved out of profile)
   var profile = req.body.profile;
   User.findOne({
     email: profile.emails[0].value
@@ -286,7 +321,7 @@ exports.hasEmail = function(req, res, next) {
       message: 'Email parameter is required.'
     });
   }
-  if(!validator.validate(req.body.email))
+  if (!validator.validate(req.body.email))
     return res.status(400).send(msg.inem);
 
   User.findOne({
@@ -303,7 +338,7 @@ exports.hasEmail = function(req, res, next) {
 exports.getUser = function(req, res) {
   if (req.user.slug == req.params.uslug) {
     User.findById(req.user._id)
-      .select('-_id profile courses points slug username phone email badges')
+      .select('-_id profile courses points slug username mobile email badges')
       .populate({
         path: 'badges._id'
       })
@@ -315,7 +350,7 @@ exports.getUser = function(req, res) {
         } else {
           console.log(user);
           var temp = user;
-          if (user.badges.length) 
+          if (user.badges.length)
             for (var i = 0; i < user.badges.length; i++) {
               temp.badges[i] = user.badges[i]._id;
             };
@@ -378,13 +413,15 @@ exports.updateProfile = function(req, res) {
     else if (!user) {
       res.status(404).send(msg.unf);
     } else {
-      if(req.body.email && validator.validate(req.body.email))
+      if (req.body.email && validator.validate(req.body.email))
         user.email = req.body.email;
       else return res.status(400).send(msg.inem);
+      user.mobile = req.body.mobile;
       user.profile.fullname = req.body.fullname;
       user.profile.location = req.body.location;
       user.profile.gender = req.body.gender;
       user.profile.dob = req.body.dob;
+      user.profile.type = req.body.type;
       user.profile.website = req.body.website;
       user.profile.facebook = req.body.facebook;
       user.profile.twitter = req.body.twitter;
@@ -394,12 +431,13 @@ exports.updateProfile = function(req, res) {
       user.profile.linkedin = req.body.linkedin;
       user.profile.organization = req.body.organization;
       user.profile.college = req.body.college;
-      user.profile.branch = req.body.branch;
+      user.profile.stream = req.body.stream;
+      user.profile.experience = req.body.experience;
+      user.profile.workDesc = req.body.workDesc;
       user.profile.skills.splice(0, user.profile.skills.length);
       for (var i = 0; i <= req.body.skills.length - 1; i++) {
         user.profile.skills.push(req.body.skills[i].text);
       };
-      user.profile.experience = req.body.experience;
       user.save(function(err) {
         if (err) res.send(err);
         res.json({
@@ -410,4 +448,4 @@ exports.updateProfile = function(req, res) {
 
 
   });
-};            
+};

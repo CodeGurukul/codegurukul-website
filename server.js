@@ -78,6 +78,7 @@ var badgeController = require('./controllers/badge');
 var codeController = require('./controllers/code');
 var razorController = require('./controllers/razor');
 var invoiceController = require('./controllers/invoice');
+var adminController = require('./controllers/admin');
 
 //Login APIs  //Github and linkedin auth needs testing...awaiting front end code
 app.post('/api/auth/github', userController.githubAuth);
@@ -107,9 +108,14 @@ app.get('/api/courses', courseController.getCourses);
 //Badges
 app.get('/api/badges', userController.isLogin, badgeController.getBadges);
 
-
 //Codes
 app.get('/api/codes/:cslug/validateCode', codeController.validateCode);
+
+
+//Admin calls
+app.get('/api/admin/courses/:cslug/attendees', userController.isAdmin, adminController.getAttendees);
+app.get('/api/admin/courses/:cslug', userController.isAdmin, adminController.getCourse);
+app.get('/api/admin/courses', userController.isAdmin, adminController.getCourses);
 
 /**
  * Start Express server.
