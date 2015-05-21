@@ -70,7 +70,7 @@
                         </li>
                         <li class="course-data" tooltips tooltip-title="Course Date" tooltip-side="top">
                             <span class="icon fa fa-calendar"></span>
-                            <span class="pull-right"> {{course.date}} </span>
+                            <span class="pull-right"> {{course.date | date : format : longDate}} </span>
                         </li>
                         <li class="course-data" tooltips tooltip-title="Batch Size" tooltip-side="top">
                             <span class="icon icon-006"></span>
@@ -93,7 +93,7 @@
                     <p class="text-center" ng-show="showRemainingSpots"> <i class="fa fa-clock-o"></i> Hurry! Only {{remainingSpots}} spot(s) remaining!</p> 
 
                     <p ng-if="course.status=='new'"><a class="btn btn-primary take-course" ng-click="notify()">Notify Me!<span ng-class="{processSpinner:processing}"></span></a></p>
-                    <p ng-if="course.status=='open' && course.price>0"><a class="btn btn-primary take-course" ng-click="canJoin();"> <span> <i class="fa fa-check" ng-show="showCourseJoinedTickMark"></i> </span> Pay<span ng-class="{processSpinner:processing}"></span></a></p>
+                    <p ng-if="course.status=='open' && course.price>0"><a class="btn btn-primary take-course" ng-click="canJoin();"> <span> <i class="fa fa-check joined-course" ng-show="showCourseJoinedTickMark"></i> <i class="fa fa-lock locked-course" ng-show="course.inviteOnly && !showCourseJoinedTickMark"></i> </span> Pay<span ng-class="{processSpinner:processing}"></span></a></p>
                     <p ng-if="course.status=='open' && course.price=='0'"><a class="btn btn-primary take-course" ng-click="joinCourse()"><i class="fa fa-check" ng-show="showCourseJoinedTickMark"></i> Register<span ng-class="{processSpinner:processing}"></span></a></p>
                     <p ng-if="course.status=='closed'"><a class="btn btn-primary take-course" ng-disabled="true">Closed</a></p>
 
@@ -127,7 +127,7 @@
         </div>
     </div>
 </section>
-<section ng-show="course.name == 'INTERNSHIP'">
+<section ng-show="course.slug == 'internship'">
 
     <h2 class="carousel-title text-center">
         Testimonials

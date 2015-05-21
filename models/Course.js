@@ -8,10 +8,6 @@ var courseSchema = new mongoose.Schema({
   description: String,
   shortDescription: String,
   thumb: String,
-  status: {
-    type: String,
-    enum: ['new', 'open', 'closed']
-  },
   slug: String,
   price: Number,
   tech: String,                  //cant use domain clashes with node
@@ -19,7 +15,6 @@ var courseSchema = new mongoose.Schema({
   date: Date,
   batchSize: Number,
   inviteOnly: Boolean,
-  inviteMessage: String,
   attendees: [{
     _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   }],

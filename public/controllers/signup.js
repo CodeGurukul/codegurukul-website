@@ -5,7 +5,13 @@ angular.module('Codegurukul')
             fullname: $scope.fullname,
             username: $scope.username,
             email: $scope.email,
-            password: $scope.password
+            password: $scope.password,
+            college: $scope.college,
+            stream: $scope.stream,
+            year: $scope.year,
+            organization: $scope.organization,
+            workDesc: $scope.workDesc,
+            mobile: $scope.mobile
         });
     };
     //    $scope.pageClass = 'fadeZoom';

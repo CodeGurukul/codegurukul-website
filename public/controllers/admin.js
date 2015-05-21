@@ -1,9 +1,9 @@
 angular.module('Codegurukul')
-    .controller('AdminCtrl', function($scope, $alert, $rootScope, Courses) {
+    .controller('AdminCtrl', function($scope, $alert, $rootScope, Admin) {
 
-    Courses.default.get(function(data) {
+    Admin.default.query(function(data) {
         $scope.courses = data;
-        console.log($scope.courses.length);
+        console.log($scope.courses);
     })
 
 

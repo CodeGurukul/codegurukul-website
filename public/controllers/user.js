@@ -88,7 +88,7 @@ angular.module('Codegurukul')
             github: $scope.user.profile.github,
             organization: $scope.user.profile.organization,
             college: $scope.user.profile.college,
-            branch: $scope.user.profile.branch,
+            stream: $scope.user.profile.stream,
             experience: $scope.user.profile.experience,
             gender: $scope.user.profile.gender,
             skills: $scope.user.profile.skills,

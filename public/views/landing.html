@@ -54,11 +54,29 @@ CodeGurukul Landing Page
 
         <ul class="teachers featured-courses">
 
-            <li ng-repeat = "course in courses | limitTo: 3" class="col-md-4 col-sm-4 col-xs-6">
-                <a ui-sref="programs({course:'{{course.slug}}'})">
-                    <img ng-src="{{course.thumb}}" alt="" class="img-responsive" />
+            <li class="col-md-4 col-sm-4 col-xs-6">
+                <a ui-sref="programs({course:'free-ruby-workshop'})">
+                    <img src="/img/rails-logo.jpg" alt="" class="img-responsive" />
                     <div class="description featured-course-name">
-                        <h4 class="text-center">{{course.name}}</h4>
+                        <h4 class="text-center">Ruby Workshop</h4>
+                    </div>
+                </a>
+            </li>
+
+            <li class="col-md-4 col-sm-4 col-xs-6">
+                <a ui-sref="programs({course:'angularjs-workshop'})">
+                    <img src="/img/angularjs-white-bg.jpg" alt="" class="img-responsive" />
+                    <div class="description featured-course-name">
+                        <h4 class="text-center">AngularJS Workshop</h4>
+                    </div>
+                </a>
+            </li>
+
+            <li class="col-md-4 col-sm-4 col-xs-6">
+                <a ui-sref="programs({course:'internship'})">
+                    <img src="/img/internship-codeshot.png" alt="" class="img-responsive" />
+                    <div class="description featured-course-name">
+                        <h4 class="text-center">Internship Program</h4>
                     </div>
                 </a>
             </li>
@@ -269,14 +287,33 @@ CodeGurukul Landing Page
 
         <ul class="teachers featured-courses">
 
-            <li ng-repeat = "course in courses | limitTo: 3" class="col-md-4 col-sm-4 col-xs-6">
-                <a ui-sref="programs({course:'{{course.slug}}'})">
-                    <img ng-src="{{course.thumb}}" alt="" class="img-responsive" />
+             <li class="col-md-4 col-sm-4 col-xs-6">
+                <a ui-sref="programs({course:'free-ruby-workshop'})">
+                    <img src="/img/rails-logo.jpg" alt="" class="img-responsive" />
                     <div class="description featured-course-name">
-                        <h4 class="text-center">{{course.name}}</h4>
+                        <h4 class="text-center">Ruby Workshop</h4>
                     </div>
                 </a>
             </li>
+
+            <li class="col-md-4 col-sm-4 col-xs-6">
+                <a ui-sref="programs({course:'angularjs-workshop'})">
+                    <img src="/img/angularjs-white-bg.jpg" alt="" class="img-responsive" />
+                    <div class="description featured-course-name">
+                        <h4 class="text-center">AngularJS Workshop</h4>
+                    </div>
+                </a>
+            </li>
+
+            <li class="col-md-4 col-sm-4 col-xs-6">
+                <a ui-sref="programs({course:'internship'})">
+                    <img src="/img/internship-codeshot.png" alt="" class="img-responsive" />
+                    <div class="description featured-course-name">
+                        <h4 class="text-center">Internship Program</h4>
+                    </div>
+                </a>
+            </li>
+
 
         </ul>
 

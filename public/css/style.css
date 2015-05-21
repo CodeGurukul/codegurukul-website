@@ -1657,3 +1657,14 @@ body > .right {
 .landing-carousel{
     padding-top: 150px;
 }
+
+.mobile-number{
+    margin-bottom: 20px;
+}
+
+.locked-course, .joined-course{
+    font-size: 17px;
+    position: relative;
+    right: 10%;
+}
+}
