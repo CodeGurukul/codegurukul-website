@@ -1,13 +1,13 @@
 angular.module('Codegurukul')
-    .controller('AdminCourseDetailsCtrl', function($scope, $alert, $rootScope, Courses, $stateParams) {
+    .controller('AdminCourseDetailsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams) {
+    console.log($stateParams.course + "course");
 
-
-    Courses.getAll.get({
+    Admin.attendees.get({
         cslug: $stateParams.course
 
     }, function(data) {
-        $scope.course = data.course;
-        console.log($scope.course.attendees);
+        $scope.attendees = data.attendees;
+        console.log($scope.attendees);
     });
 
 });

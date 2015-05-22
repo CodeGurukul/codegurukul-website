@@ -1595,6 +1595,10 @@ body > .right {
 .profile-details label{
     display: inline;
 }
+
+.capitalize-text{
+    text-transform: capitalize;
+}
 .profile-details{
     margin: 5px 0px;
     border-bottom: 0px;
@@ -1667,4 +1671,26 @@ body > .right {
     position: relative;
     right: 10%;
 }
+
+.mentor-social-links{
+    padding-right: 20px;
+    margin-top: 20px;
+    font-size: 25px !important
+}
+
+.facebook.mentor-social-links:hover{
+    color:#3A5795;
+}
+
+.twitter.mentor-social-links:hover{
+    color:#5EA9DD;
+}
+
+.linkedin.mentor-social-links:hover{
+    color:#0177B5;
+}
+
+.fade.ng-hide {
+  transition:0.5s linear all;
+  opacity:0;
 }

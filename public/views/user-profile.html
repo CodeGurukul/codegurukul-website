@@ -25,7 +25,7 @@
                         <li class="profile-details">
                             <label>Email <span class="pull-right">{{user.email}}</span></label>
                         </li>
-                        <li class="profile-details">
+                        <li class="profile-details capitalize-text">
                             <label>Gender <span class="pull-right">{{user.profile.gender}}</span></label>
                         </li>
                         <li class="profile-details">
@@ -46,14 +46,23 @@
                         <li class="profile-details">
                             <label>Github <span class="pull-right">{{user.profile.github}}</span></label>
                         </li>
-                        <li class="profile-details">
+                        <li class="profile-details capitalize-text">
+                            <label>Type <span class="pull-right">{{user.profile.type}}</span></label>
+                        </li>
+                        <li class="profile-details" ng-show="user.profile.type=='professional'">
                             <label>Organization <span class="pull-right">{{user.profile.organization}}</span></label>
                         </li>
-                        <li class="profile-details">
+                        <li class="profile-details" ng-show="user.profile.type=='student'">
                             <label>College <span class="pull-right">{{user.profile.college}}</span></label>
                         </li>
-                        <li class="profile-details">
-                            <label>Branch <span class="pull-right">{{user.profile.branch}}</span></label>
+                        <li class="profile-details" ng-show="user.profile.type=='student'">
+                            <label>Stream <span class="pull-right">{{user.profile.stream}}</span></label>
+                        </li>
+                        <li class="profile-details" ng-show="user.profile.type=='student'">
+                            <label>Year <span class="pull-right">{{user.profile.year}}</span></label>
+                        </li>
+                        <li class="profile-details" ng-show="user.profile.type=='other'">
+                            <label>Work Description <span class="pull-right">{{user.profile.workDesc}}</span></label>
                         </li>
                         <li class="profile-details">
                             <label>Experience <span class="pull-right">{{user.profile.experience}}</span></label>

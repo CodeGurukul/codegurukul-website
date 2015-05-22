@@ -32,40 +32,40 @@
 
             <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.type.$invalid &amp;&amp; signupForm.type.$dirty }" class="form-group has-feedback">
                 <select class="form-control input-md" ng-model="type">
-                    <option>Student</option>
-                    <option>Professional</option>
-                    <option>Other</option>
+                    <option value="student">Student</option>
+                    <option value="professional">Professional</option>
+                    <option value="other">Other</option>
                 </select>
                 <div ng-if="signupWithEmailForm.type.$dirty" ng-messages="signupWithEmailForm.type.$error" class="help-block text-danger" style="color:#a94442">
                     <div ng-message="required">Select an option.</div>
                 </div>
             </div>
             <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.college.$invalid &amp;&amp; signupForm.college.$dirty }" class="form-group has-feedback">
-                <input type="text" name="college" ng-model="college" placeholder="College Name"  class="form-control input-md" ng-show="type == 'Student'" ng-required="type == 'Student'"/>
+                <input type="text" name="college" ng-model="college" placeholder="College Name"  class="form-control input-md" ng-show="type == 'student'" ng-required="type == 'student'"/>
                 <div ng-if="signupWithEmailForm.college.$dirty" ng-messages="signupWithEmailForm.college.$error" class="help-block text-danger" style="color:#a94442">
                     <div ng-message="required">Please enter your College name.</div>
                 </div>
             </div>
             <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.stream.$invalid &amp;&amp; signupForm.stream.$dirty }" class="form-group has-feedback">
-                <input type="text" name="stream" ng-model="stream" placeholder="Stream" class="form-control input-md" ng-show="type == 'Student'" ng-required="type == 'Student'"/>
+                <input type="text" name="stream" ng-model="stream" placeholder="Stream" class="form-control input-md" ng-show="type == 'student'" ng-required="type == 'student'"/>
                 <div ng-if="signupWithEmailForm.stream.$dirty" ng-messages="signupWithEmailForm.stream.$error" class="help-block text-danger" style="color:#a94442">
                     <div ng-message="required">Please enter your stream.</div>
                 </div>
             </div>
             <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.year.$invalid &amp;&amp; signupForm.year.$dirty }" class="form-group has-feedback">
-                <input type="text" name="year" ng-model="year" placeholder="Year" class="form-control input-md" ng-show="type == 'Student'" ng-required="type == 'Student'"/>
+                <input type="text" name="year" ng-model="year" placeholder="Year" class="form-control input-md" ng-show="type == 'student'" ng-required="type == 'student'"/>
                 <div ng-if="signupWithEmailForm.year.$dirty" ng-messages="signupWithEmailForm.year.$error" class="help-block text-danger" style="color:#a94442">
                     <div ng-message="required">Please enter your Year.</div>
                 </div>
             </div>
             <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.organization.$invalid &amp;&amp; signupForm.organization.$dirty }" class="form-group has-feedback">
-                <input type="text" name="organization" ng-model="organization" placeholder="Organization" class="form-control input-md" ng-show="type == 'Professional'" ng-required="type == 'Professional'"/>
+                <input type="text" name="workDescs" ng-model="organization" placeholder="Organization" class="form-control input-md" ng-show="type == 'professional'" ng-required="type == 'professional'"/>
                 <div ng-if="signupWithEmailForm.organization.$dirty" ng-messages="signupWithEmailForm.organization.$error" class="help-block text-danger" style="color:#a94442">
                     <div ng-message="required">Please enter the name of your Organization.</div>
                 </div>
             </div>
             <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.workDesc.$invalid &amp;&amp; signupForm.workDesc.$dirty }" class="form-group has-feedback">
-                <textarea type="text" name="organization" ng-model="workDesc" placeholder="Describe what you do" class="form-control input-md" ng-show="type == 'Other'" ng-required="type == 'Other'"></textarea>
+                <textarea type="text" name="organization" ng-model="workDesc" placeholder="Describe what you do" class="form-control input-md" ng-show="type == 'other'" ng-required="type == 'other'"></textarea>
                 <div ng-if="signupWithEmailForm.workDesc.$dirty" ng-messages="signupWithEmailForm.workDesc.$error" class="help-block text-danger" style="color:#a94442">
                     <div ng-message="required">Please enter a short description of what you do.</div>
                 </div>

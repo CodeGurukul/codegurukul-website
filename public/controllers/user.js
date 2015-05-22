@@ -24,7 +24,7 @@ angular.module('Codegurukul')
 
         $scope.progressData = 1;
 
-        if ($scope.user.profile.fullname)
+        if ($scope.user.profile.fullname && $scope.user.profile.gender && $scope.user.profile.dob && $scope.user.profile.location)
             $scope.progressData++;
         if ($scope.user.profile.website)
             $scope.progressData++;
@@ -32,11 +32,13 @@ angular.module('Codegurukul')
             $scope.progressData++;
         if ($scope.user.profile.google && $scope.user.profile.github)
             $scope.progressData++;
+        if ($scope.user.profile.type)
+            $scope.progressData++;
+        if ($scope.user.profile.college && $scope.user.profile.stream && $scope.user.profile.year)
+            $scope.progressData++;
         if ($scope.user.profile.organization)
             $scope.progressData++;
-        if ($scope.user.profile.college && $scope.user.profile.branch)
-            $scope.progressData++;
-        if ($scope.user.profile.gender && $scope.user.profile.dob && $scope.user.profile.location)
+        if ($scope.user.profile.workDesc)
             $scope.progressData++;
         if ($scope.user.profile.experience)
             $scope.progressData++;
@@ -86,9 +88,12 @@ angular.module('Codegurukul')
             twitter: $scope.user.profile.twitter,
             google: $scope.user.profile.google,
             github: $scope.user.profile.github,
-            organization: $scope.user.profile.organization,
+            type: $scope.user.profile.type,
             college: $scope.user.profile.college,
             stream: $scope.user.profile.stream,
+            year: $scope.user.profile.year,
+            organization: $scope.user.profile.organization,
+            workDesc: $scope.user.profile.workDesc,
             experience: $scope.user.profile.experience,
             gender: $scope.user.profile.gender,
             skills: $scope.user.profile.skills,

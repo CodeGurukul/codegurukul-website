@@ -1,5 +1,5 @@
 angular.module('Codegurukul')
-    .factory('Auth', function($http, $location, $rootScope, $alert, $window, $state) {
+    .factory('Auth', function($http, $location, $rootScope, $alert, $window, $state, $stateParams) {
     var token = $window.localStorage.token;
     var user = $window.localStorage.user;
     if (user) {
@@ -104,6 +104,11 @@ angular.module('Codegurukul')
                     placement: 'right',
                     type: 'success',
                     duration: 5
+                });
+                $state.transitionTo($state.current, $stateParams, {
+                    reload: true,
+                    inherit: false,
+                    notify: true
                 });
             })
                 .error(function() {

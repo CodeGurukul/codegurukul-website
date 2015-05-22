@@ -6,6 +6,7 @@ angular.module('Codegurukul')
             username: $scope.username,
             email: $scope.email,
             password: $scope.password,
+            type: $scope.type,
             college: $scope.college,
             stream: $scope.stream,
             year: $scope.year,
