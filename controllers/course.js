@@ -26,7 +26,8 @@ exports.canJoin = function(req, res) {
       User.findById(req.user._id, function(err, user) {
         if (err) res.send(err);
         else if (!user) res.status(404).send('User not found.');
-        else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
+        //----------------Commented for testing
+        // else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
         else res.sendStatus(200);
       })
     }
@@ -47,7 +48,8 @@ exports.getCourse = function(req, res) {
         var temp = {};
         temp.course = course;
         if (req.user)            
-          if (course.attendees.id(req.user._id)) temp.joined = true;
+        //----------------Commented for testing
+          // if (course.attendees.id(req.user._id)) temp.joined = true;
         res.send(temp);
       }
     });
@@ -68,7 +70,8 @@ exports.joinCourse = function(req, res, next) {
       User.findById(req.user._id, function(err, user) {
         if (err) res.send(err);
         else if (!user) res.status(404).send('User not found.');
-        else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
+        //----------------Commented for testing
+        //else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
         else {
           console.log(user.id);
           user.courses.push({
@@ -85,7 +88,7 @@ exports.joinCourse = function(req, res, next) {
                 else {
                   console.log('course joined');
                   req.to = user.email;
-                  req.name = user.username;
+                  req.name = user.profile.fullname;
                   req.userId = user._id;
                   req.courseId = course._id;
                   req.course = course.name;

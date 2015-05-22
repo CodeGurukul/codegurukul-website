@@ -177,7 +177,7 @@ exports.sendSignupEmail = function(req, res, next) {
 
 exports.sendInvoice = function(invoice, data) {
   var template_name = "invoice_template";
-  console.log(invoice);
+  console.log(invoice.invoiceNo);
   var template_content = [];
   var message = {
     "from_email": "info@codegurukul.com",
@@ -205,7 +205,7 @@ exports.sendInvoice = function(invoice, data) {
       "rcpt": data.to,
       "vars": [{
         "name": "invNumber",
-        "content": "478366238"
+        "content": invoice.invoiceNo
       }, {
         "name": "invDate",
         "content": moment(invoice.created).format("MMM DD, YYYY")
@@ -221,9 +221,13 @@ exports.sendInvoice = function(invoice, data) {
       }, {
         "name": "name",
         "content": data.userName
+      }, {
+        "name": "email",
+        "content": data.to
       }]
     }]
   };
+  console.log(message);
   var async = false;
   mandrill_client.messages.sendTemplate({
     "template_name": template_name,
