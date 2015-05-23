@@ -1,17 +1,30 @@
 angular.module('Codegurukul')
-    .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Program, Courses, Pay, $alert, Email, Codes) {
+    .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Program, Courses, Pay, $alert, Email, Codes, $http) {
     $scope.processing = false;
     $scope.showCourseJoinedTickMark = false;
     $scope.couponCode = "";    
 
-//    $scope.validate = function(){
-//        Codes.default.get({
-//            cslug: $stateParams.course;
-//        }, function(coupon){
-//            $scope.coupon = coupon.coupon;
-//            console.log($scope.coupon);
-//        })
-//    };
+    $scope.validate = function(){
+        //        Codes.default.get({
+        //            cslug: $stateParams.course,
+        //            value: $scope.couponCode
+        //        }, function(data){
+        //            $scope.coupon = data.code;
+        //            console.log($scope.coupon);
+        //        })
+
+        $http({
+            url: '/api/codes/'+$stateParams.course+'/validateCode', 
+            method: "GET",
+            params: {value: $scope.couponCode}
+        }).success(function(data, status, headers, config) {
+            $scope.coupon = data;
+            console.log($scope.coupon);
+
+        }).error(function(data, status, headers, config) {
+            console.log("Error");
+        });
+    };
 
     Courses.getAll.get({
         cslug: $stateParams.course
