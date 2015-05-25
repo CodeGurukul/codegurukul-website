@@ -2,29 +2,44 @@ angular.module('Codegurukul')
     .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Program, Courses, Pay, $alert, Email, Codes, $http) {
     $scope.processing = false;
     $scope.showCourseJoinedTickMark = false;
-    $scope.couponCode = "";    
+    $scope.couponCode = "";  
+    $scope.textAnimation = "";
+    $scope.courseUnlocked = false;
+    
+    
+    $scope.inviteMessageModalShown = false;
 
     $scope.validate = function(){
-        //        Codes.default.get({
-        //            cslug: $stateParams.course,
-        //            value: $scope.couponCode
-        //        }, function(data){
-        //            $scope.coupon = data.code;
-        //            console.log($scope.coupon);
-        //        })
-
         $http({
             url: '/api/codes/'+$stateParams.course+'/validateCode', 
             method: "GET",
             params: {code: $scope.couponCode}
         }).success(function(data, status, headers, config) {
             console.log(data);
-            console.log(status);
+            //            console.log(status);
+            $scope.discountedRate = data.result;
+            //            console.log($scope.discountedRate);
+            $scope.course.price = $scope.discountedRate;
+
+            $alert({
+                content: "Your coupon code has been validated successfuly. Please check your updated Course Price.",
+                placement: 'right',
+                type: 'success',
+                duration: 5
+            });
+            $scope.courseUnlocked = true;
+            $scope.textAnimation = "animate"; 
 
         }).error(function(data, status, headers, config) {
             console.log("Error");
-            console.log(data);
-            console.log(status);
+            //            console.log(data);
+            //            console.log(status);
+            $alert({
+                content: "Your coupon code is invalid. Please check the code you have entered and try again.",
+                placement: 'right',
+                type: 'danger',
+                duration: 5
+            });
         });
     };
 
@@ -56,6 +71,26 @@ angular.module('Codegurukul')
         $scope.registerModalShown = !$scope.registerModalShown;
 
     };
+
+    $scope.checkCondition = function(){
+        if ($scope.course.slug == 'internship'){
+            
+        $scope.inviteMessageModalShown = !$scope.inviteMessageModalShown;
+        }
+//        
+//        if ($scope.course.status == 'open' && $scope.course.price > 0){
+//            $scope.canJoin();
+//
+//        }
+//        else if ($scope.course.status == 'open' && $scope.course.price == '0'){
+//            $scope.joinCourse();
+//            console.log("join course function executed");
+//        }
+//        else if ($scope.course.status=='new'){
+//            $scope.notify();
+//            console.log("notify function executed");
+//        }
+    }
 
 
     $scope.joinCourse = function() {

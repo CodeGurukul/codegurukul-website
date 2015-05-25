@@ -29,7 +29,7 @@
                             <label>Gender <span class="pull-right">{{user.profile.gender}}</span></label>
                         </li>
                         <li class="profile-details">
-                            <label>DoB <span class="pull-right">{{user.profile.dob | date:'dd-MM-yyyy'}}</span></label>
+                            <label>DoB <span class="pull-right" ng-show="user.profile.dob">{{user.profile.dob | date:'dd-MM-yyyy'}}</span></label>
                         </li>
                         <li class="profile-details">
                             <label>Website <span class="pull-right">{{user.profile.website}}</span></label>

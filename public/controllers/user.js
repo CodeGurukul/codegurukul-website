@@ -14,12 +14,15 @@ angular.module('Codegurukul')
     }, 
                      function(data){
         $scope.user = data;
-        //        console.log($scope.user);
-
-        var stringDate = $scope.user.profile.dob;
-        $scope.user.profile.dob = new Date(stringDate);
         console.log($scope.user.profile.dob);
-        
+
+        if($scope.user.profile.dob){
+            var stringDate = $scope.user.profile.dob;
+            $scope.user.profile.dob = new Date(stringDate);
+            console.log($scope.user.profile.dob);
+        }
+
+
 
 
         $scope.progressData = 1;

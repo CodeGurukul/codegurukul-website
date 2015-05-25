@@ -1694,3 +1694,26 @@ body > .right {
   transition:0.5s linear all;
   opacity:0;
 }
+
+.animate {
+    -webkit-animation-name: example; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
+    animation-name: example;
+    animation-duration: 4s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes example {
+    0%  {color: #81A27B;}
+    100% {color: black;}
+}
+
+/* Standard syntax */
+@keyframes example {
+    0%  {color: #81A27B;}
+    100% {color: black;}
+}
+
+.course-main-heading{
+    text-transform: capitalize !important;
+}

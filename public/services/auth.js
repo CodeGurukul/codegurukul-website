@@ -98,6 +98,7 @@ angular.module('Codegurukul')
                 $window.localStorage.user = JSON.stringify(data.user);
                 console.log(data.user);
                 $rootScope.currentUser = data.user;
+//                $state.go('home');
                 //            $location.path('/');
                 $alert({
                     content: 'Cheers! You have successfully logged in!',

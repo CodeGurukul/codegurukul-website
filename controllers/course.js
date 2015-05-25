@@ -27,7 +27,7 @@ exports.canJoin = function(req, res) {
         if (err) res.send(err);
         else if (!user) res.status(404).send('User not found.');
         //----------------Commented for testing
-        // else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
+         else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
         else res.sendStatus(200);
       })
     }
@@ -49,7 +49,7 @@ exports.getCourse = function(req, res) {
         temp.course = course;
         if (req.user)            
         //----------------Commented for testing
-          // if (course.attendees.id(req.user._id)) temp.joined = true;
+           if (course.attendees.id(req.user._id)) temp.joined = true;
         res.send(temp);
       }
     });
@@ -71,7 +71,7 @@ exports.joinCourse = function(req, res, next) {
         if (err) res.send(err);
         else if (!user) res.status(404).send('User not found.');
         //----------------Commented for testing
-        //else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
+        else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
         else {
           console.log(user.id);
           user.courses.push({
