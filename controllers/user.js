@@ -321,7 +321,7 @@ exports.hasEmail = function(req, res, next) {
       message: 'Email parameter is required.'
     });
   }
-  if (!validator.validate(req.body.email))
+  if (!validator.validate(req.query.email))
     return res.status(400).send(msg.inem);
 
   User.findOne({

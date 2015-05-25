@@ -16,13 +16,15 @@ angular.module('Codegurukul')
         $http({
             url: '/api/codes/'+$stateParams.course+'/validateCode', 
             method: "GET",
-            params: {value: $scope.couponCode}
+            params: {code: $scope.couponCode}
         }).success(function(data, status, headers, config) {
-            $scope.coupon = data;
-            console.log($scope.coupon);
+            console.log(data);
+            console.log(status);
 
         }).error(function(data, status, headers, config) {
             console.log("Error");
+            console.log(data);
+            console.log(status);
         });
     };
 

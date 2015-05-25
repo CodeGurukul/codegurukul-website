@@ -75,10 +75,12 @@ exports.joinCourse = function(req, res, next) {
         else {
           console.log(user.id);
           user.courses.push({
-            _id: course._id
+            _id: course._id,
+            joinDate: Date.now()
           });
           course.attendees.push({
-            _id: user._id
+            _id: user._id,
+            joinDate: Date.now()
           });
           course.save(function(err) {
             if (err) res.send(err);

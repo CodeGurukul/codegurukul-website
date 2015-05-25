@@ -56,9 +56,9 @@ exports.validate = function(code, cslug, callback) {
 
 exports.validateCode = function (req, res) {
   console.log("validateCode");
-  console.log(req.headers.code);
-  if (req.headers.code) {
-    code.validate(req.headers.code, req.params.cslug, function(result) {
+  console.log(req.query);
+  if (req.query.code) {
+    code.validate(req.query.code, req.params.cslug, function(result) {
       console.log(result);
       res.status(result.status).send({result:result.value});
     })

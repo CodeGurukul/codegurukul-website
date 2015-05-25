@@ -22,7 +22,8 @@ var userSchema = new mongoose.Schema({
         _id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Course'
-        }
+        },
+        joindate: Date
     }],
     badges: [{
         _id : {type: mongoose.Schema.Types.ObjectId, ref: 'Badge' }

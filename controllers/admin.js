@@ -33,6 +33,10 @@ exports.getAttendees = function(req, res) {
     slug: req.params.cslug
   })
   .select('name slug attendees')
+  .populate({
+    path: 'attendees._id',
+    select: 'slug email username'
+  })
   .exec(function(err, course) {
     if (err)
       res.send(err);
