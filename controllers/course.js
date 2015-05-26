@@ -49,7 +49,8 @@ exports.getCourse = function(req, res) {
         console.log(course);
         var temp = {};
         temp.course = course;
-        //if (req.user)            
+          temp.joined = false;
+        if (req.user)            
         //----------------Commented for testing
            if (course.attendees.id(req.user._id)) temp.joined = true;
         res.send(temp);

@@ -4,9 +4,9 @@ angular.module('Codegurukul')
     $scope.showCourseJoinedTickMark = false;
     $scope.couponCode = "";  
     $scope.textAnimation = "";
-    $scope.courseUnlocked = false;
-    
-    
+
+
+
     $scope.inviteMessageModalShown = false;
 
     $scope.validate = function(){
@@ -22,7 +22,7 @@ angular.module('Codegurukul')
             $scope.course.price = $scope.discountedRate;
 
             $alert({
-                content: "Your coupon code has been validated successfuly. Please check your updated Course Price.",
+                content: "Your coupon code has been validated successfuly.",
                 placement: 'right',
                 type: 'success',
                 duration: 5
@@ -63,6 +63,13 @@ angular.module('Codegurukul')
         if($scope.course.joined == true){
             $scope.showCourseJoinedTickMark = true;
         }
+
+        if($scope.course.inviteOnly == true){
+            $scope.courseUnlocked = false;
+        }
+        else{
+            $scope.courseUnlocked = true;
+        }
     });
 
     $scope.loginModalShown = false;
@@ -73,23 +80,35 @@ angular.module('Codegurukul')
     };
 
     $scope.checkCondition = function(){
-        if ($scope.course.slug == 'internship'){
-            
-        $scope.inviteMessageModalShown = !$scope.inviteMessageModalShown;
+        if ($rootScope.currentUser){
+            console.log($scope.course.joined);
+            if ($scope.courseUnlocked == false && $scope.course.joined == false){
+                $scope.inviteMessageModalShown = !$scope.inviteMessageModalShown;
+            }
+
+            else {
+                if ($scope.course.status == 'open' && $scope.course.price > 0 && $scope.course.joined == false){
+                    $scope.canJoin();
+
+                }
+                else if ($scope.course.status == 'open' && $scope.course.price == '0' && $scope.course.joined == false){
+                    $scope.joinCourse();
+                    console.log("join course function executed");
+                }
+                else if ($scope.course.status=='new'){
+                    $scope.notify();
+                    console.log("notify function executed");
+                }
+            }
         }
-//        
-//        if ($scope.course.status == 'open' && $scope.course.price > 0){
-//            $scope.canJoin();
-//
-//        }
-//        else if ($scope.course.status == 'open' && $scope.course.price == '0'){
-//            $scope.joinCourse();
-//            console.log("join course function executed");
-//        }
-//        else if ($scope.course.status=='new'){
-//            $scope.notify();
-//            console.log("notify function executed");
-//        }
+        else {
+            $alert({
+                content: 'You need to login to continue.',
+                placement: 'right',
+                type: 'danger',
+                duration: 5
+            });
+        }
     }
 
 
@@ -115,7 +134,8 @@ angular.module('Codegurukul')
                     type: 'success',
                     duration: 5
                 });
-                // $scope.course.joined = true;
+                 $scope.course.joined = true;
+                $scope.showCourseJoinedTickMark = true;
                 $scope.processing = false;
             },
                                 function(error) {
@@ -172,7 +192,8 @@ angular.module('Codegurukul')
                 $scope.processing = true;
                 Pay.default.save({
                     payment_id: response.razorpay_payment_id,
-                    cslug: $stateParams.course
+                    cslug: $stateParams.course,
+                    code:$scope.couponCode
                 }, function(data) {
                     $alert({
                         content: 'Your payment was a success!',
@@ -180,6 +201,8 @@ angular.module('Codegurukul')
                         type: 'success',
                         duration: 5
                     });
+                    $scope.showCourseJoinedTickMark = true;
+                    $scope.course.joined = true;
                     $scope.processing = false;
                     // joinCourse();
                 }, function(error) {
