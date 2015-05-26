@@ -12,6 +12,13 @@ var userSchema = new mongoose.Schema({
     },
     username: String,
     slug: String,
+    verificationCode: String,
+    verified: {
+        type: Boolean,
+        default: false
+    },
+    referalCode: String,            //Users own referal code.
+    extReferalCode: String,         //Code of a user who refered this user.
     password: String,
     role: {
         type: String,
@@ -75,7 +82,10 @@ var userSchema = new mongoose.Schema({
     mobile: Number,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
-    points: Number
+    points: {
+      type: Number,
+      default: 0
+    }
 
 });
 
@@ -90,12 +100,25 @@ function slugify(text) {
         .replace(/-+$/, ''); // Trim - from end of text
 };
 
+function codeGen(len)
+{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
+    for( var i=0; i < len; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
 
 userSchema.pre('save', function(next) {
     var user = this;
     if (user.slug == null || user.slug == undefined) {
         user.slug = slugify(user.username + Math.floor((Math.random() * 100) + 1));
+    }
+    if (this.isNew){
+      this.verificationCode = codeGen(15);
+      this.referalCode = codeGen(10);
     }
     if (!user.isModified('password')) return next();
 

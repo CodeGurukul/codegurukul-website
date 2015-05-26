@@ -45,9 +45,11 @@ exports.getCourse = function(req, res) {
       else if (!course) {
         res.status(404).send('Course Not Found');
       } else {
+        console.log('course found');
+        console.log(course);
         var temp = {};
         temp.course = course;
-        if (req.user)            
+        //if (req.user)            
         //----------------Commented for testing
            if (course.attendees.id(req.user._id)) temp.joined = true;
         res.send(temp);
@@ -75,12 +77,10 @@ exports.joinCourse = function(req, res, next) {
         else {
           console.log(user.id);
           user.courses.push({
-            _id: course._id,
-            joinDate: Date.now()
+            _id: course._id
           });
           course.attendees.push({
-            _id: user._id,
-            joinDate: Date.now()
+            _id: user._id
           });
           course.save(function(err) {
             if (err) res.send(err);

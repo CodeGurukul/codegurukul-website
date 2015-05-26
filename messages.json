@@ -10,5 +10,9 @@
 	"iop" : "Invalid old password",
 	"uncomp" : "Sorry! This Complaint has not yet approved",
 	"unresolved" : "unresolved",
-	"inem" : "Invalid email"
+	"inem" : "Invalid email",
+	"verified" : "Your account has been succesfully verified",
+	"alver" : "Your account has already been verified",
+	"inco" : "Invalid code",
+	"verifySent" : "Verification link has been sent to your registered email"
 }

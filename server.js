@@ -84,6 +84,8 @@ var adminController = require('./controllers/admin');
 app.post('/api/auth/github', userController.githubAuth);
 app.post('/api/auth/linkedin', userController.linkedinAuth);
 app.post('/api/auth/signup', userController.signup, emailController.sendSignupEmail);
+app.post('/api/auth/signup/resend', userController.signupResend, emailController.sendSignupEmail);
+app.post('/api/auth/signup/verification', userController.signupVerify);
 app.post('/api/auth/login', userController.login);
 app.post('/api/auth/facebook', userController.facebookAuth);
 app.post('/api/auth/google', userController.googleAuth);

@@ -157,6 +157,9 @@ exports.sendSignupEmail = function(req, res, next) {
       "vars": [{
         "name": "name",
         "content": req.name
+      },{
+        "name": "verificationCode",
+        "content": req.verificationCode
       }]
     }]
   };

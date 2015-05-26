@@ -119,15 +119,67 @@ exports.signup = function(req, res, next) {
       workDesc: req.body.workDesc
     }
   });
+  if (req.body.referalCode) {
+    user.extReferalCode = req.body.referalCode;
+  };
   user.save(function(err, user, numberAffected) {
     if (err) res.send(err);
     else {
       res.status(200).send(msg.signup);
       req.to = user.email;
       req.name = user.username;
+      req.verificationCode = user.verificationCode;
       next();
     }
 
+  });
+};
+
+exports.signupResend = function (req, res, next) {
+  if (!validator.validate(req.body.email))
+    return res.status(400).send(msg.inem);
+  User.findOne({
+    email: req.body.email
+  }, function(err, user) {
+    if (!user) return res.status(401).send(msg.unf);
+    if (user.verified) return res.status(200).send(msg.alver);
+    req.to = user.email;
+    req.name = user.username;
+    req.verificationCode = user.verificationCode;
+    next();
+    res.status(200).send(msg.verifySent);
+  });
+};
+
+exports.signupVerify = function (req, res) {
+  if (!req.body.verificationCode)
+    return res.status(400).send(msg.inco);
+  User.findOne({
+    verificationCode: req.body.verificationCode
+  }, function(err, user) {
+    if (!user) return res.status(401).send(msg.inco);
+    if (user.verified) return res.status(200).send(msg.alver);
+    user.verified = true;
+    User.findOne({
+      referalCode: user.extReferalCode
+    }, function(err, refUser) {
+      if (!refUser) {
+        user.points = 0;
+      } else{
+        refUser.points = refUser.points + 100;
+        user.points = 100;
+        refUser.save(function(err, refUser, numberAffected) {
+          if(err) console.log(err);
+        })
+      };
+      user.save(function(err, user, numberAffected) {
+        if (err) res.send(err);
+        else {
+          res.status(200).send(msg.verified);
+        }
+
+      });
+    })
   });
 };
 
@@ -338,7 +390,7 @@ exports.hasEmail = function(req, res, next) {
 exports.getUser = function(req, res) {
   if (req.user.slug == req.params.uslug) {
     User.findById(req.user._id)
-      .select('-_id profile courses points slug username mobile email badges')
+      .select('-_id profile courses points slug username mobile email badges referalCode')
       .populate({
         path: 'badges._id'
       })

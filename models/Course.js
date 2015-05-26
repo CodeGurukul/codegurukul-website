@@ -17,8 +17,7 @@ var courseSchema = new mongoose.Schema({
   inviteOnly: Boolean,
   inviteMessage: String,
   attendees: [{
-    _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    joinDate: Date
+    _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   }],
   mentors:[{
     name: String,

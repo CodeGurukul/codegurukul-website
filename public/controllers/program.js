@@ -1,5 +1,5 @@
 angular.module('Codegurukul')
-    .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Program, Courses, Pay, $alert, Email, Codes, $http) {
+    .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Program, Courses, Pay, $alert, Email, $http) {
     $scope.processing = false;
     $scope.showCourseJoinedTickMark = false;
     $scope.couponCode = "";  
