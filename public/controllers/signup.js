@@ -1,6 +1,7 @@
 angular.module('Codegurukul')
-    .controller('SignupCtrl', function($scope, Auth, $location){
+    .controller('SignupCtrl', function($scope, Auth, $location,  $alert, $rootScope){
     $scope.signup = function() {
+        $rootScope.emailForVerification = $scope.email;
         Auth.signup({
             fullname: $scope.fullname,
             username: $scope.username,
@@ -16,5 +17,7 @@ angular.module('Codegurukul')
         });
     };
     //    $scope.pageClass = 'fadeZoom';
+
+   
 
 });

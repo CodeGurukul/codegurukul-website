@@ -82,7 +82,15 @@ angular.module('Codegurukul')
     $scope.checkCondition = function(){
         if ($rootScope.currentUser){
             console.log($scope.course.joined);
-            if ($scope.courseUnlocked == false && $scope.course.joined == false){
+            if($scope.course.joined){
+                $alert({
+                    content: 'You have already registered for this event.',
+                    placement: 'right',
+                    type: 'danger',
+                    duration: 5
+                });
+            }
+            else if ($scope.courseUnlocked == false && $scope.course.joined == false){
                 $scope.inviteMessageModalShown = !$scope.inviteMessageModalShown;
             }
 
@@ -134,7 +142,7 @@ angular.module('Codegurukul')
                     type: 'success',
                     duration: 5
                 });
-                 $scope.course.joined = true;
+                $scope.course.joined = true;
                 $scope.showCourseJoinedTickMark = true;
                 $scope.processing = false;
             },

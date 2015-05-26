@@ -28,6 +28,16 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         url: '/admin/view/:course',
         templateUrl: 'views/admin-view-course-details.html',
         controller: 'AdminCourseDetailsCtrl'
+    }) 
+        .state('verify-email', {
+        url: '/verify-email',
+        templateUrl: 'views/email-verification.html',
+        controller: 'VerifyEmailCtrl'
+    })  
+        .state('verification', {
+        url: '/userverification/:verificationCode',
+        templateUrl: 'views/verification.html',
+        controller: 'VerificationCtrl'
     })  
         .state('home', {
         url: '/',
