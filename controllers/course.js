@@ -66,17 +66,15 @@ exports.joinCourse = function(req, res, next) {
   Course.findOne({
     slug: cslug
   }, function(err, course) {
-    if (err) res.send(err);
+    if (err) res.status(400).send(err);
     else if (!course) res.send(404).send('Course not found.');
     else {
-      console.log(req.user);
       User.findById(req.user._id, function(err, user) {
         if (err) res.send(err);
         else if (!user) res.status(404).send('User not found.');
         //----------------Commented for testing
         else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
         else {
-          console.log(user.id);
           user.courses.push({
             _id: course._id
           });
@@ -84,12 +82,11 @@ exports.joinCourse = function(req, res, next) {
             _id: user._id
           });
           course.save(function(err) {
-            if (err) res.send(err);
+            if (err) res.status(400).send(err);
             else {
               user.save(function(err) {
-                if (err) res.send(err);
+                if (err) res.status(400).send(err);
                 else {
-                  console.log('course joined');
                   req.to = user.email;
                   req.name = user.profile.fullname;
                   req.userId = user._id;

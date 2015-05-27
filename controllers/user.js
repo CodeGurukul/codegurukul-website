@@ -123,7 +123,7 @@ exports.signup = function(req, res, next) {
     user.extReferalCode = req.body.referalCode;
   };
   user.save(function(err, user, numberAffected) {
-    if (err) res.send(err);
+    if (err) res.status(400).send(err);
     else {
       res.status(200).send(msg.signup);
       req.to = user.email;
@@ -173,7 +173,7 @@ exports.signupVerify = function (req, res) {
         })
       };
       user.save(function(err, user, numberAffected) {
-        if (err) res.send(err);
+        if (err) res.status(400).send(err);
         else {
           res.status(200).send(msg.verified);
         }
@@ -190,6 +190,7 @@ exports.login = function(req, res) {
     if (!user) return res.status(401).send(msg.unf);
     user.comparePassword(req.body.password, function(err, isMatch) {
       if (!isMatch) return res.status(401).send(msg.inep);
+      if (!user.verified) return res.status(410).send(msg.ntver);
       var token = createJwtToken(user);
       var temp = {
         username: user.username,
@@ -396,7 +397,7 @@ exports.getUser = function(req, res) {
       })
       .exec(function(err, user) {
         if (err)
-          res.send(err);
+          res.status(400).send(err);
         else if (!user) {
           res.status(404).send(msg.unf);
         } else {
@@ -420,7 +421,7 @@ exports.getUserLog = function(req, res) {
     'profile.slug': req.params.uslug
   }, function(err, user) {
     if (err)
-      res, send(err);
+      res.status(400).send(err);
     else {
       res.json(complaint.log);
     }
@@ -431,20 +432,20 @@ exports.changeUserPassword = function(req, res, next) {
   // console.log(req.body);
   User.findById(req.user._id, function(err, user) {
     if (err)
-      res.send(err);
+      res.status(400).send(err);
     else if (!user) {
       res.status(404).send(msg.unf);
     } else {
       user.comparePassword(req.body.oldPassword, function(err, isMatch) {
         if (err)
-          res.send(err);
+          res.status(400).send(err);
         else if (!isMatch) {
           res.status(401).send(msg.iop);
         } else {
           user.password = req.body.newPassword;
           user.save(function(err, user) {
             if (err)
-              res.send(err);
+              res.status(400).send(err);
             else {
               req.pass = true;
               req.to = user.email;
@@ -461,7 +462,7 @@ exports.changeUserPassword = function(req, res, next) {
 
 exports.updateProfile = function(req, res) {
   User.findById(req.user._id, function(err, user) {
-    if (err) res.send(err);
+    if (err) res.status(400).send(err);
     else if (!user) {
       res.status(404).send(msg.unf);
     } else {
@@ -491,7 +492,7 @@ exports.updateProfile = function(req, res) {
         user.profile.skills.push(req.body.skills[i].text);
       };
       user.save(function(err) {
-        if (err) res.send(err);
+        if (err) res.status(400).send(err);
         res.json({
           message: 'Profile updated'
         });
