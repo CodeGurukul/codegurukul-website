@@ -1721,3 +1721,7 @@ body > .right {
 .verification-section a:hover{
     cursor: default;
 }
+
+.referral-code-textbox:hover{
+    cursor: default !important;
+}
