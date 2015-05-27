@@ -98,7 +98,7 @@ angular.module('Codegurukul')
                 $window.localStorage.user = JSON.stringify(data.user);
                 console.log(data.user);
                 $rootScope.currentUser = data.user;
-//                $state.go('home');
+                //                $state.go('home');
                 //            $location.path('/');
                 $alert({
                     content: 'Cheers! You have successfully logged in!',
@@ -112,14 +112,17 @@ angular.module('Codegurukul')
                     notify: true
                 });
             })
-                .error(function() {
+                .error(function(status) {
                 delete $window.localStorage.token;
                 $alert({
-                    content: 'Error! Invalid username or password.',
+                    content: status,
                     placement: 'right',
                     type: 'danger',
                     duration: 5
                 });
+                if (status == "Your account has not been verified"){
+                    $state.go('verify-email');
+                }
             });
         },
         signup: function(user) {
