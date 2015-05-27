@@ -5,7 +5,9 @@ angular.module('Codegurukul')
             uslug: '@uslug'
         },{
             'update': { method:'PUT' }
-        })
+        }),
+        resendEmail: $resource('/api/auth/signup/resend'),
+        verify: $resource('/api/auth/signup/verification')
     }
     return User;
 });

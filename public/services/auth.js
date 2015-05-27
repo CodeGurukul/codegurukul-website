@@ -126,13 +126,13 @@ angular.module('Codegurukul')
             return $http.post('/api/auth/signup', user)
                 .success(function() {
                 //            $location.path('/login');
+                $state.go('verify-email');
                 $alert({
-                    content: 'Congratulations! Your account has successfully been created! Please log in to continue.',
+                    content: 'Congratulations! Your account has successfully been created!',
                     placement: 'right',
                     type: 'success',
                     duration: 5
                 });
-                $rootScope.loginModal();
             })
                 .error(function(response) {
                 $alert({
