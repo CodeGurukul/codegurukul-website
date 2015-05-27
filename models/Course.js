@@ -16,6 +16,11 @@ var courseSchema = new mongoose.Schema({
   batchSize: Number,
   inviteOnly: Boolean,
   inviteMessage: String,
+  status: {
+    type: String,
+    default: 'unpublished',
+    enum: ['unpublished', 'new', 'closed', 'open']
+  },
   attendees: [{
     _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   }],

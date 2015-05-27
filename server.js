@@ -117,6 +117,7 @@ app.get('/api/codes/:cslug/validateCode', codeController.validateCode);
 //Admin calls
 app.get('/api/admin/courses/:cslug/attendees', userController.isAdmin, adminController.getAttendees);
 app.get('/api/admin/courses/:cslug', userController.isAdmin, adminController.getCourse);
+app.post('/api/admin/createCourse', userController.isAdmin, adminController.createCourse);
 app.get('/api/admin/courses', userController.isAdmin, adminController.getCourses);
 
 /**
