@@ -38,6 +38,6 @@ angular.module('Codegurukul')
         $scope.registerModalShown = !$scope.registerModalShown;
     };   
 
-    
+
 
 });

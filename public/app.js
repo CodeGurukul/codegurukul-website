@@ -1,7 +1,7 @@
-angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps','angular-carousel', 'ngSanitize'])
+angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps','angular-carousel', 'ngSanitize', 'ngTagsInput','720kb.tooltips'])
     .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
-    $urlRouterProvider.otherwise('/programs/internships');
+    $urlRouterProvider.otherwise('/');
 
     $stateProvider
         .state('programs', {
@@ -9,11 +9,41 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         templateUrl: 'views/program-details.html',
         controller: 'ProgramCtrl'
     }) 
-//        .state('free-ruby-workshop', {
-//        url: '/free-ruby-workshop',
-//        templateUrl: 'views/free-ruby-workshop.html',
-//        controller: 'RubyCtrl'
-//    })        
+        .state('user', {
+        url: '/user/:uslug',
+        templateUrl: 'views/user-profile.html',
+        controller: 'UserCtrl'
+    })  
+        .state('admin', {
+        url: '/admin',
+        templateUrl: 'views/admin.html',
+        controller: 'AdminCtrl'
+    })
+        .state('admin-add-course', {
+        url: '/admin/add-course',
+        templateUrl: 'views/admin-add-course.html'
+//        controller: 'AdminCourseDetailsCtrl'
+    }) 
+        .state('admin-course-details', {
+        url: '/admin/view/:course',
+        templateUrl: 'views/admin-view-course-details.html',
+        controller: 'AdminCourseDetailsCtrl'
+    }) 
+        .state('verify-email', {
+        url: '/verify-email',
+        templateUrl: 'views/email-verification.html',
+        controller: 'VerifyEmailCtrl'
+    })  
+        .state('verification', {
+        url: '/userverification/:verificationCode',
+        templateUrl: 'views/verification.html',
+        controller: 'VerificationCtrl'
+    })  
+        .state('home', {
+        url: '/',
+        templateUrl: 'views/landing.html',
+        controller: 'LandingCtrl'
+    })        
         .state('angularjs-workshop', {
         url: '/angularjs-workshop',
         templateUrl: 'views/angularjs-workshop.html',
@@ -24,14 +54,18 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         templateUrl: 'views/internships.html',
         controller: 'InternshipsCtrl'
     })           
-        .state('home', {
-        url: '/angularjs-workshop',
-        templateUrl: 'views/angularjs-workshop.html'
-    })        
         .state('contact', {
         url: '/contact',
         templateUrl: 'views/contact.html',
         controller: 'ContactCtrl'
+    })        
+        .state('stories', {
+        url: '/stories',
+        templateUrl: 'views/stories.html'
+    })        
+        .state('about-us', {
+        url: '/about-us',
+        templateUrl: 'views/about-us.html'
     })        
         .state('startup-team-training', {
         url: '/startup-team-training',
@@ -67,6 +101,9 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
             responseError: function(response) {
                 if (response.status === 401 || response.status === 403) {
                     $location.path('/login');
+                }
+                if (response.status === 404) {
+                    $location.path('home');
                 }
                 return $q.reject(response);
             }

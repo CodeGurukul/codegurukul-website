@@ -4,7 +4,7 @@
     <div class="title-image"></div>
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 text-center">
+            <div class="col-sm-12 text-center course-main-heading">
                 {{course.name}}
             </div>
         </div>
@@ -22,59 +22,19 @@
             <!-- ==== COURSES START == -->
 
             <div class="col-sm-8">
-                <p ng-bind-html="descriptionHtml"></p>
+                <p ng-bind-html="course.description"></p>
                 <hr>
                 <h3>What you will be taught</h3>
 
-                <div ng-repeat="content in course.courseContent">
+                <div ng-repeat="content in course.content">
                     <h5 class="lesson-title"><a href="#">{{content.title}}</a></h5>
                     <div class="meta">
-                        <span><i class="fa fa-clock-o"></i>{{content.time}}</span>
+                        <span><i class="fa fa-clock-o"></i>{{content.duration}}</span>
                         <span><i class="fa fa-dashboard"></i>{{content.difficulty}}</span>
                     </div>
-                    <p ng-repeat="item in content.content">{{item.data}}</p>
+                    <p ng-bind-html="content.description"></p>
                     <hr>
                 </div>
-
-                <!--
-
-<h5 class="lesson-title"><a href="#">Difference between Ruby and other traditional languages</a></h5>
-<div class="meta">
-<span><i class="fa fa-clock-o"></i>36 Minutes</span>
-<span><i class="fa fa-dashboard"></i>Easy</span>
-</div>
-<p>Find out what makes Ruby different from other traditional programming languages such as Java and PHP.</p>
-<hr>
-
-<h5 class="lesson-title"><a href="#">Ruby Fundamentals</a></h5>
-<div class="meta">
-<span><i class="fa fa-clock-o"></i>36 Minutes</span>
-<span><i class="fa fa-dashboard"></i>Easy</span>
-</div>
-<p> We'll dive into variables, symbols, functions, classes, modules, blocks and more in less than an hour.</p>
-<hr>
-<h5 class="lesson-title"><a href="#">Hands on Programming</a></h5>
-<div class="meta">
-<span><i class="fa fa-clock-o"></i>36 Minutes</span>
-<span><i class="fa fa-dashboard"></i>Easy</span>
-</div>
-<p>Write your first Ruby program.</p>
-<hr>
-<h5 class="lesson-title"><a href="#">Building a Ruby app</a></h5>
-<div class="meta">
-<span><i class="fa fa-clock-o"></i>36 Minutes</span>
-<span><i class="fa fa-dashboard"></i>Easy</span>
-</div>
-<p>You'll build your own Ruby app using Sinatra - we'll create a mini comic book store app - we'll even use mongodb</p>
-<hr>
-<h5 class="lesson-title"><a href="#">Ruby Frameworks</a></h5>
-<div class="meta">
-<span><i class="fa fa-clock-o"></i>36 Minutes</span>
-<span><i class="fa fa-dashboard"></i>Easy</span>
-</div>
-<p>Sneak a peek into new ruby frameworks in 2015 like Volt and Lotus</p>
-<hr>
--->
             </div>
 
             <!-- ==== COURSES END == -->
@@ -87,9 +47,10 @@
                 <div class="widget" data-scroll-reveal>
                     <ul>
                         <li class="price">
-                            Price <span class="pull-right"> <span ng-show="registerButton">₹</span>{{course.price}} </span>
+                            Price <span ng-show="course.slug == 'web-internship-program'" class="pull-right">*</span><span class="pull-right {{textAnimation}}" ng-if="course.price">{{course.price | currency : "INR " : 2}}</span>
+                            <span class="pull-right" ng-if="!course.price"> FREE</span>
                         </li>
-                        <li class="course-data">
+                        <li class="course-data" tooltips tooltip-title="Rating" tooltip-try="true" tooltip-side="top">
                             <span class="icon icon-068"></span>
                             <span class="pull-right">
                                 <i class="fa fa-star"></i>
@@ -99,33 +60,48 @@
                                 <i class="fa fa-star"></i>
                             </span>
                         </li>
-                        <li class="course-data">
+                        <li class="course-data" tooltips tooltip-title="Domain" tooltip-side="top">
                             <span class="icon icon-032"></span>
-                            <span class="pull-right"> {{course.domain}} </span>
+                            <span class="pull-right"> {{course.tech}} </span>
                         </li>
-                        <li class="course-data">
+                        <li class="course-data" tooltips tooltip-title="Duration" tooltip-side="top">
                             <span class="icon icon-038"></span>
-                            <span class="pull-right"> {{course.courseDuration}} </span>
+                            <span class="pull-right"> {{course.duration}} </span>
                         </li>
-                        <li class="course-data">
+                        <li class="course-data" tooltips tooltip-title="Course Date" tooltip-side="top">
                             <span class="icon fa fa-calendar"></span>
-                            <span class="pull-right"> {{course.courseDate}} </span>
+                            <span class="pull-right"> {{course.date | date : format : longDate}} </span>
                         </li>
-                        <li class="course-data">
+                        <li class="course-data" tooltips tooltip-title="Batch Size" tooltip-side="top">
                             <span class="icon icon-006"></span>
-                            <span class="pull-right"> {{course.batchSize}} </span>
+                            <span class="pull-right"> {{course.batchSize}} Students</span>
                         </li>
-                        <li class="course-data" ng-show="course.place">
+                        <li class="course-data" ng-show="course.place" tooltips tooltip-title="Location" tooltip-side="top">
                             <span class="icon icon-010"></span>
                             <span class="pull-right">{{course.place}}</span>
                         </li>
+<!--
                     </ul>
-                    <p ng-show="notifyButton"><a class="btn btn-primary take-course" ng-click="registerModal()">Notify Me!</a></p>
-                    <p ng-show="registerButton" ng-controller="PaymentCtrl"><a class="btn btn-primary take-course" ng-click="pay();">Register</a></p>
-                    <p class="text-center share">		
+                    <ul>
+-->
+                        <li class="coupon-code" ng-show="!showCourseJoinedTickMark && currentUser">
+                            <span class="pull-left coupon-input-box"><input type="text" class="form-control" placeholder="Enter Coupon Code" ng-model="couponCode"></span>
+                            <span class="pull-right"><button class="btn btn-primary" ng-click="validate()">Validate</button></span>
+                        </li>
+                    </ul>
+                    <br>
+                    <p class="text-center" ng-show="showRemainingSpots"> <i class="fa fa-clock-o"></i> Hurry! Only {{remainingSpots}} spot(s) remaining!</p> 
+
+<!--                    <p ng-if="course.status=='new'"><a class="btn btn-primary take-course" ng-click="notify()">Notify Me!<span ng-class="{processSpinner:processing}"></span></a></p>-->
+                    <p ng-disabled="course.status=='closed' || showCourseJoinedTickMark == true"><a class="btn btn-primary take-course" ng-click="checkCondition();"> <span> <i class="fa fa-check joined-course" ng-show="showCourseJoinedTickMark"></i> <i class="fa fa-lock locked-course" ng-show="course.inviteOnly && !showCourseJoinedTickMark && !courseUnlocked"></i> <i class="fa fa-unlock locked-course" ng-show="courseUnlocked && showCourseJoinedTickMark == false" ng-hide="course.inviteOnly == false"></i> <span ng-if="course.status=='new'"> Notify Me! </span> </span> <span ng-if="course.status=='open' && course.price>0 && !showCourseJoinedTickMark">Pay</span> <span ng-if="course.status=='open' && course.price=='0' && showCourseJoinedTickMark == false"> Register </span> <span ng-if="course.status=='closed'"> Closed</span> <span ng-if="showCourseJoinedTickMark">Registered</span><span ng-class="{processSpinner:processing}"></span></a></p>
+<!--                    <p><a class="btn btn-primary take-course" ng-click="joinCourse()"><i class="fa fa-check" ng-show="showCourseJoinedTickMark"></i> Register<span ng-class="{processSpinner:processing}"></span></a></p>-->
+<!--                    <p ><a class="btn btn-primary take-course" ng-disabled="true">Closed</a></p>-->
+
+                    <p class="text-center share">       
                         <a href="http://www.facebook.com/codegurukul"><i class="fa fa-facebook fa-lg"></i></a>
                         <a href="http://www.twitter.com/codegurukul"><i class="fa fa-twitter fa-lg"></i></a>
                     </p>
+                    <small class="pull-right" ng-show="course.slug == 'web-internship-program'">*excluding optional courses.</small>
                 </div>
                 <!-- ==== COURSE DATA END == -->
 
@@ -134,10 +110,11 @@
                     <h3>Mentors</h3>
                     <div class="teacher row" ng-repeat="mentor in course.mentors">
                         <div class="col-sm-12">
-                            <img src="{{mentor.imageLocation}}" alt="" class="pull-left" />
-                            <h5> {{mentor.mentorName}} </h5>
-                            <p> {{mentor.mentorDescription}} </p>
-                        <hr>
+                            <img src="{{mentor.image}}" alt="" class="pull-left" />
+                            <h5> {{mentor.name}} </h5>
+                            <p> {{mentor.description}} <br> 
+                                <a href="{{mentor.profile}}" target="_blank"> View Profile</a></p>
+                            <hr>
                         </div>
                     </div>
                 </div>
@@ -150,14 +127,39 @@
         </div>
     </div>
 </section>
+<section ng-show="course.slug == 'web-internship-program'">
 
-<!-- ========== CONTENT END ========== -->
+    <h2 class="carousel-title text-center">
+        Testimonials
+    </h2>
 
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
 
-<ng-include src="'../views/modal-partials/signup-modal.html'"></ng-include>
-<ng-include src="'../views/modal-partials/email-signup-modal.html'"></ng-include>
-<ng-include src="'../views/modal-partials/login-modal.html'"></ng-include>
-<ng-include src="'../views/modal-partials/guest-registration-modal.html'"></ng-include>
-<ng-include src="'../views/modal-partials/notification-modal.html'"></ng-include>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item" ng-class="{active:!$index}" ng-repeat = "testimonial in course.testimonials">
+                <p>" {{testimonial.testimonial}} "</p> 
+                <p ng-bind-html="testimonial.studentPlace"></p>
+            </div>
+        </div>
+    </div>
+</section>
 
-
+<modal-dialog class="inviteMessageModal" show='inviteMessageModalShown' dialog-title="Information" height="auto" width="350px">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-center">{{course.inviteMessage}}</p>
+            <p class="text-center">Regards,<br>The CodeGurukul Team</p>
+        </div>
+        <div class="col-md-12 text-center">
+            <button class="btn btn-primary btn-md" ng-click="checkCondition()"> OK </button>
+        </div>
+    </div>
+</modal-dialog>

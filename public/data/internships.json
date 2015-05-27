@@ -191,5 +191,18 @@
             "mentorDescription" : "Tech Guru with 7+ years of industry experience",
             "imageLocation" : "img/sobin_thumb.png"
         }
+    ],
+    "testimonials" : [
+        {
+            "testimonialContent" :
+            {
+                "studentName" : "Amod Shinde",
+                "testimonial" : "I am lucky to be the part of this workshop. I learnt the whole Web devlopment ( front end + back end) properly in 2 weeks.We were taught HTML, CSS, Javascript, Bootstrap , Git, Node.js and Angular.js. Many would doubt if someone can learn detail web dev in two weeks. But trust me its possible with codegurukul."
+                "studentPlace" : "<em>- Amod Shinde <br> <small>Padre Conceicao College of Engineering, <br> Goa</small></em>"
+            }
+        }
+            ]
+        }
+
     ]
 }

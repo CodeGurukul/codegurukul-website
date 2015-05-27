@@ -6,7 +6,7 @@ angular.module('Codegurukul')
     $scope.signupWithEmailModalShown = false;
     $scope.loginModalShown = false;
     $rootScope.coursePrice = '350000';
-        $rootScope.courseName = 'AngularJS Workshop';
+    $rootScope.courseName = 'AngularJS Workshop';
 
     $scope.payment = function(){
         if($rootScope.currentUser){
@@ -31,9 +31,9 @@ angular.module('Codegurukul')
 
     $scope.registerModal = function(){
         $scope.registerModalShown = !$scope.registerModalShown;
-        
+
     };
-    
+
     console.log($stateParams.course);
 
 });

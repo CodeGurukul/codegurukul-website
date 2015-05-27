@@ -4,11 +4,13 @@ angular.module('Codegurukul')
       Auth.logout();
     }
     
-    $scope.signupWithEmailModal = function(){
-        $scope.signupWithEmailModalShown = !$scope.signupWithEmailModalShown;
+    $rootScope.signupWithEmailModal = function(){
+        $rootScope.signupWithEmailModalShown = !$rootScope.signupWithEmailModalShown;
+        $rootScope.modalName = "signupWithEmailModal()";
     }
 
-    $scope.loginModal = function(){
-        $scope.loginModalShown = !$scope.loginModalShown;
+    $rootScope.loginModal = function(){
+        $rootScope.loginModalShown = !$rootScope.loginModalShown;
+        $rootScope.modalName = "loginModal()";
     }  
   });

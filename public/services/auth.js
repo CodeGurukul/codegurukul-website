@@ -1,10 +1,9 @@
 angular.module('Codegurukul')
-    .factory('Auth', function($http, $location, $rootScope, $alert, $window) {
+    .factory('Auth', function($http, $location, $rootScope, $alert, $window, $state, $stateParams) {
     var token = $window.localStorage.token;
     var user = $window.localStorage.user;
     if (user) {
         $rootScope.currentUser = JSON.parse(user);
-        console.log($rootScope.currentUser);
     }
 
     // Asynchronously initialize Facebook SDK
@@ -97,7 +96,9 @@ angular.module('Codegurukul')
                 .success(function(data) {
                 $window.localStorage.token = data.token;
                 $window.localStorage.user = JSON.stringify(data.user);
+                console.log(data.user);
                 $rootScope.currentUser = data.user;
+                //                $state.go('home');
                 //            $location.path('/');
                 $alert({
                     content: 'Cheers! You have successfully logged in!',
@@ -105,23 +106,32 @@ angular.module('Codegurukul')
                     type: 'success',
                     duration: 5
                 });
+                $state.transitionTo($state.current, $stateParams, {
+                    reload: true,
+                    inherit: false,
+                    notify: true
+                });
             })
-                .error(function() {
+                .error(function(status) {
                 delete $window.localStorage.token;
                 $alert({
-                    content: 'Error! Invalid username or password.',
+                    content: status,
                     placement: 'right',
                     type: 'danger',
                     duration: 5
                 });
+                if (status == "Your account has not been verified"){
+                    $state.go('verify-email');
+                }
             });
         },
         signup: function(user) {
             return $http.post('/api/auth/signup', user)
                 .success(function() {
                 //            $location.path('/login');
+                $state.go('verify-email');
                 $alert({
-                    content: 'Congratulations! Your account has successfully been created! Please log in to continue.',
+                    content: 'Congratulations! Your account has successfully been created!',
                     placement: 'right',
                     type: 'success',
                     duration: 5
@@ -129,7 +139,7 @@ angular.module('Codegurukul')
             })
                 .error(function(response) {
                 $alert({
-                    content: 'Error! Invalid username or password.',
+                    content: 'Something is not right. Please check the email and password you are entering and try again later.',
                     placement: 'right',
                     type: 'danger',
                     duration: 5
@@ -159,6 +169,7 @@ angular.module('Codegurukul')
             delete $window.localStorage.token;
             delete $window.localStorage.user;
             $rootScope.currentUser = null;
+            $state.go('home');
             $alert({
                 content: 'You have been logged out.',
                 animation: 'fadeZoomFadeDown',

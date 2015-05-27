@@ -1,88 +1,94 @@
-<!-- ========== TITLE START ========== -->
-
-		<div class="title">
-			<div class="title-image"></div>
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12 text-center">
-						All Courses
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- ========== TITLE END ========== -->
-
-		<!-- ========== CONTENT START ========== -->
-
-
-<section id="featured-teachers" class="alt-background">
-    <div class="container">
-
-        <h2 class="carousel-title text-center">
-            Our Courses
-        </h2>
-
-
-        <div class="item col-md-3 col-sm-6 col-xs-6">
-            <div class="description">
-                <h3>Course 01</h3>
-                <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor.</p>
-            </div>
-        </div>
-
-        <div class="item col-md-3 col-sm-6 col-xs-6">
-            <div class="description">
-                <h3>Course 02</h3>
-                <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor.</p>
-            </div>
-        </div>
-
-        <div class="item col-md-3 col-sm-6 col-xs-6">
-            <div class="description">
-                <h3>Course 03</h3>
-                <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor.</p>
-            </div>
-        </div>
-
-        <div class="item col-md-3 col-sm-6 col-xs-6">
-            <div class="description">
-                <h3>Course 04</h3>
-                <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor.</p>
-            </div>
-        </div>
-
-        <div class="item col-md-3 col-sm-6 col-xs-6">
-            <div class="description">
-                <h3>Course 05</h3>
-                <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor.</p>
-            </div>
-        </div>
-
-        <div class="item col-md-3 col-sm-6 col-xs-6">
-            <div class="description">
-                <h3>Course 06</h3>
-                <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor.</p>
-            </div>
-        </div>
-
-        <div class="item col-md-3 col-sm-6 col-xs-6">
-            <div class="description">
-                <h3>Course 07</h3>
-                <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor.</p>
-            </div>
-        </div>
-
-        <div class="item col-md-3 col-sm-6 col-xs-6">
-            <div class="description">
-                <h3>Course 08</h3>
-                <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor.</p>
-            </div>
-        </div>
-
+<div class="title">
+  <div class="title-image"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        Courses
+      </div>
     </div>
+  </div>
+</div>  
+  <!-- ========== CONTENT START ========== -->
+<section id="content">
+    <div class="container">
+        <div class="row">
 
+            <!-- ==== SIDEBAR START == -->
 
+          <div class="col-md-3 col-sm-4 filters">
+            <!-- ==== FITER START == -->
+            <div class="widget">
+              <form role="form">
+                <ul>
+                  <li class="checkbox">
+                      <label><input type="checkbox" ng-model="all" ng-click="filterAll()">All<span class="pull-right"><button class="btn btn-primary btn-xs" ng-click="all = true;filterAll();"><i class="fa fa-undo"></i></button></span></label>
+                  </li>
+                </ul>
+                <h3>Category Filter</h3>
+                <ul>
+                  <li ng-repeat="domain in domains" class="checkbox">
+                      <label><input type="checkbox" ng-click="filterClick()" ng-model="domain.on">{{domain.name}}</label>
+                  </li>
+                </ul>
+                <h3>Price Filter</h3>
+                <ul>
+                    <li class="checkbox">
+                        <label><input type="checkbox" ng-click="filterClick()" ng-model="price.pay"> Payable </label>
+                    </li>
+                    <li class="checkbox">
+                        <label><input type="checkbox" ng-click="filterClick()" ng-model="price.free"> Free </label>
+                    </li>
+                </ul>
+                
+              </form>
+            </div>
+              <!-- ==== FITER END == -->
+          </div>
+
+            <!-- ==== SIDEBAR END == -->
+
+            <!-- ==== COURSES START == -->
+
+          <div class="col-md-9 col-sm-8">
+
+            <div class="courses">
+                        
+                <!-- Course Start -->
+              <div ng-repeat="course in courses | filter:courseFilter" class="course row">
+                <div class="col-sm-4">
+                  <a ui-sref="programs({course:'{{course.slug}}'})"><img ng-src="{{course.thumb}}" alt="" class="img-responsive"></a>
+                </div>
+                <div class="col-sm-8">
+                  <div class="row">
+                    <div class="col-md-9 col-sm-8">
+                      <h3><a ui-sref="programs({course:'{{course.slug}}'})">{{course.name}}</a></h3>
+                      <div class="meta">
+                        <span><i class="fa fa-file-text"></i>{{course.content.length}} Lessons</span>
+                        <span><i class="fa fa-folder"></i>{{course.domain}}</span>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 price" ng-if="course.price">{{course.price | currency : "₹ " : 2}}</div>
+                    <div class="col-md-3 col-sm-4 price" ng-if="!course.price">FREE</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <p ng-bind-html="course.description"></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                    <hr>
+                </div>
+              </div>
+              <!-- Course End -->
+
+            </div>
+
+          </div>
+
+          <!-- ==== COURSES END == -->
+
+        </div>
+    </div>
 </section>
-
-		<!-- ========== CONTENT END ========== -->
+<!-- ========== CONTENT END ========== -->

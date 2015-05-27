@@ -18,19 +18,22 @@
                 </div>
             </div>
         </div>
-        <div class="social-login-buttons">
-            <button type="button" class="btn btn-md signup-button social-signup btn-linkedin"> <span><i class="fa fa-linkedin-square"></i></span> <span>Linkedin</span> </button>
-            <br>
-            <br>
-            <button type="button" class="btn btn-md signup-button social-signup btn-github"> <span><i class="fa fa-github-square"></i></span> <span>Github</span> </button>
-            <br>
-            <br>
-            <button type="button" class="btn btn-md signup-button social-signup btn-facebook"> <span><i class="fa fa-facebook-square"></i></span> <span>Facebook</span> </button>
-        </div>
         <div class="modalButtons text-center">
             <button class="btn btn-sm angularCancelButton cancelButton" ng-click="loginModal()" type="button"> Cancel </button>
             <button class="btn btn-sm successButton " ng-disabled="loginForm.$invalid" ng-click="login();loginModal();registerModal()" type="submit"> Login </button>
         </div>
+        <div class="social-login-buttons text-center">
+            <button class="btn btn-block btn-social btn-linkedin">
+                <i class="fa fa-linkedin"></i> Sign in with LinkedIn
+            </button>            
+            <button class="btn btn-block btn-social btn-github">
+                <i class="fa fa-github"></i> Sign in with Github
+            </button>
+            <button class="btn btn-block btn-social btn-facebook">
+                <i class="fa fa-github"></i> Sign in with Facebook
+            </button>
+        </div>
+
     </form>  
 </modal-dialog>
 <!-- ========== LOGIN MODAL ENDS ========== -->
