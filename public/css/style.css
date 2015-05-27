@@ -1717,3 +1717,7 @@ body > .right {
 .course-main-heading{
     text-transform: capitalize !important;
 }
+
+.verification-section a:hover{
+    cursor: default;
+}

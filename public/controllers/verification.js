@@ -7,7 +7,6 @@ angular.module('Codegurukul')
     User.verify.save({
         verificationCode: $stateParams.verificationCode
     },function(data){
-        //        $state.go('home');
         $timeout(function() {
             $state.go('home');
         }, 5000);
