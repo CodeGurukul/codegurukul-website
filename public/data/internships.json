@@ -1,6 +1,6 @@
 {
-    "name" : "INTERNSHIPS",    
-    "description" : "<h1>THE CODEGURUKUL INTERNSHIP ADVANTAGE</h1>\n                <p>This Internship is organized by Codegurukul, to train and mentor the best students in Mumbai. The program is a one month internship conducted by experienced faculty. Students will be trained on the latest web technologies that power the most popular websites like LinkedIn, Facebook and eBay. Each student will be able to set up their own web application at the end of the course and will also be offered an option to opt in for more advanced topics over the course of this internship.</p>\n<h3>Week One:</h3>\n                <p>The first week will be a Foundation Course in which the basics of website development like front end development and version control will be covered. Students will also work on a project which will be based on what they learn in the week. The course is designed with the assumption that the student has no prior knowledge of the subject. The refresher course on HTML5, CSS3 and Javascript will get your creative juices flowing! Ignite the designer in you!</p>\n<h3>Week Two:</h3>\n                <p>The second week will feature topics like deployment and optimization. Students will be working on another set of projects which will be based on these new topics. Also optional add-on paid courses will be offered in the second week. These courses will be focused towards leveraging the basic technologies learnt during the first week and will cover some advanced topics. They will in no way affect the certification of the internship.</p>\n <h3>Week Three:</h3>\n                <p>Week three will conclude with finishing notes on development, design languages and a little bit about cloud architecture. It will also include optional cloud technology courses base on deployment.</p>",
+    "name" : "INTERNSHIP",    
+    "description" : "<h1>THE CODEGURUKUL INTERNSHIP ADVANTAGE</h1>\n                <p>This Internship is organized by Codegurukul, to train and mentor the best students in Mumbai. The program is a one month internship conducted by experienced faculty. Students will be trained on the latest web technologies that power the most popular websites like LinkedIn, Facebook and eBay. Each student will be able to set up their own web application at the end of the course and will also be offered an option to opt in for more advanced topics over the course of this internship.</p>\n<h3>Week One:</h3>\n                <p>The first week will be a Foundation Course in which the basics of website development like front end development and version control will be covered. Students will also work on a project which will be based on what they learn in the week. The course is designed with the assumption that the student has no prior knowledge of the subject. The refresher course on HTML5, CSS3 and Javascript will get your creative juices flowing! Ignite the designer in you!</p>\n<h3>Week Two:</h3>\n                <p>The second week will feature topics backend development, deployment and optimization. Students will be trained on node.js, mongoDB and other technologies. Optional add-on paid courses may be offered in the second week. These courses will be focused towards leveraging the basic technologies learnt during the first week and will cover some advanced topics. They will in no way affect the certification of the internship.</p>\n <h3>Week Three and Four:</h3>\n                <p>Week three and four would consist of on-site project development where a student would work on a particular project from his/her preferred location. Project contribution would be monitored using Github.</p>",
     "courseContent" : [
         {
             "title" : "HTML5",
@@ -58,7 +58,7 @@
             "difficulty" : "Easy",
             "content" : [
                 {
-                    "data" : "Jade is a template engine used to create HTML pages. It gets rid of the “annoying HTML tags” so that the code looks clean and readable. In this course, we explore the rules, techniques and skills for using jade."
+                    "data" : "Jade is a template engine used to create HTML pages. It gets rid of the “annoying HTML tags” so that the code looks clean and readable. Template engines are used for making static HTML pages dynamic and modular which gives a great level of control and maintainability to the programmer.  In this course, we explore the rules, techniques and skills for using jade."
                 }
             ]
         },
@@ -113,6 +113,16 @@
             ]
         },
         {
+            "title" : "CLOUD ARCHITECTURE",
+            "time" : "4 Hours",
+            "difficulty" : "Intermediate",
+            "content" : [
+                {
+                    "data" : "Cloud computing architecture refers to the components and subcomponents required for cloud computing. These components typically consist of a front end platform (fat client, thin client, mobile device), back end platforms (servers, storage), a cloud based delivery, and a network (Internet, Intranet, Intercloud). We will delve into the depths of this architecture using our designed curriculum."
+                }
+            ]
+        },
+        {
             "title" : "ANGULAR.JS (OPTIONAL COURSE FOR WEEK 2)",
             "time" : "6 Hours",
             "difficulty" : "Intermediate",
@@ -133,17 +143,7 @@
             ]
         },
         {
-            "title" : "CLOUD ARCHITECTURE",
-            "time" : "4 Hours",
-            "difficulty" : "Intermediate",
-            "content" : [
-                {
-                    "data" : "Cloud computing architecture refers to the components and subcomponents required for cloud computing. These components typically consist of a front end platform (fat client, thin client, mobile device), back end platforms (servers, storage), a cloud based delivery, and a network (Internet, Intranet, Intercloud). We will delve into the depths of this architecture using our designed curriculum."
-                }
-            ]
-        },
-        {
-            "title" : "AMAZON WEB SERVICES (OPTIONAL COURSE FOR WEEK 3)",
+            "title" : "AMAZON WEB SERVICES (OPTIONAL COURSE FOR WEEK 2)",
             "time" : "6 Hours",
             "difficulty" : "Intermediate",
             "content" : [
@@ -153,7 +153,7 @@
             ]
         },
         {
-            "title" : "BLUE MIX (OPTIONAL COURSE FOR WEEK 3)",
+            "title" : "BLUE MIX (OPTIONAL COURSE FOR WEEK 2)",
             "time" : "4 Hours",
             "difficulty" : "Intermediate",
             "content" : [
@@ -163,7 +163,7 @@
             ]
         },
         {
-            "title" : "CLOUD STORAGE WITH API (OPTIONAL COURSE FOR WEEK 3)",
+            "title" : "CLOUD STORAGE WITH API (OPTIONAL COURSE FOR WEEK 2)",
             "time" : "4 Hours",
             "difficulty" : "Intermediate",
             "content" : [
@@ -173,10 +173,10 @@
             ]
         }
     ],
-    "price" : "8000",
+    "price" : "8000*",
     "domain" : "Web Development",
-    "courseDuration" : "3 Weeks",
-    "courseDate" : "mid-June",
+    "courseDuration" : "4 Weeks (2 Weeks On-Site)",
+    "courseDate" : "15th June",
     "batchSize" : "40 Students",
     "place" : "Mumbai",
     "remainingSpots" : "5",
@@ -184,12 +184,32 @@
         {
             "mentorName": "Stanly Samuel",
             "mentorDescription" : "Knowledge imparter with 6+ years of experience in teaching",
-            "imageLocation" : "img/stanly_thumb.jpg"
+            "imageLocation" : "img/stanly_thumb.jpg",
+            "profile" : "http://www.facebook.com/stanlysir"
         },
         {
             "mentorName": "Sobin G. Thomas",
             "mentorDescription" : "Tech Guru with 7+ years of industry experience",
-            "imageLocation" : "img/sobin_thumb.png"
+            "imageLocation" : "img/sobin_thumb.png",
+            "profile" : "http://www.linkedin.com/in/sobingt"
+        }
+    ],
+    "testimonials" : [ 
+        {
+            "testimonial" : "I am lucky to be the part of this workshop. I learnt the whole Web devlopment ( front end + back end) properly in 2 weeks.We were taught HTML, CSS, Javascript, Bootstrap , Git, Node.js and Angular.js. Many would doubt if someone can learn detail web dev in two weeks. But trust me its possible with codegurukul.",
+            "studentPlace" : "<em>- Amod Shinde <br> <small>Padre Conceicao College of Engineering, <br> Goa</small></em>"
+        }, 
+        {
+            "testimonial" : "The 2 week-long internship on web development was very educative. The various topics covered during the course such as node.js,express and mongoose will certainly be helpful to me in the long run. Hope you people conduct more of such workshops in the future. It was indeed an enriching experience. Thanks and kudos to you people!! :)",
+            "studentPlace" : "<em>- Sameetha Dessai <br> <small>Goa</small></em>"
+        }, 
+        {
+            "testimonial" : "Joining CodeGurukul's internship was the best decision ever. I used to consider web development to be very difficult. But Stanly made everything very easy to understand. He is a fantastic trainer. Thanks to CodeGurukul I am currently working as a web developer. Thank you CodeGurukul for making me realize the possibilities!",
+            "studentPlace" : "<em>- Shraddha Naik <br> <small>Software Engineer, Goa Tech Solutions</small></em>"
+        }, 
+        {
+            "testimonial" : "Within 2 weeks after the internship I appeared for an interview for the role of a web developer and have been working since over here at G4 InfoTech, Mapusa-Goa; also I'm very certain when I say this internship very directly helped me in getting this job. A big thumbs up from me to code gurukul, Stanly sir and Sobin sir.",
+            "studentPlace" : "<em>- Anuj Kelkar <br> <small>G4 InfoTech, <br> Goa</small></em>"
         }
     ],
     "testimonials" : [
