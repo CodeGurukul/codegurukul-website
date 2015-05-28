@@ -39,6 +39,18 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         templateUrl: 'views/verification.html',
         controller: 'VerificationCtrl'
     })  
+        .state('terms-and-conditions', {
+        url: '/terms-and-conditions',
+        templateUrl: 'views/terms-and-conditions.html'
+    })  
+        .state('refund-policy', {
+        url: '/refund-policy',
+        templateUrl: 'views/refund-policy.html'
+    })  
+        .state('privacy-policy', {
+        url: '/privacy-policy',
+        templateUrl: 'views/privacy-policy.html'
+    })  
         .state('home', {
         url: '/',
         templateUrl: 'views/landing.html',

@@ -70,13 +70,48 @@
             <hr>
             <h5 class="text-center">Mentors</h5>
             <div class="form-group" ng-repeat="mentor in course.mentors">
-                <label>Mentor Name:</label>
-                <input type="text" class="form-control input-md" ng-model="mentor.name"><br>
-                <label>Profile Link:</label>
-                <input type="text" class="form-control input-md" ng-model="mentor.profile"><br>
-                <label>Description:</label>
-                <input type="text" class="form-control input-md" ng-model="mentor.description">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <label>Mentor Name:</label>
+                    <input type="text" class="form-control input-md" ng-model="mentor.name"><br>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <label>Profile Link:</label>
+                    <input type="text" class="form-control input-md" ng-model="mentor.profile"><br>
+                </div>
+                <div class="col-md-12 col-xs-12 custom-padding-bottom-20">
+                    <label>Description:</label>
+                    <input type="text" class="form-control input-md" ng-model="mentor.description">
+                </div>
                 <hr>
+            </div>
+
+            <hr>
+            <hr>
+            <h5>Course Contents</h5>
+            <div class="form-group" ng-repeat="content in course.content">
+                <div class="col-md-12">
+                    <label> Module Number{{$index + 1}}</label>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <label>Title</label>
+                    <input type="text" class="form-control input-md" ng-model="content.title">
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <label>Difficulty</label>
+                    <select class="form-control input-md" ng-model="content.difficulty">
+                        <option value="Easy" selected>Easy</option>
+                        <option value="Intermediate" selected>Intermediate</option>
+                        <option value="Hard" selected>Hard</option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <label>Time</label>
+                    <input type="text" class="form-control input-md" ng-model="content.time">
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <label>Description</label>
+                    <textarea type="text" class="form-control input-md" ng-model="content.description"></textarea>
+                </div>
             </div>
         </form>
     </div>
