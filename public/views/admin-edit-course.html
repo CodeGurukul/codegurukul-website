@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                ADMIN PAGE - ADD A NEW COURSE
+                ADMIN PAGE - EDIT COURSE
             </div>
         </div>
     </div>
@@ -14,18 +14,18 @@
 <!-- ========== TITLE END ========== -->
 
 <section>
-
-    <h1 class="text-center">Add A New Course</h1>
+    <h2 class="text-center">{{course.name}}</h2>
 
     <div class="container jumbotron">
         <form>
+            <h5 class="text-center">Course Details</h5>
             <div class="form-group">
                 <label>Course Name:</label>
-                <input type="text" class="form-control input-md">
+                <input type="text" class="form-control input-md" ng-model="course.name" readonly>
             </div>
             <div class="form-group">
                 <label>Course Desription:</label>
-                <textarea type="text" class="form-control input-md"></textarea>
+                <textarea type="text" class="form-control input-md" ng-model="course.description"></textarea>
             </div>
             <div class="form-group">
                 <label>Course Image Path:</label>
@@ -33,42 +33,50 @@
             </div>
             <div class="form-group">
                 <label>Course Price:</label>
-                <input type="text" class="form-control input-md">
+                <input type="text" class="form-control input-md" ng-model="course.price">
             </div>
             <div class="form-group">
                 <label>Course Technology:</label>
-                <input type="text" class="form-control input-md">
+                <input type="text" class="form-control input-md" ng-model="course.tech">
             </div>
             <div class="form-group">
                 <label>Course Duration:</label>
-                <input type="text" class="form-control input-md">
+                <input type="text" class="form-control input-md" ng-model="course.duration">
             </div>
             <div class="form-group">
                 <label>Course Date:</label>
-                <input type="date" class="form-control input-md">
+                <input type="date" class="form-control input-md" ng-model="course.date">
             </div>
             <div class="form-group">
                 <label>Course Batch Size:</label>
-                <input type="number" class="form-control input-md">
+                <input type="number" class="form-control input-md" ng-model="course.batchSize">
             </div>
             <div class="form-group">
                 <label>Course Place:</label>
-                <input type="text" class="form-control input-md">
+                <input type="text" class="form-control input-md" ng-model="course.place">
             </div>
             <div class="form-group">
                 <label>Invite Only:</label>
-                <select class="form-control input-md">
+                <select class="form-control input-md" ng-model="course.inviteOnly">
                     <option value="true">True</option>
                     <option value="false">False</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Invite Message:</label>
-                <input type="text" class="form-control input-md">
+                <textarea type="text" class="form-control input-md" ng-model="course.inviteMessage"></textarea>
             </div>
-            <div class="form-group">
-                <label>Invite Message:</label>
-                <textarea type="text" class="form-control input-md"></textarea>
+            <hr>
+            <hr>
+            <h5 class="text-center">Mentors</h5>
+            <div class="form-group" ng-repeat="mentor in course.mentors">
+                <label>Mentor Name:</label>
+                <input type="text" class="form-control input-md" ng-model="mentor.name"><br>
+                <label>Profile Link:</label>
+                <input type="text" class="form-control input-md" ng-model="mentor.profile"><br>
+                <label>Description:</label>
+                <input type="text" class="form-control input-md" ng-model="mentor.description">
+                <hr>
             </div>
         </form>
     </div>

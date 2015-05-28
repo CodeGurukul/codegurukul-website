@@ -29,7 +29,7 @@
                 <div ng-repeat="content in course.content">
                     <h5 class="lesson-title"><a href="#">{{content.title}}</a></h5>
                     <div class="meta">
-                        <span><i class="fa fa-clock-o"></i>{{content.duration}}</span>
+                        <span><i class="fa fa-clock-o"></i>{{content.time}}</span>
                         <span><i class="fa fa-dashboard"></i>{{content.difficulty}}</span>
                     </div>
                     <p ng-bind-html="content.description"></p>
@@ -84,7 +84,7 @@
                     </ul>
                     <ul>
 -->
-                        <li class="coupon-code" ng-show="!showCourseJoinedTickMark && currentUser">
+                        <li class="coupon-code" ng-show="!showCourseJoinedTickMark && currentUser && course.status != 'closed'">
                             <span class="pull-left coupon-input-box"><input type="text" class="form-control" placeholder="Enter Coupon Code" ng-model="couponCode"></span>
                             <span class="pull-right"><button class="btn btn-primary" ng-click="validate()">Validate</button></span>
                         </li>

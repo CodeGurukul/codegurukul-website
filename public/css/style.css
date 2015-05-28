@@ -1721,3 +1721,110 @@ body > .right {
 .verification-section a:hover{
     cursor: default;
 }
+
+.referral-code-textbox:hover{
+    cursor: default !important;
+}
+
+/*Spin loader css*/
+@-webkit-keyframes processSpinner2 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes processSpinner2 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes processSpinner2 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes processSpinner2 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+/* Styles for old versions of IE */
+.processSpinner2 {
+    font-family: sans-serif;
+    font-weight: 100;
+/*
+    position: absolute;
+    right: 10px;
+    top: 10px;
+*/
+}
+
+/* :not(:required) hides this rule from IE9 and below */
+.processSpinner2:not(:required) {
+    -webkit-animation: processSpinner2 1250ms infinite linear;
+    -moz-animation: processSpinner2 1250ms infinite linear;
+    -ms-animation: processSpinner2 1250ms infinite linear;
+    -o-animation: processSpinner2 1250ms infinite linear;
+    animation: processSpinner2 1250ms infinite linear;
+    border: 8px solid #C2E7BB;
+    border-right-color: transparent;
+    border-radius: 16px;
+    box-sizing: border-box;
+    display: inline-block;
+    /*position: relative;*/
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 32px;
+    height: 32px;
+}

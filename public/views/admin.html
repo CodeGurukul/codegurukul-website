@@ -19,6 +19,7 @@
 
 
     <div class="container">
+        <button class="btn btn-primary btn-md" ng-click="createCourseModal()"> Create a New Course </button>
         <table class="table table-condensed">
             <thead>
                 <tr>
@@ -33,13 +34,27 @@
                     <td><a ui-sref="programs({course:'{{course.slug}}'})"> {{course.name}} </a> </td>
                     <td> {{course.date | date:format:longDate}} </td>
                     <td> {{course.price}} </td>
-                    <td> <a ui-sref="admin-course-details({course:'{{course.slug}}'})"> <i class="fa fa-users fa-lg"></i> </a> <a href="#"> <i class="fa fa-pencil fa-lg"></i> </a> <a href="#"> <i class="fa fa-trash-o fa-lg"></i> </a> </td>
+                    <td> <a ui-sref="admin-course-details({course:'{{course.slug}}'})"> <i class="fa fa-users fa-lg"></i> </a> <a ui-sref="admin-edit-course({course:'{{course.slug}}'})"> <i class="fa fa-pencil fa-lg"></i> </a> <a href="#"> <i class="fa fa-trash-o fa-lg"></i> </a> </td>
                 </tr>
             </tbody>
             <hr>
         </table>
+        
+<!--
+        <input type="text" class="form-control" ng-model="test">
+        <button ng-click="createCourse()">TEST</button>
+-->
 
 
-        <p class="pull-left"> Add a New Course </p>
+        <button class="btn btn-primary btn-md" ng-click="createCourseModal()"> Create a New Course </button>
     </div>
 </section>
+
+
+<modal-dialog class="loginModal" show='createCourseModalShown' dialog-title="Create Course" height="auto" width="350px">
+    <form ng-controller="AdminCtrl">   
+        <input type="text" class="form-control input-md" placeholder="Enter Course Name" ng-model="courseName"><br>
+        <small><p class="text-center">*Please note that once the course is created, you will not be able to edit the course name.</p></small><br>
+        <button class="btn btn-primary btn-md pull-right" ng-click="createCourse()"> Create Course   </button>
+    </form>  
+</modal-dialog>
