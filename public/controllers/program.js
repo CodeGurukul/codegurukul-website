@@ -72,12 +72,6 @@ angular.module('Codegurukul')
         }
     });
 
-    $scope.loginModalShown = false;
-    $scope.registerModalShown = false;
-    $scope.registerModal = function() {
-        $scope.registerModalShown = !$scope.registerModalShown;
-
-    };
 
     $scope.checkCondition = function(){
         if ($rootScope.currentUser){
@@ -110,6 +104,7 @@ angular.module('Codegurukul')
             }
         }
         else {
+            $rootScope.loginModal();
             $alert({
                 content: 'You need to login to continue.',
                 placement: 'right',
@@ -181,6 +176,7 @@ angular.module('Codegurukul')
             }
                                );
         } else {
+            $rootScope.loginModal();
             $alert({
                 content: 'You need to login to continue.',
                 placement: 'right',
