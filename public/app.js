@@ -19,10 +19,10 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         templateUrl: 'views/admin.html',
         controller: 'AdminCtrl'
     })
-        .state('admin-add-course', {
-        url: '/admin/add-course',
-        templateUrl: 'views/admin-add-course.html'
-//        controller: 'AdminCourseDetailsCtrl'
+        .state('admin-edit-course', {
+        url: '/admin/edit-course/:course',
+        templateUrl: 'views/admin-edit-course.html',
+        controller: 'AdminEditCourseCtrl'
     }) 
         .state('admin-course-details', {
         url: '/admin/view/:course',

@@ -280,7 +280,8 @@
                     </div>
 
                     <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.type.$invalid &amp;&amp; signupForm.type.$dirty }" class="form-group has-feedback">
-                        <select class="form-control input-md" ng-model="type" required>
+                        <select class="form-control input-md" ng-model="type" required >
+                            <option value="" disabled selected>What do you do?</option>
                             <option value="student">Student</option>
                             <option value="professional">Professional</option>
                             <option value="other">Other</option>
@@ -320,7 +321,10 @@
                         </div>
                     </div>
                     <div>
-                        <input type="number" name="mobile" ng-model="mobile" placeholder="We will send you updates to your number" class="form-control input-md mobile-number"/>
+                        <input type="text" name="mobile" ng-model="mobile" placeholder="Mobile" class="form-control input-md "/ required>
+                    </div>
+                    <div class="text-center mobile-number">
+                        <small>We will send you updates to your number</small>
                     </div>
 
                 </div>

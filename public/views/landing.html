@@ -55,7 +55,7 @@ CodeGurukul Landing Page
         <ul class="teachers featured-courses">
 
             <li class="col-md-4 col-sm-4 col-xs-6">
-                <a ui-sref="programs({course:'free-ruby-workshop'})">
+                <a ui-sref="programs({course:'ruby-workshop'})">
                     <img src="/img/rails-logo.jpg" alt="" class="img-responsive" />
                     <div class="description featured-course-name">
                         <h4 class="text-center">Ruby Workshop</h4>
@@ -73,10 +73,10 @@ CodeGurukul Landing Page
             </li>
 
             <li class="col-md-4 col-sm-4 col-xs-6">
-                <a ui-sref="programs({course:'internship'})">
+                <a ui-sref="programs({course:'web-internship-program'})">
                     <img src="/img/internship-codeshot.png" alt="" class="img-responsive" />
                     <div class="description featured-course-name">
-                        <h4 class="text-center">Internship Program</h4>
+                        <h4 class="text-center">Web Internship Program</h4>
                     </div>
                 </a>
             </li>
@@ -256,20 +256,32 @@ CodeGurukul Landing Page
         Testimonials
     </h2>
 
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel2" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel2" data-slide-to="1"></li>
+            <li data-target="#myCarousel2" data-slide-to="2"></li>
+            <li data-target="#myCarousel2" data-slide-to="3"></li>
         </ol>
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
-            <div class="item" ng-class="{active:!$index}" ng-repeat = "testimonial in course.testimonials">
-                <p>" {{testimonial.testimonial}} "</p> 
-                <p ng-bind-html="testimonial.studentPlace"></p>
+            <div class="item active">
+                <p>"I am lucky to be the part of this workshop. I learnt the whole Web devlopment ( front end + back end) properly in 2 weeks.We were taught HTML, CSS, Javascript, Bootstrap , Git, Node.js and Angular.js. Many would doubt if someone can learn detail web dev in two weeks. But trust me its possible with codegurukul."</p> 
+                <p><em>- Amod Shinde <br> <small>Padre Conceicao College of Engineering, <br> Goa</small></em></p>
+            </div>
+            <div class="item">
+                <p>"The 2 week-long internship on web development was very educative. The various topics covered during the course such as node.js,express and mongoose will certainly be helpful to me in the long run. Hope you people conduct more of such workshops in the future. It was indeed an enriching experience. Thanks and kudos to you people!! :)"</p> 
+                <p><em>- Sameetha Dessai <br> <small>Goa</small></em></p>
+            </div>
+            <div class="item">
+                <p>"Joining CodeGurukul's internship was the best decision ever. I used to consider web development to be very difficult. But Stanly made everything very easy to understand. He is a fantastic trainer. Within no time we were able to do our very own web applications. The internship was definitely very beneficial and encouraging for me. Thanks to CodeGurukul I am currently working as a web developer. Thank you CodeGurukul for making me realize the possibilities!"</p> 
+                <p><em>- Shraddha Naik <br> <small>Software Engineer, <br> Goa Tech Solutions</small></em></p>
+            </div>
+            <div class="item">
+                <p>"Within 2 weeks after the internship I appeared for an interview for the role of a web developer and have been working since over here at G4 InfoTech, Mapusa-Goa; also I'm very certain when I say this internship very directly helped me in getting this job. A big thumbs up from me to code gurukul, Stanly sir and Sobin sir."</p> 
+                <p><em>- Anuj Kelkar <br> <small>G4 InfoTech, <br> Goa</small></em></p>
             </div>
         </div>
     </div>
@@ -280,6 +292,7 @@ CodeGurukul Landing Page
 
 <!-- ========== FEATURED COURSES START ========== -->
 
+<!--
 <section id="teachers" class="alt-background">
     <div class="container">
 
@@ -319,6 +332,7 @@ CodeGurukul Landing Page
 
     </div>
 </section>
+-->
 
 <!-- ========== FEATURED COURSES END ========== -->
 

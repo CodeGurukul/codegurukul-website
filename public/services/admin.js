@@ -3,7 +3,8 @@ angular.module('Codegurukul')
     var Admin = {
       default: $resource('/api/admin/courses'),
         attendees: $resource('/api/admin/courses/:cslug/attendees'),
-        course: $resource('/api/admin/course')
+        course: $resource('/api/admin/courses/:cslug'),
+        create: $resource('/api/admin/createCourse')
     };
     return Admin;
   });
