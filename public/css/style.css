@@ -1828,3 +1828,13 @@ body > .right {
     width: 32px;
     height: 32px;
 }
+
+/*Spinner css ends*/
+
+.custom-padding-bottom-20{
+    padding-bottom: 20px;
+}
+
+.terms-and-conditions p{
+    text-align: justify;
+}
