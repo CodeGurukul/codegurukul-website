@@ -1,16 +1,11 @@
 angular.module('Codegurukul')
-  .controller('LandingCtrl', function($scope, $rootScope, Courses, $stateParams) {
-    
+    .controller('LandingCtrl', function($scope, $rootScope, Courses, $stateParams, $location) {
+
     Courses.getAll.get({
-      cslug: "web-internship-program"
+        cslug: "web-internship-program"
     }, function(data) {
-      $scope.course = data.course;
-//      console.log($scope.course);
-      });
-//    
-//     Courses.getAll.query(function(data) {
-//      $scope.courses = data;
-//      console.log($scope.courses);
-//    })
-//     
+        $scope.course = data.course;
+    });
+
+
 });

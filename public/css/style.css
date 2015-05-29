@@ -1838,3 +1838,7 @@ body > .right {
 .terms-and-conditions p{
     text-align: justify;
 }
+
+.custom-margin-bottom-15{
+    margin-bottom: 15px;
+}
