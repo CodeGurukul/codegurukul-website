@@ -40,7 +40,7 @@ var mandrill_client = new mandrill.Mandrill(config.mandrill.password);
  */
 exports.contactUs = function(req, res, next) {
   // console.log(req);
-  req.to = 'mail@bitbrothers.in';
+  req.to = 'info@codegurukul.com';
   req.subject = req.body.subject;
   req.email = 'Name: ' + req.body.name + '\nEmail: ' + req.body.email + '\nContact: ' + req.body.contact + '\nMessage: ' + req.body.message;
   next();
@@ -247,27 +247,28 @@ exports.sendInvoice = function(invoice, data) {
 };
 
 exports.addNewsletter = function(req, res) {
-  User.findOne(req.user._id, function(err, user) {
-    if (err) res.send(err);
-    else if (!user) res.status(404).send('User not found.');
-    else {
-      // submit subscription request to mail chimp
-      mcApi.listSubscribe({
-        id: config.mailchimp.id,
-        email_address: user.email,
-        double_optin: false
-      }, function(err, data) {
-        if (err)
-          res.send(err);
-        else {
-          console.log(data);
-          res.json({
-            message: 'You have been added to the mailing list.'
-          });
-        }
-      });
+  if (req.body.email) {
+    if (!validator.validate(req.body.email))
+      return res.status(400).send(msg.inem);
+    // submit subscription request to mail chimp
+    mcApi.listSubscribe({
+      id: config.mailchimp.id,
+      email_address: req.body.email,
+      double_optin: false
+    }, function(err, data) {
+      if (err)
+        res.send(err);
+      else {
+        console.log(data);
+        res.json({
+          message: 'You have been added to the mailing list.'
+        });
+      }
+    });
+  }else {
+    return res.status(400).send('Email parameter is required.');
     }
-  });
+
   //   var mcReq = {
   //     id: config.mailchimp.id,
   //     email: { email: req.body.email },

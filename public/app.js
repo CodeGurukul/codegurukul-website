@@ -9,6 +9,13 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         templateUrl: 'views/program-details.html',
         controller: 'ProgramCtrl'
     }) 
+        .state('wip', {
+        url: '/wip',
+        templateUrl: 'views/redirect.html',
+        controller: function ($stateParams, $state) {
+            $state.go('programs', {course:'web-internship-program'});
+        }
+    }) 
         .state('user', {
         url: '/user/:uslug',
         templateUrl: 'views/user-profile.html',
