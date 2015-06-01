@@ -1835,6 +1835,19 @@ body > .right {
     padding-bottom: 20px;
 }
 
-.terms-and-conditions p{
+.terms-text-fine p{
     text-align: justify;
+    font-size: 11px;    
 }
+
+.custom-margin-bottom-15{
+    margin-bottom: 15px;
+}
+
+.terms-text-fine h1 {
+    font-size: 16px;
+}
+
+
+
+

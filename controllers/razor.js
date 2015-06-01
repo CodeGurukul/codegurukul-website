@@ -19,7 +19,10 @@ exports.verifyPay = function(req,res,next){
 						var data = JSON.parse(body);
 						// console.log(data);
 						if (data.status == "failed") return res.status(400).send("There was an error with your transaction");
-						if (data.amount/100 != result.value) return res.status(400).send("Incorrect amount paid.");
+						if (data.amount/100 != result.value) {
+							console.log(data.amount);
+							console.log(result.value);
+							return res.status(400).send("Incorrect amount paid.")}
 						else {
 							if(data.id == req.body.payment_id){
 								req.status = data.status;
