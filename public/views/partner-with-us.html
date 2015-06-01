@@ -1,0 +1,57 @@
+<div class="title">
+    <div class="title-image"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                Partner With Us
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== CONTACT FORM START ========== -->
+
+<section id="contact" class="alt-background">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h2>Interested in working with us?</h2>
+            </div>
+        </div>
+        <form role="form" name="contact-form" id="contact-form">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group" id="contact-name-group">
+                        <label for="contact-input-name">Name</label>
+                        <input type="text" ng-model="name" class="form-control" id="contact-input-name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group" id="contact-email-group">
+                        <label for="contact-input-email">Email</label>
+                        <input type="email" ng-model="email" class="form-control" id="contact-input-email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group" id="contact-subject-group">
+                        <label for="contact-input-subject">Contact</label>
+                        <input type="number" ng-model="contact" class="form-control" id="contact-input-subject" placeholder="Enter your contact">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" id="contact-message-group">
+                        <label for="contact-input-subject">Subject</label>
+                        <input type="text" class="form-control" ng-model="subject" id="contact-input-subject" placeholder="Enter a subject" value="I want to apply to be a Partner">
+                    </div>
+                    <div class="form-group" id="contact-message-group">
+                        <label for="contact-input-message">Message</label>
+                        <textarea class="form-control" ng-model="message" id="contact-input-message" rows="4" placeholder="Your message"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button type="submit" ng-click="sendEmail()" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- ========== CONTACT FORM END ========== -->
