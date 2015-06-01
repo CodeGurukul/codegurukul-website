@@ -16,7 +16,7 @@ exports.getCourse = function(req, res) {
   Course.findOne({
     slug: req.params.cslug
   })
-  .select('-attendees')
+  .select('-attendees -leads')
   .exec(function(err, course) {
     if (err)
       res.send(err);
@@ -35,7 +35,27 @@ exports.getAttendees = function(req, res) {
   .select('name slug attendees')
   .populate({
     path: 'attendees._id',
-    select: 'slug email username'
+    select: 'slug email username mobile'
+  })
+  .exec(function(err, course) {
+    if (err)
+      res.send(err);
+    else if (!course) {
+      res.status(404).send('Course Not Found');
+    } else {
+      res.send(course);
+    }
+  });
+};
+
+exports.getLeads = function(req, res) {
+  Course.findOne({
+    slug: req.params.cslug
+  })
+  .select('name slug leads')
+  .populate({
+    path: 'leads._id',
+    select: 'slug email username mobile'
   })
   .exec(function(err, course) {
     if (err)

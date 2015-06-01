@@ -104,6 +104,7 @@ app.use(errorHandler());
 //Courses
 app.put('/api/courses/:cslug/join', userController.isLogin, courseController.joinCourse);
 app.get('/api/courses/:cslug/canjoin', userController.isLogin, courseController.canJoin);
+app.post('/api/courses/:cslug/addlead', userController.isLogin, courseController.leadPre);
 app.get('/api/courses/:cslug', userController.isLoginOptional, courseController.getCourse);
 app.get('/api/courses', courseController.getCourses);
 
@@ -116,6 +117,7 @@ app.get('/api/codes/:cslug/validateCode', codeController.validateCode);
 
 //Admin calls
 app.get('/api/admin/courses/:cslug/attendees', userController.isAdmin, adminController.getAttendees);
+app.get('/api/admin/courses/:cslug/leads', userController.isAdmin, adminController.getLeads);
 app.get('/api/admin/courses/:cslug', userController.isAdmin, adminController.getCourse);
 app.post('/api/admin/createCourse', userController.isAdmin, adminController.createCourse);
 app.get('/api/admin/courses', userController.isAdmin, adminController.getCourses);
