@@ -24,6 +24,7 @@ angular.module('Codegurukul')
         Email.default.save({
             name: $scope.name,
             email: $scope.email,
+            subject: $scope.subject,
             contact: $scope.contact,
             message: $scope.message
         },function(data){

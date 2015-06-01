@@ -9,6 +9,17 @@ angular.module('Codegurukul')
 
     $scope.inviteMessageModalShown = false;
 
+    $scope.cookie = function(){
+        function setCookie(name, value, expires) {	
+            document.cookie = name + "=" + escape(value) + "; path=/" + ((expires == null) ? "" : "; expires=" + expires.toGMTString()); 
+        } 
+        //set new date object	
+        var exp = new Date();
+        //set expiry to 30 days
+        exp.setTime(exp.getTime() + (1000 * 60 * 60 * 24 * 30)); 
+        setCookie('lead',$scope.course.slug,exp)
+    }
+
     $scope.validate = function(){
         $http({
             url: '/api/codes/'+$stateParams.course+'/validateCode', 
@@ -105,6 +116,7 @@ angular.module('Codegurukul')
         }
         else {
             $rootScope.loginModal();
+            $scope.cookie();
             $alert({
                 content: 'You need to login to continue.',
                 placement: 'right',

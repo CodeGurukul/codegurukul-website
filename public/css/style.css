@@ -1848,6 +1848,6 @@ body > .right {
     font-size: 16px;
 }
 
-
-
-
+.referral-share a{
+    padding-right: 15px;
+}

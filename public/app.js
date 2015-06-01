@@ -1,4 +1,4 @@
-angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps','angular-carousel', 'ngSanitize', 'ngTagsInput','720kb.tooltips'])
+angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps','angular-carousel', 'ngSanitize', 'ngTagsInput','720kb.tooltips','validation.match'])
     .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
     $urlRouterProvider.otherwise('/');
@@ -62,20 +62,20 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         url: '/',
         templateUrl: 'views/landing.html',
         controller: 'LandingCtrl'
-    })        
-        .state('angularjs-workshop', {
-        url: '/angularjs-workshop',
-        templateUrl: 'views/angularjs-workshop.html',
-        controller: 'AngularjsCtrl'
-    })          
-        .state('internships', {
-        url: '/internships',
-        templateUrl: 'views/internships.html',
-        controller: 'InternshipsCtrl'
-    })           
+    })     
         .state('contact', {
         url: '/contact',
         templateUrl: 'views/contact.html',
+        controller: 'ContactCtrl'
+    })            
+        .state('partner-with-us', {
+        url: '/partner-with-us',
+        templateUrl: 'views/partner-with-us.html',
+        controller: 'ContactCtrl'
+    })            
+        .state('be-a-mentor', {
+        url: '/be-a-mentor',
+        templateUrl: 'views/be-a-mentor.html',
         controller: 'ContactCtrl'
     })        
         .state('stories', {

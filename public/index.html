@@ -274,8 +274,11 @@
                     </div>
                     <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.password.$invalid &amp;&amp; signupForm.password.$dirty }" class="form-group has-feedback">
                         <input type="password" name="password" ng-model="password" placeholder="Password" required="" class="form-control input-md"/>
+                        <br>
+                        <input type="password" name="confirmPassword" placeholder=" Confirm password" ng-model="confirmPass" match="password" required="" class="form-control input-md"/>
                         <div ng-if="signupWithEmailForm.password.$dirty" ng-messages="signupWithEmailForm.password.$error" class="help-block text-danger" style="color:#a94442">
-                            <div ng-message="required">A Password is required.</div>
+                            <div ng-message="required">A password is required.</div>
+                            <div ng-show="signupWithEmailForm.confirmPassword.$error.match">Passwords do not match!</div>
                         </div>
                     </div>
                     <div class="custom-margin-bottom-15">
@@ -323,11 +326,14 @@
                             <div ng-message="required">Please enter a short description of what you do.</div>
                         </div>
                     </div>
-                    <div>
+                    <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.mobile.$invalid &amp;&amp; signupForm.mobile.$dirty }" class="form-group has-feedback">
                         <input type="text" name="mobile" ng-model="mobile" placeholder="Mobile" class="form-control input-md "/ required>
+                         <div ng-if="signupWithEmailForm.mobile.$dirty" ng-messages="signupWithEmailForm.mobile.$error" class="help-block text-danger" style="color:#a94442">
+                            <div ng-message="required">Please enter your mobile number.</div>
+                        </div>
                     </div>
                     <div class="text-center mobile-number">
-                        <small>We will send you updates to your number</small>
+<!--                        <small>We will send you updates to your number</small>-->
                     </div>
 
                 </div>
@@ -374,6 +380,11 @@
                     <button class="btn btn-sm angularCancelButton cancelButton" ng-click="loginModal()" type="button"> Cancel </button>
                     <button class="btn btn-sm successButton " ng-disabled="loginForm.$invalid" ng-click="login();loginModal();registerModal()" type="submit"> Login </button>
                 </div>
+                <div class="text-center">
+                    <br>
+                    <small>Don't have an account yet? <a href="#" ng-click="loginModal();signupWithEmailModal()">Signup here!</a></small>
+                </div>
+<!--
                 <div class="social-login-buttons text-center">
                     <button class="btn btn-block btn-social btn-linkedin">
                         <i class="fa fa-linkedin"></i> Sign in with LinkedIn
@@ -385,6 +396,7 @@
                         <i class="fa fa-github"></i> Sign in with Facebook
                     </button>
                 </div>
+-->
 
             </form>  
         </modal-dialog>
