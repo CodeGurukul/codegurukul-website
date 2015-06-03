@@ -23,14 +23,16 @@
             <thead>
                 <tr>
                     <th>NAME</th>
+                    <th>EMAIL</th>
                     <th>DATE OF REGISTRATION</th>
                     <th>ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="attendee in attendees" class="course-row">
-                    <td> {{attendee.names}} </td>
-                    <td> {{attendee.date}} </td>
+                    <td> {{attendee.name}} </td>
+                    <td> {{attendee._id.email}} </td>
+                    <td> {{attendee.joinDate}} </td>
                     <td> <a href="#"> <i class="fa fa-trash-o"></i> </a> </td>
                 </tr>
             </tbody>

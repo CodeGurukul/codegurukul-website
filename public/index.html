@@ -309,7 +309,7 @@
                         </div>
                     </div>
                     <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.year.$invalid &amp;&amp; signupForm.year.$dirty }" class="form-group has-feedback">
-                        <input type="text" name="year" ng-model="year" placeholder="Year" class="form-control input-md" ng-show="type == 'student'" ng-required="type == 'student'"/>
+                        <input type="text" name="year" ng-model="year" placeholder="Year of passing" class="form-control input-md" ng-show="type == 'student'" ng-required="type == 'student'"/>
                         <div ng-if="signupWithEmailForm.year.$dirty" ng-messages="signupWithEmailForm.year.$error" class="help-block text-danger" style="color:#a94442">
                             <div ng-message="required">Please enter your Year.</div>
                         </div>
