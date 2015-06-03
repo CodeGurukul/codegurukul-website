@@ -51,12 +51,19 @@ exports.getCourse = function(req, res) {
         res.status(404).send('Course Not Found');
       } else {
         console.log('course found');
-        console.log(course);
+        // console.log(course);
         var temp = {};
         temp.course = course;
           temp.joined = false;
-        if (req.user)            
-           if (course.attendees.id(req.user._id)) temp.joined = true;
+        if (req.user) {
+          for (var i = 0; i < course.slots.length; i++) {
+            if (course.slots[i].attendees.id(req.user._id)) {
+              temp.joined = true;
+              break;
+            }
+          };
+          
+        }
         res.send(temp);
       }
     });

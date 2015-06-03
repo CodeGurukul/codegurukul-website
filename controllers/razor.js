@@ -15,9 +15,7 @@ exports.verifyPay = function(req,res,next){
 				request(url, function (error, response, body) {
 					if(error) res.status(412).send(error);
 					else{
-						// console.log('Response:', JSON.parse(body));
 						var data = JSON.parse(body);
-						// console.log(data);
 						if (data.status == "failed") return res.status(400).send("There was an error with your transaction");
 						if (data.amount/100 != result.value) {
 							console.log(data.amount);

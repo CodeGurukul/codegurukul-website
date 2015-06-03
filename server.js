@@ -90,7 +90,6 @@ app.post('/api/auth/login', userController.login);
 app.post('/api/auth/facebook', userController.facebookAuth);
 app.post('/api/auth/google', userController.googleAuth);
 app.get('/api/users', userController.hasEmail);
-app.post('/api/payment', userController.isLogin, razorController.verifyPay, courseController.joinCourse, invoiceController.generate);
 app.post('/api/email', emailController.contactUs, emailController.sendEmail);
 
 //User APIs
@@ -102,8 +101,9 @@ app.post('/api/newsletter', emailController.addNewsletter);
 app.use(errorHandler());
 
 //Courses
-app.put('/api/courses/:cslug/join', userController.isLogin, courseController.joinCourse);
-app.get('/api/courses/:cslug/canjoin', userController.isLogin, courseController.canJoin);
+//app.put('/api/courses/:cslug/:sid/join', userController.isLogin, courseController.joinCourse);
+app.post('/api/courses/join', userController.isLogin, razorController.verifyPay, courseController.joinCourse, invoiceController.generate);
+app.get('/api/courses/:cslug/:sid/canjoin', userController.isLogin, courseController.canJoin);
 app.post('/api/courses/:cslug/addlead', userController.isLogin, courseController.leadPre);
 app.get('/api/courses/:cslug', userController.isLoginOptional, courseController.getCourse);
 app.get('/api/courses', courseController.getCourses);
