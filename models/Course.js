@@ -13,13 +13,36 @@ var courseSchema = new mongoose.Schema({
   tech: String,                  //cant use domain clashes with node
   duration: String,
   date: Date,
-  batchSize: Number,
   inviteOnly: Boolean,
   inviteMessage: String,
   status: {
     type: String,
     default: 'unpublished',
     enum: ['unpublished', 'new', 'closed', 'open']
+  },
+  slots: {
+    startDate: Date,
+    city: String,
+    batchSize: Number,
+    location: String,
+    attendees: [{
+      _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+      completionDate: Date,
+      status: {
+        type: String,
+        default: 'registered',
+        enum: ['registered', 'cancelled', 'completed' ]
+      }
+    }],
+    leads: [{
+      _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+      creationDate: Date,
+      status: {
+        type: String,
+        default: 'new',
+        enum: ['new', 'cancelled', 'converted' ]
+      }
+    }]  
   },
   attendees: [{
     _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' }

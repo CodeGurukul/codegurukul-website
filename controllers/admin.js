@@ -32,18 +32,28 @@ exports.getAttendees = function(req, res) {
   Course.findOne({
     slug: req.params.cslug
   })
-  .select('name slug attendees')
+  .select('name slug slots')
   .populate({
-    path: 'attendees._id',
-    select: 'slug email username mobile'
+    path: 'slots.attendees._id',
+    select: 'slug email username mobile profile.fullname'
   })
   .exec(function(err, course) {
-    if (err)
-      res.send(err);
-    else if (!course) {
-      res.status(404).send('Course Not Found');
-    } else {
-      res.send(course);
+    if (err) res.send(err);
+    else if (!course) res.status(404).send('Course Not Found');
+    else {
+      // var temp = {
+      //   name: course.name,
+      //   slug: course.slug,
+      //   slotId: req.params.sid,
+      //   attendees: course.slots.id(req.params.sid).attendees 
+      // }
+      var temp = {
+        name: course.name,
+        slug: course.slug,
+        slotId: req.params.sid,
+        attendees: course.slots[0].attendees
+      }
+      res.send(temp);
     }
   });
 };
