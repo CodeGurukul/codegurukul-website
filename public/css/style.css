@@ -1884,7 +1884,7 @@ body > .right {
 .landing-intro-section{
     text-align: center;
     color: white;
-    padding-top: 20%;
+    padding-top: 15%;
     font-size: 25px;
     font-weight: 700;
     line-height: 45px;
@@ -1893,6 +1893,10 @@ body > .right {
 .landing-intro-section small{
     font-weight: 100;
     font-size:20px;
+}
+
+.footer-featured-courses img{
+    width: 45px;
 }
 
 .newsletter-header{
