@@ -30,7 +30,8 @@ gulp.task('css', function(){
         'public/vendor/ng-tags-input/ng-tags-input.css',
         'public/vendor/ngModal/dist/ng-modal.css',
         'public/vendor/angular-tooltips/src/css/angular-tooltips.css',
-        'public/vendor/angular-carousel/dist/angular-carousel.min.css'
+        'public/vendor/slick-carousel/slick/slick.css',
+        'public/vendor/slick-carousel/slick/slick-theme.css'
     ])
         .pipe(plumber({
         errorHandler: onError
@@ -54,13 +55,14 @@ gulp.task('compress', function() {
         'public/vendor/angularjs-socialshare/src/js/angular-socialshare.js',
         'public/vendor/ng-tags-input/ng-tags-input.min.js',
         'public/vendor/ngModal/dist/ng-modal.min.js',
-        'public/vendor/angular-google-maps/dist/angular-google-maps.min.js',
         'public/vendor/lodash/dist/lodash.min.js',
         'public/vendor/angular-sanitize/angular-sanitize.js',
         'public/vendor/angular-carousel/dist/angular-carousel.min.js',
         'public/vendor/angular-touch/angular-touch.min.js',
         'public/vendor/angular-tooltips/src/js/angular-tooltips.js',
         'public/vendor/angular-validation-match/dist/angular-input-match.min.js',
+        'public/vendor/angular-slick/dist/slick.min.js',
+        'public/vendor/slick-carousel/slick/slick.min.js',
         'public/js/retina-1.1.0.min.js',
         'public/js/jquery.easing.1.3.js',
         'public/js/jquery.animate-enhanced.min.js',

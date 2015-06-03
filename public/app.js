@@ -1,4 +1,4 @@
-angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'uiGmapgoogle-maps','angular-carousel', 'ngSanitize', 'ngTagsInput','720kb.tooltips','validation.match'])
+angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', '720kb.socialshare','ngModal', 'ngSanitize','ngTagsInput','720kb.tooltips','validation.match','slick'])
     .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
     $urlRouterProvider.otherwise('/');
@@ -125,16 +125,16 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
             }
         }
     });
-})
-
-
-    .config(function(uiGmapGoogleMapApiProvider) {
-    uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyDMvVbBJWCPE5VjC7EQPo1ohZj8hu17FXg',
-        v: '3.17',
-        libraries: 'weather,geometry,visualization'
-    });
 });
+
+//
+//    .config(function(uiGmapGoogleMapApiProvider) {
+//    uiGmapGoogleMapApiProvider.configure({
+//        key: 'AIzaSyDMvVbBJWCPE5VjC7EQPo1ohZj8hu17FXg',
+//        v: '3.17',
+//        libraries: 'weather,geometry,visualization'
+//    });
+//});
 
 
 

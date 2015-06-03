@@ -1903,7 +1903,23 @@ body > .right {
     color: white;
 }
 
+/*
+.newsletter-form input{
+width: 70%;
+}
+*/
+
+@media screen and (max-width:767px){
+
+    .newsletter-form button{
+        margin-top: 10px;
+    }
+    .newsletter-button-div{
+        text-align: center;
+    }
+}
+
 .newsletter-form{
-    width: 50%;
+    width: 60%;
     margin: auto;
 }
