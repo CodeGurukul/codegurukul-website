@@ -97,6 +97,13 @@ angular.module('Codegurukul')
             }
             else if ($scope.courseUnlocked == false && $scope.course.joined == false){
                 $scope.inviteMessageModalShown = !$scope.inviteMessageModalShown;
+                Courses.addLead.save({
+                    cslug: $stateParams.course
+                },function(data){
+                    console.log("lead added");
+                },function(error){
+                    console.log("error");
+                });
             }
 
             else {

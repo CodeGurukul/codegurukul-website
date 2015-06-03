@@ -47,24 +47,24 @@ angular.module('Codegurukul')
 //    }
 //
 
-//
-//    $scope.newsletter = function(){
-//        Email.newsletter.save({
-//            email: $scope.email
-//        },function(data){
-//            $alert({
-//                content: 'You have successfully signed up for our newsletter.',
-//                placement: 'right',
-//                type: 'success',
-//                duration: 5
-//            });
-//        },function(error){
-//            $alert({
-//                content: 'There was an error. Please try again later.',
-//                placement: 'right',
-//                type: 'danger',
-//                duration: 5
-//            });
-//        })
-//    }
+
+    $scope.newsletter = function(){
+        Email.newsletter.save({
+            email: $scope.email
+        },function(data){
+            $alert({
+                content: 'You have successfully signed up for our newsletter.',
+                placement: 'right',
+                type: 'success',
+                duration: 5
+            });
+        },function(error){
+            $alert({
+                content: 'There was an error. Please try again later.',
+                placement: 'right',
+                type: 'danger',
+                duration: 5
+            });
+        })
+    }
 });

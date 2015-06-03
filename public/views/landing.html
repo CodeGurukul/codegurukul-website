@@ -43,12 +43,34 @@ CodeGurukul Landing Page
 
 </div>
 -->
+<!--
 <section>
-    <h2 class="block-title custom-padding-bottom-20 text-center">WHY WE CODE</h2>
-    <div class="text-center">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/nKIu9yen5nc" frameborder="0" allowfullscreen></iframe>
-    </div>
+<h2 class="block-title custom-padding-bottom-20 text-center custom-font-weight-600">WHY WE CODE</h2>
+<div class="text-center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nKIu9yen5nc" frameborder="0" allowfullscreen></iframe>
+</div>
 </section>
+-->
+
+<div class="main-wrapper-div">
+    <div class="fade-div">
+        <p class="landing-intro-section"> BECOME A SOFTWARE DEVELOPER <br>
+            <small>From fresher to hacker in 8 weeks</small></p>
+        <form name="newsletterForm" method="post">
+            <div class="text-center newsletter-form">
+                <h3 class="text-center newsletter-header">Subscribe to our newsletter</h3>
+                <div ng-class="{ &quot;has-error&quot; : newsletterForm.email.$invalid &amp;&amp; newsletterForm.email.$dirty }" class="form-group has-feedback">
+                    <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" autofocus= "" class="form-control input-md"/>
+                    <div ng-if="newsletterForm.email.$dirty" ng-messages="newsletterForm.email.$error" class="help-block text-danger">
+                        <div ng-message="email">Your email address is invalid.</div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-sm text-center" ng-click="newsletter()">Yes, sign me up!</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 
 <!-- ========== FEATURED COURSES START ========== -->
@@ -56,7 +78,7 @@ CodeGurukul Landing Page
 <section id="teachers" class="alt-background">
     <div class="container">
 
-        <h2 class="text-center">FEATURED COURSES</h2>
+        <h2 class="text-center custom-padding-bottom-20 custom-font-weight-600">FEATURED COURSES</h2>
 
         <ul class="teachers featured-courses">
 
@@ -102,7 +124,7 @@ CodeGurukul Landing Page
         <div id="team-block" class="team block">
             <div class="container">
 
-                <h2 class="block-title text-center custom-padding-bottom-20">Our Team</h2>
+                <h2 class="custom-font-weight-600 block-title text-center custom-padding-bottom-20">Our Team</h2>
 
                 <div class="row">
 
@@ -257,12 +279,12 @@ CodeGurukul Landing Page
 <!-- ========== TESTIMONIAL START ========== -->
 
 
-<section>
-    <h2 class="carousel-title text-center block-title custom-padding-bottom-20">
-        Testimonials
-    </h2>
+<div class="landing-testimonials">
 
     <div id="myCarousel2" class="carousel slide" data-ride="carousel">
+        <h2 class="custom-font-weight-600 testimonial-title text-center block-title">
+            Testimonials
+        </h2>
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
@@ -291,7 +313,7 @@ CodeGurukul Landing Page
             </div>
         </div>
     </div>
-</section>
+</div>
 
 <!-- ========== TESTIMONIAL END ========== -->
 
@@ -348,20 +370,20 @@ CodeGurukul Landing Page
 
 <!--
 <modal-dialog class="loginModal" show='newsletterModalShown' dialog-title="Newsletter" height="auto" width="350px">
-    <form method="post" name="newsletterForm" ng-controller="LandingCtrl">
-        <div class="register-modal">
-            <h2 class="text-center">Signup for our Newsletter</h2>
-            <div ng-class="{ &quot;has-error&quot; : newsletterForm.email.$invalid &amp;&amp; newsletterForm.email.$dirty }" class="form-group has-feedback">
-                <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" autofocus= "" class="form-control input-md"/>
-                <div ng-if="newsletterForm.email.$dirty" ng-messages="newsletterForm.email.$error" class="help-block text-danger">
-                    <div ng-message="required">Your email address is required.</div>
-                    <div ng-message="email">Your email address is invalid.</div>
-                </div>
-            </div>
-        </div>
-        <button class="btn btn-primary btn-sm pull-left" ng-click="newsletter()">Yes, totally!</button>
-        <button class="btn btn-primary btn-sm pull-right" ng-click="newsletterModal()">No, thanks!</button>
-    </form>  
+<form method="post" name="newsletterForm" ng-controller="LandingCtrl">
+<div class="register-modal">
+<h2 class="text-center">Signup for our Newsletter</h2>
+<div ng-class="{ &quot;has-error&quot; : newsletterForm.email.$invalid &amp;&amp; newsletterForm.email.$dirty }" class="form-group has-feedback">
+<input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" autofocus= "" class="form-control input-md"/>
+<div ng-if="newsletterForm.email.$dirty" ng-messages="newsletterForm.email.$error" class="help-block text-danger">
+<div ng-message="required">Your email address is required.</div>
+<div ng-message="email">Your email address is invalid.</div>
+</div>
+</div>
+</div>
+<button class="btn btn-primary btn-sm pull-left" ng-click="newsletter()">Yes, totally!</button>
+<button class="btn btn-primary btn-sm pull-right" ng-click="newsletterModal()">No, thanks!</button>
+</form>  
 </modal-dialog>
 -->
 

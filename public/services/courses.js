@@ -17,6 +17,13 @@ angular.module('Codegurukul')
           method: 'PUT'
         }
       }),
+        addLead: $resource('/api/courses/:cslug/addlead', {
+        cslug: '@cslug'
+        }, {
+        update: {
+          method: 'PUT'
+        }
+      }),
       domains: $resource('../data/domains.json')
     };
     return Courses;

@@ -1691,8 +1691,8 @@ body > .right {
 }
 
 .fade.ng-hide {
-  transition:0.5s linear all;
-  opacity:0;
+    transition:0.5s linear all;
+    opacity:0;
 }
 
 .animate {
@@ -1803,11 +1803,11 @@ body > .right {
 .processSpinner2 {
     font-family: sans-serif;
     font-weight: 100;
-/*
+    /*
     position: absolute;
     right: 10px;
     top: 10px;
-*/
+    */
 }
 
 /* :not(:required) hides this rule from IE9 and below */
@@ -1850,4 +1850,56 @@ body > .right {
 
 .referral-share a{
     padding-right: 15px;
+}
+
+.custom-font-weight-600{
+    font-weight: 600;
+}
+
+.landing-testimonials{
+    background: url(../img/icons.gif) no-repeat center top;
+}
+
+.testimonial-title{
+    background-color:  rgba(143,180,136,.97);
+    color: #fff;
+    padding-top: 20px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.main-wrapper-div, .fade-div{
+    height: 100vh;
+    width: 100%;
+}
+
+.main-wrapper-div{
+    background: url(../img/background-images/cactus.jpg) no-repeat center;
+}
+
+.fade-div{
+    background-color: rgba(0,0,0,0.82);
+}
+
+.landing-intro-section{
+    text-align: center;
+    color: white;
+    padding-top: 20%;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 45px;
+}
+
+.landing-intro-section small{
+    font-weight: 100;
+    font-size:20px;
+}
+
+.newsletter-header{
+    color: white;
+}
+
+.newsletter-form{
+    width: 50%;
+    margin: auto;
 }
