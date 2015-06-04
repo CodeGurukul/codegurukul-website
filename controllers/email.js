@@ -8,16 +8,9 @@ var moment = require('moment');
 var MailChimpAPI = require('mailchimp').MailChimpAPI;
 var secret = require('../config/secrets');
 var config = new secret();
-// var config = require('../config/secrets');
-var apiKey = config.mailchimp.api;
-try {
-  var mcApi = new MailChimpAPI(apiKey, {
-    version: '1.3',
-    secure: false
-  });
-} catch (error) {
-  console.log(error.message);
-}
+var validator = require('email-validator');
+var MCapi = require('mailchimp-api');
+var mcAPI = new MCapi.Mailchimp(config.mailchimp.api);
 
 var transporter = nodemailer.createTransport({
   service: 'Mandrill',
@@ -251,32 +244,25 @@ exports.addNewsletter = function(req, res) {
     if (!validator.validate(req.body.email))
       return res.status(400).send(msg.inem);
     // submit subscription request to mail chimp
-    mcApi.listSubscribe({
-      id: config.mailchimp.id,
-      email_address: req.body.email,
-      double_optin: false
-    }, function(err, data) {
-      if (err)
-        res.send(err);
-      else {
-        console.log(data);
-        res.json({
-          message: 'You have been added to the mailing list.'
-        });
+    var mcReq = {
+      id: '05bf513fcf',
+      email: { email: req.body.email },
+      double_optin: false,
+      send_welcome: false,
+      merge_vars: {
+          EMAIL: req.body.email
       }
+    };
+
+    // submit subscription request to mail chimp
+    mcAPI.lists.subscribe(mcReq, function(data) {
+        console.log(data);
+        res.status(200).send("Thank you for subscribing")
+    }, function(error) {
+        res.status(400).send(error.error)
+        console.log(error); 
     });
   }else {
     return res.status(400).send('Email parameter is required.');
-    }
-
-  //   var mcReq = {
-  //     id: config.mailchimp.id,
-  //     email: { email: req.body.email },
-  //     merge_vars: {
-  //         EMAIL: req.body.email,
-  //         FNAME: req.body.name
-  //     }
-  // };
-
-  // 
+    } 
 };
