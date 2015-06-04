@@ -196,7 +196,7 @@ exports.sendInvoice = function(invoice, data) {
     "auto_text": true,
     "inline_css": true,
     "merge": true,
-    "merge_language": "handlebars",
+    // "merge_language": "handlebars",
     "global_merge_vars": [{
       "name": "companyName",
       "content": "Codegurukul"

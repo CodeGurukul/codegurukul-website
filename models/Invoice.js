@@ -22,6 +22,7 @@ var invoiceSchema = new mongoose.Schema({
   total: {
     type: Number
   },
+  mop: String,
   paymentId: {type: String},          //razor pay ID
   products: [{
     product: {                        //course name

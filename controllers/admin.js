@@ -40,18 +40,13 @@ exports.getAttendees = function(req, res) {
   .exec(function(err, course) {
     if (err) res.send(err);
     else if (!course) res.status(404).send('Course Not Found');
+    else if (!course.slots.id(req.params.sid)) res.status(400).send("Invalid slot ID");
     else {
-      // var temp = {
-      //   name: course.name,
-      //   slug: course.slug,
-      //   slotId: req.params.sid,
-      //   attendees: course.slots.id(req.params.sid).attendees 
-      // }
       var temp = {
         name: course.name,
         slug: course.slug,
         slotId: req.params.sid,
-        attendees: course.slots[0].attendees
+        attendees: course.slots.id(req.params.sid).attendees 
       }
       res.send(temp);
     }
@@ -62,18 +57,24 @@ exports.getLeads = function(req, res) {
   Course.findOne({
     slug: req.params.cslug
   })
-  .select('name slug leads')
+  .select('name slug slots')
   .populate({
-    path: 'leads._id',
-    select: 'slug email username mobile'
+    path: 'slots.leads._id',
+    select: 'slug email username mobile profile.fullname'
   })
   .exec(function(err, course) {
     if (err)
       res.send(err);
-    else if (!course) {
-      res.status(404).send('Course Not Found');
-    } else {
-      res.send(course);
+    else if (!course) res.status(404).send('Course Not Found'); 
+    else if (!course.slots.id(req.params.sid)) res.status(400).send("Invalid slot ID");
+    else {
+      var temp = {
+        name: course.name,
+        slug: course.slug,
+        slotId: req.params.sid,
+        leads: course.slots.id(req.params.sid).leads 
+      }
+      res.send(temp);
     }
   });
 };

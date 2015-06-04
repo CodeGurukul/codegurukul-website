@@ -92,10 +92,11 @@ app.post('/api/auth/google', userController.googleAuth);
 app.get('/api/users', userController.hasEmail);
 app.post('/api/email', emailController.contactUs, emailController.sendEmail);
 
-//User APIs
+//User
 //app.post('/api/user/password', userController.isLogin, userController.changeUserPassword, emailController.sendEmail);
 app.get('/api/user/:uslug', userController.isLogin, userController.getUser);
 app.put('/api/user/:uslug', userController.isLogin, userController.updateProfile);
+app.post('/api/user/:uslug/invoicePdf', userController.isLogin, invoiceController.pdf);
 app.post('/api/newsletter', emailController.addNewsletter);
 
 app.use(errorHandler());
@@ -116,8 +117,8 @@ app.get('/api/codes/:cslug/validateCode', codeController.validateCode);
 
 
 //Admin calls
-app.get('/api/admin/courses/:cslug/attendees', userController.isAdmin, adminController.getAttendees);
-app.get('/api/admin/courses/:cslug/leads', userController.isAdmin, adminController.getLeads);
+app.get('/api/admin/courses/:cslug/:sid/attendees', userController.isAdmin, adminController.getAttendees);
+app.get('/api/admin/courses/:cslug/:sid/leads', userController.isAdmin, adminController.getLeads);
 app.get('/api/admin/courses/:cslug', userController.isAdmin, adminController.getCourse);
 app.post('/api/admin/createCourse', userController.isAdmin, adminController.createCourse);
 app.get('/api/admin/courses', userController.isAdmin, adminController.getCourses);
