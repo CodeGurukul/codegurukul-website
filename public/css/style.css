@@ -1923,3 +1923,18 @@ width: 70%;
     width: 60%;
     margin: auto;
 }
+/*
+
+.slick-next:before{
+    content: '<i class="fa fa-caret-right"></i>' !important;
+    color:red;
+}
+
+.slick-prev:before{
+    content: '<i class="fa fa-caret-left"></i>' !important;
+    color:red;
+}*/
+
+.slick-next:before, [dir=rtl] .slick-prev:before , .slick-prev:before {
+  color: #8FB488 !important;
+}
