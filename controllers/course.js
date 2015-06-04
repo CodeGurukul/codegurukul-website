@@ -1,6 +1,7 @@
 var Course = require('../models/Course');
 var User = require('../models/User');
 var email = require('../controllers/email');
+var courseCont = require('../controllers/course');
 var fs = require('fs');
 var moment = require('moment');
 var secret = require('../config/secrets');
@@ -26,9 +27,11 @@ exports.canJoin = function(req, res) {
       User.findById(req.user._id, function(err, user) {
         if (err) res.send(err);
         else if (!user) res.status(404).send('User not found.');
-        //----------------Commented for testing
-         else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
-        else res.sendStatus(200);
+          else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
+        else {
+          res.sendStatus(200);
+          courseCont.addLead(user.id, course.slug);
+        }
       })
     }
   })
@@ -51,7 +54,6 @@ exports.getCourse = function(req, res) {
         temp.course = course;
           temp.joined = false;
         if (req.user)            
-        //----------------Commented for testing
            if (course.attendees.id(req.user._id)) temp.joined = true;
         res.send(temp);
       }
@@ -72,7 +74,6 @@ exports.joinCourse = function(req, res, next) {
       User.findById(req.user._id, function(err, user) {
         if (err) res.send(err);
         else if (!user) res.status(404).send('User not found.');
-        //----------------Commented for testing
         else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
         else {
           user.courses.push({
@@ -81,6 +82,9 @@ exports.joinCourse = function(req, res, next) {
           course.attendees.push({
             _id: user._id
           });
+          if (course.leads.id(user.id)) {
+            course.leads.pull({_id: user._id});
+          };
           course.save(function(err) {
             if (err) res.status(400).send(err);
             else {
@@ -113,4 +117,28 @@ exports.joinCourse = function(req, res, next) {
       })
     }
   })
+}
+
+exports.addLead = function (uid, cslug) {
+  Course.findOne({slug: cslug}, function (err, course) {
+    if (err) return;
+    else if (!course) return;
+    else {
+      if (course.leads.id(uid)) return;
+      course.leads.push(uid);
+      course.save(function  (err, course) {
+        if (err) return;
+        else {
+          console.log("lead added");
+          return;}
+      })
+    }
+  })
+}
+
+exports.leadPre = function (req, res) {
+  if (req.params.cslug && req.user._id) {
+    courseCont.addLead(req.user._id, req.params.cslug);
+    res.status(200).send("Success");
+  };
 }

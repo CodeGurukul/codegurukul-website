@@ -24,6 +24,9 @@ var courseSchema = new mongoose.Schema({
   attendees: [{
     _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   }],
+  leads: [{
+    _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+  }],
   mentors:[{
     name: String,
     description: String,

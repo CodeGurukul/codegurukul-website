@@ -2,6 +2,7 @@ var jwt = require('jwt-simple');
 var moment = require('moment');
 var crypto = require('crypto');
 var path = require('path');
+var course = require('../controllers/course');
 var secrets = require('../config/secrets');
 var config = secrets();
 var msg = require('../messages');
@@ -129,6 +130,7 @@ exports.signup = function(req, res, next) {
       req.to = user.email;
       req.name = user.username;
       req.verificationCode = user.verificationCode;
+      if (req.body.lead) course.addLead(user.id, req.body.lead);
       next();
     }
 

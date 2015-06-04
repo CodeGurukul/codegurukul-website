@@ -108,6 +108,7 @@
 
                     <!-- ==== APPLY FOR TEACHER START == -->
                     <div class="col-sm-3">
+<!--
                         <h3>Apply to become a Mentor</h3>
                         <form role="form" name="teacher-form" id="teacher-form" ng-controller="FooterCtrl">
                             <div class="form-group" id="teacher-name-group">
@@ -130,6 +131,23 @@
                             </div>
                             <button ng-click="applyAsMentor()" class="btn btn-primary">Submit</button>
                         </form>
+-->
+                        				<h3>Featured Courses</h3>
+						<ul class="footer-featured-courses">
+							<li>
+<!--								<img src="images/thumb-course4.jpg" alt="" class="pull-left">-->
+								<h5><a ui-sref="programs({course:'ruby-workshop'})">Ruby Workshop</a></h5>
+							</li>
+							<li>
+<!--								<img src="img/internships/angularjs.png" alt="" class="pull-left img-responsive">-->
+								<h5><a ui-sref="programs({course:'angularjs-workshop'})">Angular Workshop</a></h5>
+							</li>
+							<li>
+<!--								<img src="img/internship-codeshot-thumb.png" alt="" class="pull-left">-->
+								<h5><a ui-sref="programs({course:'web-internship-program'})">Web Internship Program</a></h5>
+							</li>
+						</ul>
+	
                     </div>
                     <!-- ==== APPLY FOR TEACHER END == -->
 
@@ -274,8 +292,11 @@
                     </div>
                     <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.password.$invalid &amp;&amp; signupForm.password.$dirty }" class="form-group has-feedback">
                         <input type="password" name="password" ng-model="password" placeholder="Password" required="" class="form-control input-md"/>
+                        <br>
+                        <input type="password" name="confirmPassword" placeholder=" Confirm password" ng-model="confirmPass" match="password" required="" class="form-control input-md"/>
                         <div ng-if="signupWithEmailForm.password.$dirty" ng-messages="signupWithEmailForm.password.$error" class="help-block text-danger" style="color:#a94442">
-                            <div ng-message="required">A Password is required.</div>
+                            <div ng-message="required">A password is required.</div>
+                            <div ng-show="signupWithEmailForm.confirmPassword.$error.match">Passwords do not match!</div>
                         </div>
                     </div>
                     <div class="custom-margin-bottom-15">
@@ -306,7 +327,7 @@
                         </div>
                     </div>
                     <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.year.$invalid &amp;&amp; signupForm.year.$dirty }" class="form-group has-feedback">
-                        <input type="text" name="year" ng-model="year" placeholder="Year" class="form-control input-md" ng-show="type == 'student'" ng-required="type == 'student'"/>
+                        <input type="text" name="year" ng-model="year" placeholder="Year of passing" class="form-control input-md" ng-show="type == 'student'" ng-required="type == 'student'"/>
                         <div ng-if="signupWithEmailForm.year.$dirty" ng-messages="signupWithEmailForm.year.$error" class="help-block text-danger" style="color:#a94442">
                             <div ng-message="required">Please enter your Year.</div>
                         </div>
@@ -323,11 +344,14 @@
                             <div ng-message="required">Please enter a short description of what you do.</div>
                         </div>
                     </div>
-                    <div>
+                    <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.mobile.$invalid &amp;&amp; signupForm.mobile.$dirty }" class="form-group has-feedback">
                         <input type="text" name="mobile" ng-model="mobile" placeholder="Mobile" class="form-control input-md "/ required>
+                         <div ng-if="signupWithEmailForm.mobile.$dirty" ng-messages="signupWithEmailForm.mobile.$error" class="help-block text-danger" style="color:#a94442">
+                            <div ng-message="required">Please enter your mobile number.</div>
+                        </div>
                     </div>
                     <div class="text-center mobile-number">
-                        <small>We will send you updates to your number</small>
+<!--                        <small>We will send you updates to your number</small>-->
                     </div>
 
                 </div>
@@ -374,6 +398,12 @@
                     <button class="btn btn-sm angularCancelButton cancelButton" ng-click="loginModal()" type="button"> Cancel </button>
                     <button class="btn btn-sm successButton " ng-disabled="loginForm.$invalid" ng-click="login();loginModal();registerModal()" type="submit"> Login </button>
                 </div>
+                <div class="text-center">
+                    <br>
+                    <small>Don't have an account yet? <a href="#" ng-click="loginModal();signupWithEmailModal()">Signup here!</a></small>
+                </div>
+<!--
+
                 <div class="social-login-buttons text-center">
                     <button class="btn btn-block btn-social btn-linkedin">
                         <i class="fa fa-linkedin"></i> Sign in with LinkedIn
@@ -385,6 +415,7 @@
                         <i class="fa fa-github"></i> Sign in with Facebook
                     </button>
                 </div>
+-->
 
             </form>  
         </modal-dialog>

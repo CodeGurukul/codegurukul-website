@@ -15,19 +15,7 @@
                 <span class="pull-right"><button class="btn btn-primary btn-xs" ng-click="edit=!edit"><i class="fa fa-pencil"></i></button></span>
                 <div class="widget" ng-hide="edit">
                     <!-- <form role="form"> -->
-                    <h3>{{user.profile.fullname}}</h3>
                     <h2>Points <span class="pull-right">{{user.points}}</span><br><span><h6><a href="#">Earn some more points!</a></h6></span></h2>
-                    <h3>Referral code:<br>
-                        <input type="text" class="form-control referral-code-textbox" ng-model="user.referalCode" readonly></h3>
-                    <h3>Referral Link:<br>
-                        <input type="text" class="form-control referral-code-textbox" value="http://codegurukul.com?referralCode={{user.referalCode}}" readonly></h3>
-                    <h4 class="text-center">Share this link on:</h4>
-                    <p class="text-center share">		
-                        <a href="#" socialshare socialshare-provider="facebook" socialshare-text="Referral Link : http://codegurukul.com?referralCode={{user.referalCode}}. Register at " socialshare-url="http://www.codegurukul.com?referralCode={{user.referalCode}}"><i class="fa fa-facebook fa-lg"></i></a>
-                        <a href="#" socialshare socialshare-provider="twitter" socialshare-text="Referral Link : http://codegurukul.com?referralCode={{user.referalCode}}. Register at " socialshare-url="http://www.codegurukul.com?referralCode={{user.referalCode}}"><i class="fa fa-twitter fa-lg"></i></a>
-                        <a href="#" socialshare socialshare-provider="google+" socialshare-text="Referral Link : http://codegurukul.com?referralCode={{user.referalCode}}. Register at " socialshare-url="http://www.codegurukul.com?referralCode={{user.referalCode}}"><i class="fa fa-google-plus fa-lg"></i></a>
-                    </p>
-
                     <ul>
                         <li class="profile-details">
                             <label>Location <span class="pull-right">{{user.profile.location}}</span></label>
@@ -93,24 +81,43 @@
                 </div>
             </div>
             <div class="col-md-8 col-sm-8">
-                <div class="col-sm-12">
-                    <h2 class="carousel-title text-center">
-                        Badges <br>
-                        <button ng-hide="all" class="btn btn-link btn-xs" ng-click="allBadges()">View All Badges</button><button class="btn btn-link btn-xs" ng-show="all" ng-click="all = ! all">Back To My Badges</button>
-                    </h2>
+                <div class="row">
+                    <h2 class="text-center">REFERRAL</h2>
+                    <h3>Referral code:</h3>
+                        <input type="text" class="form-control referral-code-textbox" ng-model="user.referalCode" readonly>
+                    <h3>Referral Link:</h3>
+                        <input type="text" class="form-control referral-code-textbox" value="http://codegurukul.com/#/?referralCode={{user.referalCode}}" readonly>
+                    <h4 class="text-center">Share this link on:</h4>
+                    <p class="text-center share referral-share">		
+                        <a href="#" socialshare socialshare-provider="facebook" socialshare-text="Referral Link : http://codegurukul.com/#/?referralCode={{user.referalCode}}. Register at " socialshare-url="http://www.codegurukul.com/#/?referralCode={{user.referalCode}}"><i class="fa fa-facebook fa-lg"></i></a>
+                        <a href="#" socialshare socialshare-provider="twitter" socialshare-text="Referral Link : http://codegurukul.com/#/?referralCode={{user.referalCode}}. Register at " socialshare-url="http://www.codegurukul.com/#/?referralCode={{user.referalCode}}"><i class="fa fa-twitter fa-lg"></i></a>
+                        <a href="#" socialshare socialshare-provider="google+" socialshare-text="Referral Link : http://codegurukul.com/#/?referralCode={{user.referalCode}}. Register at " socialshare-url="http://www.codegurukul.com/#/?referralCode={{user.referalCode}}"><i class="fa fa-google-plus fa-lg"></i></a>
+                    </p>
+                    <hr>
                 </div>
-                <div class="text-center">
-                    <div ng-hide="all" ng-repeat="badge in user.badges | filter:filterLocked" class="col-md-2 col-sm-2 col-xs-4">
-                        <a ui-sref="{{badge.link}}">
-                            <p><img ng-src="{{badge.thumb}}" alt="profile-details" ng-class="{locked:badge.locked}"></p>
-                            <h3 class="text-center">{{badge.name}}</h3>
-                        </a>
+                <div class="row" ng-show="user.badges.length == '0'">
+                    <h2 class="text-center">No Badges Yet!</h2>             
+                </div>
+                <div class="row" ng-hide="user.badges.length == '0'">
+                    <div class="col-sm-12">
+                        <h2 class="carousel-title text-center">
+                            Badges <br>
+                            <button ng-hide="all" class="btn btn-link btn-xs" ng-click="allBadges()">View All Badges</button><button class="btn btn-link btn-xs" ng-show="all" ng-click="all = ! all">Back To My Badges</button>
+                        </h2>
                     </div>
-                    <div ng-show="all" ng-repeat="badge in badges | filter:filterLocked" class="col-md-2 col-sm-2 col-xs-4">
-                        <a ui-sref="{{badge.link}}">
-                            <p><img ng-src="{{badge.thumb}}" alt="profile-details" ng-class="{locked:badge.locked}"></p>
-                            <h3 class="text-center">{{badge.name}}</h3>
-                        </a>
+                    <div class="text-center">
+                        <div ng-hide="all" ng-repeat="badge in user.badges | filter:filterLocked" class="col-md-2 col-sm-2 col-xs-4">
+                            <a ui-sref="{{badge.link}}">
+                                <p><img ng-src="{{badge.thumb}}" alt="profile-details" ng-class="{locked:badge.locked}"></p>
+                                <h3 class="text-center">{{badge.name}}</h3>
+                            </a>
+                        </div>
+                        <div ng-show="all" ng-repeat="badge in badges | filter:filterLocked" class="col-md-2 col-sm-2 col-xs-4">
+                            <a ui-sref="{{badge.link}}">
+                                <p><img ng-src="{{badge.thumb}}" alt="profile-details" ng-class="{locked:badge.locked}"></p>
+                                <h3 class="text-center">{{badge.name}}</h3>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

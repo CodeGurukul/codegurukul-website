@@ -80,9 +80,9 @@
                             <span class="icon icon-010"></span>
                             <span class="pull-right">{{course.place}}</span>
                         </li>
-<!--
-                    </ul>
-                    <ul>
+                        <!--
+</ul>
+<ul>
 -->
                         <li class="coupon-code" ng-show="!showCourseJoinedTickMark && currentUser && course.status != 'closed'">
                             <span class="pull-left coupon-input-box"><input type="text" class="form-control" placeholder="Enter Coupon Code" ng-model="couponCode"></span>
@@ -92,10 +92,10 @@
                     <br>
                     <p class="text-center" ng-show="showRemainingSpots"> <i class="fa fa-clock-o"></i> Hurry! Only {{remainingSpots}} spot(s) remaining!</p> 
 
-<!--                    <p ng-if="course.status=='new'"><a class="btn btn-primary take-course" ng-click="notify()">Notify Me!<span ng-class="{processSpinner:processing}"></span></a></p>-->
-                    <p ng-disabled="course.status=='closed' || showCourseJoinedTickMark == true"><a class="btn btn-primary take-course" ng-click="checkCondition();"> <span> <i class="fa fa-check joined-course" ng-show="showCourseJoinedTickMark"></i> <i class="fa fa-lock locked-course" ng-show="course.inviteOnly && !showCourseJoinedTickMark && !courseUnlocked"></i> <i class="fa fa-unlock locked-course" ng-show="courseUnlocked && showCourseJoinedTickMark == false" ng-hide="course.inviteOnly == false"></i> <span ng-if="course.status=='new'"> Notify Me! </span> </span> <span ng-if="course.status=='open' && course.price>0 && !showCourseJoinedTickMark">Pay</span> <span ng-if="course.status=='open' && course.price=='0' && showCourseJoinedTickMark == false"> Register </span> <span ng-if="course.status=='closed'"> Closed</span> <span ng-if="showCourseJoinedTickMark">Registered</span><span ng-class="{processSpinner:processing}"></span></a></p>
-<!--                    <p><a class="btn btn-primary take-course" ng-click="joinCourse()"><i class="fa fa-check" ng-show="showCourseJoinedTickMark"></i> Register<span ng-class="{processSpinner:processing}"></span></a></p>-->
-<!--                    <p ><a class="btn btn-primary take-course" ng-disabled="true">Closed</a></p>-->
+                    <!--                    <p ng-if="course.status=='new'"><a class="btn btn-primary take-course" ng-click="notify()">Notify Me!<span ng-class="{processSpinner:processing}"></span></a></p>-->
+                    <p ng-disabled="course.status=='closed' || showCourseJoinedTickMark == true"><a class="btn btn-primary take-course" ng-click="checkCondition();"> <span> <i class="fa fa-check joined-course" ng-show="showCourseJoinedTickMark && course.status!='closed'"></i> <i class="fa fa-lock locked-course" ng-show="course.inviteOnly && !showCourseJoinedTickMark && !courseUnlocked"></i> <i class="fa fa-unlock locked-course" ng-show="courseUnlocked && showCourseJoinedTickMark == false" ng-hide="course.inviteOnly == false"></i> <span ng-if="course.status=='new'"> Notify Me! </span> </span> <span ng-if="course.status=='open' && showCourseJoinedTickMark == false"> Register </span> <span ng-if="course.status=='closed'"> Closed</span> <span ng-if="showCourseJoinedTickMark && course.status!='closed'">Registered</span><span ng-class="{processSpinner:processing}"></span></a></p>
+                    <!--                    <p><a class="btn btn-primary take-course" ng-click="joinCourse()"><i class="fa fa-check" ng-show="showCourseJoinedTickMark"></i> Register<span ng-class="{processSpinner:processing}"></span></a></p>-->
+                    <!--                    <p ><a class="btn btn-primary take-course" ng-disabled="true">Closed</a></p>-->
 
                     <p class="text-center share">       
                         <a href="http://www.facebook.com/codegurukul"><i class="fa fa-facebook fa-lg"></i></a>
@@ -127,13 +127,14 @@
         </div>
     </div>
 </section>
-<section ng-show="course.slug == 'web-internship-program'">
 
-    <h2 class="carousel-title text-center">
-        Testimonials
-    </h2>
+<div class="landing-testimonials" ng-show="course.slug == 'web-internship-program'">
+
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <h2 class="testimonial-title text-center">
+            Testimonials
+        </h2>
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -150,7 +151,7 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 
 <modal-dialog class="inviteMessageModal" show='inviteMessageModalShown' dialog-title="Information" height="auto" width="350px">
     <div class="row">

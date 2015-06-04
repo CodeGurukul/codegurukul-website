@@ -14,12 +14,11 @@ angular.module('Codegurukul')
     }, 
                      function(data){
         $scope.user = data;
-        console.log($scope.user.profile.dob);
 
         if($scope.user.profile.dob){
             var stringDate = $scope.user.profile.dob;
             $scope.user.profile.dob = new Date(stringDate);
-            console.log($scope.user.profile.dob);
+            console.log($scope.user.badges.length);
         }
 
 
@@ -31,21 +30,29 @@ angular.module('Codegurukul')
             $scope.progressData++;
         if ($scope.user.profile.website)
             $scope.progressData++;
-        if ($scope.user.profile.facebook && $scope.user.profile.twitter)
+        if ($scope.user.profile.facebook)
             $scope.progressData++;
-        if ($scope.user.profile.google && $scope.user.profile.github)
+        if ($scope.user.profile.google)
             $scope.progressData++;
         if ($scope.user.profile.type)
             $scope.progressData++;
         if ($scope.user.profile.college && $scope.user.profile.stream && $scope.user.profile.year)
+        {
             $scope.progressData++;
-        if ($scope.user.profile.organization)
+        }
+        else if ($scope.user.profile.organization)
+        {
             $scope.progressData++;
-        if ($scope.user.profile.workDesc)
+        }
+        else if ($scope.user.profile.workDesc)
+        {
             $scope.progressData++;
+        }
         if ($scope.user.profile.experience)
             $scope.progressData++;
         if ($scope.user.profile.skills)
+            $scope.progressData++;
+        if ($scope.user.profile.twitter && $scope.user.profile.github)
             $scope.progressData++;
 
         $scope.progressData = $scope.progressData * 10;

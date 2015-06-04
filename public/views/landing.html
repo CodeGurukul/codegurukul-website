@@ -43,12 +43,40 @@ CodeGurukul Landing Page
 
 </div>
 -->
+<!--
 <section>
-    <h2 class="block-title custom-padding-bottom-20 text-center">WHY WE CODE</h2>
-    <div class="text-center">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/nKIu9yen5nc" frameborder="0" allowfullscreen></iframe>
-    </div>
+<h2 class="block-title custom-padding-bottom-20 text-center custom-font-weight-600">WHY WE CODE</h2>
+<div class="text-center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nKIu9yen5nc" frameborder="0" allowfullscreen></iframe>
+</div>
 </section>
+-->
+
+<div class="main-wrapper-div">
+    <div class="fade-div">
+        <p class="landing-intro-section"> BECOME A SOFTWARE DEVELOPER <br>
+            <small>From fresher to hacker in 8 weeks</small></p>
+        <form name="newsletterForm" method="post">
+            <div class="newsletter-form">
+                <h3 class="text-center newsletter-header">Subscribe to our newsletter</h3>
+                <div ng-class="{ &quot;has-error&quot; : newsletterForm.email.$invalid &amp;&amp; newsletterForm.email.$dirty }" class="form-group has-feedback">
+                    <div class="row">
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" autofocus= "" class="form-control input-md"/>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 newsletter-button-div">
+                            <button class="btn btn-primary btn-md" ng-click="newsletter()">Yes, sign me up!</button>
+                        </div>
+                    </div>
+                    <div ng-if="newsletterForm.email.$dirty" ng-messages="newsletterForm.email.$error" class="help-block text-danger">
+                        <div ng-message="email">Your email address is invalid.</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 
 <!-- ========== FEATURED COURSES START ========== -->
@@ -56,7 +84,7 @@ CodeGurukul Landing Page
 <section id="teachers" class="alt-background">
     <div class="container">
 
-        <h2 class="text-center">FEATURED COURSES</h2>
+        <h2 class="text-center custom-padding-bottom-20 custom-font-weight-600">FEATURED COURSES</h2>
 
         <ul class="teachers featured-courses">
 
@@ -95,161 +123,88 @@ CodeGurukul Landing Page
 <!-- ========== FEATURED COURSES END ========== -->
 
 <!-- ========== MENTORS START ========== -->
-<section>
+<section style="display:none">
 
     <div id="content-2-region" class="content-2 region">
 
         <div id="team-block" class="team block">
             <div class="container">
 
-                <h2 class="block-title text-center custom-padding-bottom-20">Our Team</h2>
+                <h2 class="custom-font-weight-600 block-title text-center custom-padding-bottom-20">Our Team</h2>
 
-                <div class="row">
+</section>
+<section>
+    <div class="container">
+        <h2 class="custom-font-weight-600 block-title text-center custom-padding-bottom-20">Our Team</h2>
 
-                    <div class="col-xs-6 col-sm-4 col-md-3 margin-bottom-50">
-                        <div class="team-item-image">
-                            <img src="../img/sobin-new.jpg" alt="member 1" title="member 1" class="img-responsive mentor-image" />
-                            <div class="team-item-overlay">
-                                <p>
-                                    <a href="https://www.facebook.com/sobingt">facebook</a>
-                                    <br/>
-                                    <a href="https://www.linkedin.com/in/sobingt">Linkedin</a>
-                                    <br/>
-                                </p>
-                            </div>
-                        </div>
-                        <!-- /team-item-image -->
-                        <div class="team-item-name">
-                            <h6>Sobin George Thomas</h6>
-                            <p class="text-color-theme">MENTOR</p>
-                        </div>
-                        <!-- /team-item-name -->
+        <slick dots=false infinite=true speed=300 slides-to-show=3 touch-move=true autoplay=true slides-to-scroll=1>
 
-                    </div>
-                    <!-- /team-item -->
-
-
-                    <div class="col-xs-6 col-sm-4 col-md-3 margin-bottom-50">
-                        <div class="team-item-image">
-                            <img src="/img/about-us/mentor/stanly.jpg" alt="member 2" title="member 2" class="img-responsive mentor-image" />
-                            <div class="team-item-overlay">
-                                <p>
-                                    <a href="https://www.facebook.com/stanlysir">facebook</a>
-                                    <br/>
-                                    <a href="https://twitter.com/StanlyJSamuel">Linkedin</a>
-                                    <br/>
-                                </p>
-                            </div>
-                        </div>
-                        <!-- /team-item-image -->
-                        <div class="team-item-name">
-                            <h6>Stanly Samuel</h6>
-                            <p class="text-color-theme">MENTOR</p>
-                        </div>
-                        <!-- /team-item-name -->
-
-                    </div>
-                    <!-- /team-item -->
-
-                    <div class="col-xs-6 col-sm-4 col-md-3 margin-bottom-50">
-                        <div class="team-item-image">
-                            <img src="/img/about-us/mentor/amit_erandole.jpg" alt="member 2" title="member 2" class="img-responsive mentor-image" />
-                            <div class="team-item-overlay">
-                                <p>
-                                    <a href="https://www.facebook.com/amit.erandole">facebook</a>
-                                    <br/>
-                                    <a href="https://www.linkedin.com/in/amiterandole">Linkedin</a>
-                                    <br/>
-                                </p>
-                            </div>
-                        </div>
-                        <!-- /team-item-image -->
-                        <div class="team-item-name">
-                            <h6>Amit Erandole</h6>
-                            <p class="text-color-theme">MENTOR</p>
-                        </div>
-                        <!-- /team-item-name -->
-
-                    </div>
-                    <!-- /team-item -->  
-
-                    <div class="col-xs-6 col-sm-4 col-md-3 margin-bottom-50" >
-                        <div class="team-item-image">
-                            <img src="/img/about-us/mentor/chaitanya.png" alt="member 3" title="member 3" class="img-responsive mentor-image" />
-                            <div class="team-item-overlay">
-                                <p>
-                                    <a href="http://facebook.com">facebook</a>
-                                    <br/>
-                                    <a href="in.linkedin.com/pub/chaitanya-reddy-tatiparti/11/686/822/en">Linkedin</a>
-                                    <br/>
-                                </p>
-                            </div>
-                        </div>
-                        <!-- /team-item-image -->
-                        <div class="team-item-name">
-                            <h6>Chaitanya Reddy Tatiparti</h6>
-                            <p class="text-color-theme">MENTOR</p>
-                        </div>
-                        <!-- /team-item-name -->
-                    </div>
-                    <!-- /team-item -->
-
-
-
-                    <div class="col-xs-6 col-sm-4 col-md-3 margin-bottom-50">
-                        <div class="team-item-image">
-                            <img src="/img/about-us/mentor/abhishek.png" alt="member 3" title="member 3" class="img-responsive mentor-image" />
-                            <div class="team-item-overlay">
-                                <p>
-                                    <a href="http://facebook.com/abhshah?fref=ts">facebook</a>
-                                    <br/>
-                                    <a href="#">Linkedin</a>
-                                    <br/>
-
-                                </p>
-                            </div>
-                        </div>
-                        <!-- /team-item-image -->
-                        <div class="team-item-name">
-                            <h6>Abhishek Shah</h6>
-                            <p class="text-color-theme">MENTOR</p>
-                        </div>
-                        <!-- /team-item-name -->
-
-                    </div>
-                    <!-- /team-item -->
-
-                    <div class="col-xs-6 col-sm-4 col-md-3 margin-bottom-50">
-                        <div class="team-item-image">
-                            <img src="/img/about-us/mentor/loyd.png" alt="member 3" title="member 3" class="img-responsive mentor-image" />
-                            <div class="team-item-overlay">
-                                <p>
-                                    <a href="http://facebook.com">facebook</a>
-                                    <br/>
-                                    <a href="in.linkedin.com/in/saldanhalloyd/en">Linkedin</a>
-                                    <br/>
-                                </p>
-                            </div>
-                        </div>
-                        <!-- /team-item-image -->
-                        <div class="team-item-name">
-                            <h6>Lloyd Saldanha</h6>
-                            <p class="text-color-theme">MENTOR</p>
-                        </div>
-                        <!-- /team-item-name -->
-                    </div>
-                    <!-- /team-item -->
+            <div class="item col-md-4 col-sm-6 col-xs-6">
+                <img src="/img/startup-team-training/sobin-wide.jpg" alt="" class="img-responsive" />
+                <div class="description">
+                    <h3>Sobin Thomas</h3>
+                    <p>
+                        <a href="https://www.facebook.com/sobingt"><i class="fa fa-facebook-square fa-lg mentor-social-links facebook"></i></a>
+                        <a href="https://www.linkedin.com/in/sobingt"><i class="fa fa-linkedin-square fa-lg mentor-social-links linkedin"></i></a>
+                    </p>
                 </div>
-
             </div>
-            <!-- /row -->>
-        </div>
-        <!-- /container -->
-    </div>
-    <!-- /team-block -->
+            <div class="item col-md-4 col-sm-6 col-xs-6">
+                <img src="/img/startup-team-training/stanly.jpg" alt="" class="img-responsive" />
+                <div class="description">
+                    <h3>Stanly Samuel</h3>
+                    <p>
+                        <a href="https://www.facebook.com/stanlysir"><i class="fa fa-facebook-square fa-lg mentor-social-links facebook"></i></a>
+                        <a href="https://twitter.com/StanlyJSamuel"><i class="fa fa-twitter fa-lg mentor-social-links twitter"></i> </a>
+                    </p>
+                </div>
+            </div>
 
+            <div class="item col-md-4 col-sm-6 col-xs-6">
+                <img src="/img/startup-team-training/amit-erandole.jpg" alt="" class="img-responsive" />
+                <div class="description">
+                    <h3>Amit Erandole</h3>
+                    <p>
+                        <a href="https://www.facebook.com/amit.erandole"><i class="fa fa-facebook-square fa-lg mentor-social-links facebook"></i></a>
+                        <a href="https://www.linkedin.com/in/amiterandole"><i class="fa fa-linkedin-square fa-lg mentor-social-links linkedin"></i></a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="item col-md-4 col-sm-6 col-xs-6">
+                <img src="/img/startup-team-training/abhishek.jpg" alt="" class="img-responsive" />
+                <div class="description">
+                    <h3>ABHISHEK SHAH</h3>
+                    <p>
+                        <a href="http://facebook.com/abhshah?fref=ts"><i class="fa fa-facebook-square fa-lg mentor-social-links facebook"></i></a>
+                        <!--                                <a href="#"><i class="fa fa-linkedin-square fa-lg mentor-social-links"></i></a>-->
+                    </p>
+                </div>
+            </div>
+            <div class="item col-md-4 col-sm-6 col-xs-6">
+                <img src="/img/startup-team-training/chaitanya.jpg" alt="" class="img-responsive" />
+                <div class="description">
+                    <h3>CHAITANYA REDDY TATIPARTI</h3>
+                    <p>
+                        <a href="http://facebook.com"><i class="fa fa-facebook-square fa-lg mentor-social-links facebook"></i></a>
+                        <a href="in.linkedin.com/pub/chaitanya-reddy-tatiparti/11/686/822/en"><i class="fa fa-linkedin-square fa-lg mentor-social-links linkedin"></i></a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="item col-md-4 col-sm-6 col-xs-6">
+                <img src="/img/startup-team-training/lloyd-saldhana.jpg" alt="" class="img-responsive" />
+                <div class="description">
+                    <h3>LLOYD SALDANHA</h3>
+                    <p>
+                        <a href="http://facebook.com"><i class="fa fa-facebook-square fa-lg mentor-social-links facebook"></i></a>
+                        <a href="in.linkedin.com/in/saldanhalloyd/en"><i class="fa fa-linkedin-square fa-lg mentor-social-links linkedin"></i></a>
+                    </p>
+                </div>
+            </div>
+
+        </slick>
     </div>
-<!-- /content-2-region -->
 </section>
 
 <!-- ========== MENTORS END ========== -->
@@ -257,12 +212,12 @@ CodeGurukul Landing Page
 <!-- ========== TESTIMONIAL START ========== -->
 
 
-<section>
-    <h2 class="carousel-title text-center block-title custom-padding-bottom-20">
-        Testimonials
-    </h2>
+<div class="landing-testimonials">
 
     <div id="myCarousel2" class="carousel slide" data-ride="carousel">
+        <h2 class="custom-font-weight-600 testimonial-title text-center block-title">
+            Testimonials
+        </h2>
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
@@ -291,7 +246,7 @@ CodeGurukul Landing Page
             </div>
         </div>
     </div>
-</section>
+</div>
 
 <!-- ========== TESTIMONIAL END ========== -->
 
@@ -344,5 +299,27 @@ CodeGurukul Landing Page
 
 
 
+<!-- ========== NEWSLETTER MODAL ========== -->
+
+<!--
+<modal-dialog class="loginModal" show='newsletterModalShown' dialog-title="Newsletter" height="auto" width="350px">
+<form method="post" name="newsletterForm" ng-controller="LandingCtrl">
+<div class="register-modal">
+<h2 class="text-center">Signup for our Newsletter</h2>
+<div ng-class="{ &quot;has-error&quot; : newsletterForm.email.$invalid &amp;&amp; newsletterForm.email.$dirty }" class="form-group has-feedback">
+<input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" autofocus= "" class="form-control input-md"/>
+<div ng-if="newsletterForm.email.$dirty" ng-messages="newsletterForm.email.$error" class="help-block text-danger">
+<div ng-message="required">Your email address is required.</div>
+<div ng-message="email">Your email address is invalid.</div>
+</div>
+</div>
+</div>
+<button class="btn btn-primary btn-sm pull-left" ng-click="newsletter()">Yes, totally!</button>
+<button class="btn btn-primary btn-sm pull-right" ng-click="newsletterModal()">No, thanks!</button>
+</form>  
+</modal-dialog>
+-->
+
+<!-- ========== NEWSLETTER MODAL ENDS ========== -->
 
 

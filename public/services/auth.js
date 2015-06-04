@@ -111,6 +111,7 @@ angular.module('Codegurukul')
                     inherit: false,
                     notify: true
                 });
+                $state.reload();
             })
                 .error(function(status) {
                 delete $window.localStorage.token;
