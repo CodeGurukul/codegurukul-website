@@ -1865,7 +1865,9 @@ body > .right {
     color: #fff;
     padding-top: 20px;
     margin-bottom: 0px;
+    margin-top: 0px;
     padding-bottom: 0px;
+    padding-top: 40px;
 }
 
 .main-wrapper-div, .fade-div{
