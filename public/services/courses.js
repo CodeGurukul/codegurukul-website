@@ -2,7 +2,7 @@ angular.module('Codegurukul')
   .factory('Courses', function($resource) {
     var Courses = {
       default: $resource('../data/courses.json'),
-      canJoin: $resource('/api/courses/:cslug/canjoin'),
+      canJoin: $resource('/api/courses/:cslug/:sid/canjoin'),
       getAll: $resource('/api/courses/:cslug', {
 	      cslug: '@cslug'
 				}, {
@@ -10,7 +10,8 @@ angular.module('Codegurukul')
 				  method: 'PUT'
 				}
 			}),
-      join: $resource('/api/courses/:cslug/join', {
+//      join: $resource('/api/courses/:cslug/join', {
+      join: $resource('/api/courses/join', {
         cslug: '@cslug'
         }, {
         update: {
@@ -24,7 +25,7 @@ angular.module('Codegurukul')
           method: 'PUT'
         }
       }),
-      domains: $resource('../data/domains.json')
+      domains: $resource('../data/domains.json'),
     };
     return Courses;
   });

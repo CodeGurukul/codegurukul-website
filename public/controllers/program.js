@@ -1,5 +1,5 @@
 angular.module('Codegurukul')
-    .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Program, Courses, Pay, $alert, Email, $http) {
+    .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Courses, Pay, $alert, Email, $http) {
     $scope.processing = false;
     $scope.showCourseJoinedTickMark = false;
     $scope.couponCode = "";  
@@ -60,7 +60,11 @@ angular.module('Codegurukul')
     }, function(data) {
         $scope.course = data.course;
         $scope.course.joined = data.joined;
-        console.log($scope.course.date);
+//        $scope.slotIdentification = $scope.course.slots[0]._id;
+        //        $scope.slots = $scope.course.slots;
+        //        for(var i=0; i<$scope.slots.length; i++){
+        //            console.log($scope.slots[i]._id);
+        //        }
 
         if ($scope.course.date === "COMING SOON") {
             $scope.notifyButton = true;
@@ -84,7 +88,9 @@ angular.module('Codegurukul')
     });
 
 
-    $scope.checkCondition = function(){
+    $scope.checkCondition = function(slot){
+        $scope.slotIdentification = slot;
+        console.log($scope.slotIdentification + " slot");
         if ($rootScope.currentUser){
             console.log($scope.course.joined);
             if($scope.course.joined){
@@ -107,13 +113,8 @@ angular.module('Codegurukul')
             }
 
             else {
-                if ($scope.course.status == 'open' && $scope.course.price > 0 && $scope.course.joined == false){
+                if ($scope.course.status == 'open' && $scope.course.joined == false){
                     $scope.canJoin();
-
-                }
-                else if ($scope.course.status == 'open' && $scope.course.price == '0' && $scope.course.joined == false){
-                    $scope.joinCourse();
-                    console.log("join course function executed");
                 }
                 else if ($scope.course.status=='new'){
                     $scope.notify();
@@ -133,7 +134,7 @@ angular.module('Codegurukul')
         }
     }
 
-
+//    console.log($scope.slotIdentification);
     $scope.joinCourse = function() {
         if ($scope.course.joined) {
             $alert({
@@ -146,7 +147,9 @@ angular.module('Codegurukul')
         } else {
             $scope.processing = true;
             Courses.join.update({
-                cslug: $stateParams.course
+                cslug: $stateParams.course,
+                sid: $scope.slotIdentification,
+                code: $scope.couponCode
             },
                                 function(data) {
                 console.log("SUCCESS!!");
@@ -173,15 +176,23 @@ angular.module('Codegurukul')
                                );
         }
     };
+    
+    
     $scope.canJoin = function() {
         if ($rootScope.currentUser) {
             $scope.processing = true;
             Courses.canJoin.get({
-                cslug: $stateParams.course
+                cslug: $stateParams.course,
+                sid: $scope.slotIdentification
             },
                                 function() {
                 $scope.processing = false;
-                $scope.pay();
+                if($scope.course.price > '0'){
+                    $scope.pay();
+                }
+                else if($scope.course.price == '0'){
+                    $scope.joinCourse();
+                }
             },
                                 function(error) {
                 console.log(error);
@@ -213,10 +224,11 @@ angular.module('Codegurukul')
             "image": "img/logo.png",
             "handler": function(response) {
                 $scope.processing = true;
-                Pay.default.save({
+                Courses.join.save({
                     payment_id: response.razorpay_payment_id,
                     cslug: $stateParams.course,
-                    code:$scope.couponCode
+                    code:$scope.couponCode,
+                    sid: $scope.slotIdentification
                 }, function(data) {
                     $alert({
                         content: 'Your payment was a success!',
