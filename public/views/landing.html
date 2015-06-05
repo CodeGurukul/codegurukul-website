@@ -56,19 +56,19 @@ CodeGurukul Landing Page
     <div class="fade-div">
         <p class="landing-intro-section"> BECOME A SOFTWARE DEVELOPER <br>
             <small>From fresher to hacker in 8 weeks</small></p>
-        <form name="newsletterForm" method="post">
-            <div class="newsletter-form">
+        <form name="newsletterForm" method="post" class="form-inline">
+            <div class="newsletter-form text-center">
                 <h3 class="text-center newsletter-header">Subscribe to our newsletter</h3>
                 <div ng-class="{ &quot;has-error&quot; : newsletterForm.email.$invalid &amp;&amp; newsletterForm.email.$dirty }" class="form-group has-feedback">
-                    <div class="row">
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-9 col-sm-9 col-xs-12">-->
                             <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" autofocus= "" class="form-control input-md"/>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12 newsletter-button-div">
+<!--                        </div>-->
+<!--                        <div class="col-md-3 col-sm-3 col-xs-12 newsletter-button-div">-->
                             <button class="btn btn-primary btn-md" ng-click="newsletter()">Yes, sign me up!</button>
-                        </div>
+<!--                        </div>-->
                     </div>
-                    <div ng-if="newsletterForm.email.$dirty" ng-messages="newsletterForm.email.$error" class="help-block text-danger">
+                    <div ng-if="newsletterForm.email.$dirty" ng-messages="newsletterForm.email.$error" class="text-danger">
                         <div ng-message="email">Your email address is invalid.</div>
                     </div>
                 </div>
@@ -164,7 +164,8 @@ CodeGurukul Landing Page
     <div class="container">
         <h2 class="custom-font-weight-600 block-title text-center custom-padding-bottom-20">Our Team</h2>
 
-        <slick dots=false infinite=true speed=300 slides-to-show=3 touch-move=true autoplay=true slides-to-scroll=1>
+        <slick dots=true infinite=true speed=300 slides-to-show=4 touch-move=true autoplay=true slides-to-scroll=1 arrows=false>
+<!--            prev-arrow='<button class="btn btn-primary slick-prev"><i class="fa fa-caret-left"></i></button>' next-arrow='<button class="btn btn-primary"><i class="fa fa-caret-right"></i> </button>'>-->
 
             <div class="item col-md-4 col-sm-6 col-xs-6">
                 <img src="/img/startup-team-training/sobin-wide.jpg" alt="" class="img-responsive" />

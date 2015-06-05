@@ -1,11 +1,11 @@
 angular.module('Codegurukul')
     .controller('LandingCtrl', function($scope, $rootScope, Courses, $stateParams, $location, Email, $alert) {
 
-    Courses.getAll.get({
-        cslug: "web-internship-program"
-    }, function(data) {
-        $scope.course = data.course;
-    });
+//    Courses.getAll.get({
+//        cslug: "web-internship-program"
+//    }, function(data) {
+//        $scope.course = data.course;
+//    });
 
 //    function getCookie (name) {
 //        var dc = document.cookie;
