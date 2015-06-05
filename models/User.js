@@ -30,13 +30,12 @@ var userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Course'
         },
-        joindate: Date
+        sid: mongoose.Schema.Types.ObjectId,
+        joindate: Date,
+        invoice: {type: mongoose.Schema.Types.ObjectId, ref: 'Invoice' }
     }],
     badges: [{
         _id : {type: mongoose.Schema.Types.ObjectId, ref: 'Badge' }
-    }],
-    invoices: [{
-        _id : {type: mongoose.Schema.Types.ObjectId, ref: 'Invoice' }
     }],
     log: [{
         _id: false,
@@ -100,8 +99,7 @@ function slugify(text) {
         .replace(/-+$/, ''); // Trim - from end of text
 };
 
-function codeGen(len)
-{
+function codeGen(len) {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 

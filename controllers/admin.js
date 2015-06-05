@@ -32,18 +32,23 @@ exports.getAttendees = function(req, res) {
   Course.findOne({
     slug: req.params.cslug
   })
-  .select('name slug attendees')
+  .select('name slug slots')
   .populate({
-    path: 'attendees._id',
-    select: 'slug email username mobile'
+    path: 'slots.attendees._id',
+    select: 'slug email username mobile profile.fullname'
   })
   .exec(function(err, course) {
-    if (err)
-      res.send(err);
-    else if (!course) {
-      res.status(404).send('Course Not Found');
-    } else {
-      res.send(course);
+    if (err) res.send(err);
+    else if (!course) res.status(404).send('Course Not Found');
+    else if (!course.slots.id(req.params.sid)) res.status(400).send("Invalid slot ID");
+    else {
+      var temp = {
+        name: course.name,
+        slug: course.slug,
+        slotId: req.params.sid,
+        attendees: course.slots.id(req.params.sid).attendees 
+      }
+      res.send(temp);
     }
   });
 };
@@ -52,18 +57,24 @@ exports.getLeads = function(req, res) {
   Course.findOne({
     slug: req.params.cslug
   })
-  .select('name slug leads')
+  .select('name slug slots')
   .populate({
-    path: 'leads._id',
-    select: 'slug email username mobile'
+    path: 'slots.leads._id',
+    select: 'slug email username mobile profile.fullname'
   })
   .exec(function(err, course) {
     if (err)
       res.send(err);
-    else if (!course) {
-      res.status(404).send('Course Not Found');
-    } else {
-      res.send(course);
+    else if (!course) res.status(404).send('Course Not Found'); 
+    else if (!course.slots.id(req.params.sid)) res.status(400).send("Invalid slot ID");
+    else {
+      var temp = {
+        name: course.name,
+        slug: course.slug,
+        slotId: req.params.sid,
+        leads: course.slots.id(req.params.sid).leads 
+      }
+      res.send(temp);
     }
   });
 };
@@ -172,12 +183,33 @@ exports.updateCourse = function (req, res) {
 }
 
 
-
+exports.joinPrep = function (req, res, next) {
+  if (req.body.fullname && req.body.username && req.body.email 
+    && req.body.mobile && req.body.mop && req.body.amount 
+    && req.body.cslug && req.body.sid) {
+    req.body.password = codeGen(5);
+    req.admin = true;
+    req.pay = true;
+    req.mop = req.body.mop;
+    req.coursePrice = req.body.amount;
+    next();
+  } else return res.status(400).send("Enter all required fields");
+}
 
 
 
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function codeGen(len) {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < len; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
 }
 
 function slugify(text) {
