@@ -99,8 +99,7 @@ function slugify(text) {
         .replace(/-+$/, ''); // Trim - from end of text
 };
 
-function codeGen(len)
-{
+function codeGen(len) {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 

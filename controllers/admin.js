@@ -183,12 +183,33 @@ exports.updateCourse = function (req, res) {
 }
 
 
-
+exports.joinPrep = function (req, res, next) {
+  if (req.body.fullname && req.body.username && req.body.email 
+    && req.body.mobile && req.body.mop && req.body.amount 
+    && req.body.cslug && req.body.sid) {
+    req.body.password = codeGen(5);
+    req.admin = true;
+    req.pay = true;
+    req.mop = req.body.mop;
+    req.coursePrice = req.body.amount;
+    next();
+  } else return res.status(400).send("Enter all required fields");
+}
 
 
 
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function codeGen(len) {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < len; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
 }
 
 function slugify(text) {

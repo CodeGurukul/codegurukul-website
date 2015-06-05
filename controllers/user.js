@@ -3,6 +3,7 @@ var moment = require('moment');
 var crypto = require('crypto');
 var path = require('path');
 var course = require('../controllers/course');
+var email = require('../controllers/email');
 var secrets = require('../config/secrets');
 var config = secrets();
 var msg = require('../messages');
@@ -126,12 +127,14 @@ exports.signup = function(req, res, next) {
   user.save(function(err, user, numberAffected) {
     if (err) res.status(400).send(err);
     else {
-      res.status(200).send(msg.signup);
-      req.to = user.email;
-      req.name = user.username;
-      req.verificationCode = user.verificationCode;
+      if(!req.admin) res.status(200).send(msg.signup);
+      email.sendSignupEmail(user.email, user.username, user.verificationCode); 
+      email.sendPassword(user.email, user.username, req.body.password);     
       if (req.body.lead) course.addLead(user.id, req.body.lead);
-      next();
+      if (req.admin) {
+        req.user = user;
+        next();
+      }
     }
 
   });
@@ -145,9 +148,7 @@ exports.signupResend = function (req, res, next) {
   }, function(err, user) {
     if (!user) return res.status(401).send(msg.unf);
     if (user.verified) return res.status(200).send(msg.alver);
-    req.to = user.email;
-    req.name = user.username;
-    req.verificationCode = user.verificationCode;
+    email.sendSignupEmail(user.email, user.username, user.verificationCode); 
     next();
     res.status(200).send(msg.verifySent);
   });

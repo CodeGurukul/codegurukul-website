@@ -25,6 +25,7 @@ exports.verifyPay = function(req,res,next){
 							if(data.id == req.body.payment_id){
 								req.status = data.status;
 								req.pay = true;
+								req.mop = "Online";
 								req.coursePrice = result.value;
 								next();
 							}

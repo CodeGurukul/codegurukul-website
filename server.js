@@ -83,8 +83,8 @@ var adminController = require('./controllers/admin');
 //Login APIs  //Github and linkedin auth needs testing...awaiting front end code
 app.post('/api/auth/github', userController.githubAuth);
 app.post('/api/auth/linkedin', userController.linkedinAuth);
-app.post('/api/auth/signup', userController.signup, emailController.sendSignupEmail);
-app.post('/api/auth/signup/resend', userController.signupResend, emailController.sendSignupEmail);
+app.post('/api/auth/signup', userController.signup);
+app.post('/api/auth/signup/resend', userController.signupResend);
 app.post('/api/auth/signup/verification', userController.signupVerify);
 app.post('/api/auth/login', userController.login);
 app.post('/api/auth/facebook', userController.facebookAuth);
@@ -121,6 +121,7 @@ app.get('/api/admin/courses/:cslug/:sid/attendees', userController.isAdmin, admi
 app.get('/api/admin/courses/:cslug/:sid/leads', userController.isAdmin, adminController.getLeads);
 app.get('/api/admin/courses/:cslug', userController.isAdmin, adminController.getCourse);
 app.post('/api/admin/createCourse', userController.isAdmin, adminController.createCourse);
+app.post('/api/admin/courses/join', userController.isAdmin, adminController.joinPrep, userController.signup, courseController.joinCourse, invoiceController.generate);
 app.get('/api/admin/courses', userController.isAdmin, adminController.getCourses);
 
 /**

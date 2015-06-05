@@ -20,7 +20,7 @@ exports.generate = function(req, res, next) {
       total: req.coursePrice,
       user: req.userId,
       paymentId: req.body.payment_id,
-      mop: "Online"
+      mop: req.mop
     });
     invoice.products.push({
       product: req.course,
