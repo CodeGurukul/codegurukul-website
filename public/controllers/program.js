@@ -60,7 +60,7 @@ angular.module('Codegurukul')
     }, function(data) {
         $scope.course = data.course;
         $scope.course.joined = data.joined;
-        console.log($scope.course.date);
+        console.log($scope.course);
 
         if ($scope.course.date === "COMING SOON") {
             $scope.notifyButton = true;
