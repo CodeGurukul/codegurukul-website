@@ -32,6 +32,10 @@ var courseSchema = new mongoose.Schema({
     description: String,
     image: String
   }],
+  partners:[{
+    name: String,
+    image: String
+  }],
   content:[{
     title: String,
     duration: String,
