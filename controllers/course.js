@@ -59,6 +59,7 @@ exports.getCourse = function(req, res) {
           for (var i = 0; i < course.slots.length; i++) {
             if (course.slots[i].attendees.id(req.user._id)) {
               temp.joined = true;
+              temp.joinedSid = course.slots[i]._id;
               break;
             }
           };
