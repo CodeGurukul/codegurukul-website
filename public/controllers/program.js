@@ -1,5 +1,5 @@
 angular.module('Codegurukul')
-    .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Courses, Pay, $alert, Email, $http) {
+    .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Courses, Pay, $alert, Email, $http, $state) {
     $scope.processing = false;
     $scope.showCourseJoinedTickMark = false;
     $scope.couponCode = "";  
@@ -60,6 +60,8 @@ angular.module('Codegurukul')
     }, function(data) {
         $scope.course = data.course;
         $scope.course.joined = data.joined;
+        $scope.course.joinedSid = data.joinedSid;
+        console.log($scope.course.joinedSid);
 //        $scope.slotIdentification = $scope.course.slots[0]._id;
         //        $scope.slots = $scope.course.slots;
         //        for(var i=0; i<$scope.slots.length; i++){
@@ -162,6 +164,11 @@ angular.module('Codegurukul')
                 $scope.course.joined = true;
                 $scope.showCourseJoinedTickMark = true;
                 $scope.processing = false;
+                $state.transitionTo($state.current, $stateParams, {
+                        reload: true,
+                        inherit: false,
+                        notify: true
+                    });
             },
                                 function(error) {
                 console.log(error);
@@ -189,6 +196,11 @@ angular.module('Codegurukul')
                 $scope.processing = false;
                 if($scope.course.price > '0'){
                     $scope.pay();
+                    $state.transitionTo($state.current, $stateParams, {
+                reload: true,
+                inherit: false,
+                notify: true
+            });
                 }
                 else if($scope.course.price == '0'){
                     $scope.joinCourse();
@@ -239,6 +251,11 @@ angular.module('Codegurukul')
                     $scope.showCourseJoinedTickMark = true;
                     $scope.course.joined = true;
                     $scope.processing = false;
+                    $state.transitionTo($state.current, $stateParams, {
+                        reload: true,
+                        inherit: false,
+                        notify: true
+                    });
                     // joinCourse();
                 }, function(error) {
                     $alert({

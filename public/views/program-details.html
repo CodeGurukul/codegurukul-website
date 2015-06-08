@@ -112,15 +112,15 @@
                 <!-- ==== COURSE DATA END == -->
 
                 <!-- ==== SLOTS START == -->
-                <div class="widget" data-scroll-reveal ng-repeat="slot in course.slots">
+                <div class="widget slot-div" data-scroll-reveal ng-repeat="slot in course.slots">
                     <div class="teacher row slot-data">
-                        <div class="row">
-                            <div class="col-sm-6">
+                        <div class="row custom-padding-bottom-20">
+                            <div class="col-sm-6" tooltips tooltip-title="Location" tooltip-side="top">
                                 <p>
                                     <span class="icon"><i class="fa fa-map-marker"></i></span> <span class="pull-right"><strong>{{slot.location}}</strong>, {{slot.city}}</span>
                                 </p>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-6" tooltips tooltip-title="Start Date" tooltip-side="top">
                                 <p>
                                     <span class="icon"><i class="fa fa-calendar"></i></span> <span class="pull-right"><strong>{{slot.startDate | date:format:longDate}}</strong></span>
                                 </p>
@@ -128,106 +128,106 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-6">
-                                <span class="icon icon-006"></span> <span class="pull-right">{{slot.batchSize}} Students
-                                </div>
+                            <div class="col-sm-6 batch-size-div" tooltips tooltip-title="Batch Size" tooltip-side="top">
+                                <span class="icon icon-006"></span> <span class="pull-right">{{slot.batchSize}} Students</span>
                             </div>
-                            <div class="col-sm-6">
-                                <p ng-disabled="course.status=='closed' || showCourseJoinedTickMark == true"><a class="btn btn-primary btn-sm take-course" ng-click="checkCondition(slot._id);"> <span> <i class="fa fa-check joined-course" ng-show="showCourseJoinedTickMark && course.status!='closed'"></i> <i class="fa fa-lock locked-course" ng-show="course.inviteOnly && !showCourseJoinedTickMark && !courseUnlocked"></i> <i class="fa fa-unlock locked-course" ng-show="courseUnlocked && showCourseJoinedTickMark == false" ng-hide="course.inviteOnly == false"></i> <span ng-if="course.status=='new'"> Notify Me! </span> </span> <span ng-if="course.status=='open' && showCourseJoinedTickMark == false"> Register </span> <span ng-if="course.status=='closed'"> Closed</span> <span ng-if="showCourseJoinedTickMark && course.status!='closed'">Registered</span><span ng-class="{processSpinner:processing}"></span></a></p>
+                            <div class="col-sm-6" ng-hide="course.joined == true && slot._id != course.joinedSid">
+                                <p ng-disabled="course.status=='closed' || showCourseJoinedTickMark == true"><a class="btn btn-primary btn-xs take-course pull-right register-slot" ng-click="checkCondition(slot._id);"> <span> <i class="fa fa-check joined-course" ng-show="showCourseJoinedTickMark && course.status!='closed' && slot._id == course.joinedSid"></i> <i class="fa fa-lock locked-course" ng-show="course.inviteOnly && !showCourseJoinedTickMark && !courseUnlocked"></i> <i class="fa fa-unlock locked-course" ng-show="courseUnlocked && showCourseJoinedTickMark == false" ng-hide="course.inviteOnly == false"></i> <span ng-if="course.status=='new'"> Notify Me! </span> </span> <span ng-if="course.status=='open' && showCourseJoinedTickMark == false"> Register </span> <span ng-if="course.status=='closed'"> Closed</span> <span ng-if="showCourseJoinedTickMark && course.status!='closed' && slot._id == course.joinedSid">Registered</span><span ng-class="{processSpinner:processing}"></span></a></p>
                             </div>
                         </div>
                     </div>
+                </div>
 
 
-<!--
-                            <div class="col-sm-12">
-                                <h5 class="text-center"> Slot {{$index + 1}} </h5>
-                                <ul>
-                                    <li class="course-data" tooltips tooltip-title="Start Date" tooltip-side="top">
-                                        <span class="icon"><i class="fa fa-calendar"></i></span>
-                                        <span class="pull-right">{{slot.startDate | date:format:longDate}}</span>
-                                    </li>
-                                    <li class="course-data" tooltips tooltip-title="City" tooltip-side="top">
-                                        <span class="icon"> <i class="fa fa-map-marker"></i> </span> <span class="pull-right">{{slot.city}}</span>
-                                    </li>
-                                    <li class="course-data" tooltips tooltip-title="Location" tooltip-side="top">
-                                        <span class="icon icon-010"></span> <span class="pull-right">{{slot.location}}</span>
-                                    </li>
-                                    <li class="course-data" tooltips tooltip-title="Batch Size" tooltip-side="top">
-                                        <span class="icon icon-006"></span> <span class="pull-right">{{slot.batchSize}} Students</span>
-                                    </li>
+                <!--
+<div class="col-sm-12">
+<h5 class="text-center"> Slot {{$index + 1}} </h5>
+<ul>
+<li class="course-data" tooltips tooltip-title="Start Date" tooltip-side="top">
+<span class="icon"><i class="fa fa-calendar"></i></span>
+<span class="pull-right">{{slot.startDate | date:format:longDate}}</span>
+</li>
+<li class="course-data" tooltips tooltip-title="City" tooltip-side="top">
+<span class="icon"> <i class="fa fa-map-marker"></i> </span> <span class="pull-right">{{slot.city}}</span>
+</li>
+<li class="course-data" tooltips tooltip-title="Location" tooltip-side="top">
+<span class="icon icon-010"></span> <span class="pull-right">{{slot.location}}</span>
+</li>
+<li class="course-data" tooltips tooltip-title="Batch Size" tooltip-side="top">
+<span class="icon icon-006"></span> <span class="pull-right">{{slot.batchSize}} Students</span>
+</li>
 -->
-                                    <!--
+                <!--
 <li class="course-data" tooltips tooltip-title="Batch Size" tooltip-side="top">
 <input type="text" value="{{slot._id}}" class="form-control input-md" ng-model="slot._id">
 </li>
 -->
-<!--
-                                </ul>
-                                <p ng-disabled="course.status=='closed' || showCourseJoinedTickMark == true"><a class="btn btn-primary take-course" ng-click="checkCondition(slot._id);"> <span> <i class="fa fa-check joined-course" ng-show="showCourseJoinedTickMark && course.status!='closed'"></i> <i class="fa fa-lock locked-course" ng-show="course.inviteOnly && !showCourseJoinedTickMark && !courseUnlocked"></i> <i class="fa fa-unlock locked-course" ng-show="courseUnlocked && showCourseJoinedTickMark == false" ng-hide="course.inviteOnly == false"></i> <span ng-if="course.status=='new'"> Notify Me! </span> </span> <span ng-if="course.status=='open' && showCourseJoinedTickMark == false"> Register </span> <span ng-if="course.status=='closed'"> Closed</span> <span ng-if="showCourseJoinedTickMark && course.status!='closed'">Registered</span><span ng-class="{processSpinner:processing}"></span></a></p>
-                                <hr>
-                            </div>
-                        </div>
-                    </div>
+                <!--
+</ul>
+<p ng-disabled="course.status=='closed' || showCourseJoinedTickMark == true"><a class="btn btn-primary take-course" ng-click="checkCondition(slot._id);"> <span> <i class="fa fa-check joined-course" ng-show="showCourseJoinedTickMark && course.status!='closed'"></i> <i class="fa fa-lock locked-course" ng-show="course.inviteOnly && !showCourseJoinedTickMark && !courseUnlocked"></i> <i class="fa fa-unlock locked-course" ng-show="courseUnlocked && showCourseJoinedTickMark == false" ng-hide="course.inviteOnly == false"></i> <span ng-if="course.status=='new'"> Notify Me! </span> </span> <span ng-if="course.status=='open' && showCourseJoinedTickMark == false"> Register </span> <span ng-if="course.status=='closed'"> Closed</span> <span ng-if="showCourseJoinedTickMark && course.status!='closed'">Registered</span><span ng-class="{processSpinner:processing}"></span></a></p>
+<hr>
+</div>
+</div>
+</div>
 -->
-                    <!-- ==== SLOTS END == -->
+                <!-- ==== SLOTS END == -->
 
-                    <!-- ==== TEACHER START == -->
-                    <div class="widget" data-scroll-reveal>
-                        <h3>Mentors</h3>
-                        <div class="teacher row" ng-repeat="mentor in course.mentors">
-                            <div class="col-sm-12">
-                                <img src="{{mentor.image}}" alt="" class="pull-left" />
-                                <h5> {{mentor.name}} </h5>
-                                <p> {{mentor.description}} <br> 
-                                    <a href="{{mentor.profile}}" target="_blank"> View Profile</a></p>
-                                <hr>
-                            </div>
+                <!-- ==== TEACHER START == -->
+                <div class="widget" data-scroll-reveal>
+                    <h3>Mentors</h3>
+                    <div class="teacher row" ng-repeat="mentor in course.mentors">
+                        <div class="col-sm-12">
+                            <img src="{{mentor.image}}" alt="" class="pull-left" />
+                            <h5> {{mentor.name}} </h5>
+                            <p> {{mentor.description}} <br> 
+                                <a href="{{mentor.profile}}" target="_blank"> View Profile</a></p>
+                            <hr>
                         </div>
                     </div>
-                    <!-- ==== TEACHER END == -->
-
                 </div>
-
-                <!-- ==== SIDEBAR END == -->
+                <!-- ==== TEACHER END == -->
 
             </div>
+
+            <!-- ==== SIDEBAR END == -->
+
         </div>
-        </section>
+    </div>
+</section>
 
-    <div class="landing-testimonials" ng-show="course.slug == 'web-internship-program'">
+<div class="landing-testimonials" ng-show="course.slug == 'web-internship-program'">
 
 
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <h2 class="testimonial-title text-center">
-                Testimonials
-            </h2>
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-            </ol>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <h2 class="testimonial-title text-center">
+            Testimonials
+        </h2>
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item" ng-class="{active:!$index}" ng-repeat = "testimonial in course.testimonials">
-                    <p>" {{testimonial.testimonial}} "</p> 
-                    <p ng-bind-html="testimonial.studentPlace"></p>
-                </div>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item" ng-class="{active:!$index}" ng-repeat = "testimonial in course.testimonials">
+                <p>" {{testimonial.testimonial}} "</p> 
+                <p ng-bind-html="testimonial.studentPlace"></p>
             </div>
         </div>
     </div>
+</div>
 
-    <modal-dialog class="inviteMessageModal" show='inviteMessageModalShown' dialog-title="Information" height="auto" width="350px">
-        <div class="row">
-            <div class="col-md-12">
-                <p class="text-center">{{course.inviteMessage}}</p>
-                <p class="text-center">Regards,<br>The CodeGurukul Team</p>
-            </div>
-            <div class="col-md-12 text-center">
-                <button class="btn btn-primary btn-md" ng-click="checkCondition()"> OK </button>
-            </div>
+<modal-dialog class="inviteMessageModal" show='inviteMessageModalShown' dialog-title="Information" height="auto" width="350px">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-center">{{course.inviteMessage}}</p>
+            <p class="text-center">Regards,<br>The CodeGurukul Team</p>
         </div>
-    </modal-dialog>
+        <div class="col-md-12 text-center">
+            <button class="btn btn-primary btn-md" ng-click="checkCondition()"> OK </button>
+        </div>
+    </div>
+</modal-dialog>
