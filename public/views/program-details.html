@@ -160,12 +160,14 @@
         <slick dots=true infinite=true speed=600 slides-to-show=4 touch-move=true autoplay=true slides-to-scroll=1 arrows=false init-onload=true data="course.partners">
 
             <div class="item col-md-4 col-sm-6 col-xs-6 partner" ng-repeat="partner in course.partners">
-                <img src="{{partner.image}}" alt="" class="img-responsive" />
-                <div class="description">
-                    <h3 class="text-center"> {{partner.name}} </h3>
-                </div>
+                <a href="{{partner.link}}" target="_blank">
+                    <img src="{{partner.image}}" alt="" class="img-responsive" />
+                    <div class="description">
+                        <h3 class="text-center"> {{partner.name}} </h3>
+                    </div>
+                </a>
             </div>
-            
+
         </slick>
     </div>
 </section>

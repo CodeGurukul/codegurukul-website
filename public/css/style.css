@@ -1967,3 +1967,8 @@ Optional CSS for partners
     -moz-filter: grayscale(0%);
     opacity: 1;
 }*/
+
+.feature img{
+    max-width: 120px;
+    margin: auto;
+}
