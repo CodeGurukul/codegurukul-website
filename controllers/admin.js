@@ -63,6 +63,45 @@ exports.getAttendees = function(req, res) {
   });
 };
 
+exports.changeAttendeeStatus = function (req, res) {
+  if (req.params.cslug && req.params.sid) {
+    if (req.body.status == "completed" ||
+        req.body.status == "registered" ||
+        req.body.status == "cancelled") {
+      Course.findOne({slug: req.params.cslug}, function (err, course) {
+        if (err) res.send(err);
+        else if (!course) res.status(404).send('Course Not Found');
+        else if (!course.slots.id(req.params.sid)) res.status(400).send("Invalid slot ID");
+        else {
+          var result = [];
+          for (var i = 0; i < req.body.users.length; i++) {
+            if(course.slots.id(req.params.sid).attendees.id(req.body.users[i])) {
+              course.slots.id(req.params.sid).attendees.id(req.body.users[i]).status = req.body.status; 
+              if (req.body.status == "completed") 
+                course.slots.id(req.params.sid).attendees.id(req.body.users[i]).completionDate = Date.now();
+              result.push({
+                id: req.body.users[i],
+                status: req.body.status
+              })
+            } else {
+              result.push({
+                id: req.body.users[i],
+                status: "Invalid user ID"
+              })
+            }
+          };
+          course.save(function (err, course) {
+            if (err) res.status(400).send(err);
+            else {
+              res.send(result);
+            }
+          })
+        }
+      })
+    } else  res.status(400).send("Status invalid")
+  } else res.status(400).send("Course slug and slot ID needed")
+}
+
 exports.getLeads = function(req, res) {
   Course.findOne({
     slug: req.params.cslug
