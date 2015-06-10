@@ -19,30 +19,86 @@
 
 
     <div class="container">
-        <button class="btn btn-primary btn-md" ng-click="createCourseModal()"> Create a New Course </button>
+        <div class="row">
+            <div class="col-sm-8">
+                <button class="btn btn-primary btn-md" ng-click="createCourseModal()"> Create a New Course </button>
+            </div>
+            <div class="col-sm-4">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input type="search" class="form-control" placeholder="Search..." ng-model="searchCourse">
+                        </div>      
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
         <table class="table table-condensed">
             <thead>
                 <tr>
-                    <th>COURSE NAME</th>
+                    <th>
+                        <a href="" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                            COURSE NAME 
+                            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th><a href="" ng-click="sortType = 'price'; sortReverse = !sortReverse">
+                        COURSE PRICE
+                        <span ng-show="sortType == 'price' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'price' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>COURSE SLOTS</th>
                     <th>COURSE DATE</th>
-                    <th>COURSE PRICE</th>
+                    <th>NUMBER OF ATTENDEES</th>
                     <th>ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="course in courses" class="course-row">
+                <tr ng-repeat="course in courses | orderBy:sortType:sortReverse | filter:searchCourse" class="course-row">
                     <td><a ui-sref="programs({course:'{{course.slug}}'})"> {{course.name}} </a> </td>
-                    <td> {{course.date | date:format:longDate}} </td>
                     <td> {{course.price}} </td>
-                    <td> <a ui-sref="admin-course-details({course:'{{course.slug}}'})"> <i class="fa fa-users fa-lg"></i> </a> <a ui-sref="admin-edit-course({course:'{{course.slug}}'})"> <i class="fa fa-pencil fa-lg"></i> </a> <a href="#"> <i class="fa fa-trash-o fa-lg"></i> </a> </td>
+                    <td>
+                        <table>
+                            <tr ng-repeat="slot in course.slots">
+                                <td class="custom-padding-5">
+                                    <strong>{{slot.location}}</strong>, {{slot.city}} 
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr ng-repeat="slot in course.slots">
+                                <td class="custom-padding-5">
+                                    {{slot.startDate  | date:format:longDate}} 
+                                </td>
+                            </tr>
+                        </table>
+                    <td>
+                        <table>
+                            <tr ng-repeat="slot in course.slots">
+                                <td class="custom-padding-5">
+                                    {{slot.attendees.length}} <a ui-sref="admin-course-details({course:'{{course.slug}}', slot:'{{slot._id}}'})" class="pull-right"> <i class="fa fa-users fa-lg view-course-icon"></i> </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <a ui-sref="admin-edit-course({course:'{{course.slug}}'})"> <i class="fa fa-pencil fa-lg"></i> </a> <a href="#"> <i class="fa fa-trash-o fa-lg"></i> </a>
+                    </td>
                 </tr>
             </tbody>
             <hr>
         </table>
-        
-<!--
-        <input type="text" class="form-control" ng-model="test">
-        <button ng-click="createCourse()">TEST</button>
+
+        <!--
+<input type="text" class="form-control" ng-model="test">
+<button ng-click="createCourse()">TEST</button>
 -->
 
 

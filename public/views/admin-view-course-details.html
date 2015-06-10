@@ -19,25 +19,70 @@
 
 
     <div class="container">
-        <table class="table table-condensed">
+        <div class="row">
+            <div class="col-sm-8">
+                <button class="btn btn-primary btn-md" ng-click=""> Add an attendee </button>
+            </div>
+            <div class="col-sm-4">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input type="search" class="form-control" placeholder="Search..." ng-model="searchAttendee">
+                        </div>      
+                    </div>
+                </form>
+            </div>
+        </div>
+        <table class="table table-condensed" ng-hide="attendees.length == '0'">
             <thead>
                 <tr>
-                    <th>NAME</th>
-                    <th>EMAIL</th>
-                    <th>DATE OF REGISTRATION</th>
+                    <th>
+                        <a href="" ng-click="sortType = '_id.profile.fullname'; sortReverse = !sortReverse">
+                            NAME 
+                            <span ng-show="sortType == '_id.profile.fullname' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == '_id.profile.fullname' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortType = '_id.username'; sortReverse = !sortReverse">
+                            USERNAME 
+                            <span ng-show="sortType == '_id.username' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == '_id.username' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortType = '_id.email'; sortReverse = !sortReverse">
+                            EMAIL 
+                            <span ng-show="sortType == '_id.email' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == '_id.email' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>CONTACT</th>
+                    <th>
+                        <a href="" ng-click="sortType = 'status'; sortReverse = !sortReverse">
+                            STATUS 
+                            <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
                     <th>ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="attendee in attendees" class="course-row">
-                    <td> {{attendee.name}} </td>
+                <tr ng-repeat="attendee in attendees | orderBy:sortType:sortReverse | filter:searchAttendee" class="course-row">
+                    <td> {{attendee._id.profile.fullname}} </td>
+                    <td> {{attendee._id.username}} </td>
                     <td> {{attendee._id.email}} </td>
-                    <td> {{attendee.joinDate}} </td>
+                    <td> {{attendee._id.mobile}} </td>
+                    <td> {{attendee.status}} </td>
                     <td> <a href="#"> <i class="fa fa-trash-o"></i> </a> </td>
                 </tr>
             </tbody>
             <hr>
         </table>
+        
+        <h1 class="text-center" ng-show="attendees.length == '0'">No attendees to show</h1>
 
 
     </div>

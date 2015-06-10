@@ -1966,3 +1966,11 @@ color:red;
 .slot-div:hover{
     background-color: #e8e8e8;
 }
+
+.view-course-icon{
+    padding-left: 20px;
+}
+
+.custom-padding-5{
+    padding-bottom: 5px;
+}

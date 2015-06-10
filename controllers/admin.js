@@ -15,7 +15,7 @@ exports.getUsers = function (req, res) {
 }
 
 exports.getCourses = function(req, res) {
-  var query = Course.find().select('name slug description price date status');
+  var query = Course.find().select('name slug description price date status slots');
   query.exec(function(err, courses) {
     if (err) return err;
     res.send(courses);
