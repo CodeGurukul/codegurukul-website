@@ -1,8 +1,18 @@
 var Course = require('../models/Course');
+var User = require('../models/User');
 var secret = require('../config/secrets');
 var config = new secret();
 var mongoose = require('mongoose');
 
+exports.getUsers = function (req, res) {
+  User.find().select('-password').exec(function (err, users) {
+    if (err) return res.status(400).send(err);
+    else if (!users) res.status(400).send("No users");
+    else {
+      res.send(users);
+    }
+  })
+}
 
 exports.getCourses = function(req, res) {
   var query = Course.find().select('name slug description price date status');

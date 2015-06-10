@@ -123,7 +123,7 @@ app.get('/api/admin/courses/:cslug', userController.isAdmin, adminController.get
 app.post('/api/admin/createCourse', userController.isAdmin, adminController.createCourse);
 app.post('/api/admin/courses/join', userController.isAdmin, adminController.joinPrep, userController.signup, courseController.joinCourse, invoiceController.generate);
 app.get('/api/admin/courses', userController.isAdmin, adminController.getCourses);
-
+app.get('/api/admin/users', userController.isAdmin, adminController.getUsers);
 /**
  * Start Express server.
  */
