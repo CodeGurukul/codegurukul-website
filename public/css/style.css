@@ -1998,3 +1998,7 @@ Optional CSS for partners
     max-width: 120px;
     margin: auto;
 }
+
+.mode-of-payment{
+    padding: 0px 20px;
+}

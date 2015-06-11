@@ -132,7 +132,7 @@
                                 <span class="icon icon-006"></span> <span class="pull-right">{{slot.batchSize}} Students</span>
                             </div>
                             <div class="col-sm-6" ng-hide="course.joined == true && slot._id != course.joinedSid">
-                                <p ng-disabled="course.status=='closed' || showCourseJoinedTickMark == true"><a class="btn btn-primary btn-xs take-course pull-right register-slot" ng-click="checkCondition(slot._id);"> <span> <i class="fa fa-check joined-course" ng-show="showCourseJoinedTickMark && course.status!='closed' && slot._id == course.joinedSid"></i> <i class="fa fa-lock locked-course" ng-show="course.inviteOnly && !showCourseJoinedTickMark && !courseUnlocked"></i> <i class="fa fa-unlock locked-course" ng-show="courseUnlocked && showCourseJoinedTickMark == false" ng-hide="course.inviteOnly == false"></i> <span ng-if="course.status=='new'"> Notify Me! </span> </span> <span ng-if="course.status=='open' && showCourseJoinedTickMark == false"> Register </span> <span ng-if="course.status=='closed'"> Closed</span> <span ng-if="showCourseJoinedTickMark && course.status!='closed' && slot._id == course.joinedSid">Registered</span><span ng-class="{processSpinner:processing}"></span></a></p>
+                                                                <p ng-disabled="course.status=='closed' || showCourseJoinedTickMark == true"><a class="btn btn-primary btn-xs take-course pull-right register-slot" ng-click="checkCondition(slot._id);"> <span> <i class="fa fa-check joined-course" ng-show="showCourseJoinedTickMark && course.status!='closed' && slot._id == course.joinedSid"></i> <i class="fa fa-lock locked-course" ng-show="course.inviteOnly && !showCourseJoinedTickMark && !courseUnlocked"></i> <i class="fa fa-unlock locked-course" ng-show="courseUnlocked && showCourseJoinedTickMark == false" ng-hide="course.inviteOnly == false"></i> <span ng-if="course.status=='new'"> Notify Me! </span> </span> <span ng-if="course.status=='open' && showCourseJoinedTickMark == false"> Register </span> <span ng-if="course.status=='closed'"> Closed</span> <span ng-if="showCourseJoinedTickMark && course.status!='closed' && slot._id == course.joinedSid">Registered</span><span ng-class="{processSpinner:processing}"></span></a></p>
                             </div>
                         </div>
                     </div>
@@ -249,5 +249,54 @@
         <div class="col-md-12 text-center">
             <button class="btn btn-primary btn-md" ng-click="checkCondition()"> OK </button>
         </div>
+    </div>
+</modal-dialog>
+
+<modal-dialog class="payViaModal" show='payViaModalShown' dialog-title="Payment" height="auto" width="350px">
+    <div class="row" ng-controller="ProgramCtrl">
+        <div class="col-md-12">
+            <h3 class="text-center">Select mode of payment</h3>
+            <ul type="none" class="mode-of-payment">
+
+                <li><input type="radio" name="mop" value="cash" ng-model="mop" checked> Cash </li>
+                <li ng-if="mop == 'cash'">
+                    <p> Address for cash payment: </p>
+                    <p>127, Kartik Complex, <br> Opp Laxmi Industrial Estate, <br>Link Road, <br> Andheri (West)</p>
+                    <p> Call Sobin on <strong>8097415085</strong> to arrange cash pickup</p>
+                </li>
+                <li><input type="radio" name="mop" value="cheque" ng-model="mop"> Cheque </li>
+                <li ng-if="mop == 'cheque'">
+                    <p>Cheques should be drawn in favor of: <br> '<strong>Bit Brothers Tech Pvt. Ltd.</strong>'</p>
+                    <p> Address to hand over cheques: </p>
+                    <p>127, Kartik Complex, <br> Opp Laxmi Industrial Estate, <br>Link Road, <br> Andheri (West)</p>
+                    <p> Call Sobin on <strong>8097415085</strong> to arrange cheque pickup</p>
+                </li>
+                <li><input type="radio" name="mop" value="dd" ng-model="mop"> DD </li>
+                <li ng-if="mop == 'dd'">
+                    <div>
+                        <p>Demand Drafts should be drawn in favor of: <br> '<strong>Bit Brothers Tech Pvt. Ltd.</strong>'</p>
+                        <p> Address to hand over DD: </p>
+                        <p>127, Kartik Complex, <br> Opp Laxmi Industrial Estate, <br>Link Road, <br> Andheri (West)</p>
+                        <p> Call Sobin on <strong>8097415085</strong> to arrange DD pickup</p>
+                    </div>
+                </li>
+                <li><input type="radio" name="mop" value="neft" ng-model="mop"> NEFT </li>
+                <li ng-if="mop == 'neft'">
+                    <input type="text" ng-model="payment_id" placeholder="Enter Transaction ID" class="form-control" ng-required="mop == neft">
+                </li>
+                <li><input type="radio" name="mop" disabled> Credit/Debit Card </li>
+            </ul>
+
+            <div class="modalButtons text-center">
+                <button class="btn btn-sm angularCancelButton cancelButton" ng-click="togglePayViaModal()" type="button"> Cancel </button>
+                <button class="btn btn-sm successButton " ng-click="register()" type="submit"> Register </button>
+            </div>
+
+        </div>
+        <!--
+<div class="col-md-12 text-center">
+<button class="btn btn-primary btn-md" ng-click="togglePayViaModal()"> OK </button>
+</div>
+-->
     </div>
 </modal-dialog>

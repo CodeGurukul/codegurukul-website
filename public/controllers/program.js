@@ -62,7 +62,7 @@ angular.module('Codegurukul')
         $scope.course.joined = data.joined;
         $scope.course.joinedSid = data.joinedSid;
         console.log($scope.course.joinedSid);
-//        $scope.slotIdentification = $scope.course.slots[0]._id;
+        //        $scope.slotIdentification = $scope.course.slots[0]._id;
         //        $scope.slots = $scope.course.slots;
         //        for(var i=0; i<$scope.slots.length; i++){
         //            console.log($scope.slots[i]._id);
@@ -89,12 +89,16 @@ angular.module('Codegurukul')
         }
     });
 
+    $scope.payViaModalShown = false;
+
+    $scope.togglePayViaModal = function(){
+        $scope.payViaModalShown = !$scope.payViaModalShown;
+    }
+
 
     $scope.checkCondition = function(slot){
         $scope.slotIdentification = slot;
-        console.log($scope.slotIdentification + " slot");
         if ($rootScope.currentUser){
-            console.log($scope.course.joined);
             if($scope.course.joined){
                 $alert({
                     content: 'You have already registered for this event.',
@@ -136,7 +140,7 @@ angular.module('Codegurukul')
         }
     }
 
-//    console.log($scope.slotIdentification);
+    //    console.log($scope.slotIdentification);
     $scope.joinCourse = function() {
         if ($scope.course.joined) {
             $alert({
@@ -165,10 +169,10 @@ angular.module('Codegurukul')
                 $scope.showCourseJoinedTickMark = true;
                 $scope.processing = false;
                 $state.transitionTo($state.current, $stateParams, {
-                        reload: true,
-                        inherit: false,
-                        notify: true
-                    });
+                    reload: true,
+                    inherit: false,
+                    notify: true
+                });
             },
                                 function(error) {
                 console.log(error);
@@ -183,8 +187,8 @@ angular.module('Codegurukul')
                                );
         }
     };
-    
-    
+
+
     $scope.canJoin = function() {
         if ($rootScope.currentUser) {
             $scope.processing = true;
@@ -195,12 +199,9 @@ angular.module('Codegurukul')
                                 function() {
                 $scope.processing = false;
                 if($scope.course.price > '0'){
-                    $scope.pay();
-                    $state.transitionTo($state.current, $stateParams, {
-                reload: true,
-                inherit: false,
-                notify: true
-            });
+                    //                    $scope.pay();
+                    console.log("here");
+                    $scope.togglePayViaModal();
                 }
                 else if($scope.course.price == '0'){
                     $scope.joinCourse();
@@ -302,5 +303,41 @@ angular.module('Codegurukul')
             });
         }
     };
+
+
+    $scope.register = function(){
+        console.log($scope.mop);
+        Courses.join.save({
+            payment_id: $scope.payment_id,
+            cslug: $stateParams.course,
+            code:$scope.couponCode,
+            sid: $scope.slotIdentification,
+            mop: $scope.mop
+        }, function(data) {
+            $alert({
+                content: 'Your registration was a success!',
+                placement: 'right',
+                type: 'success',
+                duration: 5
+            });
+            $scope.showCourseJoinedTickMark = true;
+            $scope.course.joined = true;
+            $scope.processing = false;
+            $state.transitionTo($state.current, $stateParams, {
+                reload: true,
+                inherit: false,
+                notify: true
+            });
+            // joinCourse();
+        }, function(error) {
+            $alert({
+                content: 'There was an error please try again later.',
+                placement: 'right',
+                type: 'danger',
+                duration: 5
+            });
+            $scope.processing = false;
+        });
+    }
 
 });

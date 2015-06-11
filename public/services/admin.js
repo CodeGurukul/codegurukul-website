@@ -6,7 +6,9 @@ angular.module('Codegurukul')
         leads: $resource('/api/admin/courses/:cslug/:sid/leads'),
         course: $resource('/api/admin/courses/:cslug'),
         create: $resource('/api/admin/createCourse'),
-        addAttendee: $resource('/api/admin/courses/join')
+        addAttendee: $resource('/api/admin/courses/join'),
+        changeAttendeeStatus: $resource('/api/admin/courses/:cslug/:sid/attendees/status'),
+        changePaymentStatus: $resource('/api/admin/courses/:cslug/:sid/attendees/addPayment')
     };
     return Admin;
   });

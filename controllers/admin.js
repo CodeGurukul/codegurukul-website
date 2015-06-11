@@ -66,7 +66,7 @@ exports.getAttendees = function(req, res) {
 exports.changeAttendeeStatus = function (req, res) {
   if (req.params.cslug && req.params.sid) {
     if (req.body.status == "completed" ||
-        req.body.status == "inComplete" ||
+        req.body.status == "incomplete" ||
         req.body.status == "cancelled") {
       Course.findOne({slug: req.params.cslug}, function (err, course) {
         if (err) res.status(400).send(err);
