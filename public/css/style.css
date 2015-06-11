@@ -1974,3 +1974,27 @@ color:red;
 .custom-padding-5{
     padding-bottom: 5px;
 }
+
+.partner{
+    padding: 0px 30px !important;
+}
+/*
+
+Optional CSS for partners
+
+.partner img{
+    -webkit-filter: grayscale(80%);
+    -moz-filter: grayscale(80%);
+    opacity: 0.8;
+}
+
+.partner img:hover{
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    opacity: 1;
+}*/
+
+.feature img{
+    max-width: 120px;
+    margin: auto;
+}
