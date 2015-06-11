@@ -37,10 +37,11 @@ exports.generate = function(req, res, next) {
           userName: req.name
         };
         email.sendInvoice(newInvoice, emailData);
-        User.findById(req.user._id, function(err, user) {
+        User.findById(req.userId, function(err, user) {
           if (err) res.send(err);
           else if (!user) res.status(404).send('User not found');
           else {
+            console.log(user);
             user.courses.id(req.courseId).invoice = newInvoice._id,
             user.save(function(err) {
               if (err) res.send(err);
@@ -93,6 +94,9 @@ exports.pdf = function (req, res) {
             }, {
               "name": "email",
               "content": user.email
+            }, {
+              "name": "mop",
+              "content": invoice.mop
             }];
             var async = false;
             mandrill_client.templates.render({

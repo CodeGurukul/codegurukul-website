@@ -87,19 +87,19 @@ exports.isAdmin = function(req, res, next) {
       var decoded = jwt.decode(token, tokenSecret);
       if (decoded.user.role == 'admin') {
         if (decoded.exp <= Date.now()) {
-          res.status(400).send(msg.et);
+          res.status(404).send(msg.et);
         } else {
           req.user = decoded.user;
           return next();
         }
       } else {
-        return res.status(401).send(msg.unauth);
+        return res.status(404).send(msg.unauth);
       }
     } catch (err) {
-      return res.status(500).send(msg.at);
+      return res.status(404).send(msg.at);
     }
   } else {
-    res.status(401).send(msg.unauth);
+    res.status(404).send(msg.unauth);
   }
 };
 

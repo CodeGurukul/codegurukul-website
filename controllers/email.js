@@ -220,6 +220,9 @@ exports.sendInvoice = function(invoice, data) {
       }, {
         "name": "email",
         "content": data.to
+      }, {
+        "name": "mop",
+        "content": invoice.mop
       }]
     }]
   };

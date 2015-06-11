@@ -11,7 +11,7 @@ var invoiceSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['created', 'authorized', 'captured']
+    enum: ['created', 'authorized', 'captured', 'paid']
   },
   net: {
     type: Number                       //not used

@@ -27,10 +27,13 @@ var courseSchema = new mongoose.Schema({
       attendees: [{
         _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         completionDate: Date,
+        mop: String,
+        payment_id: String,        //Cheque no., DD, NEFT transaction no, Razorpay transaction ID etc
+        amount: Number,
         status: {
           type: String,
           default: 'registered',
-          enum: ['registered', 'cancelled', 'completed' ]
+          enum: ['registered', 'paid', 'processing', 'cancelled', 'completed', 'inComplete' ]
         }
       }],
       leads: [{

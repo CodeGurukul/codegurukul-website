@@ -119,6 +119,7 @@ app.get('/api/codes/:cslug/validateCode', codeController.validateCode);
 //Admin calls
 app.get('/api/admin/courses/:cslug/:sid/attendees', userController.isAdmin, adminController.getAttendees);
 app.post('/api/admin/courses/:cslug/:sid/attendees/status', userController.isAdmin, adminController.changeAttendeeStatus);
+app.post('/api/admin/courses/:cslug/:sid/attendees/addPayment', userController.isAdmin, adminController.addPayment, invoiceController.generate);
 app.get('/api/admin/courses/:cslug/:sid/leads', userController.isAdmin, adminController.getLeads);
 app.get('/api/admin/courses/:cslug', userController.isAdmin, adminController.getCourse);
 app.post('/api/admin/createCourse', userController.isAdmin, adminController.createCourse);
