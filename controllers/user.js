@@ -129,9 +129,9 @@ exports.signup = function(req, res, next) {
     else {
       if(!req.admin) res.status(200).send(msg.signup);
       email.sendSignupEmail(user.email, user.username, user.verificationCode); 
-      email.sendPassword(user.email, user.username, req.body.password);     
       if (req.body.lead) course.addLead(user.id, req.body.lead);
       if (req.admin) {
+        email.sendPassword(user.email, user.username, req.body.password);     
         req.user = user;
         next();
       }
