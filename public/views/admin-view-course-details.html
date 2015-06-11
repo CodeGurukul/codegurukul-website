@@ -21,7 +21,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                <button class="btn btn-primary btn-md" ng-click=""> Add an attendee </button>
+                <button class="btn btn-primary btn-md" ng-click="adminAddAttendeeModal()"> Add an attendee </button>
             </div>
             <div class="col-sm-4">
                 <form>
@@ -87,3 +87,65 @@
 
     </div>
 </section>
+
+
+
+<modal-dialog class="signupWithEmailModal" show='adminAddAttendeeModalShown' dialog-title="Add Attendee" height="auto" width="350px">
+            <form method="post" name="adminAddAttendeeForm" ng-controller="AdminCourseDetailsCtrl">    
+                <div class="register-modal">
+                    <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.fullname.$invalid &amp;&amp; adminAddAttendeeForm.fullname.$dirty }" class="form-group has-feedback">
+                        <input type="text" name="fullname" ng-model="fullname" placeholder="Full Name" required="" autofocus="" class="form-control input-md"/>
+                        <div ng-if="adminAddAttendeeForm.fullname.$dirty" ng-messages="adminAddAttendeeForm.fullname.$error" class="help-block text-danger">
+                            <div ng-message="required">Please enter the attendee's full name.</div>
+                        </div>
+                    </div>
+                    <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.username.$invalid &amp;&amp; adminAddAttendeeForm.username.$dirty }" class="form-group has-feedback">
+                        <input type="text" name="username" ng-model="username" placeholder="Username" required="" autofocus="" class="form-control input-md"/>
+                        <div ng-if="adminAddAttendeeForm.username.$dirty" ng-messages="adminAddAttendeeForm.username.$error" class="help-block text-danger">
+                            <div ng-message="required">Please enter a username.</div>
+                        </div>
+                    </div>
+                    <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.email.$invalid &amp;&amp; adminAddAttendeeForm.email.$dirty }" class="form-group has-feedback">
+                        <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" unique-email="" required="" class="form-control input-md"/>
+                        <div ng-if="adminAddAttendeeForm.email.$dirty" ng-messages="adminAddAttendeeForm.email.$error" class="help-block text-danger">
+                            <div ng-message="required">An email address is required.</div>
+                            <div ng-message="email">The entered email address is invalid.</div>
+                            <div ng-message="unique"> This email already exists.</div>
+                        </div>
+                    </div>
+                    <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.mobile.$invalid &amp;&amp; signupForm.mobile.$dirty }" class="form-group has-feedback">
+                        <input type="text" name="mobile" ng-model="mobile" placeholder="Mobile" class="form-control input-md "/ required>
+                         <div ng-if="adminAddAttendeeForm.mobile.$dirty" ng-messages="adminAddAttendeeForm.mobile.$error" class="help-block text-danger" style="color:#a94442">
+                            <div ng-message="required">Please enter your mobile number.</div>
+                        </div>
+                    </div>
+
+                    <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.mop.$invalid &amp;&amp; signupForm.mop.$dirty }" class="form-group has-feedback">
+                        <select class="form-control input-md" ng-model="mop" required >
+                            <option value="" disabled selected>Select mode of payment</option>
+                            <option value="cash">Cash</option>
+                            <option value="cheque">Cheque</option>
+                            <option value="dd">DD</option>
+                            <option value="neft">NEFT</option>
+                        </select>
+                        <div ng-if="adminAddAttendeeForm.mop.$dirty" ng-messages="adminAddAttendeeForm.mop.$error" class="help-block text-danger" style="color:#a94442">
+                            <div ng-message="required">Select an option.</div>
+                        </div>
+                    </div>
+                    <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.amount.$invalid &amp;&amp; adminAddAttendeeForm.amount.$dirty }" class="form-group has-feedback">
+                        <input type="text" name="amount" ng-model="amount" placeholder="Amount"  class="form-control input-md" required/>
+                        <div ng-if="adminAddAttendeeForm.amount.$dirty" ng-messages="adminAddAttendeeForm.amount.$error" class="help-block text-danger" style="color:#a94442">
+                            <div ng-message="required">Please enter the amount.</div>
+                        </div>
+                    </div>
+                    <div class="text-center mobile-number">
+<!--                        <small>We will send you updates to your number</small>-->
+                    </div>
+
+                </div>
+                <div class="modalButtons text-center">
+                    <button class="btn btn-md angularCancelButton cancelButton" type="button" ng-click="adminAddAttendeeModal()"> Cancel </button>
+                    <button class="btn btn-md successButton " ng-disabled="adminAddAttendeeForm.$invalid" ng-click="addAttendee()"> Add </button>
+                </div>
+            </form>  
+        </modal-dialog>
