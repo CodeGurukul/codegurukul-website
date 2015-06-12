@@ -68,18 +68,24 @@
                             <span class="icon icon-038"></span>
                             <span class="pull-right"> {{course.duration}} </span>
                         </li>
-                        <li class="course-data" tooltips tooltip-title="Course Date" tooltip-side="top">
-                            <span class="icon fa fa-calendar"></span>
-                            <span class="pull-right"> {{course.date | date : format : longDate}} </span>
-                        </li>
-                        <li class="course-data" tooltips tooltip-title="Batch Size" tooltip-side="top">
-                            <span class="icon icon-006"></span>
-                            <span class="pull-right"> {{course.batchSize}} Students</span>
-                        </li>
-                        <li class="course-data" ng-show="course.place" tooltips tooltip-title="Location" tooltip-side="top">
-                            <span class="icon icon-010"></span>
-                            <span class="pull-right">{{course.place}}</span>
-                        </li>
+                        <!--
+<li class="course-data" tooltips tooltip-title="Course Date" tooltip-side="top">
+<span class="icon fa fa-calendar"></span>
+<span class="pull-right"> {{course.date | date : format : longDate}} </span>
+</li>
+-->
+                        <!--
+<li class="course-data" tooltips tooltip-title="Batch Size" tooltip-side="top">
+<span class="icon icon-006"></span>
+<span class="pull-right"> {{course.batchSize}} Students</span>
+</li>
+-->
+                        <!--
+<li class="course-data" tooltips tooltip-title="Location" tooltip-side="top">
+<span class="icon icon-010"></span>
+<span class="pull-right">{{course.place}}</span>
+</li>
+-->
                         <!--
 </ul>
 <ul>
@@ -93,7 +99,7 @@
                     <p class="text-center" ng-show="showRemainingSpots"> <i class="fa fa-clock-o"></i> Hurry! Only {{remainingSpots}} spot(s) remaining!</p> 
 
                     <!--                    <p ng-if="course.status=='new'"><a class="btn btn-primary take-course" ng-click="notify()">Notify Me!<span ng-class="{processSpinner:processing}"></span></a></p>-->
-                    <p ng-disabled="course.status=='closed' || showCourseJoinedTickMark == true"><a class="btn btn-primary take-course" ng-click="checkCondition();"> <span> <i class="fa fa-check joined-course" ng-show="showCourseJoinedTickMark && course.status!='closed'"></i> <i class="fa fa-lock locked-course" ng-show="course.inviteOnly && !showCourseJoinedTickMark && !courseUnlocked"></i> <i class="fa fa-unlock locked-course" ng-show="courseUnlocked && showCourseJoinedTickMark == false" ng-hide="course.inviteOnly == false"></i> <span ng-if="course.status=='new'"> Notify Me! </span> </span> <span ng-if="course.status=='open' && showCourseJoinedTickMark == false"> Register </span> <span ng-if="course.status=='closed'"> Closed</span> <span ng-if="showCourseJoinedTickMark && course.status!='closed'">Registered</span><span ng-class="{processSpinner:processing}"></span></a></p>
+                    <!--                    <p ng-disabled="course.status=='closed' || showCourseJoinedTickMark == true"><a class="btn btn-primary take-course" ng-click="checkCondition();"> <span> <i class="fa fa-check joined-course" ng-show="showCourseJoinedTickMark && course.status!='closed'"></i> <i class="fa fa-lock locked-course" ng-show="course.inviteOnly && !showCourseJoinedTickMark && !courseUnlocked"></i> <i class="fa fa-unlock locked-course" ng-show="courseUnlocked && showCourseJoinedTickMark == false" ng-hide="course.inviteOnly == false"></i> <span ng-if="course.status=='new'"> Notify Me! </span> </span> <span ng-if="course.status=='open' && showCourseJoinedTickMark == false"> Register </span> <span ng-if="course.status=='closed'"> Closed</span> <span ng-if="showCourseJoinedTickMark && course.status!='closed'">Registered</span><span ng-class="{processSpinner:processing}"></span></a></p>-->
                     <!--                    <p><a class="btn btn-primary take-course" ng-click="joinCourse()"><i class="fa fa-check" ng-show="showCourseJoinedTickMark"></i> Register<span ng-class="{processSpinner:processing}"></span></a></p>-->
                     <!--                    <p ><a class="btn btn-primary take-course" ng-disabled="true">Closed</a></p>-->
 
@@ -104,6 +110,67 @@
                     <small class="pull-right" ng-show="course.slug == 'web-internship-program'">*excluding optional courses.</small>
                 </div>
                 <!-- ==== COURSE DATA END == -->
+
+                <!-- ==== SLOTS START == -->
+                <div class="widget slot-div" data-scroll-reveal ng-repeat="slot in course.slots">
+                    <div class="teacher row slot-data">
+                        <div class="row custom-padding-bottom-20">
+                            <div class="col-sm-6" tooltips tooltip-title="Location" tooltip-side="top">
+                                <p>
+                                    <span class="icon"><i class="fa fa-map-marker"></i></span> <span class="pull-right"><strong>{{slot.location}}</strong>, {{slot.city}}</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-6" tooltips tooltip-title="Start Date" tooltip-side="top">
+                                <p>
+                                    <span class="icon"><i class="fa fa-calendar"></i></span> <span class="pull-right"><strong>{{slot.startDate | date:format:longDate}}</strong></span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 batch-size-div" tooltips tooltip-title="Batch Size" tooltip-side="top">
+                                <span class="icon icon-006"></span> <span class="pull-right">{{slot.batchSize}} Students</span>
+                            </div>
+                            <div class="col-sm-6" ng-hide="course.joined == true && slot._id != course.joinedSid">
+                                                                <p ng-disabled="course.status=='closed' || showCourseJoinedTickMark == true"><a class="btn btn-primary btn-xs take-course pull-right register-slot" ng-click="checkCondition(slot._id);"> <span> <i class="fa fa-check joined-course" ng-show="showCourseJoinedTickMark && course.status!='closed' && slot._id == course.joinedSid"></i> <i class="fa fa-lock locked-course" ng-show="course.inviteOnly && !showCourseJoinedTickMark && !courseUnlocked"></i> <i class="fa fa-unlock locked-course" ng-show="courseUnlocked && showCourseJoinedTickMark == false" ng-hide="course.inviteOnly == false"></i> <span ng-if="course.status=='new'"> Notify Me! </span> </span> <span ng-if="course.status=='open' && showCourseJoinedTickMark == false"> Register </span> <span ng-if="course.status=='closed'"> Closed</span> <span ng-if="showCourseJoinedTickMark && course.status!='closed' && slot._id == course.joinedSid">Registered</span><span ng-class="{processSpinner:processing}"></span></a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--
+<div class="col-sm-12">
+<h5 class="text-center"> Slot {{$index + 1}} </h5>
+<ul>
+<li class="course-data" tooltips tooltip-title="Start Date" tooltip-side="top">
+<span class="icon"><i class="fa fa-calendar"></i></span>
+<span class="pull-right">{{slot.startDate | date:format:longDate}}</span>
+</li>
+<li class="course-data" tooltips tooltip-title="City" tooltip-side="top">
+<span class="icon"> <i class="fa fa-map-marker"></i> </span> <span class="pull-right">{{slot.city}}</span>
+</li>
+<li class="course-data" tooltips tooltip-title="Location" tooltip-side="top">
+<span class="icon icon-010"></span> <span class="pull-right">{{slot.location}}</span>
+</li>
+<li class="course-data" tooltips tooltip-title="Batch Size" tooltip-side="top">
+<span class="icon icon-006"></span> <span class="pull-right">{{slot.batchSize}} Students</span>
+</li>
+-->
+                <!--
+<li class="course-data" tooltips tooltip-title="Batch Size" tooltip-side="top">
+<input type="text" value="{{slot._id}}" class="form-control input-md" ng-model="slot._id">
+</li>
+-->
+                <!--
+</ul>
+<p ng-disabled="course.status=='closed' || showCourseJoinedTickMark == true"><a class="btn btn-primary take-course" ng-click="checkCondition(slot._id);"> <span> <i class="fa fa-check joined-course" ng-show="showCourseJoinedTickMark && course.status!='closed'"></i> <i class="fa fa-lock locked-course" ng-show="course.inviteOnly && !showCourseJoinedTickMark && !courseUnlocked"></i> <i class="fa fa-unlock locked-course" ng-show="courseUnlocked && showCourseJoinedTickMark == false" ng-hide="course.inviteOnly == false"></i> <span ng-if="course.status=='new'"> Notify Me! </span> </span> <span ng-if="course.status=='open' && showCourseJoinedTickMark == false"> Register </span> <span ng-if="course.status=='closed'"> Closed</span> <span ng-if="showCourseJoinedTickMark && course.status!='closed'">Registered</span><span ng-class="{processSpinner:processing}"></span></a></p>
+<hr>
+</div>
+</div>
+</div>
+-->
+                <!-- ==== SLOTS END == -->
 
                 <!-- ==== TEACHER START == -->
                 <div class="widget" data-scroll-reveal>
@@ -153,6 +220,26 @@
     </div>
 </div>
 
+<section ng-if="course.partners.length != '0'">
+    <div class="container">
+        <h2 class="custom-font-weight-600 block-title text-center custom-padding-bottom-20">Our Partners</h2>
+
+        <slick dots=true infinite=true speed=600 slides-to-show=4 touch-move=true autoplay=true slides-to-scroll=1 arrows=false init-onload=true data="course.partners">
+
+            <div class="item col-md-4 col-sm-6 col-xs-6 partner" ng-repeat="partner in course.partners">
+                <a href="{{partner.link}}" target="_blank">
+                    <img src="{{partner.image}}" alt="" class="img-responsive" />
+                    <div class="description">
+                        <h3 class="text-center"> {{partner.name}} </h3>
+                    </div>
+                </a>
+            </div>
+
+        </slick>
+    </div>
+</section>
+
+
 <modal-dialog class="inviteMessageModal" show='inviteMessageModalShown' dialog-title="Information" height="auto" width="350px">
     <div class="row">
         <div class="col-md-12">
@@ -162,5 +249,54 @@
         <div class="col-md-12 text-center">
             <button class="btn btn-primary btn-md" ng-click="checkCondition()"> OK </button>
         </div>
+    </div>
+</modal-dialog>
+
+<modal-dialog class="payViaModal" show='payViaModalShown' dialog-title="Payment" height="auto" width="350px">
+    <div class="row" ng-controller="ProgramCtrl">
+        <div class="col-md-12">
+            <h3 class="text-center">Select mode of payment</h3>
+            <ul type="none" class="mode-of-payment">
+
+                <li><input type="radio" name="mop" value="cash" ng-model="mop" checked> Cash </li>
+                <li ng-if="mop == 'cash'">
+                    <p> Address for cash payment: </p>
+                    <p>127, Kartik Complex, <br> Opp Laxmi Industrial Estate, <br>Link Road, <br> Andheri (West)</p>
+                    <p> Call Sobin on <strong>8097415085</strong> to arrange cash pickup</p>
+                </li>
+                <li><input type="radio" name="mop" value="cheque" ng-model="mop"> Cheque </li>
+                <li ng-if="mop == 'cheque'">
+                    <p>Cheques should be drawn in favor of: <br> '<strong>Bit Brothers Tech Pvt. Ltd.</strong>'</p>
+                    <p> Address to hand over cheques: </p>
+                    <p>127, Kartik Complex, <br> Opp Laxmi Industrial Estate, <br>Link Road, <br> Andheri (West)</p>
+                    <p> Call Sobin on <strong>8097415085</strong> to arrange cheque pickup</p>
+                </li>
+                <li><input type="radio" name="mop" value="dd" ng-model="mop"> DD </li>
+                <li ng-if="mop == 'dd'">
+                    <div>
+                        <p>Demand Drafts should be drawn in favor of: <br> '<strong>Bit Brothers Tech Pvt. Ltd.</strong>'</p>
+                        <p> Address to hand over DD: </p>
+                        <p>127, Kartik Complex, <br> Opp Laxmi Industrial Estate, <br>Link Road, <br> Andheri (West)</p>
+                        <p> Call Sobin on <strong>8097415085</strong> to arrange DD pickup</p>
+                    </div>
+                </li>
+                <li><input type="radio" name="mop" value="neft" ng-model="mop"> NEFT </li>
+                <li ng-if="mop == 'neft'">
+                    <input type="text" ng-model="payment_id" placeholder="Enter Transaction ID" class="form-control" ng-required="mop == neft">
+                </li>
+                <li><input type="radio" name="mop" disabled> Credit/Debit Card </li>
+            </ul>
+
+            <div class="modalButtons text-center">
+                <button class="btn btn-sm angularCancelButton cancelButton" ng-click="togglePayViaModal()" type="button"> Cancel </button>
+                <button class="btn btn-sm successButton " ng-click="register()" type="submit"> Register </button>
+            </div>
+
+        </div>
+        <!--
+<div class="col-md-12 text-center">
+<button class="btn btn-primary btn-md" ng-click="togglePayViaModal()"> OK </button>
+</div>
+-->
     </div>
 </modal-dialog>

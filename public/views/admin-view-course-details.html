@@ -19,26 +19,175 @@
 
 
     <div class="container">
-        <table class="table table-condensed">
+        <div class="row">
+            <div class="col-sm-8">
+                <button class="btn btn-primary btn-md" ng-click="adminAddAttendeeModal()"> Add an attendee </button>
+            </div>
+            <div class="col-sm-4">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input type="search" class="form-control" placeholder="Search..." ng-model="searchAttendee">
+                        </div>      
+                    </div>
+                </form>
+            </div>
+        </div>
+        <table class="table table-condensed" ng-hide="attendees.length == '0'">
             <thead>
                 <tr>
-                    <th>NAME</th>
-                    <th>EMAIL</th>
-                    <th>DATE OF REGISTRATION</th>
+                    <th></th>
+                    <th>
+                        <a href="" ng-click="sortType = '_id.profile.fullname'; sortReverse = !sortReverse">
+                            NAME 
+                            <span ng-show="sortType == '_id.profile.fullname' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == '_id.profile.fullname' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortType = '_id.username'; sortReverse = !sortReverse">
+                            USERNAME 
+                            <span ng-show="sortType == '_id.username' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == '_id.username' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortType = '_id.email'; sortReverse = !sortReverse">
+                            EMAIL 
+                            <span ng-show="sortType == '_id.email' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == '_id.email' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>CONTACT</th>
+                    <th>
+                        <a href="" ng-click="sortType = 'amount'; sortReverse = !sortReverse">
+                            AMOUNT 
+                            <span ng-show="sortType == 'amount' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'amount' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortType = 'mop'; sortReverse = !sortReverse">
+                            PAYMENT MODE 
+                            <span ng-show="sortType == 'mop' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'mop' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortType = 'status'; sortReverse = !sortReverse">
+                            STATUS 
+                            <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
                     <th>ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="attendee in attendees" class="course-row">
-                    <td> {{attendee.name}} </td>
+                <tr ng-repeat="attendee in attendees | orderBy:sortType:sortReverse | filter:searchAttendee" class="course-row">
+                    <td> <input type="checkbox"> </td>
+                    <td> {{attendee._id.profile.fullname}} </td>
+                    <td> {{attendee._id.username}} </td>
                     <td> {{attendee._id.email}} </td>
-                    <td> {{attendee.joinDate}} </td>
-                    <td> <a href="#"> <i class="fa fa-trash-o"></i> </a> </td>
+                    <td> {{attendee._id.mobile}} </td>
+                    <td>
+                        <p ng-show="!edit">{{attendee.amount}}</p>
+                        <input type="text" class="form-control" placeholder="Enter amount" ng-model="attendee.amount" ng-show="edit">
+                    </td>
+                    <td class="capitalize-text">
+                        <p ng-show="!edit">{{attendee.mop}}</p>
+                        <select class="form-control input-sm" ng-model="attendee.mop" required ng-show="edit">
+                            <option value="" disabled selected>Select mode of payment</option>
+                            <option value="cash">Cash</option>
+                            <option value="cheque">Cheque</option>
+                            <option value="dd">DD</option>
+                            <option value="neft">NEFT</option>
+                        </select>
+                    </td>
+                    <td class="capitalize-text"> 
+                        <p ng-show="!edit">{{attendee.status}}</p>
+                        <select class="form-control input-sm" ng-model="attendee.status" required ng-show="edit">
+                            <option value="registered">Registered</option>
+                            <option value="processing">Payment in process</option>
+                            <option value="paid">Paid</option>
+<!--
+                            <option value="inComplete">Course Incomplete</option>
+                            <option value="completed">Course Complete</option>
+                            <option value="cancelled">Registration Cancelled</option>
+-->
+                        </select>
+                    </td>
+                    <td> <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil"></i> </a> <a href="" ng-show="edit" ng-click="updatePayment(attendee.mop, attendee.status, attendee.amount, attendee._id._id); edit = !edit"> <i class="fa fa-floppy-o"></i> </a> <a href=""> <i class="fa fa-trash-o"></i> </a> </td>
                 </tr>
             </tbody>
             <hr>
         </table>
 
+        <h1 class="text-center" ng-show="attendees.length == '0'">No attendees to show</h1>
+
 
     </div>
 </section>
+
+
+
+<modal-dialog class="signupWithEmailModal" show='adminAddAttendeeModalShown' dialog-title="Add Attendee" height="auto" width="350px">
+    <form method="post" name="adminAddAttendeeForm" ng-controller="AdminCourseDetailsCtrl">    
+        <div class="register-modal">
+            <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.fullname.$invalid &amp;&amp; adminAddAttendeeForm.fullname.$dirty }" class="form-group has-feedback">
+                <input type="text" name="fullname" ng-model="fullname" placeholder="Full Name" required="" autofocus="" class="form-control input-md"/>
+                <div ng-if="adminAddAttendeeForm.fullname.$dirty" ng-messages="adminAddAttendeeForm.fullname.$error" class="help-block text-danger">
+                    <div ng-message="required">Please enter the attendee's full name.</div>
+                </div>
+            </div>
+            <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.username.$invalid &amp;&amp; adminAddAttendeeForm.username.$dirty }" class="form-group has-feedback">
+                <input type="text" name="username" ng-model="username" placeholder="Username" required="" autofocus="" class="form-control input-md"/>
+                <div ng-if="adminAddAttendeeForm.username.$dirty" ng-messages="adminAddAttendeeForm.username.$error" class="help-block text-danger">
+                    <div ng-message="required">Please enter a username.</div>
+                </div>
+            </div>
+            <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.email.$invalid &amp;&amp; adminAddAttendeeForm.email.$dirty }" class="form-group has-feedback">
+                <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" unique-email="" required="" class="form-control input-md"/>
+                <div ng-if="adminAddAttendeeForm.email.$dirty" ng-messages="adminAddAttendeeForm.email.$error" class="help-block text-danger">
+                    <div ng-message="required">An email address is required.</div>
+                    <div ng-message="email">The entered email address is invalid.</div>
+                    <div ng-message="unique"> This email already exists.</div>
+                </div>
+            </div>
+            <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.mobile.$invalid &amp;&amp; signupForm.mobile.$dirty }" class="form-group has-feedback">
+                <input type="text" name="mobile" ng-model="mobile" placeholder="Mobile" class="form-control input-md "/ required>
+                <div ng-if="adminAddAttendeeForm.mobile.$dirty" ng-messages="adminAddAttendeeForm.mobile.$error" class="help-block text-danger" style="color:#a94442">
+                    <div ng-message="required">Please enter your mobile number.</div>
+                </div>
+            </div>
+
+            <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.mop.$invalid &amp;&amp; signupForm.mop.$dirty }" class="form-group has-feedback">
+                <select class="form-control input-md" ng-model="mop" required >
+                    <option value="" disabled selected>Select mode of payment</option>
+                    <option value="cash">Cash</option>
+                    <option value="cheque">Cheque</option>
+                    <option value="dd">DD</option>
+                    <option value="neft">NEFT</option>
+                </select>
+                <div ng-if="adminAddAttendeeForm.mop.$dirty" ng-messages="adminAddAttendeeForm.mop.$error" class="help-block text-danger" style="color:#a94442">
+                    <div ng-message="required">Select an option.</div>
+                </div>
+            </div>
+            <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.amount.$invalid &amp;&amp; adminAddAttendeeForm.amount.$dirty }" class="form-group has-feedback">
+                <input type="text" name="amount" ng-model="amount" placeholder="Amount"  class="form-control input-md" required/>
+                <div ng-if="adminAddAttendeeForm.amount.$dirty" ng-messages="adminAddAttendeeForm.amount.$error" class="help-block text-danger" style="color:#a94442">
+                    <div ng-message="required">Please enter the amount.</div>
+                </div>
+            </div>
+            <div class="text-center mobile-number">
+                <!--                        <small>We will send you updates to your number</small>-->
+            </div>
+
+        </div>
+        <div class="modalButtons text-center">
+            <button class="btn btn-md angularCancelButton cancelButton" type="button" ng-click="adminAddAttendeeModal()"> Cancel </button>
+            <button class="btn btn-md successButton " ng-disabled="adminAddAttendeeForm.$invalid" ng-click="addAttendee()"> Add </button>
+        </div>
+    </form>  
+</modal-dialog>

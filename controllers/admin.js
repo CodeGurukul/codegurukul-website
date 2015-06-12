@@ -1,11 +1,21 @@
 var Course = require('../models/Course');
+var User = require('../models/User');
 var secret = require('../config/secrets');
 var config = new secret();
 var mongoose = require('mongoose');
 
+exports.getUsers = function (req, res) {
+  User.find().select('-password').exec(function (err, users) {
+    if (err) return res.status(400).send(err);
+    else if (!users) res.status(400).send("No users");
+    else {
+      res.send(users);
+    }
+  })
+}
 
 exports.getCourses = function(req, res) {
-  var query = Course.find().select('name slug description price date status');
+  var query = Course.find().select('name slug description price date status slots');
   query.exec(function(err, courses) {
     if (err) return err;
     res.send(courses);
@@ -32,38 +42,130 @@ exports.getAttendees = function(req, res) {
   Course.findOne({
     slug: req.params.cslug
   })
-  .select('name slug attendees')
+  .select('name slug slots')
   .populate({
-    path: 'attendees._id',
-    select: 'slug email username mobile'
+    path: 'slots.attendees._id',
+    select: 'slug email username mobile profile.fullname'
   })
   .exec(function(err, course) {
-    if (err)
-      res.send(err);
-    else if (!course) {
-      res.status(404).send('Course Not Found');
-    } else {
-      res.send(course);
+    if (err) res.send(err);
+    else if (!course) res.status(404).send('Course Not Found');
+    else if (!course.slots.id(req.params.sid)) res.status(400).send("Invalid slot ID");
+    else {
+      var temp = {
+        name: course.name,
+        slug: course.slug,
+        slotId: req.params.sid,
+        attendees: course.slots.id(req.params.sid).attendees 
+      }
+      res.send(temp);
     }
   });
 };
+
+exports.changeAttendeeStatus = function (req, res) {
+  if (req.params.cslug && req.params.sid) {
+    if (req.body.status == "completed" ||
+        req.body.status == "incomplete" ||
+        req.body.status == "cancelled") {
+      Course.findOne({slug: req.params.cslug}, function (err, course) {
+        if (err) res.status(400).send(err);
+        else if (!course) res.status(404).send('Course Not Found');
+        else if (!course.slots.id(req.params.sid)) res.status(400).send("Invalid slot ID");
+        else {
+          var result = [];
+          for (var i = 0; i < req.body.users.length; i++) {
+            if(course.slots.id(req.params.sid).attendees.id(req.body.users[i])) {
+              course.slots.id(req.params.sid).attendees.id(req.body.users[i]).status = req.body.status; 
+              if (req.body.status == "completed") 
+                course.slots.id(req.params.sid).attendees.id(req.body.users[i]).completionDate = Date.now();
+              result.push({
+                id: req.body.users[i],
+                status: req.body.status
+              })
+            } else {
+              result.push({
+                id: req.body.users[i],
+                status: "Invalid user ID"
+              })
+            }
+          };
+          course.save(function (err, course) {
+            if (err) res.status(400).send(err);
+            else {
+              res.send(result);
+            }
+          })
+        }
+      })
+    } else  res.status(400).send("Status invalid")
+  } else res.status(400).send("Course slug and slot ID needed")
+}
+
+exports.addPayment = function (req, res, next) {
+  if (req.params.cslug && req.params.sid && req.body.mop && req.body.amount && req.body.status) {
+    if (req.body.uid) {
+      Course.findOne({slug: req.params.cslug}, function (err, course) {
+        if (err) res.status(400).send(err);
+        else if (!course) res.status(404).send('Course Not Found');
+        else if (!course.slots.id(req.params.sid)) res.status(400).send("Invalid slot ID");
+        else if (!course.slots.id(req.params.sid).attendees.id(req.body.uid)) res.status(400).send("User not part of course");
+        else {
+          course.slots.id(req.params.sid).attendees.id(req.body.uid).mop = req.body.mop;
+          course.slots.id(req.params.sid).attendees.id(req.body.uid).amount = req.body.amount;
+          course.slots.id(req.params.sid).attendees.id(req.body.uid).payment_id = req.body.payment_id;
+          course.slots.id(req.params.sid).attendees.id(req.body.uid).status = req.body.status;
+          course.save(function (err, course) {
+            if (err) return res.status(400).send(err);
+            else if (req.body.status == "paid") {
+              User.findById(req.body.uid, function(err, user) {
+                if (err) res.send(err);
+                else if (!user) res.status(404).send('User not found');
+                else {
+                  req.to = user.email;
+                  req.name = user.profile.fullname;
+                  req.pay = true;
+                  req.status = req.body.status;
+                  req.coursePrice = req.body.amount;
+                  req.userId = req.body.uid;
+                  req.mop = req.body.mop;
+                  req.courseId = course.id;
+                  req.course = course.name;
+                  req.courseSlug = course.slug;
+                  req.courseDate = course.slots.id(req.params.sid).startDate;
+                  next();
+                }
+              })
+            } else res.status(200).send("Attendee payment updated")
+          })
+        }
+      })
+    } else res.status(400).send("User ID needed")
+  } else res.status(400).send("Course slug, slot ID, MoP, status, amount needed");
+}
 
 exports.getLeads = function(req, res) {
   Course.findOne({
     slug: req.params.cslug
   })
-  .select('name slug leads')
+  .select('name slug slots')
   .populate({
-    path: 'leads._id',
-    select: 'slug email username mobile'
+    path: 'slots.leads._id',
+    select: 'slug email username mobile profile.fullname'
   })
   .exec(function(err, course) {
     if (err)
       res.send(err);
-    else if (!course) {
-      res.status(404).send('Course Not Found');
-    } else {
-      res.send(course);
+    else if (!course) res.status(404).send('Course Not Found'); 
+    else if (!course.slots.id(req.params.sid)) res.status(400).send("Invalid slot ID");
+    else {
+      var temp = {
+        name: course.name,
+        slug: course.slug,
+        slotId: req.params.sid,
+        leads: course.slots.id(req.params.sid).leads 
+      }
+      res.send(temp);
     }
   });
 };
@@ -172,12 +274,34 @@ exports.updateCourse = function (req, res) {
 }
 
 
-
+exports.joinPrep = function (req, res, next) {
+  if (req.body.fullname && req.body.username && req.body.email 
+    && req.body.mobile && req.body.mop && req.body.amount && req.body.paymentStatus
+    && req.body.cslug && req.body.sid) {
+    req.body.password = codeGen(5);
+    req.admin = true;
+    req.pay = true;
+    req.mop = req.body.mop;
+    req.status = req.body.paymentStatus;
+    req.coursePrice = req.body.amount;
+    next();
+  } else return res.status(400).send("Enter all required fields");
+}
 
 
 
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function codeGen(len) {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < len; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
 }
 
 function slugify(text) {

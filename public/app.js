@@ -32,7 +32,7 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         controller: 'AdminEditCourseCtrl'
     }) 
         .state('admin-course-details', {
-        url: '/admin/view/:course',
+        url: '/admin/view/:course/:slot',
         templateUrl: 'views/admin-view-course-details.html',
         controller: 'AdminCourseDetailsCtrl'
     }) 

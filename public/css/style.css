@@ -521,6 +521,7 @@ header .nav .open > a:focus {
     text-align: center;
     width: 100%;
     position: relative;
+    min-width: 105px;
 }
 
 /* 5.2. BLOG
@@ -1668,8 +1669,10 @@ body > .right {
 
 .locked-course, .joined-course{
     font-size: 17px;
+/*
     position: relative;
     right: 10%;
+*/
 }
 
 .mentor-social-links{
@@ -1865,7 +1868,9 @@ body > .right {
     color: #fff;
     padding-top: 20px;
     margin-bottom: 0px;
+    margin-top: 0px;
     padding-bottom: 0px;
+    padding-top: 40px;
 }
 
 .main-wrapper-div, .fade-div{
@@ -1885,14 +1890,15 @@ body > .right {
     text-align: center;
     color: white;
     padding-top: 15%;
-    font-size: 25px;
+    font-size: 48px;
     font-weight: 700;
-    line-height: 45px;
+    line-height: 42px;
+    margin-bottom: -11px;
 }
 
 .landing-intro-section small{
     font-weight: 100;
-    font-size:20px;
+    font-size:30px;
 }
 
 .footer-featured-courses img{
@@ -1903,11 +1909,10 @@ body > .right {
     color: white;
 }
 
-/*
 .newsletter-form input{
-width: 70%;
+    width: 300px !important;
+    margin: auto !important;
 }
-*/
 
 @media screen and (max-width:767px){
 
@@ -1919,7 +1924,81 @@ width: 70%;
     }
 }
 
+/*
 .newsletter-form{
-    width: 60%;
+width: 60%;
+margin: auto;
+}
+*/
+/*
+
+.slick-next:before{
+content: '<i class="fa fa-caret-right"></i>' !important;
+color:red;
+}
+
+.slick-prev:before{
+content: '<i class="fa fa-caret-left"></i>' !important;
+color:red;
+}*/
+
+.slick-next:before, [dir=rtl] .slick-prev:before , .slick-prev:before {
+    color: #8FB488 !important;
+}
+
+.slick-dots li button:before {
+    font-size: 30px !important;
+    color: #8FB488 !important;
+}
+
+.slot-data i{
+    font-size: 18px;
+}
+
+.register-slot{
+    padding: 10px !important;
+}
+
+.batch-size-div{
+    padding-top: 8px;
+}
+
+.slot-div:hover{
+    background-color: #e8e8e8;
+}
+
+.view-course-icon{
+    padding-left: 20px;
+}
+
+.custom-padding-5{
+    padding-bottom: 5px;
+}
+
+.partner{
+    padding: 0px 30px !important;
+}
+/*
+
+Optional CSS for partners
+
+.partner img{
+    -webkit-filter: grayscale(80%);
+    -moz-filter: grayscale(80%);
+    opacity: 0.8;
+}
+
+.partner img:hover{
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    opacity: 1;
+}*/
+
+.feature img{
+    max-width: 120px;
     margin: auto;
+}
+
+.mode-of-payment{
+    padding: 0px 20px;
 }

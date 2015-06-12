@@ -4,7 +4,12 @@ angular.module('Codegurukul')
     Admin.default.query(function(data) {
         $scope.courses = data;
         console.log($scope.courses);
+
     })
+
+        $scope.sortType = 'name';
+        $scope.sortReverse = false;
+        $scope.searchCourse = '';
 
     $scope.createCourseModalShown = false;
 

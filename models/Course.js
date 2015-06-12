@@ -12,8 +12,6 @@ var courseSchema = new mongoose.Schema({
   price: Number,
   tech: String,                  //cant use domain clashes with node
   duration: String,
-  date: Date,
-  batchSize: Number,
   inviteOnly: Boolean,
   inviteMessage: String,
   status: {
@@ -21,15 +19,41 @@ var courseSchema = new mongoose.Schema({
     default: 'unpublished',
     enum: ['unpublished', 'new', 'closed', 'open']
   },
-  attendees: [{
-    _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' }
-  }],
-  leads: [{
-    _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' }
-  }],
+  slots: [{
+      startDate: Date,
+      city: String,
+      batchSize: Number,
+      location: String,
+      attendees: [{
+        _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        completionDate: Date,
+        mop: String,
+        payment_id: String,        //Cheque no., DD, NEFT transaction no, Razorpay transaction ID etc
+        amount: Number,
+        status: {
+          type: String,
+          default: 'registered',
+          enum: ['registered', 'paid', 'processing', 'cancelled', 'completed', 'incomplete' ]
+        }
+      }],
+      leads: [{
+        _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        creationDate: Date,
+        status: {
+          type: String,
+          default: 'new',
+          enum: ['new', 'cancelled', 'converted' ]
+        }
+      }]  
+    }],
   mentors:[{
     name: String,
     description: String,
+    image: String
+  }],
+  partners:[{
+    name: String,
+    link: String,
     image: String
   }],
   content:[{
