@@ -19,12 +19,6 @@ angular.module('Codegurukul')
         $scope.adminAddAttendeeModalShown = !$scope.adminAddAttendeeModalShown;
     }
     $scope.addAttendee = function(){
-        if($scope.mop == 'cash'){
-            $scope.paymentStatus = 'paid';
-        }
-        else{
-            $scope.paymentStatus = 'processing';
-        }
         Admin.addAttendee.save({
             cslug: $stateParams.course,
             sid: $stateParams.slot,
@@ -56,30 +50,45 @@ angular.module('Codegurukul')
     }
     $scope.edit = false;
 
-    $scope.updatePayment = function(mop,status,amount,uid){
+    $scope.edited = false;
+    $scope.change = function(){
+        $scope.edited = true;
+    }
 
-        Admin.changePaymentStatus.save({
-            cslug: $stateParams.course,
-            sid: $stateParams.slot
-        },{
-            mop: mop,
-            amount: amount,
-            status: status,
-            uid: uid
-        },function(data){
+    $scope.updatePayment = function(mop,status,amount,uid){
+        console.log($scope.edited);
+        if($scope.edited == false){
             $alert({
-                content: 'Update successful.',
-                placement: 'right',
-                type: 'success',
-                duration: 5
-            });
-        },function(error){
-            $alert({
-                content: 'There was an error. Please try again later.',
+                content: 'No changes were made.',
                 placement: 'right',
                 type: 'danger',
                 duration: 5
             });
-        })
+        }
+        else if ($scope.edited == true){
+            Admin.changePaymentStatus.save({
+                cslug: $stateParams.course,
+                sid: $stateParams.slot
+            },{
+                mop: mop,
+                amount: amount,
+                status: status,
+                uid: uid
+            },function(data){
+                $alert({
+                    content: 'Update successful.',
+                    placement: 'right',
+                    type: 'success',
+                    duration: 5
+                });
+            },function(error){
+                $alert({
+                    content: 'There was an error. Please try again later.',
+                    placement: 'right',
+                    type: 'danger',
+                    duration: 5
+                });
+            })
+        }
     }
 });
