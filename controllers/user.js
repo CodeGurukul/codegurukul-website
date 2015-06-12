@@ -402,6 +402,10 @@ exports.getUser = function(req, res) {
       .populate({
         path: 'badges._id'
       })
+      .populate({
+        path: 'courses._id',
+        select: '_id slug name'
+      })
       .exec(function(err, user) {
         if (err)
           res.status(400).send(err);

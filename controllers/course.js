@@ -92,6 +92,7 @@ exports.joinCourse = function(req, res, next) {
               joindate: Date.now(),
               sid: sid
             });
+            if (!req.status) req.status = "registered";
             course.slots.id(sid).attendees.push({
               _id: user._id,
               mop: req.body.mop,

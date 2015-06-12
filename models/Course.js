@@ -49,6 +49,8 @@ var courseSchema = new mongoose.Schema({
   mentors:[{
     name: String,
     description: String,
+    signature: String,
+    designation: String,
     image: String
   }],
   partners:[{

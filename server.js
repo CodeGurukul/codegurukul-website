@@ -78,6 +78,7 @@ var badgeController = require('./controllers/badge');
 var codeController = require('./controllers/code');
 var razorController = require('./controllers/razor');
 var invoiceController = require('./controllers/invoice');
+var certificateController = require('./controllers/certificate');
 var adminController = require('./controllers/admin');
 
 //Login APIs  //Github and linkedin auth needs testing...awaiting front end code
@@ -97,6 +98,7 @@ app.post('/api/email', emailController.contactUs, emailController.sendEmail);
 app.get('/api/user/:uslug', userController.isLogin, userController.getUser);
 app.put('/api/user/:uslug', userController.isLogin, userController.updateProfile);
 app.post('/api/user/:uslug/invoicePdf', userController.isLogin, invoiceController.pdf);
+app.post('/api/user/:uslug/certificatePdf', userController.isLogin, certificateController.pdf);
 app.post('/api/newsletter', emailController.addNewsletter);
 
 app.use(errorHandler());
