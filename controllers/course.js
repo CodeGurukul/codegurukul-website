@@ -74,7 +74,6 @@ exports.joinCourse = function(req, res, next) {
   if (req.body.cslug && req.body.sid) {
     if (req.body.cslug) cslug = req.body.cslug;
     if (req.body.sid) sid = req.body.sid;
-    console.log(cslug);
     Course.findOne({
       slug: cslug
     }, function(err, course) {
@@ -96,7 +95,9 @@ exports.joinCourse = function(req, res, next) {
             course.slots.id(sid).attendees.push({
               _id: user._id,
               mop: req.body.mop,
-              payment_id: req.body.payment_id
+              payment_id: req.body.payment_id,
+              status: req.status,
+              amount: req.body.amount
             });
             if (course.slots.id(sid).leads.id(user.id)) {
               course.slots.id(sid).leads.pull({_id: user._id});

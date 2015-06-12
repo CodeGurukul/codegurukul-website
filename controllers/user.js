@@ -104,6 +104,10 @@ exports.isAdmin = function(req, res, next) {
 };
 
 exports.signup = function(req, res, next) {
+  if (!req.body.newUser) {
+    console.log("NOT a new user"); 
+    return next();
+  }
   if (!validator.validate(req.body.email))
     return res.status(400).send(msg.inem);
   var user = new User({
