@@ -93,11 +93,11 @@
                     <td> {{attendee._id.mobile}} </td>
                     <td>
                         <p ng-show="!edit">{{attendee.amount}}</p>
-                        <input type="text" class="form-control" placeholder="Enter amount" ng-model="attendee.amount" ng-show="edit">
+                        <input type="text" class="form-control input-sm" placeholder="Enter amount" ng-model="attendee.amount" ng-show="edit" ng-change="change()">
                     </td>
                     <td class="capitalize-text">
                         <p ng-show="!edit">{{attendee.mop}}</p>
-                        <select class="form-control input-sm" ng-model="attendee.mop" required ng-show="edit">
+                        <select class="form-control input-sm" ng-model="attendee.mop" required ng-show="edit" ng-change="change()">
                             <option value="" disabled selected>Select mode of payment</option>
                             <option value="cash">Cash</option>
                             <option value="cheque">Cheque</option>
@@ -107,7 +107,7 @@
                     </td>
                     <td class="capitalize-text"> 
                         <p ng-show="!edit">{{attendee.status}}</p>
-                        <select class="form-control input-sm" ng-model="attendee.status" required ng-show="edit">
+                        <select class="form-control input-sm" ng-model="attendee.status" required ng-show="edit" ng-change="change()">
                             <option value="registered">Registered</option>
                             <option value="processing">Payment in process</option>
                             <option value="paid">Paid</option>
@@ -118,7 +118,7 @@
 -->
                         </select>
                     </td>
-                    <td> <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil"></i> </a> <a href="" ng-show="edit" ng-click="updatePayment(attendee.mop, attendee.status, attendee.amount, attendee._id._id); edit = !edit"> <i class="fa fa-floppy-o"></i> </a> <a href=""> <i class="fa fa-trash-o"></i> </a> </td>
+                    <td> <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil"></i> </a> <span  ng-disabled="!edited"><a href="" ng-show="edit" ng-click="updatePayment(attendee.mop, attendee.status, attendee.amount, attendee._id._id); edit = !edit"> <i class="fa fa-floppy-o"></i> </a></span> <a href="" ng-show="!edit"> <i class="fa fa-trash-o"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times"></i> </a> </td>
                 </tr>
             </tbody>
             <hr>
@@ -132,36 +132,54 @@
 
 
 
-<modal-dialog class="signupWithEmailModal" show='adminAddAttendeeModalShown' dialog-title="Add Attendee" height="auto" width="350px">
+<modal-dialog class="signupWithEmailModal" show='adminAddAttendeeModalShown' dialog-title="Add/Update Attendee" height="auto" width="350px">
     <form method="post" name="adminAddAttendeeForm" ng-controller="AdminCourseDetailsCtrl">    
         <div class="register-modal">
+            <div class="radio-buttons">
+                <ul type="none">
+                    <li>
+                        <input type="radio" ng-value="true" ng-model="newUser" ng-checked="true"> New user
+                    </li>
+                    <li>
+                        <input type="radio" ng-value="false" ng-model="newUser"> Existing user
+                    </li>
+                </ul>
+            </div>
+            
             <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.fullname.$invalid &amp;&amp; adminAddAttendeeForm.fullname.$dirty }" class="form-group has-feedback">
-                <input type="text" name="fullname" ng-model="fullname" placeholder="Full Name" required="" autofocus="" class="form-control input-md"/>
+                <input type="text" name="fullname" ng-model="fullname" placeholder="Full Name" ng-required="newUser==true" autofocus="" class="form-control input-md" ng-show="newUser == true">
                 <div ng-if="adminAddAttendeeForm.fullname.$dirty" ng-messages="adminAddAttendeeForm.fullname.$error" class="help-block text-danger">
                     <div ng-message="required">Please enter the attendee's full name.</div>
                 </div>
             </div>
             <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.username.$invalid &amp;&amp; adminAddAttendeeForm.username.$dirty }" class="form-group has-feedback">
-                <input type="text" name="username" ng-model="username" placeholder="Username" required="" autofocus="" class="form-control input-md"/>
+                <input type="text" name="username" ng-model="username" placeholder="Username" ng-required="newUser==true" autofocus="" class="form-control input-md" ng-show="newUser == true">
                 <div ng-if="adminAddAttendeeForm.username.$dirty" ng-messages="adminAddAttendeeForm.username.$error" class="help-block text-danger">
                     <div ng-message="required">Please enter a username.</div>
                 </div>
             </div>
             <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.email.$invalid &amp;&amp; adminAddAttendeeForm.email.$dirty }" class="form-group has-feedback">
-                <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" unique-email="" required="" class="form-control input-md"/>
+                <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" unique-email="" ng-required="newUser==true" class="form-control input-md" ng-show="newUser==true"/>
                 <div ng-if="adminAddAttendeeForm.email.$dirty" ng-messages="adminAddAttendeeForm.email.$error" class="help-block text-danger">
                     <div ng-message="required">An email address is required.</div>
                     <div ng-message="email">The entered email address is invalid.</div>
-                    <div ng-message="unique"> This email already exists.</div>
+                    <div ng-message="unique"><span ng-show="newUser == true">This email already exists.</span><span ng-show="newUser == false">This email does not exist in the database.</span> </div>
                 </div>
             </div>
+            <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" ng-required="newUser==false" ng-show="newUser==false" class="form-control input-md"/>
             <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.mobile.$invalid &amp;&amp; signupForm.mobile.$dirty }" class="form-group has-feedback">
-                <input type="text" name="mobile" ng-model="mobile" placeholder="Mobile" class="form-control input-md "/ required>
+                <input type="text" name="mobile" ng-model="mobile" placeholder="Mobile" class="form-control input-md "/ ng-required="newUser==true" ng-show="newUser == true">
                 <div ng-if="adminAddAttendeeForm.mobile.$dirty" ng-messages="adminAddAttendeeForm.mobile.$error" class="help-block text-danger" style="color:#a94442">
                     <div ng-message="required">Please enter your mobile number.</div>
                 </div>
             </div>
 
+            <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.amount.$invalid &amp;&amp; adminAddAttendeeForm.amount.$dirty }" class="form-group has-feedback">
+                <input type="text" name="amount" ng-model="amount" placeholder="Amount"  class="form-control input-md" required/>
+                <div ng-if="adminAddAttendeeForm.amount.$dirty" ng-messages="adminAddAttendeeForm.amount.$error" class="help-block text-danger" style="color:#a94442">
+                    <div ng-message="required">Please enter the amount.</div>
+                </div>
+            </div>
             <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.mop.$invalid &amp;&amp; signupForm.mop.$dirty }" class="form-group has-feedback">
                 <select class="form-control input-md" ng-model="mop" required >
                     <option value="" disabled selected>Select mode of payment</option>
@@ -174,10 +192,14 @@
                     <div ng-message="required">Select an option.</div>
                 </div>
             </div>
-            <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.amount.$invalid &amp;&amp; adminAddAttendeeForm.amount.$dirty }" class="form-group has-feedback">
-                <input type="text" name="amount" ng-model="amount" placeholder="Amount"  class="form-control input-md" required/>
-                <div ng-if="adminAddAttendeeForm.amount.$dirty" ng-messages="adminAddAttendeeForm.amount.$error" class="help-block text-danger" style="color:#a94442">
-                    <div ng-message="required">Please enter the amount.</div>
+            <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.paymentStatus.$invalid &amp;&amp; signupForm.paymentStatus.$dirty }" class="form-group has-feedback">
+                <select class="form-control input-md" ng-model="paymentStatus" required >
+                    <option value="" disabled selected>Select status of payment</option>
+                    <option value="processing">Processing</option>
+                    <option value="paid">Paid (for cash payments only)</option>
+                </select>
+                <div ng-if="adminAddAttendeeForm.paymentStatus.$dirty" ng-messages="adminAddAttendeeForm.paymentStatus.$error" class="help-block text-danger" style="color:#a94442">
+                    <div ng-message="required">Select an option.</div>
                 </div>
             </div>
             <div class="text-center mobile-number">

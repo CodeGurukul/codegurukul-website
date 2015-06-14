@@ -275,16 +275,28 @@ exports.updateCourse = function (req, res) {
 
 
 exports.joinPrep = function (req, res, next) {
-  if (req.body.fullname && req.body.username && req.body.email 
-    && req.body.mobile && req.body.mop && req.body.amount && req.body.paymentStatus
-    && req.body.cslug && req.body.sid) {
-    req.body.password = codeGen(5);
+  if (req.body.email && req.body.mop && req.body.amount 
+    && req.body.paymentStatus && req.body.cslug && req.body.sid) {
     req.admin = true;
     req.pay = true;
     req.mop = req.body.mop;
     req.status = req.body.paymentStatus;
     req.coursePrice = req.body.amount;
-    next();
+    if (req.body.newUser && req.body.fullname && req.body.username && req.body.mobile ) {
+      //creates new user
+      req.body.password = codeGen(5);  
+      next();
+    } else {    //existing user
+      req.body.newUser = false;
+      User.findOne({email: req.body.email}, function (err, user) {
+        if (err) res.send(err);
+        else if (!user) res.status(404).send('User not found.');
+        else {
+          req.user = user;
+          next();
+        }
+      })
+    };
   } else return res.status(400).send("Enter all required fields");
 }
 

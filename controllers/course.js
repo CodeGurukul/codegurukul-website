@@ -74,7 +74,6 @@ exports.joinCourse = function(req, res, next) {
   if (req.body.cslug && req.body.sid) {
     if (req.body.cslug) cslug = req.body.cslug;
     if (req.body.sid) sid = req.body.sid;
-    console.log(cslug);
     Course.findOne({
       slug: cslug
     }, function(err, course) {
@@ -86,17 +85,20 @@ exports.joinCourse = function(req, res, next) {
         User.findById(req.user._id, function(err, user) {
           if (err) res.send(err);
           else if (!user) res.status(404).send('User not found.');
-          else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
+          else if (user.courses.id(course._id)) {console.log(user);res.status(412).send('Course Already Joined');}
           else {
             user.courses.push({
               _id: course._id,
               joindate: Date.now(),
               sid: sid
             });
+            if (!req.status) req.status = "registered";
             course.slots.id(sid).attendees.push({
               _id: user._id,
               mop: req.body.mop,
-              payment_id: req.body.payment_id
+              payment_id: req.body.payment_id,
+              status: req.status,
+              amount: req.body.amount
             });
             if (course.slots.id(sid).leads.id(user.id)) {
               course.slots.id(sid).leads.pull({_id: user._id});

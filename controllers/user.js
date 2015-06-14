@@ -104,6 +104,10 @@ exports.isAdmin = function(req, res, next) {
 };
 
 exports.signup = function(req, res, next) {
+  if (!req.body.newUser) {
+    console.log("NOT a new user"); 
+    return next();
+  }
   if (!validator.validate(req.body.email))
     return res.status(400).send(msg.inem);
   var user = new User({
@@ -397,6 +401,10 @@ exports.getUser = function(req, res) {
       .select('-_id profile courses points slug username mobile email badges referalCode')
       .populate({
         path: 'badges._id'
+      })
+      .populate({
+        path: 'courses._id',
+        select: '_id slug name'
       })
       .exec(function(err, user) {
         if (err)

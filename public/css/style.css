@@ -1353,7 +1353,7 @@ body > .right {
     width: 30vw;
     position: fixed;
     z-index: 10000;
-    bottom: 10px;
+    bottom: 50px;
     right: 10px;
 }
 
