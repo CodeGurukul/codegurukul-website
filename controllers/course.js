@@ -85,7 +85,7 @@ exports.joinCourse = function(req, res, next) {
         User.findById(req.user._id, function(err, user) {
           if (err) res.send(err);
           else if (!user) res.status(404).send('User not found.');
-          else if (user.courses.id(course._id)) res.status(412).send('Course Already Joined');
+          else if (user.courses.id(course._id)) {console.log(user);res.status(412).send('Course Already Joined');}
           else {
             user.courses.push({
               _id: course._id,

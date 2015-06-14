@@ -288,7 +288,14 @@ exports.joinPrep = function (req, res, next) {
       next();
     } else {    //existing user
       req.body.newUser = false;
-      next();
+      User.findOne({email: req.body.email}, function (err, user) {
+        if (err) res.send(err);
+        else if (!user) res.status(404).send('User not found.');
+        else {
+          req.user = user;
+          next();
+        }
+      })
     };
   } else return res.status(400).send("Enter all required fields");
 }
