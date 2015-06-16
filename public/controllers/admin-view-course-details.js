@@ -45,7 +45,7 @@ angular.module('Codegurukul')
         },function(error){
             $scope.adminAddAttendeeModalShown = false;
             $alert({
-                content: 'There was an error. Please try again later.',
+                content: error.data,
                 placement: 'right',
                 type: 'danger',
                 duration: 5
