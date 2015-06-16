@@ -59,7 +59,7 @@ angular.module('Codegurukul')
         $scope.edited = true;
     }
 
-    $scope.updatePayment = function(mop,status,amount,uid){
+    $scope.updatePayment = function(mop,status,amount,uid,payment_id){
         console.log($scope.edited);
         if($scope.edited == false){
             $alert({
@@ -77,7 +77,8 @@ angular.module('Codegurukul')
                 mop: mop,
                 amount: amount,
                 status: status,
-                uid: uid
+                uid: uid,
+                payment_id: payment_id
             },function(data){
                 $alert({
                     content: 'Update successful.',

@@ -75,6 +75,10 @@
                         </a>
                     </th>
                     <th>
+                            CHEQUE NO. / <br> TRANSACTION ID
+                        </a>
+                    </th>
+                    <th>
                         <a href="" ng-click="sortType = 'status'; sortReverse = !sortReverse">
                             STATUS 
                             <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
@@ -105,6 +109,10 @@
                             <option value="neft">NEFT</option>
                         </select>
                     </td>
+                    <td>
+                        <p ng-show="!edit"><span ng-if="attendee.mop !== 'cash'">{{attendee.payment_id}}</span><span ng-if="attendee.mop == 'cash'"> N/A </span></p>
+                        <input type="text" class="form-control input-sm" placeholder="Enter transaction id" ng-model="attendee.payment_id" ng-show="edit" ng-change="change()" ng-disabled="attendee.mop == 'cash'">
+                    </td>
                     <td class="capitalize-text"> 
                         <p ng-show="!edit">{{attendee.status}}</p>
                         <select class="form-control input-sm" ng-model="attendee.status" required ng-show="edit" ng-change="change()">
@@ -118,7 +126,7 @@
 -->
                         </select>
                     </td>
-                    <td> <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil"></i> </a> <span  ng-disabled="!edited"><a href="" ng-show="edit" ng-click="updatePayment(attendee.mop, attendee.status, attendee.amount, attendee._id._id); edit = !edit"> <i class="fa fa-floppy-o"></i> </a></span> <a href="" ng-show="!edit"> <i class="fa fa-trash-o"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times"></i> </a> </td>
+                    <td> <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil"></i> </a> <span  ng-disabled="!edited"><a href="" ng-show="edit" ng-click="updatePayment(attendee.mop, attendee.status, attendee.amount, attendee._id._id, attendee.payment_id); edit = !edit"> <i class="fa fa-floppy-o"></i> </a></span> <a href="" ng-show="!edit"> <i class="fa fa-trash-o"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times"></i> </a> </td>
                 </tr>
             </tbody>
             <hr>
@@ -131,7 +139,7 @@
 </section>
 
 
-
+<!--ADD ATTENDEE MODAL-->
 <modal-dialog class="signupWithEmailModal" show='adminAddAttendeeModalShown' dialog-title="Add an Attendee" height="auto" width="350px">
     <form method="post" name="adminAddAttendeeForm" ng-controller="AdminCourseDetailsCtrl">    
         <div class="register-modal">
