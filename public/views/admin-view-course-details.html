@@ -208,6 +208,12 @@
                     <div ng-message="required">Select an option.</div>
                 </div>
             </div>
+            <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.payment_id.$invalid &amp;&amp; signupForm.payment_id.$dirty }" class="form-group has-feedback">
+                <input type="text" name="mobile" ng-model="payment_id" placeholder="Payment ID" class="form-control input-md "/ ng-required="mop !== 'cash'" ng-show="mop == 'cheque' || mop == 'dd' || mop == 'neft'">
+                <div ng-if="adminAddAttendeeForm.payment_id.$dirty" ng-messages="adminAddAttendeeForm.payment_id.$error" class="help-block text-danger" style="color:#a94442">
+                    <div ng-message="required">Please enter the payment ID.</div>
+                </div>
+            </div>
             <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.paymentStatus.$invalid &amp;&amp; signupForm.paymentStatus.$dirty }" class="form-group has-feedback">
                 <select class="form-control input-md" ng-model="paymentStatus" required >
                     <option value="" disabled selected>Select status of payment</option>

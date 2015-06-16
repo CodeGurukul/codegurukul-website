@@ -21,7 +21,6 @@ angular.module('Codegurukul')
         $scope.adminAddAttendeeModalShown = !$scope.adminAddAttendeeModalShown;
     }
     $scope.addAttendee = function(){
-        console.log($scope.fullname+""+$scope.username+""+$scope.email+""+$scope.mop+""+$scope.mobile+""+$scope.paymentStatus+""+$scope.newUser+""+$scope.amount);
         Admin.addAttendee.save({
             cslug: $stateParams.course,
             sid: $stateParams.slot,
@@ -32,7 +31,8 @@ angular.module('Codegurukul')
             mop: $scope.mop,
             amount: $scope.amount,
             paymentStatus: $scope.paymentStatus,
-            newUser: $scope.newUser
+            newUser: $scope.newUser,
+            payment_id: $scope.payment_id
         },function(data){
             $scope.adminAddAttendeeModalShown = false;
             $state.reload();
