@@ -223,6 +223,9 @@ exports.sendInvoice = function(invoice, data) {
       }, {
         "name": "mop",
         "content": invoice.mop
+      }, {
+        "name": "balance",
+        "content": invoice.balance
       }]
     }]
   };

@@ -98,7 +98,7 @@ exports.joinCourse = function(req, res, next) {
               mop: req.body.mop,
               payment_id: req.body.payment_id,
               status: req.status,
-              amount: req.body.amount
+              amount: req.coursePrice
             });
             if (course.slots.id(sid).leads.id(user.id)) {
               course.slots.id(sid).leads.pull({_id: user._id});
@@ -124,8 +124,14 @@ exports.joinCourse = function(req, res, next) {
                       userName: user.username
                     };
                     email.sendCourseReg(emailData);
-                    if (req.mop == "online" || req.status == "paid") next();
-                    else res.json({ message: 'Registration successfull'});
+                    if (req.pay) {
+                      if (user.courses.id(course._id).invoice) 
+                        { console.log(user.courses.id(course._id).invoice);
+                          console.log("Invoice exists ^^")
+                          req.invoiceId = user.courses.id(course._id).invoice;};
+                      next();
+                    }
+                    else res.json({ message: "Registration successfull"});
                     badge.assign(course._id, user._id);
                   }
                 })

@@ -117,10 +117,10 @@ exports.addPayment = function (req, res, next) {
           course.slots.id(req.params.sid).attendees.id(req.body.uid).status = req.body.status;
           course.save(function (err, course) {
             if (err) return res.status(400).send(err);
-            else if (req.body.status == "paid") {
+            else {
               User.findById(req.body.uid, function(err, user) {
                 if (err) res.send(err);
-                else if (!user) res.status(404).send('User not found');
+                else if (!user) return res.status(404).send('User not found');
                 else {
                   req.to = user.email;
                   req.name = user.profile.fullname;
@@ -133,10 +133,12 @@ exports.addPayment = function (req, res, next) {
                   req.course = course.name;
                   req.courseSlug = course.slug;
                   req.courseDate = course.slots.id(req.params.sid).startDate;
+                  if (user.courses.id(course._id).invoice) 
+                    req.invoiceId = user.courses.id(course._id).invoice;
                   next();
                 }
               })
-            } else res.status(200).send("Attendee payment updated")
+            }
           })
         }
       })
@@ -277,15 +279,19 @@ exports.updateCourse = function (req, res) {
 exports.joinPrep = function (req, res, next) {
   if (req.body.email && req.body.mop && req.body.amount 
     && req.body.paymentStatus && req.body.cslug && req.body.sid) {
+    if (req.body.mop != "cash")
+      if (!req.body.payment_id) return res.status(400).send("Payment ID required for non-cash payment");
     req.admin = true;
     req.pay = true;
     req.mop = req.body.mop;
     req.status = req.body.paymentStatus;
     req.coursePrice = req.body.amount;
-    if (req.body.newUser && req.body.fullname && req.body.username && req.body.mobile ) {
-      //creates new user
-      req.body.password = codeGen(5);  
-      next();
+    if (req.body.newUser) {
+      if (req.body.fullname && req.body.username && req.body.mobile ) {
+        //creates new user
+        req.body.password = codeGen(5);  
+        next();
+      } else res.status(400).send("Enter all required fields");
     } else {    //existing user
       req.body.newUser = false;
       User.findOne({email: req.body.email}, function (err, user) {

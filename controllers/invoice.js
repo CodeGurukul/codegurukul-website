@@ -14,47 +14,78 @@ var pdf = require('html-pdf');
 
 exports.generate = function(req, res, next) {
   if (req.pay) {
-    console.log('new invoice');
-    var invoice = new Invoice({
-      status: req.status,
-      total: req.coursePrice,
-      user: req.userId,
-      paymentId: req.body.payment_id,
-      mop: req.mop
-    });
-    invoice.products.push({
-      product: req.course,
-      slug: req.courseSlug,
-      date: req.courseDate,
-      unitCost: req.coursePrice,
-      total: req.coursePrice
-    });
-    invoice.save(function (err, newInvoice, numberAffected) {
-      if (err) res.status(400).send(err);
-      else {
-        var emailData = {
-          to: req.to,
-          userName: req.name
-        };
-        email.sendInvoice(newInvoice, emailData);
-        User.findById(req.userId, function(err, user) {
-          if (err) res.send(err);
-          else if (!user) res.status(404).send('User not found');
+      
+      if (!req.invoiceId) {
+        console.log('new invoice');
+        if (req.status == "paid") 
+          var bal = 0;
+        else bal = req.coursePrice;
+
+        var invoice = new Invoice({
+          status: req.status,
+          total: req.coursePrice,
+          balance: bal,
+          user: req.userId,
+          paymentId: req.body.payment_id,
+          mop: req.mop
+        });
+        invoice.products.push({
+          product: req.course,
+          slug: req.courseSlug,
+          date: req.courseDate,
+          unitCost: req.coursePrice,
+          total: req.coursePrice
+        });
+        saveInvoice(req, res, invoice);
+      } else{
+        console.log('EXISTING invoice');
+        Invoice.findById(req.invoiceId, function (err, invoice) {
+          if (err) return res.status(400).send(err);
+          else if (!invoice) return res.status(400).send("Invoice does not exist");
           else {
-            console.log(user);
-            user.courses.id(req.courseId).invoice = newInvoice._id,
-            user.save(function(err) {
-              if (err) res.send(err);
-              else {
-                res.json({ message: 'Payment success'});
-              }
-            })
+            if (req.status == "paid") 
+              var bal = 0;
+            else bal = req.coursePrice;
+            invoice.status = req.status;
+            invoice.total = req.coursePrice;
+            invoice.paymentId = req.body.payment_id;
+            invoice.balance = bal;
+            invoice.products[0].unitCost = req.coursePrice;
+            invoice.products[0].total = req.coursePrice;
+            saveInvoice(req, res, invoice);
           }
         })
       }
-    })
+
   };
 };
+var saveInvoice = function (req, res, invoice) {
+  invoice.save(function (err, newInvoice, numberAffected) {
+    if (err) res.status(400).send(err);
+    else {
+      var emailData = {
+        to: req.to,
+        userName: req.name
+      };
+      email.sendInvoice(newInvoice, emailData);
+      User.findById(req.userId, function(err, user) {
+        if (err) res.send(err);
+        else if (!user) res.status(404).send('User not found');
+        else {
+          console.log(user);
+          user.courses.id(req.courseId).invoice = newInvoice._id,
+          user.save(function(err) {
+            if (err) res.send(err);
+            else {
+              res.json({ message: 'Payment success'});
+            }
+          })
+        }
+      })
+    }
+  })
+}
+
 
 exports.pdf = function (req, res) {
   if (req.body.cid && req.body.invoice) {
