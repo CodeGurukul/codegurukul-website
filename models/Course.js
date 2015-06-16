@@ -33,7 +33,7 @@ var courseSchema = new mongoose.Schema({
         status: {
           type: String,
           default: 'registered',
-          enum: ['registered', 'paid', 'processing', 'cancelled', 'completed', 'incomplete' ]
+          enum: ['registered', 'processing', 'paid', 'cancelled', 'completed', 'incomplete']
         }
       }],
       leads: [{

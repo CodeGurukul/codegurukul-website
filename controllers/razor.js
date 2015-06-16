@@ -27,6 +27,7 @@ exports.verifyPay = function(req, res, next){
 								req.pay = true;
 								req.mop = req.body.mop;
 								req.amountPaid = 0;
+								req.status = "";
 								req.coursePrice = result.value;
 								next();
 							// }

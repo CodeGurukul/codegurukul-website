@@ -11,9 +11,9 @@ var invoiceSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['created', 'authorized', 'captured', 'paid']
+    enum: ['registered', 'processing', 'paid', 'cancelled']
   },
-  net: {
+  balance: {
     type: Number                       //not used
   },
   vat: {                              //not used
