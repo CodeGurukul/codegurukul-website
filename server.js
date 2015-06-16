@@ -42,7 +42,7 @@ var app = express();
  */
 
 mongoose.connect(secrets.db);
-mongoose.connection.on('error', function() {
+mongoose.connection.on('error', function(err) {
   console.error('MongoDB Connection Error. Make sure MongoDB is running.');
 });
 

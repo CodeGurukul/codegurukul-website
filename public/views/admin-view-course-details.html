@@ -111,10 +111,10 @@
                             <option value="registered">Registered</option>
                             <option value="processing">Payment in process</option>
                             <option value="paid">Paid</option>
-<!--
-                            <option value="inComplete">Course Incomplete</option>
-                            <option value="completed">Course Complete</option>
-                            <option value="cancelled">Registration Cancelled</option>
+                            <!--
+<option value="inComplete">Course Incomplete</option>
+<option value="completed">Course Complete</option>
+<option value="cancelled">Registration Cancelled</option>
 -->
                         </select>
                     </td>
@@ -132,7 +132,7 @@
 
 
 
-<modal-dialog class="signupWithEmailModal" show='adminAddAttendeeModalShown' dialog-title="Add/Update Attendee" height="auto" width="350px">
+<modal-dialog class="signupWithEmailModal" show='adminAddAttendeeModalShown' dialog-title="Add an Attendee" height="auto" width="350px">
     <form method="post" name="adminAddAttendeeForm" ng-controller="AdminCourseDetailsCtrl">    
         <div class="register-modal">
             <div class="radio-buttons">
@@ -145,7 +145,7 @@
                     </li>
                 </ul>
             </div>
-            
+
             <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.fullname.$invalid &amp;&amp; adminAddAttendeeForm.fullname.$dirty }" class="form-group has-feedback">
                 <input type="text" name="fullname" ng-model="fullname" placeholder="Full Name" ng-required="newUser==true" autofocus="" class="form-control input-md" ng-show="newUser == true">
                 <div ng-if="adminAddAttendeeForm.fullname.$dirty" ng-messages="adminAddAttendeeForm.fullname.$error" class="help-block text-danger">
@@ -158,15 +158,23 @@
                     <div ng-message="required">Please enter a username.</div>
                 </div>
             </div>
-            <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.email.$invalid &amp;&amp; adminAddAttendeeForm.email.$dirty }" class="form-group has-feedback">
-                <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" unique-email="" ng-required="newUser==true" class="form-control input-md" ng-show="newUser==true"/>
-                <div ng-if="adminAddAttendeeForm.email.$dirty" ng-messages="adminAddAttendeeForm.email.$error" class="help-block text-danger">
-                    <div ng-message="required">An email address is required.</div>
-                    <div ng-message="email">The entered email address is invalid.</div>
-                    <div ng-message="unique"><span ng-show="newUser == true">This email already exists.</span><span ng-show="newUser == false">This email does not exist in the database.</span> </div>
+            <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.newUserEmail.$invalid &amp;&amp; adminAddAttendeeForm.newUserEmail.$dirty }" class="form-group has-feedback">
+                <input id="email"  type="email" name="newUserEmail" ng-model="email" placeholder="Email" unique-email="" ng-required="newUser==true" ng-show="newUser==true" class="form-control input-md"/>
+                <div ng-if="adminAddAttendeeForm.newUserEmail.$dirty" ng-messages="adminAddAttendeeForm.newUserEmail.$error" class="help-block text-danger">
+                    <div ng-message="required" ng-if="newUser==true">An email address is required.</div>
+                    <div ng-message="email" ng-if="newUser==true">The entered email address is invalid.</div>
+                    <div ng-message="unique" ng-if="newUser==true">This email already exists.</div>
+<!--                    <div ng-message="match" ng-if="newUser==false">This email does not exist in the database. </div>-->
                 </div>
             </div>
-            <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" ng-required="newUser==false" ng-show="newUser==false" class="form-control input-md"/>
+            <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.existingUserEmail.$invalid &amp;&amp; adminAddAttendeeForm.existingUserEmail.$dirty }" class="form-group has-feedback">
+                <input id="email"  type="email" name="existingUserEmail" ng-model="email" placeholder="Email" ng-required="newUser==false" ng-show="newUser==false" class="form-control input-md" match-email=""/>
+                <div ng-if="adminAddAttendeeForm.existingUserEmail.$dirty" ng-messages="adminAddAttendeeForm.existingUserEmail.$error" class="help-block text-danger">
+                    <div ng-message="required" ng-if="newUser==false">An email address is required.</div>
+                    <div ng-message="email" ng-if="newUser==false">The entered email address is invalid.</div>
+                    <div ng-message="match" ng-if="newUser==false"><span ng-show="newUser == false">This email does not exist in the database.</span> </div>
+                </div>
+            </div>
             <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.mobile.$invalid &amp;&amp; signupForm.mobile.$dirty }" class="form-group has-feedback">
                 <input type="text" name="mobile" ng-model="mobile" placeholder="Mobile" class="form-control input-md "/ ng-required="newUser==true" ng-show="newUser == true">
                 <div ng-if="adminAddAttendeeForm.mobile.$dirty" ng-messages="adminAddAttendeeForm.mobile.$error" class="help-block text-danger" style="color:#a94442">
