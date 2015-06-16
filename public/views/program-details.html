@@ -285,7 +285,11 @@
                 <li ng-if="mop == 'neft'">
                     <input type="text" ng-model="payment_id" placeholder="Enter Transaction ID" class="form-control" ng-required="mop == neft">
                 </li>
-                <li><input type="radio" name="mop" disabled> Credit/Debit Card </li>
+                <li> <input type="radio" name="mop" ng-model="mop" value="cc"> Credit/Debit Card </li>
+                <li ng-if="mop == 'cc'">
+                    <p>Click <a href="https://www.payumoney.com/paybypayumoney/#/52407" target="_blank">here</a> to pay by Credit/Debit Card.<br> Enter the transaction ID below once the payment is complete.</p>
+                    <input type="text" ng-model="payment_id" placeholder="Enter Transaction ID" class="form-control" ng-required="mop == cc">
+                </li>
             </ul>
 
             <div class="modalButtons text-center">
