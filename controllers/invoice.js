@@ -50,6 +50,7 @@ exports.generate = function(req, res, next) {
             invoice.total = req.coursePrice;
             invoice.paymentId = req.body.payment_id;
             invoice.balance = bal;
+            invoice.mop = req.mop;
             invoice.products[0].unitCost = req.coursePrice;
             invoice.products[0].total = req.coursePrice;
             saveInvoice(req, res, invoice);
