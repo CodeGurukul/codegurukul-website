@@ -1,8 +1,9 @@
 angular.module('Codegurukul')
-    .controller('UserCtrl', function($scope, User, $stateParams, $alert, $location, $state, Badges) {
+    .controller('UserCtrl', function($scope, User, $stateParams, $alert, $location, $state, Badges, $window) {
     $scope.all = false;
     $scope.edit = false;
     $scope.progressModal = false;
+    $scope.processing = false;
 
     $scope.toggleProgressModal = function(){
         $scope.progressModal = !$scope.progressModal;
@@ -136,19 +137,23 @@ angular.module('Codegurukul')
 
 
     $scope.generateInvoice = function(courseId, invoice){
-        console.log(courseId+" "+invoice);
+        $scope.processing = true;
+//        console.log(courseId+" "+invoice);
         User.invoiceGen.save({
             uslug: $stateParams.uslug
         },{
             cid: courseId,
             invoice: invoice
-        },function(){
+        },function(success){
+//            console.log(success.response);
+            $window.open('/temp/invoice/'+invoice+'.pdf');
             $alert({
-                content: 'Invoice saved successfully',
+                content: 'Invoice generated successfully. If your invoice does not open in a new tab, please disable pop-up blocking and try again.',
                 placement: 'right',
                 type: 'success',
                 duration: 5
             });
+            $scope.processing = false;
         },function(err){
             $alert({
                 content: err.data,

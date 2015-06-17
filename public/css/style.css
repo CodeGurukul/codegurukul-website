@@ -2007,3 +2007,105 @@ Optional CSS for partners
     padding-top: 6px;
     font-weight: 700;
 }
+
+
+/*Spin loader css*/
+@-webkit-keyframes invoiceProcessSpinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes invoiceProcessSpinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes invoiceProcessSpinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes invoiceProcessSpinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+/* Styles for old versions of IE */
+.invoiceProcessSpinner {
+    font-family: sans-serif;
+    font-weight: 100;
+    position: absolute;
+    right: -10px;
+    top: 7px;
+}
+
+/* :not(:required) hides this rule from IE9 and below */
+.invoiceProcessSpinner:not(:required) {
+    -webkit-animation: invoiceProcessSpinner 1250ms infinite linear;
+    -moz-animation: invoiceProcessSpinner 1250ms infinite linear;
+    -ms-animation: invoiceProcessSpinner 1250ms infinite linear;
+    -o-animation: invoiceProcessSpinner 1250ms infinite linear;
+    animation: invoiceProcessSpinner 1250ms infinite linear;
+    border: 4px solid #81a27b;
+    border-right-color: transparent;
+    border-radius: 8px;
+    box-sizing: border-box;
+    display: inline-block;
+    /*position: relative;*/
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 16px;
+    height: 16px;
+}

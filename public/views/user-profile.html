@@ -100,7 +100,7 @@
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-12" ng-repeat="course in user.courses">
-                                <span class="pull-left enrolled-course-name">{{course._id.name}}</span><span class="pull-right"><button class="btn btn-primary btn-sm" ng-click="generateInvoice(course._id._id, course.invoice)">Generate Invoice</button> </span>
+                                <span class="pull-left enrolled-course-name">{{course._id.name}}</span><span class="pull-right"><button class="btn btn-primary btn-sm" ng-click="generateInvoice(course._id._id, course.invoice)"><span>Download Invoice </span></button> <span ng-class="{invoiceProcessSpinner:processing}" class="pull-right"></span></span>
                             </div>
                         </div>
                     </div>
