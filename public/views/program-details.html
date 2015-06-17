@@ -259,21 +259,21 @@
             <h3 class="text-center">Select mode of payment</h3>
             <ul type="none" class="mode-of-payment">
 
-                <li><input type="radio" name="mop" value="cash" ng-model="mop" checked> Cash </li>
-                <li ng-if="mop == 'cash'">
+                <li><input type="radio" name="mop" value="Cash" ng-model="mop" checked> Cash </li>
+                <li ng-if="mop == 'Cash'">
                     <p> Address for cash payment: </p>
                     <p>127, Kartik Complex, <br> Opp Laxmi Industrial Estate, <br>Link Road, <br> Andheri (West)</p>
                     <p> Call Sobin on <strong>8097415085</strong> to arrange cash pickup</p>
                 </li>
-                <li><input type="radio" name="mop" value="cheque" ng-model="mop"> Cheque </li>
-                <li ng-if="mop == 'cheque'">
+                <li><input type="radio" name="mop" value="Cheque" ng-model="mop"> Cheque </li>
+                <li ng-if="mop == 'Cheque'">
                     <p>Cheques should be drawn in favor of: <br> '<strong>Bit Brothers Tech Pvt. Ltd.</strong>'</p>
                     <p> Address to hand over cheques: </p>
                     <p>127, Kartik Complex, <br> Opp Laxmi Industrial Estate, <br>Link Road, <br> Andheri (West)</p>
                     <p> Call Sobin on <strong>8097415085</strong> to arrange cheque pickup</p>
                 </li>
-                <li><input type="radio" name="mop" value="dd" ng-model="mop"> DD </li>
-                <li ng-if="mop == 'dd'">
+                <li><input type="radio" name="mop" value="Demand Draft" ng-model="mop"> DD </li>
+                <li ng-if="mop == 'Demand Draft'">
                     <div>
                         <p>Demand Drafts should be drawn in favor of: <br> '<strong>Bit Brothers Tech Pvt. Ltd.</strong>'</p>
                         <p> Address to hand over DD: </p>
@@ -281,12 +281,12 @@
                         <p> Call Sobin on <strong>8097415085</strong> to arrange DD pickup</p>
                     </div>
                 </li>
-                <li><input type="radio" name="mop" value="neft" ng-model="mop"> NEFT </li>
-                <li ng-if="mop == 'neft'">
+                <li><input type="radio" name="mop" value="NEFT" ng-model="mop"> NEFT </li>
+                <li ng-if="mop == 'NEFT'">
                     <input type="text" ng-model="payment_id" placeholder="Enter Transaction ID" class="form-control" ng-required="mop == neft">
                 </li>
-                <li> <input type="radio" name="mop" ng-model="mop" value="cc"> Credit/Debit Card </li>
-                <li ng-if="mop == 'cc'">
+                <li> <input type="radio" name="mop" ng-model="mop" value="Online"> Credit/Debit Card </li>
+                <li ng-if="mop == 'Online'">
                     <p>Click <a href="https://www.payumoney.com/paybypayumoney/#/52407" target="_blank">here</a> to pay by Credit/Debit Card.<br> Enter the transaction ID below once the payment is complete.</p>
                     <input type="text" ng-model="payment_id" placeholder="Enter Transaction ID" class="form-control" ng-required="mop == cc">
                 </li>

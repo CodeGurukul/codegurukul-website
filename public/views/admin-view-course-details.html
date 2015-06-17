@@ -103,15 +103,15 @@
                         <p ng-show="!edit">{{attendee.mop}}</p>
                         <select class="form-control input-sm" ng-model="attendee.mop" required ng-show="edit" ng-change="change()">
                             <option value="" disabled selected>Select mode of payment</option>
-                            <option value="cash">Cash</option>
-                            <option value="cheque">Cheque</option>
-                            <option value="dd">DD</option>
-                            <option value="neft">NEFT</option>
+                            <option value="Cash">Cash</option>
+                            <option value="Cheque">Cheque</option>
+                            <option value="Demand Draft">DD</option>
+                            <option value="NEFT">NEFT</option>
                         </select>
                     </td>
                     <td>
-                        <p ng-show="!edit"><span ng-if="attendee.mop !== 'cash'">{{attendee.payment_id}}</span><span ng-if="attendee.mop == 'cash'"> N/A </span></p>
-                        <input type="text" class="form-control input-sm" placeholder="Enter transaction id" ng-model="attendee.payment_id" ng-show="edit" ng-change="change()" ng-disabled="attendee.mop == 'cash'">
+                        <p ng-show="!edit"><span ng-if="attendee.mop !== 'Cash'">{{attendee.payment_id}}</span><span ng-if="attendee.mop == 'Cash'"> N/A </span></p>
+                        <input type="text" class="form-control input-sm" placeholder="Enter transaction id" ng-model="attendee.payment_id" ng-show="edit" ng-change="change()" ng-disabled="attendee.mop == 'Cash'">
                     </td>
                     <td class="capitalize-text"> 
                         <p ng-show="!edit">{{attendee.status}}</p>
@@ -199,17 +199,17 @@
             <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.mop.$invalid &amp;&amp; signupForm.mop.$dirty }" class="form-group has-feedback">
                 <select class="form-control input-md" ng-model="mop" required >
                     <option value="" disabled selected>Select mode of payment</option>
-                    <option value="cash">Cash</option>
-                    <option value="cheque">Cheque</option>
-                    <option value="dd">DD</option>
-                    <option value="neft">NEFT</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Cheque">Cheque</option>
+                    <option value="Demand Draft">DD</option>
+                    <option value="NEFT">NEFT</option>
                 </select>
                 <div ng-if="adminAddAttendeeForm.mop.$dirty" ng-messages="adminAddAttendeeForm.mop.$error" class="help-block text-danger" style="color:#a94442">
                     <div ng-message="required">Select an option.</div>
                 </div>
             </div>
             <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.payment_id.$invalid &amp;&amp; signupForm.payment_id.$dirty }" class="form-group has-feedback">
-                <input type="text" name="mobile" ng-model="payment_id" placeholder="Payment ID" class="form-control input-md "/ ng-required="mop !== 'cash'" ng-show="mop == 'cheque' || mop == 'dd' || mop == 'neft'">
+                <input type="text" name="mobile" ng-model="payment_id" placeholder="Payment ID" class="form-control input-md "/ ng-required="mop !== 'Cash'" ng-show="mop == 'Cheque' || mop == 'Demand Draft' || mop == 'NEFT'">
                 <div ng-if="adminAddAttendeeForm.payment_id.$dirty" ng-messages="adminAddAttendeeForm.payment_id.$error" class="help-block text-danger" style="color:#a94442">
                     <div ng-message="required">Please enter the payment ID.</div>
                 </div>
