@@ -96,8 +96,9 @@ angular.module('Codegurukul')
     }
 
 
-    $scope.checkCondition = function(slot){
+    $scope.checkCondition = function(slot, status){
         $scope.slotIdentification = slot;
+        $scope.slotStatus = status;
         if ($rootScope.currentUser){
             if($scope.course.joined){
                 $alert({
@@ -119,10 +120,10 @@ angular.module('Codegurukul')
             }
 
             else {
-                if ($scope.course.status == 'open' && $scope.course.joined == false){
+                if ($scope.slotStatus == 'open' && $scope.course.joined == false){
                     $scope.canJoin();
                 }
-                else if ($scope.course.status=='new'){
+                else if ($scope.slotStatus=='new'){
                     $scope.notify();
                     console.log("notify function executed");
                 }

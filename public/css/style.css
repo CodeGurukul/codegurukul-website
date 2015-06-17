@@ -2002,3 +2002,8 @@ Optional CSS for partners
 .mode-of-payment{
     padding: 0px 20px;
 }
+
+.enrolled-course-name{
+    padding-top: 6px;
+    font-weight: 700;
+}

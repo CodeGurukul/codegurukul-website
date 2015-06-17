@@ -18,7 +18,7 @@ angular.module('Codegurukul')
         if($scope.user.profile.dob){
             var stringDate = $scope.user.profile.dob;
             $scope.user.profile.dob = new Date(stringDate);
-            console.log($scope.user.badges.length);
+            console.log($scope.user);
         }
 
 
@@ -132,6 +132,32 @@ angular.module('Codegurukul')
         });
 
     };  //update function ends
+
+
+
+    $scope.generateInvoice = function(courseId, invoice){
+        console.log(courseId+" "+invoice);
+        User.invoiceGen.save({
+            uslug: $stateParams.uslug
+        },{
+            cid: courseId,
+            invoice: invoice
+        },function(){
+            $alert({
+                content: 'Invoice saved successfully',
+                placement: 'right',
+                type: 'success',
+                duration: 5
+            });
+        },function(err){
+            $alert({
+                content: err.data,
+                placement: 'right',
+                type: 'danger',
+                duration: 5
+            });
+        })
+    }
 
 
 });

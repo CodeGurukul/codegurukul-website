@@ -84,15 +84,26 @@
                 <div class="row">
                     <h2 class="text-center">REFERRAL</h2>
                     <h3>Referral code:</h3>
-                        <input type="text" class="form-control referral-code-textbox" ng-model="user.referalCode" readonly>
+                    <input type="text" class="form-control referral-code-textbox" ng-model="user.referalCode" readonly>
                     <h3>Referral Link:</h3>
-                        <input type="text" class="form-control referral-code-textbox" value="http://codegurukul.com/#/?referralCode={{user.referalCode}}" readonly>
+                    <input type="text" class="form-control referral-code-textbox" value="http://codegurukul.com/#/?referralCode={{user.referalCode}}" readonly>
                     <h4 class="text-center">Share this link on:</h4>
                     <p class="text-center share referral-share">		
                         <a href="#" socialshare socialshare-provider="facebook" socialshare-text="Referral Link : http://codegurukul.com/#/?referralCode={{user.referalCode}}. Register at " socialshare-url="http://www.codegurukul.com/#/?referralCode={{user.referalCode}}"><i class="fa fa-facebook fa-lg"></i></a>
                         <a href="#" socialshare socialshare-provider="twitter" socialshare-text="Referral Link : http://codegurukul.com/#/?referralCode={{user.referalCode}}. Register at " socialshare-url="http://www.codegurukul.com/#/?referralCode={{user.referalCode}}"><i class="fa fa-twitter fa-lg"></i></a>
                         <a href="#" socialshare socialshare-provider="google+" socialshare-text="Referral Link : http://codegurukul.com/#/?referralCode={{user.referalCode}}. Register at " socialshare-url="http://www.codegurukul.com/#/?referralCode={{user.referalCode}}"><i class="fa fa-google-plus fa-lg"></i></a>
                     </p>
+                    <hr>
+                </div>
+                <div class="row">
+                    <h2 class="text-center">Courses you have enrolled in:</h2>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12" ng-repeat="course in user.courses">
+                                <span class="pull-left enrolled-course-name">{{course._id.name}}</span><span class="pull-right"><button class="btn btn-primary btn-sm" ng-click="generateInvoice(course._id._id, course.invoice)">Generate Invoice</button> </span>
+                            </div>
+                        </div>
+                    </div>
                     <hr>
                 </div>
                 <div class="row" ng-show="user.badges.length == '0'">
