@@ -14,16 +14,16 @@ var courseSchema = new mongoose.Schema({
   duration: String,
   inviteOnly: Boolean,
   inviteMessage: String,
-  status: {
-    type: String,
-    default: 'unpublished',
-    enum: ['unpublished', 'new', 'closed', 'open']
-  },
   slots: [{
       startDate: Date,
       city: String,
       batchSize: Number,
       location: String,
+      status: {
+        type: String,
+        default: 'unpublished',
+        enum: ['unpublished', 'new', 'closed', 'open']
+      },
       attendees: [{
         _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         completionDate: Date,

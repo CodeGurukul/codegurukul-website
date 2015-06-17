@@ -81,6 +81,7 @@ exports.joinCourse = function(req, res, next) {
       else if (!course) res.send(404).send('Course not found.');
       else if (!course.slots.id(sid)) res.status(400).send("Invalid slot ID");
       else if (course.slots.id(sid).attendees.length >= course.slots.id(sid).batchSize) res.status(400).send("Batch is full");
+      else if (course.slots.id(sid).status != "open") res.status(400).send("Registrations are closed for selected slot");
       else {
         User.findById(req.user._id, function(err, user) {
           if (err) res.send(err);
