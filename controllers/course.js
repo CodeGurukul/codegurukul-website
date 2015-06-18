@@ -18,9 +18,11 @@ exports.getCourses = function(req, res) {
 
 exports.courseComplete = function(req,res)
 {
+  
   var courseId =  req.body.cid;
   var userId = req.body.cid;
   badge.assignBadge(cid,uid);
+
 }
 
 exports.canJoin = function(req, res) {

@@ -58,7 +58,7 @@ exports.getBadges = function (req, res) {
 			})
 		}
 	})
-}
+};
 
 exports.assign = assignBadge;
 
