@@ -120,15 +120,15 @@ exports.sendEmail = function(req, res, next) {
   });
 };
 
-exports.sendSignupEmail = function(req, res, next) {
+exports.sendSignupEmail = function(to, name, verificationCode) {
   var template_name = "welcome_template";
   var template_content = [];
   var message = {
     "from_email": "info@codegurukul.com",
     "from_name": "Codegurukul Team",
     "to": [{
-      "email": req.to,
-      "name": req.name,
+      "email": to,
+      "name": name,
       "type": "to"
     }],
     "headers": {
@@ -146,13 +146,13 @@ exports.sendSignupEmail = function(req, res, next) {
       "content": "Welcome to Codegurukul"
     }],
     "merge_vars": [{
-      "rcpt": req.to,
+      "rcpt": to,
       "vars": [{
         "name": "name",
-        "content": req.name
+        "content": name
       },{
         "name": "verificationCode",
-        "content": req.verificationCode
+        "content": verificationCode
       }]
     }]
   };
@@ -189,7 +189,7 @@ exports.sendInvoice = function(invoice, data) {
     "auto_text": true,
     "inline_css": true,
     "merge": true,
-    "merge_language": "handlebars",
+    // "merge_language": "handlebars",
     "global_merge_vars": [{
       "name": "companyName",
       "content": "Codegurukul"
@@ -220,10 +220,64 @@ exports.sendInvoice = function(invoice, data) {
       }, {
         "name": "email",
         "content": data.to
+      }, {
+        "name": "mop",
+        "content": invoice.mop
+      }, {
+        "name": "balance",
+        "content": invoice.balance
       }]
     }]
   };
   console.log(message);
+  var async = false;
+  mandrill_client.messages.sendTemplate({
+    "template_name": template_name,
+    "template_content": template_content,
+    "message": message,
+    "async": async
+  }, function(result) {
+    return;
+  }, function(e) {
+    // Mandrill returns the error as an object with name and message keys
+    console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
+    // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
+  });
+};
+
+exports.sendPassword = function(to, name, password) {
+  var template_name = "password_template";
+  var template_content = [];
+  var message = {
+    "from_email": "info@codegurukul.com",
+    "from_name": "Codegurukul team",
+    "to": [{
+      "email": to,
+      "name": name,
+      "type": "to"
+    }],
+    "headers": {
+      "Reply-To": "info@codegurukul.com"
+    },
+    "auto_text": true,
+    "inline_css": true,
+    "merge": true,
+    "merge_language": "handlebars",
+    "global_merge_vars": [{
+      "name": "companyName",
+      "content": "Codegurukul"
+    }],
+    "merge_vars": [{
+      "rcpt": to,
+      "vars": [{
+        "name": "name",
+        "content": name
+      }, {
+        "name": "password",
+        "content": password
+      }]
+    }]
+  };
   var async = false;
   mandrill_client.messages.sendTemplate({
     "template_name": template_name,

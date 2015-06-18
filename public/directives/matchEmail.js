@@ -1,5 +1,5 @@
 angular.module('Codegurukul')
-  .directive('uniqueEmail', function($http) {
+  .directive('matchEmail', function($http) {
     return {
       restrict: 'A',
       require: 'ngModel',
@@ -7,13 +7,13 @@ angular.module('Codegurukul')
         element.bind('blur', function() {
           if (ngModel.$modelValue) {
             $http.get('/api/users', { params: { email: ngModel.$modelValue } }).success(function(data) {
-              console.log(data);
-              ngModel.$setValidity('unique', data.available);
+                console.log(data.available+ " match");
+              ngModel.$setValidity('match', !data.available);
             });
           }
         });
         element.bind('keyup', function() {
-          ngModel.$setValidity('unique', true);
+          ngModel.$setValidity('match', true);
         });
       }
     };

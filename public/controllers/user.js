@@ -1,8 +1,9 @@
 angular.module('Codegurukul')
-    .controller('UserCtrl', function($scope, User, $stateParams, $alert, $location, $state, Badges) {
+    .controller('UserCtrl', function($scope, User, $stateParams, $alert, $location, $state, Badges, $window) {
     $scope.all = false;
     $scope.edit = false;
     $scope.progressModal = false;
+    $scope.processing = false;
 
     $scope.toggleProgressModal = function(){
         $scope.progressModal = !$scope.progressModal;
@@ -18,7 +19,7 @@ angular.module('Codegurukul')
         if($scope.user.profile.dob){
             var stringDate = $scope.user.profile.dob;
             $scope.user.profile.dob = new Date(stringDate);
-            console.log($scope.user.badges.length);
+            console.log($scope.user);
         }
 
 
@@ -132,6 +133,36 @@ angular.module('Codegurukul')
         });
 
     };  //update function ends
+
+
+
+    $scope.generateInvoice = function(courseId, invoice){
+        $scope.processing = true;
+//        console.log(courseId+" "+invoice);
+        User.invoiceGen.save({
+            uslug: $stateParams.uslug
+        },{
+            cid: courseId,
+            invoice: invoice
+        },function(success){
+//            console.log(success.response);
+            $window.open('/temp/invoice/'+invoice+'.pdf');
+            $alert({
+                content: 'Invoice generated successfully. If your invoice does not open in a new tab, please disable pop-up blocking and try again.',
+                placement: 'right',
+                type: 'success',
+                duration: 5
+            });
+            $scope.processing = false;
+        },function(err){
+            $alert({
+                content: err.data,
+                placement: 'right',
+                type: 'danger',
+                duration: 5
+            });
+        })
+    }
 
 
 });

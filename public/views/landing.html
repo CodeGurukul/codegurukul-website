@@ -56,19 +56,19 @@ CodeGurukul Landing Page
     <div class="fade-div">
         <p class="landing-intro-section"> BECOME A SOFTWARE DEVELOPER <br>
             <small>From fresher to hacker in 8 weeks</small></p>
-        <form name="newsletterForm" method="post">
-            <div class="newsletter-form">
+        <form name="newsletterForm" method="post" class="form-inline">
+            <div class="newsletter-form text-center">
                 <h3 class="text-center newsletter-header">Subscribe to our newsletter</h3>
                 <div ng-class="{ &quot;has-error&quot; : newsletterForm.email.$invalid &amp;&amp; newsletterForm.email.$dirty }" class="form-group has-feedback">
-                    <div class="row">
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-9 col-sm-9 col-xs-12">-->
                             <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" autofocus= "" class="form-control input-md"/>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12 newsletter-button-div">
+<!--                        </div>-->
+<!--                        <div class="col-md-3 col-sm-3 col-xs-12 newsletter-button-div">-->
                             <button class="btn btn-primary btn-md" ng-click="newsletter()">Yes, sign me up!</button>
-                        </div>
+<!--                        </div>-->
                     </div>
-                    <div ng-if="newsletterForm.email.$dirty" ng-messages="newsletterForm.email.$error" class="help-block text-danger">
+                    <div ng-if="newsletterForm.email.$dirty" ng-messages="newsletterForm.email.$error" class="text-danger">
                         <div ng-message="email">Your email address is invalid.</div>
                     </div>
                 </div>
@@ -79,65 +79,69 @@ CodeGurukul Landing Page
 
 
 
-<!-- ========== FEATURED COURSES START ========== -->
+<!-- ========== FEATURES START ========== -->
 
-<section id="teachers" class="alt-background">
-    <div class="container">
+<section id="welcome">
+			<div class="container">
+				<div class="row text-center">
+					<div class="col-sm-3 feature">
+						<p><img src="/img/landing/mentors.png" alt=""></p>
+						<h3>Mentors</h3>
+						
+					</div>
+					<div class="col-sm-3 feature">
+						<p><img src="/img/landing/community.png" alt=""></p>
+						<h3>Community</h3>
+						
+					</div>
+					<div class="col-sm-3 feature">
+						<p><img src="/img/landing/career-growth.png" alt=""></p>
+						<h3>Career Growth</h3>
+						
+					</div>
+					<div class="col-sm-3 feature">
+						<p><img src="/img/landing/cutting-edge.png" alt=""></p>
+						<h3>Cutting Edge</h3>
+						
+					</div>
+				</div>
+			</div>
+		</section>
 
-        <h2 class="text-center custom-padding-bottom-20 custom-font-weight-600">FEATURED COURSES</h2>
 
-        <ul class="teachers featured-courses">
+<!-- ========== FEATURES END ========== -->
 
-            <li class="col-md-4 col-sm-4 col-xs-6">
-                <a ui-sref="programs({course:'ruby-workshop'})">
-                    <img src="/img/rails-logo.jpg" alt="" class="img-responsive" />
-                    <div class="description featured-course-name">
-                        <h4 class="text-center">Ruby Workshop</h4>
-                    </div>
-                </a>
-            </li>
-
-            <li class="col-md-4 col-sm-4 col-xs-6">
-                <a ui-sref="programs({course:'angularjs-workshop'})">
-                    <img src="/img/angularjs-white-bg.jpg" alt="" class="img-responsive" />
-                    <div class="description featured-course-name">
-                        <h4 class="text-center">AngularJS Workshop</h4>
-                    </div>
-                </a>
-            </li>
-
-            <li class="col-md-4 col-sm-4 col-xs-6">
-                <a ui-sref="programs({course:'web-internship-program'})">
-                    <img src="/img/internship-codeshot.png" alt="" class="img-responsive" />
-                    <div class="description featured-course-name">
-                        <h4 class="text-center">Web Internship Program</h4>
-                    </div>
-                </a>
-            </li>
-
-        </ul>
-
+<section id="popular-courses" class="alt-background">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="carousel-title custom-font-weight-600">
+                    Featured Courses
+                    <a href="courses-list-right-sidebar.html">Our most popular offerings</a>
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <p><a href="courses-details-right-sidebar.html"><img src="/img/landing/learn-angular.png" alt="" class="img-responsive"></a></p>
+            </div>
+            <div class="col-sm-4">
+                <p><a href="courses-details-right-sidebar.html"><img src="/img/landing/learn-ruby.png" alt="" class="img-responsive"></a></p>
+            </div>
+            <div class="col-sm-4">
+                <p><a href="courses-details-right-sidebar.html"><img src="/img/landing/web-internship.png" alt="" class="img-responsive"></a></p>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- ========== FEATURED COURSES END ========== -->
-
 <!-- ========== MENTORS START ========== -->
-<section style="display:none">
 
-    <div id="content-2-region" class="content-2 region">
-
-        <div id="team-block" class="team block">
-            <div class="container">
-
-                <h2 class="custom-font-weight-600 block-title text-center custom-padding-bottom-20">Our Team</h2>
-
-</section>
 <section>
     <div class="container">
         <h2 class="custom-font-weight-600 block-title text-center custom-padding-bottom-20">Our Team</h2>
 
-        <slick dots=false infinite=true speed=300 slides-to-show=3 touch-move=true autoplay=true slides-to-scroll=1>
+        <slick dots=true infinite=true speed=300 slides-to-show=4 touch-move=true autoplay=true slides-to-scroll=1 arrows=false>
 
             <div class="item col-md-4 col-sm-6 col-xs-6">
                 <img src="/img/startup-team-training/sobin-wide.jpg" alt="" class="img-responsive" />
@@ -187,7 +191,7 @@ CodeGurukul Landing Page
                     <h3>CHAITANYA REDDY TATIPARTI</h3>
                     <p>
                         <a href="http://facebook.com"><i class="fa fa-facebook-square fa-lg mentor-social-links facebook"></i></a>
-                        <a href="in.linkedin.com/pub/chaitanya-reddy-tatiparti/11/686/822/en"><i class="fa fa-linkedin-square fa-lg mentor-social-links linkedin"></i></a>
+                        <a href="http://in.linkedin.com/pub/chaitanya-reddy-tatiparti/11/686/822/en"><i class="fa fa-linkedin-square fa-lg mentor-social-links linkedin"></i></a>
                     </p>
                 </div>
             </div>
@@ -198,7 +202,7 @@ CodeGurukul Landing Page
                     <h3>LLOYD SALDANHA</h3>
                     <p>
                         <a href="http://facebook.com"><i class="fa fa-facebook-square fa-lg mentor-social-links facebook"></i></a>
-                        <a href="in.linkedin.com/in/saldanhalloyd/en"><i class="fa fa-linkedin-square fa-lg mentor-social-links linkedin"></i></a>
+                        <a href="http://in.linkedin.com/in/saldanhalloyd/en"><i class="fa fa-linkedin-square fa-lg mentor-social-links linkedin"></i></a>
                     </p>
                 </div>
             </div>
