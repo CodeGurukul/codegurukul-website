@@ -16,7 +16,7 @@ exports.getCourses = function(req, res) {
   });
 };
 
-exports.courseComplete = function(req,res)
+var courseComplete = function(req,res)
 {
   
   var courseId =  req.body.cid;
