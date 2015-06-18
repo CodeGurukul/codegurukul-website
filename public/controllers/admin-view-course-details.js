@@ -96,4 +96,39 @@ angular.module('Codegurukul')
             })
         }
     }
+    
+    $scope.tableSelection = {};
+    $scope.selectAll = false;
+    
+    $scope.selectAllRows = function(){
+        //check if all selected or not
+    if ($scope.selectAll === false) {
+      //set all row selected
+      angular.forEach($scope.attendees, function(attendee, index) {
+        $scope.tableSelection[index] = true;
+      });
+      $scope.selectAll = true;
+    } else {
+      //set all row unselected
+      angular.forEach($scope.attendees, function(attendee, index) {
+        $scope.tableSelection[index] = false;
+      });
+      $scope.selectAll = false;
+    }
+  };
+    
+    $scope.uidList = [];
+    $scope.listArray = function(attendeeId, index){
+        angular.forEach($scope.uidList, function(usr){
+            if(attendeeId === usr){
+                $scope.uidList.splice(attendeeId,1);
+            }
+            else{
+                $scope.uidList.push(attendeeId);
+            }
+        })
+            console.log($scope.uidList + "  " + index+ " "+ attendeeId);
+    }
+    
+    
 });

@@ -22,6 +22,7 @@
         <div class="row">
             <div class="col-sm-8">
                 <button class="btn btn-primary btn-md" ng-click="adminAddAttendeeModal()"> Add an attendee </button>
+                <button class="btn btn-primary btn-md" ng-click="statusChange()"> status </button>
             </div>
             <div class="col-sm-4">
                 <form>
@@ -37,7 +38,9 @@
         <table class="table table-condensed" ng-hide="attendees.length == '0'">
             <thead>
                 <tr>
-                    <th></th>
+                    <th>
+<!--                        <input type="checkbox" ng-model="selectAll" ng-click="selectAllRows()">-->
+                    </th>
                     <th>
                         <a href="" ng-click="sortType = '_id.profile.fullname'; sortReverse = !sortReverse">
                             NAME 
@@ -89,8 +92,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="attendee in attendees | orderBy:sortType:sortReverse | filter:searchAttendee" class="course-row">
-                    <td> <input type="checkbox"> </td>
+                <tr ng-repeat="attendee in attendees | orderBy:sortType:sortReverse | filter:searchAttendee" class="course-row" ng-class="{'success' : tableSelection[$index]}">
+                    <td> <input type="checkbox" ng-model="tableSelection[$index]" ng-click="listArray(attendee._id._id, $index)"> </td>
                     <td> {{attendee._id.profile.fullname}} </td>
                     <td> {{attendee._id.username}} </td>
                     <td> {{attendee._id.email}} </td>
@@ -209,7 +212,7 @@
                 </div>
             </div>
             <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.payment_id.$invalid &amp;&amp; signupForm.payment_id.$dirty }" class="form-group has-feedback">
-                <input type="text" name="mobile" ng-model="payment_id" placeholder="Payment ID" class="form-control input-md "/ ng-required="mop !== 'Cash'" ng-show="mop == 'Cheque' || mop == 'Demand Draft' || mop == 'NEFT'">
+                <input type="text" name="mobile" ng-model="payment_id" placeholder="Payment ID" class="form-control input-md" ng-required="mop !== 'Cash'" ng-show="mop == 'Cheque' || mop == 'Demand Draft' || mop == 'NEFT'">
                 <div ng-if="adminAddAttendeeForm.payment_id.$dirty" ng-messages="adminAddAttendeeForm.payment_id.$error" class="help-block text-danger" style="color:#a94442">
                     <div ng-message="required">Please enter the payment ID.</div>
                 </div>
