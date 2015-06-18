@@ -10,10 +10,24 @@ angular.module('Codegurukul')
         $scope.attendees = data.attendees;
         console.log($scope.attendees);
     });
+    
+    Admin.leads.get({
+        cslug:$stateParams.course,
+        sid: $stateParams.slot
+    },function(data){
+        $scope.leads = data.leads;
+        console.log($scope.leads);
+    })
 
+    $scope.showAttendees = true;
+    $scope.toggleLeadsAttendees = function(){
+        $scope.showAttendees = !$scope.showAttendees;
+    }
+    
     $scope.sortType = '_id.profile.fullname';
     $scope.sortReverse = false;
     $scope.searchAttendee = '';
+    $scope.searchLead = '';
 
     $scope.adminAddAttendeeModalShown = false;
 
@@ -96,4 +110,7 @@ angular.module('Codegurukul')
             })
         }
     }
+    
+    
+    
 });

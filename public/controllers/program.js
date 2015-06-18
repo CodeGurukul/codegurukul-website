@@ -1,5 +1,5 @@
 angular.module('Codegurukul')
-    .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Courses, Pay, $alert, Email, $http, $state) {
+    .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Courses, Pay, $alert, Email, $http, $state, $window) {
     $scope.processing = false;
     $scope.showCourseJoinedTickMark = false;
     $scope.couponCode = "";  
@@ -308,6 +308,9 @@ angular.module('Codegurukul')
 
     $scope.register = function(){
         console.log($scope.mop);
+        if($scope.mop === 'Online'){
+            $window.open('https://www.payumoney.com/paybypayumoney/#/52407');
+        }
         Courses.join.save({
             payment_id: $scope.payment_id,
             cslug: $stateParams.course,

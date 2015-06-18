@@ -3,13 +3,20 @@ angular.module('Codegurukul')
 
     Admin.default.query(function(data) {
         $scope.courses = data;
-        console.log($scope.courses);
+//        console.log($scope.courses);
+
+    })
+    Admin.users.query(function(data) {
+        $scope.users = data;
+        console.log($scope.users);
 
     })
 
         $scope.sortType = 'name';
+        $scope.sortUser = 'profile.fullname';
         $scope.sortReverse = false;
         $scope.searchCourse = '';
+        $scope.searchUser = '';
 
     $scope.createCourseModalShown = false;
 
