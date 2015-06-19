@@ -8,22 +8,22 @@ angular.module('Codegurukul')
         sid: $stateParams.slot
     }, function(data) {
         $scope.attendees = data.attendees;
-        console.log($scope.attendees);
+//        console.log($scope.attendees);
     });
-    
+
     Admin.leads.get({
         cslug:$stateParams.course,
         sid: $stateParams.slot
     },function(data){
         $scope.leads = data.leads;
-        console.log($scope.leads);
+//        console.log($scope.leads);
     })
 
     $scope.showAttendees = true;
     $scope.toggleLeadsAttendees = function(){
         $scope.showAttendees = !$scope.showAttendees;
     }
-    
+
     $scope.sortType = '_id.profile.fullname';
     $scope.sortReverse = false;
     $scope.searchAttendee = '';
@@ -110,40 +110,60 @@ angular.module('Codegurukul')
             })
         }
     }
-    
+
     $scope.tableSelection = {};
-    $scope.selectAll = false;
-    
-    $scope.selectAllRows = function(){
-        //check if all selected or not
-    if ($scope.selectAll === false) {
-      //set all row selected
-      angular.forEach($scope.attendees, function(attendee, index) {
-        $scope.tableSelection[index] = true;
-      });
-      $scope.selectAll = true;
-    } else {
-      //set all row unselected
-      angular.forEach($scope.attendees, function(attendee, index) {
-        $scope.tableSelection[index] = false;
-      });
-      $scope.selectAll = false;
-    }
-  };
-    
+
     $scope.uidList = [];
+
+    Array.prototype.remove = function(value) {
+        this.splice(this.indexOf(value), 1);
+        return true;
+    };
+
     $scope.listArray = function(attendeeId, index){
-        angular.forEach($scope.uidList, function(usr){
-            console.log(usr + " usr")
-            if(attendeeId === usr){
-                $scope.uidList.splice(attendeeId,1);
-            }
-            else{
-                $scope.uidList.push(attendeeId);
-            }
-        })
-            console.log($scope.uidList + "  " + index+ " "+ attendeeId);
+        if($scope.tableSelection[index] == true){
+            $scope.uidList.push(attendeeId);
+        }
+        else{
+            $scope.uidList.remove(attendeeId);
+        }
     }
-    
-    
+
+    $scope.statusChange = function(){
+
+        if($scope.uidList.length == '0'){
+            $alert({
+                content: 'No attendee selected',
+                placement: 'right',
+                type: 'danger',
+                duration: 5
+            });
+        }
+        else{
+            Admin.changeAttendeeStatus.update({
+                cslug : $stateParams.course,
+                sid : $stateParams.slot
+            },{
+                users: $scope.uidList,
+                status: $scope.courseStatus
+            },function(data){
+                $alert({
+                    content: 'Update completed successfully',
+                    placement: 'right',
+                    type: 'success',
+                    duration: 5
+                });
+                $state.reload();
+            },function(err){
+                $alert({
+                    content: 'There was an error. Please try again later',
+                    placement: 'right',
+                    type: 'danger',
+                    duration: 5
+                });
+            })
+        }
+    }
+
+
 });

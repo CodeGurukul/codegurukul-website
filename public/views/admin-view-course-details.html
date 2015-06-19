@@ -25,13 +25,14 @@
 
     <h1 class="text-center" ng-show="showAttendees"> List of Attendees </h1>
     <h1 class="text-center" ng-show="!showAttendees"> List of Leads </h1>
-
+    <div class="container">
+        <hr>
+    </div>
 
     <div class="container" ng-show="showAttendees">
         <div class="row">
             <div class="col-sm-8">
                 <button class="btn btn-primary btn-md" ng-click="adminAddAttendeeModal()"> Add an attendee </button>
-                <button class="btn btn-primary btn-md" ng-click="statusChange()"> status </button>
             </div>
             <div class="col-sm-4">
                 <form>
@@ -42,6 +43,26 @@
                         </div>      
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <p>
+                    Change status of selected attendees to:
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <select class="form-control" ng-model="courseStatus">
+                    <option value="" selected disabled>Select an option</option>
+                    <option value="completed">Completed</option>
+                    <option value="incomplete">Incomplete</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn-primary btn-md " ng-click="statusChange()"> Change Status </button>
             </div>
         </div>
         <table class="table table-condensed" ng-hide="attendees.length == '0'">
@@ -102,7 +123,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="attendee in attendees | orderBy:sortType:sortReverse | filter:searchAttendee" class="course-row" ng-class="{'success' : tableSelection[$index]}">
-                    <td> <input type="checkbox" ng-model="tableSelection[$index]" ng-click="listArray(attendee._id._id, $index)"> </td>
+                    <td> <input type="checkbox" ng-model="tableSelection[$index]" ng-true-value="true" ng-false-value="false" ng-click="listArray(attendee._id._id, $index)"> </td>
                     <td> {{attendee._id.profile.fullname}} </td>
                     <td> {{attendee._id.username}} </td>
                     <td> {{attendee._id.email}} </td>
@@ -131,12 +152,10 @@
                             <option value="registered">Registered</option>
                             <option value="processing">Payment in process</option>
                             <option value="paid">Paid</option>
-                            <!--
->>>>>>> temp
-<option value="inComplete">Course Incomplete</option>
-<option value="completed">Course Complete</option>
-<option value="cancelled">Registration Cancelled</option>
--->
+                            <option value="incomplete">Course Incomplete</option>
+                            <option value="completed">Course Complete</option>
+                            <option value="cancelled">Registration Cancelled</option>
+
                         </select>
                     </td>
                     <td> <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil"></i> </a> <span  ng-disabled="!edited"><a href="" ng-show="edit" ng-click="updatePayment(attendee.mop, attendee.status, attendee.amount, attendee._id._id, attendee.payment_id); edit = !edit"> <i class="fa fa-floppy-o"></i> </a></span> <a href="" ng-show="!edit"> <i class="fa fa-trash-o"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times"></i> </a> </td>
