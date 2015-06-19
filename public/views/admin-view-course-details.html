@@ -31,6 +31,7 @@
         <div class="row">
             <div class="col-sm-8">
                 <button class="btn btn-primary btn-md" ng-click="adminAddAttendeeModal()"> Add an attendee </button>
+                <button class="btn btn-primary btn-md" ng-click="statusChange()"> status </button>
             </div>
             <div class="col-sm-4">
                 <form>
@@ -46,7 +47,9 @@
         <table class="table table-condensed" ng-hide="attendees.length == '0'">
             <thead>
                 <tr>
-                    <th></th>
+                    <th>
+                        <!--                        <input type="checkbox" ng-model="selectAll" ng-click="selectAllRows()">-->
+                    </th>
                     <th>
                         <a href="" ng-click="sortType = '_id.profile.fullname'; sortReverse = !sortReverse">
                             NAME 
@@ -84,70 +87,71 @@
                         </a>
                     </th>
                     <th>
+
                         CHEQUE NO. / <br> TRANSACTION ID
-                </a>
-                </th>
-            <th>
-                <a href="" ng-click="sortType = 'status'; sortReverse = !sortReverse">
-                    STATUS 
-                    <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
-                    <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
-                </a>
-            </th>
-            <th>ACTIONS</th>
-            </tr>
-        </thead>
-    <tbody>
-        <tr ng-repeat="attendee in attendees | orderBy:sortType:sortReverse | filter:searchAttendee" class="course-row">
-            <td> <input type="checkbox"> </td>
-            <td> {{attendee._id.profile.fullname}} </td>
-            <td> {{attendee._id.username}} </td>
-            <td> {{attendee._id.email}} </td>
-            <td> {{attendee._id.mobile}} </td>
-            <td>
-                <p ng-show="!edit">{{attendee.amount}}</p>
-                <input type="text" class="form-control input-sm" placeholder="Enter amount" ng-model="attendee.amount" ng-show="edit" ng-change="change()">
-            </td>
-            <td class="capitalize-text">
-                <p ng-show="!edit">{{attendee.mop}}</p>
-                <select class="form-control input-sm" ng-model="attendee.mop" required ng-show="edit" ng-change="change()">
-                    <option value="" disabled selected>Select mode of payment</option>
-                    <option value="Cash">Cash</option>
-                    <option value="Cheque">Cheque</option>
-                    <option value="Demand Draft">DD</option>
-                    <option value="NEFT">NEFT</option>
-                </select>
-            </td>
-            <td>
-                <p ng-show="!edit"><span ng-if="attendee.mop !== 'Cash'">{{attendee.payment_id}}</span><span ng-if="attendee.mop == 'Cash'"> N/A </span></p>
-                <input type="text" class="form-control input-sm" placeholder="Enter transaction id" ng-model="attendee.payment_id" ng-show="edit" ng-change="change()" ng-disabled="attendee.mop == 'Cash'">
-            </td>
-            <td class="capitalize-text"> 
-                <p ng-show="!edit">{{attendee.status}}</p>
-                <select class="form-control input-sm" ng-model="attendee.status" required ng-show="edit" ng-change="change()">
-                    <option value="registered">Registered</option>
-                    <option value="processing">Payment in process</option>
-                    <option value="paid">Paid</option>
-                    <!--
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortType = 'status'; sortReverse = !sortReverse">
+                            STATUS 
+                            <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="attendee in attendees | orderBy:sortType:sortReverse | filter:searchAttendee" class="course-row" ng-class="{'success' : tableSelection[$index]}">
+                    <td> <input type="checkbox" ng-model="tableSelection[$index]" ng-click="listArray(attendee._id._id, $index)"> </td>
+                    <td> {{attendee._id.profile.fullname}} </td>
+                    <td> {{attendee._id.username}} </td>
+                    <td> {{attendee._id.email}} </td>
+                    <td> {{attendee._id.mobile}} </td>
+                    <td>
+                        <p ng-show="!edit">{{attendee.amount}}</p>
+                        <input type="text" class="form-control input-sm" placeholder="Enter amount" ng-model="attendee.amount" ng-show="edit" ng-change="change()">
+                    </td>
+                    <td class="capitalize-text">
+                        <p ng-show="!edit">{{attendee.mop}}</p>
+                        <select class="form-control input-sm" ng-model="attendee.mop" required ng-show="edit" ng-change="change()">
+                            <option value="" disabled selected>Select mode of payment</option>
+                            <option value="Cash">Cash</option>
+                            <option value="Cheque">Cheque</option>
+                            <option value="Demand Draft">DD</option>
+                            <option value="NEFT">NEFT</option>
+                        </select>
+                    </td>
+                    <td>
+                        <p ng-show="!edit"><span ng-if="attendee.mop !== 'Cash'">{{attendee.payment_id}}</span><span ng-if="attendee.mop == 'Cash'"> N/A </span></p>
+                        <input type="text" class="form-control input-sm" placeholder="Enter transaction id" ng-model="attendee.payment_id" ng-show="edit" ng-change="change()" ng-disabled="attendee.mop == 'Cash'">
+                    </td>
+                    <td class="capitalize-text"> 
+                        <p ng-show="!edit">{{attendee.status}}</p>
+                        <select class="form-control input-sm" ng-model="attendee.status" required ng-show="edit" ng-change="change()">
+                            <option value="registered">Registered</option>
+                            <option value="processing">Payment in process</option>
+                            <option value="paid">Paid</option>
+                            <!--
+>>>>>>> temp
 <option value="inComplete">Course Incomplete</option>
 <option value="completed">Course Complete</option>
 <option value="cancelled">Registration Cancelled</option>
 -->
-                </select>
-            </td>
-            <td> <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil"></i> </a> <span  ng-disabled="!edited"><a href="" ng-show="edit" ng-click="updatePayment(attendee.mop, attendee.status, attendee.amount, attendee._id._id, attendee.payment_id); edit = !edit"> <i class="fa fa-floppy-o"></i> </a></span> <a href="" ng-show="!edit"> <i class="fa fa-trash-o"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times"></i> </a> </td>
-        </tr>
-    </tbody>
-    <hr>
-    </table>
+                        </select>
+                    </td>
+                    <td> <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil"></i> </a> <span  ng-disabled="!edited"><a href="" ng-show="edit" ng-click="updatePayment(attendee.mop, attendee.status, attendee.amount, attendee._id._id, attendee.payment_id); edit = !edit"> <i class="fa fa-floppy-o"></i> </a></span> <a href="" ng-show="!edit"> <i class="fa fa-trash-o"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times"></i> </a> </td>
+                </tr>
+            </tbody>
+            <hr>
+        </table>
 
-<h1 class="text-center" ng-show="attendees.length == '0'">No attendees to show</h1>
+        <h1 class="text-center" ng-show="attendees.length == '0'">No attendees to show</h1>
 
 
-</div>
+    </div>
 
-<div class="container" ng-show="!showAttendees">
-    <div class="row">
+    <div class="container" ng-show="!showAttendees">
+        <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
                 <form>
                     <div class="form-group">
@@ -159,44 +163,44 @@
                 </form>
             </div>
         </div>
-    <hr>
-    <table class="table table-condensed" ng-hide="leads.length == '0'">
-        <thead>
-            <tr>
-                <th>
-                    <a href="" ng-click="sortType = '_id.profile.fullname'; sortReverse = !sortReverse">
-                        NAME 
-                        <span ng-show="sortType == '_id.profile.fullname' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == '_id.profile.fullname' && sortReverse" class="fa fa-caret-up"></span>
-                    </a>
-                </th>
-                <th>
-                    <a href="" ng-click="sortType = '_id.username'; sortReverse = !sortReverse">
-                        USERNAME 
-                        <span ng-show="sortType == '_id.username' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == '_id.username' && sortReverse" class="fa fa-caret-up"></span>
-                    </a>
-                </th>
-                <th>
-                    <a href="" ng-click="sortType = '_id.email'; sortReverse = !sortReverse">
-                        EMAIL 
-                        <span ng-show="sortType == '_id.email' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == '_id.email' && sortReverse" class="fa fa-caret-up"></span>
-                    </a>
-                </th>
-                <th>CONTACT</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="lead in leads | orderBy:sortType:sortReverse | filter:searchLead">
-                <td> {{lead._id.profile.fullname}} </td>
-                <td> {{lead._id.username}} </td>
-                <td> {{lead._id.email}} </td>
-                <td> {{lead._id.mobile}} </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+        <hr>
+        <table class="table table-condensed" ng-hide="leads.length == '0'">
+            <thead>
+                <tr>
+                    <th>
+                        <a href="" ng-click="sortType = '_id.profile.fullname'; sortReverse = !sortReverse">
+                            NAME 
+                            <span ng-show="sortType == '_id.profile.fullname' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == '_id.profile.fullname' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortType = '_id.username'; sortReverse = !sortReverse">
+                            USERNAME 
+                            <span ng-show="sortType == '_id.username' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == '_id.username' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortType = '_id.email'; sortReverse = !sortReverse">
+                            EMAIL 
+                            <span ng-show="sortType == '_id.email' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == '_id.email' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>CONTACT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="lead in leads | orderBy:sortType:sortReverse | filter:searchLead">
+                    <td> {{lead._id.profile.fullname}} </td>
+                    <td> {{lead._id.username}} </td>
+                    <td> {{lead._id.email}} </td>
+                    <td> {{lead._id.mobile}} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 
@@ -270,7 +274,7 @@
                 </div>
             </div>
             <div ng-class="{ &quot;has-error&quot; : adminAddAttendeeForm.payment_id.$invalid &amp;&amp; signupForm.payment_id.$dirty }" class="form-group has-feedback">
-                <input type="text" name="mobile" ng-model="payment_id" placeholder="Payment ID" class="form-control input-md "/ ng-required="mop !== 'Cash'" ng-show="mop == 'Cheque' || mop == 'Demand Draft' || mop == 'NEFT'">
+                <input type="text" name="mobile" ng-model="payment_id" placeholder="Payment ID" class="form-control input-md" ng-required="mop !== 'Cash'" ng-show="mop == 'Cheque' || mop == 'Demand Draft' || mop == 'NEFT'">
                 <div ng-if="adminAddAttendeeForm.payment_id.$dirty" ng-messages="adminAddAttendeeForm.payment_id.$error" class="help-block text-danger" style="color:#a94442">
                     <div ng-message="required">Please enter the payment ID.</div>
                 </div>
