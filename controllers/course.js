@@ -159,7 +159,9 @@ exports.addLead = function (uid, cslug, sid) {
     if (err) return;
     else if (!course) return;
     else {
-      if (course.slots.id(sid).leads.id(uid)) return;
+      if (course.slots.id(sid))
+        {console.log(sid);
+          if (course.slots.id(sid).leads.id(uid)) return;}
       course.slots.id(sid).leads.push(uid);
       course.save(function  (err, course) {
         if (err) return;

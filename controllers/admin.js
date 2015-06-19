@@ -279,7 +279,7 @@ exports.updateCourse = function (req, res) {
 exports.joinPrep = function (req, res, next) {
   if (req.body.email && req.body.mop && req.body.amount 
     && req.body.paymentStatus && req.body.cslug && req.body.sid) {
-    if (req.body.mop != "cash")
+    if (req.body.mop != "Cash")
       if (!req.body.payment_id) return res.status(400).send("Payment ID required for non-cash payment");
     req.admin = true;
     req.pay = true;
@@ -290,10 +290,11 @@ exports.joinPrep = function (req, res, next) {
       if (req.body.fullname && req.body.username && req.body.mobile ) {
         //creates new user
         req.body.password = codeGen(5);  
+        req.existingUser = !req.body.newUser;
         next();
       } else res.status(400).send("Enter all required fields");
     } else {    //existing user
-      req.body.newUser = false;
+      req.existingUser = true
       User.findOne({email: req.body.email}, function (err, user) {
         if (err) res.send(err);
         else if (!user) res.status(404).send('User not found.');
