@@ -108,46 +108,46 @@
 
                     <!-- ==== APPLY FOR TEACHER START == -->
                     <div class="col-sm-3">
-<!--
-                        <h3>Apply to become a Mentor</h3>
-                        <form role="form" name="teacher-form" id="teacher-form" ng-controller="FooterCtrl">
-                            <div class="form-group" id="teacher-name-group">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="teacher-input-name" placeholder="Name" ng-model="name" required="">
-                                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                </div>
-                            </div>
-                            <div class="form-group" id="teacher-email-group">
-                                <div class="input-group">
-                                    <input type="email" class="form-control" id="teacher-input-email" placeholder="Email" ng-model="email" required="">
-                                    <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                </div>
-                            </div>
-                            <div class="form-group" id="teacher-phone-group">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="teacher-input-phone" placeholder="Phone" ng-model="contact" required="">
-                                    <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                                </div>
-                            </div>
-                            <button ng-click="applyAsMentor()" class="btn btn-primary">Submit</button>
-                        </form>
+                        <!--
+<h3>Apply to become a Mentor</h3>
+<form role="form" name="teacher-form" id="teacher-form" ng-controller="FooterCtrl">
+<div class="form-group" id="teacher-name-group">
+<div class="input-group">
+<input type="text" class="form-control" id="teacher-input-name" placeholder="Name" ng-model="name" required="">
+<div class="input-group-addon"><i class="fa fa-user"></i></div>
+</div>
+</div>
+<div class="form-group" id="teacher-email-group">
+<div class="input-group">
+<input type="email" class="form-control" id="teacher-input-email" placeholder="Email" ng-model="email" required="">
+<div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+</div>
+</div>
+<div class="form-group" id="teacher-phone-group">
+<div class="input-group">
+<input type="text" class="form-control" id="teacher-input-phone" placeholder="Phone" ng-model="contact" required="">
+<div class="input-group-addon"><i class="fa fa-phone"></i></div>
+</div>
+</div>
+<button ng-click="applyAsMentor()" class="btn btn-primary">Submit</button>
+</form>
 -->
-                        				<h3>Featured Courses</h3>
-						<ul class="footer-featured-courses">
-							<li>
-<!--								<img src="images/thumb-course4.jpg" alt="" class="pull-left">-->
-								<h5><a ui-sref="programs({course:'ruby-workshop'})">Ruby Workshop</a></h5>
-							</li>
-							<li>
-<!--								<img src="img/internships/angularjs.png" alt="" class="pull-left img-responsive">-->
-								<h5><a ui-sref="programs({course:'angularjs-workshop'})">Angular Workshop</a></h5>
-							</li>
-							<li>
-<!--								<img src="img/internship-codeshot-thumb.png" alt="" class="pull-left">-->
-								<h5><a ui-sref="programs({course:'web-internship-program'})">Web Internship Program</a></h5>
-							</li>
-						</ul>
-	
+                        <h3>Featured Courses</h3>
+                        <ul class="footer-featured-courses">
+                            <li>
+                                <!--								<img src="images/thumb-course4.jpg" alt="" class="pull-left">-->
+                                <h5><a ui-sref="programs({course:'ruby-workshop'})">Ruby Workshop</a></h5>
+                            </li>
+                            <li>
+                                <!--								<img src="img/internships/angularjs.png" alt="" class="pull-left img-responsive">-->
+                                <h5><a ui-sref="programs({course:'angularjs-workshop'})">Angular Workshop</a></h5>
+                            </li>
+                            <li>
+                                <!--								<img src="img/internship-codeshot-thumb.png" alt="" class="pull-left">-->
+                                <h5><a ui-sref="programs({course:'web-internship-program'})">Web Internship Program</a></h5>
+                            </li>
+                        </ul>
+
                     </div>
                     <!-- ==== APPLY FOR TEACHER END == -->
 
@@ -267,9 +267,9 @@
 
         <!-- ========== SIGNUP WITH EMAIL MODAL ========== -->
 
-        <modal-dialog class="signupWithEmailModal" show='signupWithEmailModalShown' dialog-title="Signup" height="auto" width="350px">
+        <modal-dialog class="signupWithEmailModal" show='signupWithEmailModalShown' dialog-title="Signup" height="450px" width="350px">
             <form method="post" name="signupWithEmailForm" ng-controller="SignupCtrl">    
-                <div class="register-modal">
+                <div class="register-modal modal-scroll">
                     <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.fullname.$invalid &amp;&amp; signupWithEmailForm.fullname.$dirty }" class="form-group has-feedback">
                         <input type="text" name="fullname" ng-model="fullname" placeholder="Full Name" required="" autofocus="" class="form-control input-md"/>
                         <div ng-if="signupWithEmailForm.fullname.$dirty" ng-messages="signupWithEmailForm.fullname.$error" class="help-block text-danger">
@@ -346,16 +346,15 @@
                     </div>
                     <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.mobile.$invalid &amp;&amp; signupForm.mobile.$dirty }" class="form-group has-feedback">
                         <input type="text" name="mobile" ng-model="mobile" placeholder="Mobile" class="form-control input-md "/ required>
-                         <div ng-if="signupWithEmailForm.mobile.$dirty" ng-messages="signupWithEmailForm.mobile.$error" class="help-block text-danger" style="color:#a94442">
+                        <div ng-if="signupWithEmailForm.mobile.$dirty" ng-messages="signupWithEmailForm.mobile.$error" class="help-block text-danger" style="color:#a94442">
                             <div ng-message="required">Please enter your mobile number.</div>
                         </div>
                     </div>
                     <div class="text-center mobile-number">
-<!--                        <small>We will send you updates to your number</small>-->
+                        <!--                        <small>We will send you updates to your number</small>-->
                     </div>
 
-                </div>
-                <!--
+                    <!--
 <div class="social-login-buttons">
 <button type="button" class="btn btn-md signup-button social-signup btn-linkedin"> <span><i class="fa fa-linkedin-square"></i></span> <span>Linkedin</span> </button>
 <br>
@@ -366,11 +365,12 @@
 <button type="button" class="btn btn-md signup-button social-signup btn-facebook"> <span><i class="fa fa-facebook-square"></i></span> <span>Facebook</span> </button>
 </div>
 -->
-                <div class="modalButtons text-center">
-                    <button class="btn btn-md angularCancelButton cancelButton" type="button" ng-click="signupWithEmailModal()"> Cancel </button>
-                    <button class="btn btn-md successButton " ng-disabled="signupWithEmailForm.$invalid" ng-click="signup();signupWithEmailModal();"> Signup </button>
+                    <div class="modalButtons text-center">
+                        <button class="btn btn-md angularCancelButton cancelButton" type="button" ng-click="signupWithEmailModal()"> Cancel </button>
+                        <button class="btn btn-md successButton " ng-disabled="signupWithEmailForm.$invalid" ng-click="signup();signupWithEmailModal();"> Signup </button>
+                    </div>
+                    </form>  
                 </div>
-            </form>  
         </modal-dialog>
         <!-- ========== SIGNUP WITH EMAIL MODAL ENDS ========== -->
 
@@ -402,37 +402,37 @@
                     <br>
                     <small>Don't have an account yet? <a href="#" ng-click="loginModal();signupWithEmailModal()">Signup here!</a></small>
                 </div>
-<!--
+                <!--
 
-                <div class="social-login-buttons text-center">
-                    <button class="btn btn-block btn-social btn-linkedin">
-                        <i class="fa fa-linkedin"></i> Sign in with LinkedIn
-                    </button>            
-                    <button class="btn btn-block btn-social btn-github">
-                        <i class="fa fa-github"></i> Sign in with Github
-                    </button>
-                    <button class="btn btn-block btn-social btn-facebook">
-                        <i class="fa fa-github"></i> Sign in with Facebook
-                    </button>
-                </div>
+<div class="social-login-buttons text-center">
+<button class="btn btn-block btn-social btn-linkedin">
+<i class="fa fa-linkedin"></i> Sign in with LinkedIn
+</button>            
+<button class="btn btn-block btn-social btn-github">
+<i class="fa fa-github"></i> Sign in with Github
+</button>
+<button class="btn btn-block btn-social btn-facebook">
+<i class="fa fa-github"></i> Sign in with Facebook
+</button>
+</div>
 -->
 
             </form>  
         </modal-dialog>
         <!-- ========== LOGIN MODAL ENDS ========== -->
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var $_Tawk_API={},$_Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/55719d83cf9ad24f1242899d/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
+        <!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+            var $_Tawk_API={},$_Tawk_LoadStart=new Date();
+            (function(){
+                var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                s1.async=true;
+                s1.src='https://embed.tawk.to/55719d83cf9ad24f1242899d/default';
+                s1.charset='UTF-8';
+                s1.setAttribute('crossorigin','*');
+                s0.parentNode.insertBefore(s1,s0);
+            })();
+        </script>
+        <!--End of Tawk.to Script-->
 
 
     </body>

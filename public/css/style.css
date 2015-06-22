@@ -2113,3 +2113,8 @@ Optional CSS for partners
 .toggle-leads-attendees{
     width: 135px;
 }
+
+.modal-scroll{
+    overflow-y: scroll;
+    max-height: 360px;
+}

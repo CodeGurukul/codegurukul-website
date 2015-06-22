@@ -17,7 +17,8 @@ angular.module('Codegurukul')
         var exp = new Date();
         //set expiry to 30 days
         exp.setTime(exp.getTime() + (1000 * 60 * 60 * 24 * 30)); 
-        setCookie('lead',$scope.course.slug,exp)
+        setCookie('lead',$scope.course.slug,exp);
+        setCookie('slotLead',$scope.slotIdentification,exp);
     }
 
     $scope.validate = function(){
@@ -62,11 +63,6 @@ angular.module('Codegurukul')
         $scope.course.joined = data.joined;
         $scope.course.joinedSid = data.joinedSid;
         console.log($scope.course.joinedSid);
-        //        $scope.slotIdentification = $scope.course.slots[0]._id;
-        //        $scope.slots = $scope.course.slots;
-        //        for(var i=0; i<$scope.slots.length; i++){
-        //            console.log($scope.slots[i]._id);
-        //        }
 
         if ($scope.course.date === "COMING SOON") {
             $scope.notifyButton = true;
