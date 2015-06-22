@@ -104,11 +104,9 @@ exports.isAdmin = function(req, res, next) {
 };
 
 exports.signup = function(req, res, next) {
-  console.log("SIGNUP");
   if (req.existingUser) {
     return next();
   }
-  console.log("SIGNUP 222");
   if (!validator.validate(req.body.email))
     return res.status(400).send(msg.inem);
   var user = new User({
@@ -134,7 +132,7 @@ exports.signup = function(req, res, next) {
     else {
       if(!req.admin) res.status(200).send(msg.signup);
       email.sendSignupEmail(user.email, user.username, user.verificationCode); 
-      if (req.body.lead) course.addLead(user.id, req.body.lead);
+      if (req.body.lead.cslug && req.body.lead.sid) course.addLead(user.id, req.body.lead.cslug, req.body.lead.sid);
       if (req.admin) {
         email.sendPassword(user.email, user.username, req.body.password);     
         req.user = user;
@@ -145,7 +143,7 @@ exports.signup = function(req, res, next) {
   });
 };
 
-exports.signupResend = function (req, res, next) {
+exports.signupResend = function (req, res) {
   if (!validator.validate(req.body.email))
     return res.status(400).send(msg.inem);
   User.findOne({
@@ -154,7 +152,6 @@ exports.signupResend = function (req, res, next) {
     if (!user) return res.status(401).send(msg.unf);
     if (user.verified) return res.status(200).send(msg.alver);
     email.sendSignupEmail(user.email, user.username, user.verificationCode); 
-    next();
     res.status(200).send(msg.verifySent);
   });
 };

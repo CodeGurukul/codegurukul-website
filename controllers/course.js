@@ -155,22 +155,24 @@ exports.joinCourse = function(req, res, next) {
 }
 
 exports.addLead = function (uid, cslug, sid) {
-  Course.findOne({slug: cslug}, function (err, course) {
-    if (err) return;
-    else if (!course) return;
-    else {
-      if (course.slots.id(sid))
-        {console.log(sid);
-          if (course.slots.id(sid).leads.id(uid)) return;}
-      course.slots.id(sid).leads.push(uid);
-      course.save(function  (err, course) {
-        if (err) return;
-        else {
-          console.log("lead added");
-          return;}
-      })
-    }
-  })
+  if (uid && cslug && sid) {
+    Course.findOne({slug: cslug}, function (err, course) {
+      if (err) return;
+      else if (!course) return;
+      else {
+        if (course.slots.id(sid))
+          {console.log(sid);
+            if (course.slots.id(sid).leads.id(uid)) return;}
+        course.slots.id(sid).leads.push(uid);
+        course.save(function  (err, course) {
+          if (err) return;
+          else {
+            console.log("lead added");
+            return;}
+        })
+      }
+    })
+  };
 }
 
 exports.leadPre = function (req, res) {
