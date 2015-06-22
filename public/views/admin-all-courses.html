@@ -108,7 +108,7 @@
 
 
 <modal-dialog class="loginModal" show='createCourseModalShown' dialog-title="Create Course" height="auto" width="350px">
-    <form ng-controller="AdminCtrl">   
+    <form ng-controller="AdminCoursesCtrl">   
         <input type="text" class="form-control input-md" placeholder="Enter Course Name" ng-model="courseName"><br>
         <small><p class="text-center">*Please note that once the course is created, you will not be able to edit the course name.</p></small><br>
         <button class="btn btn-primary btn-md pull-right" ng-click="createCourse()"> Create Course   </button>

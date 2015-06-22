@@ -1,14 +1,9 @@
 angular.module('Codegurukul')
-    .controller('AdminCtrl', function($scope, $alert, $rootScope, Admin, $state) {
+    .controller('AdminCoursesCtrl', function($scope, $alert, $rootScope, Admin, $state) {
 
     Admin.default.query(function(data) {
         $scope.courses = data;
 //        console.log($scope.courses);
-
-    })
-    Admin.users.query(function(data) {
-        $scope.users = data;
-        console.log($scope.users);
 
     })
 
@@ -48,5 +43,17 @@ angular.module('Codegurukul')
             });
         });
     };
+
+});
+
+angular.module('Codegurukul')
+    .controller('AdminUsersCtrl', function($scope, $alert, $rootScope, Admin, $state) {
+
+    Admin.users.query(function(data) {
+        $scope.users = data;
+        console.log($scope.users);
+
+    })
+
 
 });
