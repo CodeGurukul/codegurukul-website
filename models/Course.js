@@ -30,10 +30,15 @@ var courseSchema = new mongoose.Schema({
         mop: String,
         payment_id: String,        //Cheque no., DD, NEFT transaction no, Razorpay transaction ID etc
         amount: Number,
-        status: {
+        paymentStatus: {
           type: String,
           default: 'registered',
-          enum: ['registered', 'processing', 'paid', 'cancelled', 'completed', 'incomplete']
+          enum: ['registered', 'processing', 'paid']
+        },
+        progressStatus: {
+          type: String,
+          default: 'incomplete',
+          enum: ['cancelled', 'completed', 'incomplete']
         }
       }],
       leads: [{

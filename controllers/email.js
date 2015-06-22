@@ -313,7 +313,7 @@ exports.addNewsletter = function(req, res) {
         console.log(data);
         res.status(200).send("Thank you for subscribing")
     }, function(error) {
-      if (error.code = 214) return res.status(200).send("Your are already subscribed");
+      if (error.code = 214) return res.status(410).send("Your are already subscribed");
       else res.status(400).send(error.error)
         console.log(error); 
     });

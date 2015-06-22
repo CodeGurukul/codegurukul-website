@@ -65,9 +65,9 @@ exports.getAttendees = function(req, res) {
 
 exports.changeAttendeeStatus = function (req, res) {
   if (req.params.cslug && req.params.sid) {
-    if (req.body.status == "completed" ||
-        req.body.status == "incomplete" ||
-        req.body.status == "cancelled") {
+    if (req.body.progressStatus == "completed" ||
+        req.body.statprogressStatus == "incomplete" ||
+        req.body.staprogressStatus == "cancelled") {
       Course.findOne({slug: req.params.cslug}, function (err, course) {
         if (err) res.status(400).send(err);
         else if (!course) res.status(404).send('Course Not Found');
@@ -76,12 +76,12 @@ exports.changeAttendeeStatus = function (req, res) {
           var result = [];
           for (var i = 0; i < req.body.users.length; i++) {
             if(course.slots.id(req.params.sid).attendees.id(req.body.users[i])) {
-              course.slots.id(req.params.sid).attendees.id(req.body.users[i]).status = req.body.status; 
-              if (req.body.status == "completed") 
+              course.slots.id(req.params.sid).attendees.id(req.body.users[i]).progressStatus = req.body.progressStatus; 
+              if (req.body.progressStatus == "completed") 
                 course.slots.id(req.params.sid).attendees.id(req.body.users[i]).completionDate = Date.now();
               result.push({
                 id: req.body.users[i],
-                status: req.body.status
+                status: req.body.progressStatus
               })
             } else {
               result.push({
@@ -284,7 +284,7 @@ exports.joinPrep = function (req, res, next) {
     req.admin = true;
     req.pay = true;
     req.mop = req.body.mop;
-    req.status = req.body.paymentStatus;
+    req.paymentStatus = req.body.paymentStatus;
     req.coursePrice = req.body.amount;
     if (req.body.newUser) {
       if (req.body.fullname && req.body.username && req.body.mobile ) {
