@@ -145,7 +145,6 @@ angular.module('Codegurukul')
             cid: courseId,
             invoice: invoice
         },function(success){
-//            console.log(success.response);
             $window.open('/temp/invoice/'+invoice+'.pdf');
             $alert({
                 content: 'Invoice generated successfully. If your invoice does not open in a new tab, please disable pop-up blocking and try again.',
