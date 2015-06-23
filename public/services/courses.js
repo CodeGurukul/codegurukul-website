@@ -3,7 +3,7 @@ angular.module('Codegurukul')
     var Courses = {
       default: $resource('../data/courses.json'),
       canJoin: $resource('/api/courses/:cslug/canjoin'),
-      getAll: $resource('/api/courses/:cslug', {
+      getCourse: $resource('/api/courses/:cslug', {
 	      cslug: '@cslug'
 				}, {
 				update: {

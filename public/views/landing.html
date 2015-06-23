@@ -60,20 +60,24 @@ CodeGurukul Landing Page
             <div class="newsletter-form text-center">
                 <h3 class="text-center newsletter-header">Subscribe to our newsletter</h3>
                 <div ng-class="{ &quot;has-error&quot; : newsletterForm.email.$invalid &amp;&amp; newsletterForm.email.$dirty }" class="form-group has-feedback">
-<!--                    <div class="row">-->
-<!--                        <div class="col-md-9 col-sm-9 col-xs-12">-->
-                            <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" autofocus= "" class="form-control input-md"/>
-<!--                        </div>-->
-<!--                        <div class="col-md-3 col-sm-3 col-xs-12 newsletter-button-div">-->
-                            <button class="btn btn-primary btn-md" ng-click="newsletter()">Yes, sign me up!</button>
-<!--                        </div>-->
-                    </div>
-                    <div ng-if="newsletterForm.email.$dirty" ng-messages="newsletterForm.email.$error" class="text-danger">
-                        <div ng-message="email">Your email address is invalid.</div>
-                    </div>
+                    <!--                    <div class="row">-->
+                    <!--                        <div class="col-md-9 col-sm-9 col-xs-12">-->
+                    <input id="email"  type="email" name="email" ng-model="email" placeholder="Email" required="" autofocus= "" class="form-control input-md"/>
+                    <!--                        </div>-->
+                    <!--                        <div class="col-md-3 col-sm-3 col-xs-12 newsletter-button-div">-->
+                    <button class="btn btn-primary btn-md" ng-click="newsletter()" ng-disabled="newsletterForm.$invalid">Yes, sign me up!</button>
+                    <!--                        </div>-->
+                </div>
+                <div ng-if="newsletterForm.email.$dirty" ng-messages="newsletterForm.email.$error" class="text-danger">
+                    <div ng-message="email">Your email address is invalid.</div>
                 </div>
             </div>
         </form>
+        <div class="col-md-12">
+            <p class="text-center custom-padding-top-10"> 
+            <span ng-class="{newsletterProcessSpinner:processing}"></span> <span ng-show="processing" class="landing-spinner-text">Please wait...</span>
+            </p>
+        </div>
     </div>
 </div>
 
@@ -82,31 +86,31 @@ CodeGurukul Landing Page
 <!-- ========== FEATURES START ========== -->
 
 <section id="welcome">
-			<div class="container">
-				<div class="row text-center">
-					<div class="col-sm-3 feature">
-						<p><img src="/img/landing/mentors.png" alt=""></p>
-						<h3>Mentors</h3>
-						<p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor. Suspendisse volutpat, quam eu rutrum laoreet, ex sapien pellentesque.</p>
-					</div>
-					<div class="col-sm-3 feature">
-						<p><img src="/img/landing/community.png" alt=""></p>
-						<h3>Community</h3>
-						<p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor. Suspendisse volutpat, quam eu rutrum laoreet, ex sapien pellentesque.</p>
-					</div>
-					<div class="col-sm-3 feature">
-						<p><img src="/img/landing/career-growth.png" alt=""></p>
-						<h3>Career Growth</h3>
-						<p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor. Suspendisse volutpat, quam eu rutrum laoreet, ex sapien pellentesque.</p>
-					</div>
-					<div class="col-sm-3 feature">
-						<p><img src="/img/landing/cutting-edge.png" alt=""></p>
-						<h3>Cutting Edge</h3>
-						<p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor. Suspendisse volutpat, quam eu rutrum laoreet, ex sapien pellentesque.</p>
-					</div>
-				</div>
-			</div>
-		</section>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-sm-3 feature">
+                <p><img src="/img/landing/mentors.png" alt=""></p>
+                <h3>Mentors</h3>
+                <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor. Suspendisse volutpat, quam eu rutrum laoreet, ex sapien pellentesque.</p>
+            </div>
+            <div class="col-sm-3 feature">
+                <p><img src="/img/landing/community.png" alt=""></p>
+                <h3>Community</h3>
+                <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor. Suspendisse volutpat, quam eu rutrum laoreet, ex sapien pellentesque.</p>
+            </div>
+            <div class="col-sm-3 feature">
+                <p><img src="/img/landing/career-growth.png" alt=""></p>
+                <h3>Career Growth</h3>
+                <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor. Suspendisse volutpat, quam eu rutrum laoreet, ex sapien pellentesque.</p>
+            </div>
+            <div class="col-sm-3 feature">
+                <p><img src="/img/landing/cutting-edge.png" alt=""></p>
+                <h3>Cutting Edge</h3>
+                <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor. Suspendisse volutpat, quam eu rutrum laoreet, ex sapien pellentesque.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 <!-- ========== FEATURES END ========== -->

@@ -54,7 +54,7 @@ angular.module('Codegurukul')
         });
     };
 
-    Courses.getAll.get({
+    Courses.getCourse.get({
         cslug: $stateParams.course
 
     }, function(data) {

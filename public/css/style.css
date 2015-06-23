@@ -1352,7 +1352,7 @@ body > .right {
     width: 30vw;
     position: fixed;
     z-index: 10000;
-    bottom: 10px;
+    bottom: 50px;
     right: 10px;
 }
 
@@ -1719,7 +1719,7 @@ body > .right {
 }
 
 .verification-section a:hover{
-    cursor: default;
+    cursor: pointer;
 }
 
 .referral-code-textbox:hover{
@@ -1957,18 +1957,136 @@ color:red;
 Optional CSS for partners
 
 .partner img{
-    -webkit-filter: grayscale(80%);
-    -moz-filter: grayscale(80%);
-    opacity: 0.8;
+-webkit-filter: grayscale(80%);
+-moz-filter: grayscale(80%);
+opacity: 0.8;
 }
 
 .partner img:hover{
-    -webkit-filter: grayscale(0%);
-    -moz-filter: grayscale(0%);
-    opacity: 1;
+-webkit-filter: grayscale(0%);
+-moz-filter: grayscale(0%);
+opacity: 1;
 }*/
 
 .feature img{
     max-width: 120px;
     margin: auto;
+}
+
+.cursor-pointer:hover{
+    cursor: pointer;
+}
+
+/*Spin loader css*/
+@-webkit-keyframes newsletterProcessSpinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes newsletterProcessSpinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes newsletterProcessSpinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes newsletterProcessSpinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+/* Styles for old versions of IE */
+.newsletterProcessSpinner {
+    font-family: sans-serif;
+    font-weight: 100;
+/*
+    position: absolute;
+    right: 10px;
+    top: 10px;
+*/
+}
+
+/* :not(:required) hides this rule from IE9 and below */
+.newsletterProcessSpinner:not(:required) {
+    -webkit-animation: newsletterProcessSpinner 1250ms infinite linear;
+    -moz-animation: newsletterProcessSpinner 1250ms infinite linear;
+    -ms-animation: newsletterProcessSpinner 1250ms infinite linear;
+    -o-animation: newsletterProcessSpinner 1250ms infinite linear;
+    animation: newsletterProcessSpinner 1250ms infinite linear;
+    border: 5px solid #C2E7BB;
+    border-right-color: transparent !important;
+    border-radius: 16px;
+    box-sizing: border-box;
+    display: inline-block;
+    /*position: relative;*/
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 32px;
+    height: 32px;
+}
+/*spin loader end*/
+
+.custom-padding-top-10{
+    padding-top: 10px;
+}
+
+.landing-spinner-text{
+    position: relative;
+    bottom: 10px;
+    font-size: 15px;
 }

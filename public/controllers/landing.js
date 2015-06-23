@@ -47,8 +47,10 @@ angular.module('Codegurukul')
 //    }
 //
 
+    $scope.processing = false;
 
     $scope.newsletter = function(){
+        $scope.processing = true;
         Email.newsletter.save({
             email: $scope.email
         },function(data){
@@ -58,6 +60,7 @@ angular.module('Codegurukul')
                 type: 'success',
                 duration: 5
             });
+            $scope.processing = false;
         },function(error){
             $alert({
                 content: 'There was an error. Please try again later.',
@@ -65,6 +68,7 @@ angular.module('Codegurukul')
                 type: 'danger',
                 duration: 5
             });
+            $scope.processing = false;
         })
     }
 });
