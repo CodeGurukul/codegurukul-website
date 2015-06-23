@@ -1,0 +1,75 @@
+<!-- ========== TITLE START ========== -->
+
+<div class="title">
+    <div class="title-image"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                ADMIN PAGE - USERS
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== TITLE END ========== -->
+
+<section>
+
+    <h1 class="text-center"> Users' List </h1>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-8">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input type="search" class="form-control" placeholder="Search..." ng-model="searchUser">
+                        </div>      
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+
+        <table class="table table-condensed" ng-hide="leads.length == '0'">
+            <thead>
+                <tr>
+                    <th>
+                        <a href="" ng-click="sortUser = 'profile.fullname'; sortReverse = !sortReverse">
+                            NAME 
+                            <span ng-show="sortUser == 'profile.fullname' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortUser == 'profile.fullname' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortUser = 'username'; sortReverse = !sortReverse">
+                            USERNAME 
+                            <span ng-show="sortUser == 'username' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortUser == 'username' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortUser = 'email'; sortReverse = !sortReverse">
+                            EMAIL 
+                            <span ng-show="sortUser == 'email' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortUser == 'email' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>CONTACT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users | orderBy:sortUser:sortReverse | filter:searchUser">
+                    <td> {{user.profile.fullname}} </td>
+                    <td> {{user.username}} </td>
+                    <td> {{user.email}} </td>
+                    <td> {{user.mobile}} </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</section>
