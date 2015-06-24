@@ -1820,8 +1820,8 @@ body > .right {
     -ms-animation: processSpinner2 1250ms infinite linear;
     -o-animation: processSpinner2 1250ms infinite linear;
     animation: processSpinner2 1250ms infinite linear;
-    border: 8px solid #C2E7BB;
-    border-right-color: transparent;
+    border: 4px solid #C2E7BB;
+    border-right-color: transparent !important;
     border-radius: 16px;
     box-sizing: border-box;
     display: inline-block;
@@ -2103,9 +2103,9 @@ opacity: 1;
     -ms-animation: newsletterProcessSpinner 1250ms infinite linear;
     -o-animation: newsletterProcessSpinner 1250ms infinite linear;
     animation: newsletterProcessSpinner 1250ms infinite linear;
-    border: 5px solid #C2E7BB;
+    border: 2px solid #C2E7BB;
     border-right-color: transparent !important;
-    border-radius: 16px;
+    border-radius: 50%;
     box-sizing: border-box;
     display: inline-block;
     /*position: relative;*/
@@ -2123,7 +2123,7 @@ opacity: 1;
 
 .landing-spinner-text{
     position: relative;
-    bottom: 10px;
+    bottom: 2px;
     font-size: 15px;
 }
 
@@ -2134,4 +2134,110 @@ opacity: 1;
 .modal-scroll{
     overflow-y: scroll;
     max-height: 360px;
+}
+
+
+/*Spin loader css*/
+@-webkit-keyframes invoiceProcessSpinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes invoiceProcessSpinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes invoiceProcessSpinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes invoiceProcessSpinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+/* Styles for old versions of IE */
+.invoiceProcessSpinner {
+    font-family: sans-serif;
+    font-weight: 100;
+    position: absolute;
+    right: -10px;
+    top: 5px;
+}
+
+/* :not(:required) hides this rule from IE9 and below */
+.invoiceProcessSpinner:not(:required) {
+    -webkit-animation: invoiceProcessSpinner 1250ms infinite linear;
+    -moz-animation: invoiceProcessSpinner 1250ms infinite linear;
+    -ms-animation: invoiceProcessSpinner 1250ms infinite linear;
+    -o-animation: invoiceProcessSpinner 1250ms infinite linear;
+    animation: invoiceProcessSpinner 1250ms infinite linear;
+    border: 3px solid #81a27b;
+    border-right-color: transparent !important;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: inline-block;
+    /*position: relative;*/
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 20px;
+    height: 20px;
+}
+
+.footer-row{
+    padding-bottom: 30px;
 }

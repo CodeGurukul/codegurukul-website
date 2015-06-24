@@ -174,16 +174,16 @@
 
         <footer ng-cloak>
             <div class="container">
-                <div class="row">
+                <div class="row footer-row">
 
                     <!-- ==== CREDITS START == -->
-                    <div class="col-sm-8">
+                    <div class="col-sm-6 col-xs-12 text-center">
                         &copy; 2015. Initiative by <a href="http://bitbrothers.in">Bit Brothers Tech Pvt. Ltd. </a>
                     </div>
                     <!-- ==== CREDITS END == -->
 
                     <!-- ==== SOCIAL ICONS START == -->
-                    <div class="col-sm-4 text-right">
+                    <div class="col-sm-6 col-xs-12 text-center">
                         <a href="http://www.facebook.com/codegurukul"><i class="fa fa-facebook fa-lg"></i></a>
                         <a href="http://www.twitter.com/codegurukul"><i class="fa fa-twitter fa-lg"></i></a>
                         <a ui-sref="terms-and-conditions" class="terms-and-conditions"> <small> Terms & Conditions </small> </a>
@@ -267,7 +267,7 @@
 
         <!-- ========== SIGNUP WITH EMAIL MODAL ========== -->
 
-        <modal-dialog class="signupWithEmailModal" show='signupWithEmailModalShown' dialog-title="Signup" height="450px" width="350px">
+        <modal-dialog class="signupWithEmailModal" show='signupWithEmailModalShown' dialog-title="Signup" height="450px" width="350px" ng-cloak>
             <form method="post" name="signupWithEmailForm" ng-controller="SignupCtrl">    
                 <div class="register-modal modal-scroll">
                     <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.fullname.$invalid &amp;&amp; signupWithEmailForm.fullname.$dirty }" class="form-group has-feedback">
@@ -377,7 +377,7 @@
 
         <!-- ========== LOGIN MODAL ========== -->
 
-        <modal-dialog class="loginModal" show='loginModalShown' dialog-title="Login" height="auto" width="350px">
+        <modal-dialog class="loginModal" show='loginModalShown' dialog-title="Login" height="auto" width="350px" ng-cloak>
             <form method="post" name="loginForm" ng-controller="LoginCtrl">    
                 <div class="register-modal">
                     <div ng-class="{ &quot;has-error&quot; : loginForm.email.$invalid &amp;&amp; loginForm.email.$dirty }" class="form-group has-feedback">

@@ -16,10 +16,18 @@
 <section ng-show="pending">
     <h1 class="text-center">Verification Pending</h1>
     <div class="container">
-        <p class="text-center">
-            Please wait while your email address is being verified. You will automatically be redirected once the process completes successfully.<br>
-        <span class="text-center" ng-class="{processSpinner2:processing}"></span>
-        </p>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-10">
+                <span class="text-center" ng-class="{processSpinner2:processing}"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-center">
+                    Please wait while your email address is being verified. You will automatically be redirected once the process completes successfully.
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 
