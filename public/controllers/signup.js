@@ -40,8 +40,11 @@ angular.module('Codegurukul')
         }	
         return null;	
     }
+    
+//    $scope.courseLead = [];
     $rootScope.cookieVal = getCookie ('referralCode');
     $scope.courseLead = getCookie ('lead');
+    $scope.slotLead = getCookie ('slotLead');
     
 
     
@@ -63,7 +66,10 @@ angular.module('Codegurukul')
             workDesc: $scope.workDesc,
             mobile: $scope.mobile,
             extReferalCode: $scope.extReferalCode,
-            lead: $scope.courseLead
+            lead: {
+                cslug: $scope.courseLead,
+                sid: $scope.slotLead
+            }
         });
     };
     //    $scope.pageClass = 'fadeZoom';

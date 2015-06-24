@@ -6,30 +6,30 @@
 
 /*------------------------------------------------------------------
 
-Project:		Codegurukul
-Version:		1.0
+Project:        Codegurukul
+Version:        1.0
 
 ------------------------------------------------------------------
 
 [Color codes]
 
-Body background:		#fff (white)
-Brand color:			#8fb488 (green)
-Text:					#888 (gray)
-Header h1-h6:			#222 (dark gray)
-Top tools background:	#323438 (darker graphite)
-Main nav background:	#373a3e (graphite)
-Footer background 1:	#373a3e (graphite)
-Footer background 2:	#323438 (darker graphite)
-Footer background 3:	#2c2f33 (dark graphite)
-Course search:			#726253 (brown)
-Reviews:				#8fb488 (green)
-Newsletter background:	#89909a (blue)
+Body background:        #fff (white)
+Brand color:            #8fb488 (green)
+Text:                   #888 (gray)
+Header h1-h6:           #222 (dark gray)
+Top tools background:   #323438 (darker graphite)
+Main nav background:    #373a3e (graphite)
+Footer background 1:    #373a3e (graphite)
+Footer background 2:    #323438 (darker graphite)
+Footer background 3:    #2c2f33 (dark graphite)
+Course search:          #726253 (brown)
+Reviews:                #8fb488 (green)
+Newsletter background:  #89909a (blue)
 
-a (standard):			#8fb488 (green)
-a (visited):			#8fb488 (green)
-a (active):				#8fb488 (green)
-a (hover):				#81a27b (darker green)
+a (standard):           #8fb488 (green)
+a (visited):            #8fb488 (green)
+a (active):             #8fb488 (green)
+a (hover):              #81a27b (darker green)
 
 ------------------------------------------------------------------
 
@@ -521,6 +521,7 @@ header .nav .open > a:focus {
     text-align: center;
     width: 100%;
     position: relative;
+    min-width: 105px;
 }
 
 /* 5.2. BLOG
@@ -1668,8 +1669,10 @@ body > .right {
 
 .locked-course, .joined-course{
     font-size: 17px;
+/*
     position: relative;
     right: 10%;
+*/
 }
 
 .mentor-social-links{
@@ -1948,6 +1951,29 @@ color:red;
     color: #8FB488 !important;
 }
 
+.slot-data i{
+    font-size: 18px;
+}
+
+.register-slot{
+    padding: 10px !important;
+}
+
+.batch-size-div{
+    padding-top: 8px;
+}
+
+.slot-div:hover{
+    background-color: #e8e8e8;
+}
+
+.view-course-icon{
+    padding-left: 20px;
+}
+
+.custom-padding-5{
+    padding-bottom: 5px;
+}
 
 .partner{
     padding: 0px 30px !important;
@@ -1975,6 +2001,15 @@ opacity: 1;
 
 .cursor-pointer:hover{
     cursor: pointer;
+}
+
+.mode-of-payment{
+    padding: 0px 20px;
+}
+
+.enrolled-course-name{
+    padding-top: 6px;
+    font-weight: 700;
 }
 
 /*Spin loader css*/
@@ -2076,11 +2111,12 @@ opacity: 1;
     /*position: relative;*/
     overflow: hidden;
     text-indent: -9999px;
-    width: 32px;
-    height: 32px;
+    width: 16px;
+    height: 16px;
 }
 /*spin loader end*/
 
+    
 .custom-padding-top-10{
     padding-top: 10px;
 }
@@ -2089,4 +2125,13 @@ opacity: 1;
     position: relative;
     bottom: 10px;
     font-size: 15px;
+}
+
+.toggle-leads-attendees{
+    width: 135px;
+}
+
+.modal-scroll{
+    overflow-y: scroll;
+    max-height: 360px;
 }

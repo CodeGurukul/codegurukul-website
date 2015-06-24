@@ -36,8 +36,6 @@ exports.validate = function(code, cslug, callback) {
     })
   } else {
     console.log("no code entered");
-    console.log(cslug);
-
     Course.findOne({
       slug: cslug
     })

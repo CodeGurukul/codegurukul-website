@@ -7,16 +7,9 @@ angular.module('Codegurukul')
             'update': { method:'PUT' }
         }),
         resendEmail: $resource('/api/auth/signup/resend'),
-        verify: $resource('/api/auth/signup/verification')
+        verify: $resource('/api/auth/signup/verification'),
+        invoiceGen: $resource('/api/user/:uslug/invoicePdf')
     }
     return User;
 });
 
-//angular.module('Codegurukul')
-//    .factory('User', function($resource) {
-//    return $resource('/api/user/:uslug', null,
-//                     {
-//        'update': { method:'PUT' }
-//    });
-//});
-//

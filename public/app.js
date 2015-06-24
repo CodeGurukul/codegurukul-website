@@ -21,9 +21,14 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         templateUrl: 'views/user-profile.html',
         controller: 'UserCtrl'
     })  
-        .state('admin', {
-        url: '/admin',
-        templateUrl: 'views/admin.html',
+        .state('admin-all-courses', {
+        url: '/admin/courses',
+        templateUrl: 'views/admin-all-courses.html',
+        controller: 'AdminCtrl'
+    })  
+        .state('admin-all-users', {
+        url: '/admin/users',
+        templateUrl: 'views/admin-all-users.html',
         controller: 'AdminCtrl'
     })
         .state('admin-edit-course', {
@@ -32,7 +37,7 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         controller: 'AdminEditCourseCtrl'
     }) 
         .state('admin-course-details', {
-        url: '/admin/view/:course',
+        url: '/admin/view/:course/:slot',
         templateUrl: 'views/admin-view-course-details.html',
         controller: 'AdminCourseDetailsCtrl'
     }) 
@@ -104,6 +109,22 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         url: '/all-courses',
         templateUrl: 'views/all-courses.html',
         controller: 'AllCoursesCtrl'
+    })
+        .state('payment', {
+        url: "/payment",
+        templateUrl: "payment.html"
+    })
+        .state('payment.success', {
+        url: "/success",
+        templateUrl: "payment.success.html"
+    })
+        .state('payment.failure', {
+        url: "/failure",
+        templateUrl: "payment.failure.html"
+    })
+        .state('payment.cancelled', {
+        url: "/cancelled",
+        templateUrl: "payment.cancelled.html"
     })
 
 })

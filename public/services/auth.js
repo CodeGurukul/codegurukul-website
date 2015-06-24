@@ -131,6 +131,12 @@ angular.module('Codegurukul')
                 .success(function() {
                 //            $location.path('/login');
                 $state.go('verify-email');
+                function delCookie(name) {	
+                    document.cookie = name + "=; expires=Thu, 01-Jan-70 00:00:01 GMT" + "; path=/";	
+                }
+                delCookie("referralCode");
+                delCookie("lead");
+                delCookie("slotLead");
                 $alert({
                     content: 'Congratulations! Your account has successfully been created!',
                     placement: 'right',

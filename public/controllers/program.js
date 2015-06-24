@@ -1,5 +1,5 @@
 angular.module('Codegurukul')
-    .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Courses, Pay, $alert, Email, $http) {
+    .controller('ProgramCtrl', function($scope, $rootScope, $stateParams, Courses, Pay, $alert, Email, $http, $state, $window) {
     $scope.processing = false;
     $scope.showCourseJoinedTickMark = false;
     $scope.couponCode = "";  
@@ -17,7 +17,8 @@ angular.module('Codegurukul')
         var exp = new Date();
         //set expiry to 30 days
         exp.setTime(exp.getTime() + (1000 * 60 * 60 * 24 * 30)); 
-        setCookie('lead',$scope.course.slug,exp)
+        setCookie('lead',$scope.course.slug,exp);
+        setCookie('slotLead',$scope.slotIdentification,exp);
     }
 
     $scope.validate = function(){
@@ -60,7 +61,8 @@ angular.module('Codegurukul')
     }, function(data) {
         $scope.course = data.course;
         $scope.course.joined = data.joined;
-        console.log($scope.course);
+        $scope.course.joinedSid = data.joinedSid;
+        console.log($scope.course.joinedSid);
 
         if ($scope.course.date === "COMING SOON") {
             $scope.notifyButton = true;
@@ -83,10 +85,17 @@ angular.module('Codegurukul')
         }
     });
 
+    $scope.payViaModalShown = false;
 
-    $scope.checkCondition = function(){
+    $scope.togglePayViaModal = function(){
+        $scope.payViaModalShown = !$scope.payViaModalShown;
+    }
+
+
+    $scope.checkCondition = function(slot, status){
+        $scope.slotIdentification = slot;
+        $scope.slotStatus = status;
         if ($rootScope.currentUser){
-            console.log($scope.course.joined);
             if($scope.course.joined){
                 $alert({
                     content: 'You have already registered for this event.',
@@ -107,15 +116,10 @@ angular.module('Codegurukul')
             }
 
             else {
-                if ($scope.course.status == 'open' && $scope.course.price > 0 && $scope.course.joined == false){
+                if ($scope.slotStatus == 'open' && $scope.course.joined == false){
                     $scope.canJoin();
-
                 }
-                else if ($scope.course.status == 'open' && $scope.course.price == '0' && $scope.course.joined == false){
-                    $scope.joinCourse();
-                    console.log("join course function executed");
-                }
-                else if ($scope.course.status=='new'){
+                else if ($scope.slotStatus=='new'){
                     $scope.notify();
                     console.log("notify function executed");
                 }
@@ -133,7 +137,7 @@ angular.module('Codegurukul')
         }
     }
 
-
+    //    console.log($scope.slotIdentification);
     $scope.joinCourse = function() {
         if ($scope.course.joined) {
             $alert({
@@ -146,7 +150,9 @@ angular.module('Codegurukul')
         } else {
             $scope.processing = true;
             Courses.join.update({
-                cslug: $stateParams.course
+                cslug: $stateParams.course,
+                sid: $scope.slotIdentification,
+                code: $scope.couponCode
             },
                                 function(data) {
                 console.log("SUCCESS!!");
@@ -159,6 +165,11 @@ angular.module('Codegurukul')
                 $scope.course.joined = true;
                 $scope.showCourseJoinedTickMark = true;
                 $scope.processing = false;
+                $state.transitionTo($state.current, $stateParams, {
+                    reload: true,
+                    inherit: false,
+                    notify: true
+                });
             },
                                 function(error) {
                 console.log(error);
@@ -173,15 +184,25 @@ angular.module('Codegurukul')
                                );
         }
     };
+
+
     $scope.canJoin = function() {
         if ($rootScope.currentUser) {
             $scope.processing = true;
             Courses.canJoin.get({
-                cslug: $stateParams.course
+                cslug: $stateParams.course,
+                sid: $scope.slotIdentification
             },
                                 function() {
                 $scope.processing = false;
-                $scope.pay();
+                if($scope.course.price > '0'){
+                    //                    $scope.pay();
+                    console.log("here");
+                    $scope.togglePayViaModal();
+                }
+                else if($scope.course.price == '0'){
+                    $scope.joinCourse();
+                }
             },
                                 function(error) {
                 console.log(error);
@@ -213,10 +234,11 @@ angular.module('Codegurukul')
             "image": "img/logo.png",
             "handler": function(response) {
                 $scope.processing = true;
-                Pay.default.save({
+                Courses.join.save({
                     payment_id: response.razorpay_payment_id,
                     cslug: $stateParams.course,
-                    code:$scope.couponCode
+                    code:$scope.couponCode,
+                    sid: $scope.slotIdentification
                 }, function(data) {
                     $alert({
                         content: 'Your payment was a success!',
@@ -227,6 +249,11 @@ angular.module('Codegurukul')
                     $scope.showCourseJoinedTickMark = true;
                     $scope.course.joined = true;
                     $scope.processing = false;
+                    $state.transitionTo($state.current, $stateParams, {
+                        reload: true,
+                        inherit: false,
+                        notify: true
+                    });
                     // joinCourse();
                 }, function(error) {
                     $alert({
@@ -273,5 +300,44 @@ angular.module('Codegurukul')
             });
         }
     };
+
+
+    $scope.register = function(){
+        console.log($scope.mop);
+        if($scope.mop === 'Online'){
+            $window.open('https://www.payumoney.com/paybypayumoney/#/52407');
+        }
+        Courses.join.save({
+            payment_id: $scope.payment_id,
+            cslug: $stateParams.course,
+            code:$scope.couponCode,
+            sid: $scope.slotIdentification,
+            mop: $scope.mop
+        }, function(data) {
+            $alert({
+                content: 'Your registration was a success!',
+                placement: 'right',
+                type: 'success',
+                duration: 5
+            });
+            $scope.showCourseJoinedTickMark = true;
+            $scope.course.joined = true;
+            $scope.processing = false;
+            $state.transitionTo($state.current, $stateParams, {
+                reload: true,
+                inherit: false,
+                notify: true
+            });
+            // joinCourse();
+        }, function(error) {
+            $alert({
+                content: 'There was an error please try again later.',
+                placement: 'right',
+                type: 'danger',
+                duration: 5
+            });
+            $scope.processing = false;
+        });
+    }
 
 });

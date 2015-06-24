@@ -11,9 +11,9 @@ var invoiceSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['created', 'authorized', 'captured']
+    enum: ['registered', 'processing', 'paid', 'cancelled']
   },
-  net: {
+  balance: {
     type: Number                       //not used
   },
   vat: {                              //not used
@@ -22,6 +22,7 @@ var invoiceSchema = new mongoose.Schema({
   total: {
     type: Number
   },
+  mop: String,
   paymentId: {type: String},          //razor pay ID
   products: [{
     product: {                        //course name

@@ -10,7 +10,8 @@ angular.module('Codegurukul')
 				  method: 'PUT'
 				}
 			}),
-      join: $resource('/api/courses/:cslug/join', {
+//      join: $resource('/api/courses/:cslug/join', {
+      join: $resource('/api/courses/join', {
         cslug: '@cslug'
         }, {
         update: {
@@ -24,7 +25,7 @@ angular.module('Codegurukul')
           method: 'PUT'
         }
       }),
-      domains: $resource('../data/domains.json')
+      domains: $resource('../data/domains.json'),
     };
     return Courses;
   });
