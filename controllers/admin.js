@@ -103,7 +103,7 @@ exports.changeAttendeeStatus = function (req, res) {
 }
 
 exports.addPayment = function (req, res, next) {
-  if (req.params.cslug && req.params.sid && req.body.mop && req.body.amount && req.body.status) {
+  if (req.params.cslug && req.params.sid && req.body.mop && req.body.amount && req.body.paymentStatus) {
     if (req.body.uid) {
       Course.findOne({slug: req.params.cslug}, function (err, course) {
         if (err) res.status(400).send(err);
@@ -114,7 +114,7 @@ exports.addPayment = function (req, res, next) {
           course.slots.id(req.params.sid).attendees.id(req.body.uid).mop = req.body.mop;
           course.slots.id(req.params.sid).attendees.id(req.body.uid).amount = req.body.amount;
           course.slots.id(req.params.sid).attendees.id(req.body.uid).payment_id = req.body.payment_id;
-          course.slots.id(req.params.sid).attendees.id(req.body.uid).status = req.body.status;
+          course.slots.id(req.params.sid).attendees.id(req.body.uid).paymentStatus = req.body.paymentStatus;
           course.save(function (err, course) {
             if (err) return res.status(400).send(err);
             else {
@@ -125,7 +125,7 @@ exports.addPayment = function (req, res, next) {
                   req.to = user.email;
                   req.name = user.profile.fullname;
                   req.pay = true;
-                  req.status = req.body.status;
+                  req.paymentStatus = req.body.paymentStatus;
                   req.coursePrice = req.body.amount;
                   req.userId = req.body.uid;
                   req.mop = req.body.mop;
