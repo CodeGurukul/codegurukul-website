@@ -397,7 +397,7 @@ exports.hasEmail = function(req, res, next) {
 exports.getUser = function(req, res) {
   if (req.user.slug == req.params.uslug) {
     User.findById(req.user._id)
-      .select('-_id profile courses points slug username mobile email badges referalCode')
+      .select('_id profile courses points slug username mobile email badges referalCode')
       .populate({
         path: 'badges._id'
       })

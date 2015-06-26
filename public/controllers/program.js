@@ -302,17 +302,17 @@ angular.module('Codegurukul')
     };
 
 
-    $scope.register = function(){
-        console.log($scope.mop);
+    $scope.register = function(mop, payment_id){
+        console.log(mop);
         if($scope.mop === 'Online'){
             $window.open('https://www.payumoney.com/paybypayumoney/#/52407');
         }
         Courses.join.save({
-            payment_id: $scope.payment_id,
+            payment_id: payment_id,
             cslug: $stateParams.course,
             code:$scope.couponCode,
             sid: $scope.slotIdentification,
-            mop: $scope.mop
+            mop: mop
         }, function(data) {
             $alert({
                 content: 'Your registration was a success!',

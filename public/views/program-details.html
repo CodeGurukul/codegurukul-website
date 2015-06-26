@@ -254,7 +254,7 @@
 </modal-dialog>
 
 <modal-dialog class="payViaModal" show='payViaModalShown' dialog-title="Payment" height="auto" width="350px">
-    <div class="row" ng-controller="ProgramCtrl">
+    <div class="row">
         <div class="col-md-12">
             <h3 class="text-center">Select mode of payment</h3>
             <ul type="none" class="mode-of-payment">
@@ -296,7 +296,7 @@
 
             <div class="modalButtons text-center">
                 <button class="btn btn-sm angularCancelButton cancelButton" ng-click="togglePayViaModal()" type="button"> Cancel </button>
-                <button class="btn btn-sm successButton " ng-click="register()" type="submit"> Register </button>
+                <button class="btn btn-sm successButton " ng-click="register(mop, payment_id)" type="submit"> Register </button>
             </div>
 
         </div>

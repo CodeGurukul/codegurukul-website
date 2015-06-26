@@ -106,11 +106,6 @@ angular.module('Codegurukul')
                     type: 'success',
                     duration: 5
                 });
-                $state.transitionTo($state.current, $stateParams, {
-                    reload: true,
-                    inherit: false,
-                    notify: true
-                });
                 $state.reload();
             })
                 .error(function(status) {

@@ -15,11 +15,12 @@ angular.module('Codegurukul')
     }, 
                      function(data){
         $scope.user = data;
+        $scope.userIdentification = $scope.user._id;
 
         if($scope.user.profile.dob){
             var stringDate = $scope.user.profile.dob;
             $scope.user.profile.dob = new Date(stringDate);
-            console.log($scope.user);
+            console.log($scope.user._id);
         }
 
 
@@ -160,6 +161,34 @@ angular.module('Codegurukul')
                 type: 'danger',
                 duration: 5
             });
+        })
+    }
+
+    $scope.generateCertificate = function(courseId, slotId){
+        $scope.processing = true;
+//        console.log(courseId+" "+invoice);
+        User.certificateGen.save({
+            uslug: $stateParams.uslug
+        },{
+            cid: courseId,
+            sid: slotId
+        },function(success){
+            $window.open('/temp/certificate/'+slotId+$scope.userIdentification+'.pdf');
+            $alert({
+                content: 'Certificate generated successfully. If your Certificate does not open in a new tab, please disable pop-up blocking and try again.',
+                placement: 'right',
+                type: 'success',
+                duration: 5
+            });
+            $scope.processing = false;
+        },function(err){
+            $alert({
+                content: err.data,
+                placement: 'right',
+                type: 'danger',
+                duration: 5
+            });
+            $scope.processing = false;
         })
     }
 

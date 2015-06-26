@@ -1,6 +1,7 @@
 angular.module('Codegurukul')
     .controller('AdminCourseDetailsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams, $state) {
 
+    console.log("asdasdas");
     $scope.newUser = true;
 
     Admin.attendees.get({
@@ -9,6 +10,9 @@ angular.module('Codegurukul')
     }, function(data) {
         $scope.attendees = data.attendees;
         console.log($scope.attendees);
+    },function(err){
+        console.log("Fonz");
+        console.log(err);
     });
 
     Admin.leads.get({
@@ -34,19 +38,19 @@ angular.module('Codegurukul')
     $scope.adminAddAttendeeModal = function(){
         $scope.adminAddAttendeeModalShown = !$scope.adminAddAttendeeModalShown;
     }
-    $scope.addAttendee = function(){
+    $scope.addAttendee = function(newUser, fullname, username, email, mobile, mop, amount, paymentStatus, payment_id){
         Admin.addAttendee.save({
             cslug: $stateParams.course,
             sid: $stateParams.slot,
-            fullname: $scope.fullname,
-            username: $scope.username,
-            email: $scope.email,
-            mobile: $scope.mobile,
-            mop: $scope.mop,
-            amount: $scope.amount,
-            paymentStatus: $scope.paymentStatus,
-            newUser: $scope.newUser,
-            payment_id: $scope.payment_id
+            fullname: fullname,
+            username: username,
+            email: email,
+            mobile: mobile,
+            mop: mop,
+            amount: amount,
+            paymentStatus: paymentStatus,
+            newUser: newUser,
+            payment_id: payment_id
         },function(data){
             $scope.adminAddAttendeeModalShown = false;
             $state.reload();
@@ -90,7 +94,7 @@ angular.module('Codegurukul')
             },{
                 mop: mop,
                 amount: amount,
-                status: paymentStatus,
+                paymentStatus: paymentStatus,
                 uid: uid,
                 payment_id: payment_id
             },function(data){

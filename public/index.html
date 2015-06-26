@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>CodeGurukul</title>
-        <link rel="shortcut icon" href="images/favicon.png">
+<!--        <link rel="shortcut icon" href="images/favicon.png">-->
 
         <link href="style.min.css" rel="stylesheet">
         <!-- Main Stylesheet
@@ -267,7 +267,7 @@
 
         <!-- ========== SIGNUP WITH EMAIL MODAL ========== -->
 
-        <modal-dialog class="signupWithEmailModal" show='signupWithEmailModalShown' dialog-title="Signup" height="450px" width="350px">
+        <modal-dialog class="signupWithEmailModal" show='signupWithEmailModalShown' dialog-title="Signup" height="450px" width="350px" ng-cloak>
             <form method="post" name="signupWithEmailForm" ng-controller="SignupCtrl">    
                 <div class="register-modal modal-scroll">
                     <div ng-class="{ &quot;has-error&quot; : signupWithEmailForm.fullname.$invalid &amp;&amp; signupWithEmailForm.fullname.$dirty }" class="form-group has-feedback">
@@ -377,7 +377,7 @@
 
         <!-- ========== LOGIN MODAL ========== -->
 
-        <modal-dialog class="loginModal" show='loginModalShown' dialog-title="Login" height="auto" width="350px">
+        <modal-dialog class="loginModal" show='loginModalShown' dialog-title="Login" height="auto" width="350px" ng-cloak>
             <form method="post" name="loginForm" ng-controller="LoginCtrl">    
                 <div class="register-modal">
                     <div ng-class="{ &quot;has-error&quot; : loginForm.email.$invalid &amp;&amp; loginForm.email.$dirty }" class="form-group has-feedback">

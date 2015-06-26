@@ -24,8 +24,11 @@ exports.pdf = function (req, res) {
           else if (!course) res.send(404).send("Course not found.");
           else if (!course.slots.id(req.body.sid)) res.status(400).send("Invalid slot ID");
           else if (!course.slots.id(req.body.sid).attendees.id(req.user._id)) res.status(400).send("Course not joined");
-          else if (course.slots.id(req.body.sid).attendees.id(req.user._id).status != "completed") res.status(400).send("You have not completed the course");
-        
+          else if (course.slots.id(req.body.sid).attendees.id(req.user._id).progressStatus != "completed") 
+              {
+                  res.status(400).send("You have not completed the course");
+              }
+        else
           //check if invoice exists
           fs.lstat("public/temp/certificate/" + req.body.sid + req.user._id + ".pdf", function(err, stats) {
             if (!err && stats.isFile()) {

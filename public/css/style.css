@@ -2118,3 +2118,7 @@ Optional CSS for partners
     overflow-y: scroll;
     max-height: 360px;
 }
+
+.download-certificate{
+    margin-left: 10px;
+}

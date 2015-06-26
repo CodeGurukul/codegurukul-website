@@ -5,8 +5,12 @@ angular.module('Codegurukul')
         $scope.courses = data;
 //        console.log($scope.courses);
 
-    })
-
+    });
+    
+    $scope.goToAllUsers = function(){
+        $state.go('admin-all-users');
+    };
+    
         $scope.sortType = 'name';
         $scope.sortUser = 'profile.fullname';
         $scope.sortReverse = false;
@@ -21,10 +25,9 @@ angular.module('Codegurukul')
 
 
     //    $scope.courseName = "";
-    $scope.createCourse = function(){
-        console.log("here "+ $scope.courseName);
+    $scope.createCourse = function(courseName){
         Admin.create.save({
-            name: $scope.courseName
+            name: courseName
         },function(data){
             $alert({
                 content: 'Course successfully created.',
@@ -52,8 +55,11 @@ angular.module('Codegurukul')
     Admin.users.query(function(data) {
         $scope.users = data;
         console.log($scope.users);
-
     })
+    
+    $scope.goToAllCourses = function(){
+        $state.go('admin-all-courses');
+    };
 
 
 });

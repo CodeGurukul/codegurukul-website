@@ -147,6 +147,7 @@
                             <option value="Cheque">Cheque</option>
                             <option value="Demand Draft">DD</option>
                             <option value="NEFT">NEFT</option>
+                            <option value="Online">Online</option>
                         </select>
                     </td>
                     <td>
@@ -231,7 +232,7 @@
 
 <!--ADD ATTENDEE MODAL-->
 <modal-dialog class="signupWithEmailModal" show='adminAddAttendeeModalShown' dialog-title="Add an Attendee" height="auto" width="350px">
-    <form method="post" name="adminAddAttendeeForm" ng-controller="AdminCourseDetailsCtrl">    
+    <form method="post" name="adminAddAttendeeForm">    
         <div class="register-modal">
             <div class="radio-buttons">
                 <ul type="none">
@@ -321,7 +322,7 @@
         </div>
         <div class="modalButtons text-center">
             <button class="btn btn-md angularCancelButton cancelButton" type="button" ng-click="adminAddAttendeeModal()"> Cancel </button>
-            <button class="btn btn-md successButton " ng-disabled="adminAddAttendeeForm.$invalid" ng-click="addAttendee()"> Add </button>
+            <button class="btn btn-md successButton " ng-disabled="adminAddAttendeeForm.$invalid" ng-click="addAttendee(newUser, fullname, username, email, mobile, mop, amount, paymentStatus, payment_id)"> Add </button>
         </div>
     </form>  
 </modal-dialog>

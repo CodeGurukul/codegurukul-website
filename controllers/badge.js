@@ -29,7 +29,7 @@ var assignBadge = function(cid, uid) {
             if (err) res.send(err);
             else {
               console.log('badges assigned');
-              res.send(200);
+//              res.send(200);
             }
           });
 				}

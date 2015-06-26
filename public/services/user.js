@@ -8,7 +8,8 @@ angular.module('Codegurukul')
         }),
         resendEmail: $resource('/api/auth/signup/resend'),
         verify: $resource('/api/auth/signup/verification'),
-        invoiceGen: $resource('/api/user/:uslug/invoicePdf')
+        invoiceGen: $resource('/api/user/:uslug/invoicePdf'),
+        certificateGen: $resource('/api/user/:uslug/certificatePdf')
     }
     return User;
 });
