@@ -10,9 +10,6 @@ angular.module('Codegurukul')
     }, function(data) {
         $scope.attendees = data.attendees;
         console.log($scope.attendees);
-    },function(err){
-        console.log("Fonz");
-        console.log(err);
     });
 
     Admin.leads.get({
@@ -20,7 +17,7 @@ angular.module('Codegurukul')
         sid: $stateParams.slot
     },function(data){
         $scope.leads = data.leads;
-//        console.log($scope.leads);
+        //        console.log($scope.leads);
     })
 
     $scope.showAttendees = true;
@@ -88,32 +85,58 @@ angular.module('Codegurukul')
             });
         }
         else if ($scope.edited == true){
-            Admin.changePaymentStatus.save({
-                cslug: $stateParams.course,
-                sid: $stateParams.slot
-            },{
-                mop: mop,
-                amount: amount,
-                paymentStatus: paymentStatus,
-                uid: uid,
-                payment_id: payment_id
-            },function(data){
+            if(mop && paymentStatus && amount){
+                console.log("all present");
+                Admin.changePaymentStatus.save({
+                    cslug: $stateParams.course,
+                    sid: $stateParams.slot
+                },{
+                    mop: mop,
+                    amount: amount,
+                    paymentStatus: paymentStatus,
+                    uid: uid,
+                    payment_id: payment_id
+                },function(data){
+                    $alert({
+                        content: 'Update successful.',
+                        placement: 'right',
+                        type: 'success',
+                        duration: 5
+                    });
+                    $scope.edited = false;
+                },function(error){
+                    $alert({
+                        content: error.data,
+                        placement: 'right',
+                        type: 'danger',
+                        duration: 5
+                    });
+                    $scope.edited = false;
+                    Admin.attendees.get({
+                        cslug: $stateParams.course,
+                        sid: $stateParams.slot
+                    }, function(data) {
+                        $scope.attendees = data.attendees;
+                    });
+
+                })
+            }
+            else{
                 $alert({
-                    content: 'Update successful.',
-                    placement: 'right',
-                    type: 'success',
-                    duration: 5
-                });
-                $scope.edited = false;
-            },function(error){
-                $alert({
-                    content: 'There was an error. Please try again later.',
+                    content: "Update unsuccessful. Please ensure all fields have been filled.",
                     placement: 'right',
                     type: 'danger',
                     duration: 5
                 });
-                $scope.edited = false;
-            })
+                Admin.attendees.get({
+                    cslug: $stateParams.course,
+                    sid: $stateParams.slot
+                }, function(data) {
+                    $scope.attendees = data.attendees;
+                });
+
+            }
+
         }
     }
 
