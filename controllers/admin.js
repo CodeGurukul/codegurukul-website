@@ -105,6 +105,8 @@ exports.changeAttendeeStatus = function (req, res) {
 exports.addPayment = function (req, res, next) {
   if (req.params.cslug && req.params.sid && req.body.mop && req.body.amount && req.body.paymentStatus) {
     if (req.body.uid) {
+      if (req.body.mop != "Cash")
+        if (!req.body.payment_id) return res.status(400).send("Payment ID required for non-cash payment");
       Course.findOne({slug: req.params.cslug}, function (err, course) {
         if (err) res.status(400).send(err);
         else if (!course) res.status(404).send('Course Not Found');
