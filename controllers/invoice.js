@@ -16,13 +16,12 @@ exports.generate = function(req, res, next) {
   if (req.pay) {
       
       if (!req.invoiceId) {
-        console.log('new invoice');
-        if (req.status == "paid") 
+        if (req.paymentStatus == "paid") 
           var bal = 0;
         else bal = req.coursePrice;
 
         var invoice = new Invoice({
-          status: req.status,
+          status: req.paymentStatus,
           total: req.coursePrice,
           balance: bal,
           user: req.userId,
@@ -38,15 +37,14 @@ exports.generate = function(req, res, next) {
         });
         saveInvoice(req, res, invoice);
       } else{
-        console.log('EXISTING invoice');
         Invoice.findById(req.invoiceId, function (err, invoice) {
           if (err) return res.status(400).send(err);
           else if (!invoice) return res.status(400).send("Invoice does not exist");
           else {
-            if (req.status == "paid") 
+            if (req.paymentStatus == "paid") 
               var bal = 0;
             else bal = req.coursePrice;
-            invoice.status = req.status;
+            invoice.status = req.paymentStatus;
             invoice.total = req.coursePrice;
             invoice.paymentId = req.body.payment_id;
             invoice.balance = bal;
@@ -133,6 +131,9 @@ exports.pdf = function (req, res) {
                 }, {
                   "name": "mop",
                   "content": invoice.mop
+                }, {
+                  "name": "balance",
+                  "content": invoice.balance
                 }];
                 var async = false;
                 mandrill_client.templates.render({

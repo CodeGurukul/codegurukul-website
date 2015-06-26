@@ -8,7 +8,7 @@ angular.module('Codegurukul')
         sid: $stateParams.slot
     }, function(data) {
         $scope.attendees = data.attendees;
-//        console.log($scope.attendees);
+        console.log($scope.attendees);
     });
 
     Admin.leads.get({
@@ -73,7 +73,7 @@ angular.module('Codegurukul')
         $scope.edited = true;
     }
 
-    $scope.updatePayment = function(mop,status,amount,uid,payment_id){
+    $scope.updatePayment = function(mop,paymentStatus,amount,uid,payment_id){
         console.log($scope.edited);
         if($scope.edited == false){
             $alert({
@@ -90,7 +90,7 @@ angular.module('Codegurukul')
             },{
                 mop: mop,
                 amount: amount,
-                status: status,
+                status: paymentStatus,
                 uid: uid,
                 payment_id: payment_id
             },function(data){
@@ -100,6 +100,7 @@ angular.module('Codegurukul')
                     type: 'success',
                     duration: 5
                 });
+                $scope.edited = false;
             },function(error){
                 $alert({
                     content: 'There was an error. Please try again later.',
@@ -107,6 +108,7 @@ angular.module('Codegurukul')
                     type: 'danger',
                     duration: 5
                 });
+                $scope.edited = false;
             })
         }
     }
@@ -145,7 +147,7 @@ angular.module('Codegurukul')
                 sid : $stateParams.slot
             },{
                 users: $scope.uidList,
-                status: $scope.courseStatus
+                progressStatus: $scope.progressStatus
             },function(data){
                 $alert({
                     content: 'Update completed successfully',

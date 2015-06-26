@@ -54,7 +54,7 @@
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <select class="form-control" ng-model="courseStatus">
+                <select class="form-control" ng-model="progressStatus">
                     <option value="" selected disabled>Select an option</option>
                     <option value="completed">Completed</option>
                     <option value="incomplete">Incomplete</option>
@@ -112,10 +112,17 @@
                         CHEQUE NO. / <br> TRANSACTION ID
                     </th>
                     <th>
-                        <a href="" ng-click="sortType = 'status'; sortReverse = !sortReverse">
-                            STATUS 
-                            <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
+                        <a href="" ng-click="sortType = 'paymentStatus'; sortReverse = !sortReverse">
+                            PAYMENT STATUS 
+                            <span ng-show="sortType == 'paymentStatus' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'paymentStatus' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortType = 'progressStatus'; sortReverse = !sortReverse">
+                            COURSE STATUS 
+                            <span ng-show="sortType == 'progressStatus' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'progressStatus' && sortReverse" class="fa fa-caret-up"></span>
                         </a>
                     </th>
                     <th>ACTIONS</th>
@@ -147,18 +154,17 @@
                         <input type="text" class="form-control input-sm" placeholder="Enter transaction id" ng-model="attendee.payment_id" ng-show="edit" ng-change="change()" ng-disabled="attendee.mop == 'Cash'">
                     </td>
                     <td class="capitalize-text"> 
-                        <p ng-show="!edit">{{attendee.status}}</p>
-                        <select class="form-control input-sm" ng-model="attendee.status" required ng-show="edit" ng-change="change()">
+                        <p ng-show="!edit">{{attendee.paymentStatus}}</p>
+                        <select class="form-control input-sm" ng-model="attendee.paymentStatus" required ng-show="edit" ng-change="change()">
                             <option value="registered">Registered</option>
                             <option value="processing">Payment in process</option>
                             <option value="paid">Paid</option>
-                            <option value="incomplete">Course Incomplete</option>
-                            <option value="completed">Course Complete</option>
-                            <option value="cancelled">Registration Cancelled</option>
-
                         </select>
                     </td>
-                    <td> <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil"></i> </a> <span  ng-disabled="!edited"><a href="" ng-show="edit" ng-click="updatePayment(attendee.mop, attendee.status, attendee.amount, attendee._id._id, attendee.payment_id); edit = !edit"> <i class="fa fa-floppy-o"></i> </a></span> <a href="" ng-show="!edit"> <i class="fa fa-trash-o"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times"></i> </a> </td>
+                    <td class="capitalize-text"> 
+                        <p>{{attendee.progressStatus}}</p>
+                    </td>
+                    <td> <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil"></i> </a> <span  ng-disabled="!edited"><a href="" ng-show="edit" ng-click="updatePayment(attendee.mop, attendee.paymentStatus, attendee.amount, attendee._id._id, attendee.payment_id); edit = !edit"> <i class="fa fa-floppy-o"></i> </a></span> <a href="" ng-show="!edit"> <i class="fa fa-trash-o"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times"></i> </a> </td>
                 </tr>
             </tbody>
             <hr>

@@ -24,12 +24,12 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         .state('admin-all-courses', {
         url: '/admin/courses',
         templateUrl: 'views/admin-all-courses.html',
-        controller: 'AdminCtrl'
+        controller: 'AdminCoursesCtrl'
     })  
         .state('admin-all-users', {
         url: '/admin/users',
         templateUrl: 'views/admin-all-users.html',
-        controller: 'AdminCtrl'
+        controller: 'AdminUsersCtrl'
     })
         .state('admin-edit-course', {
         url: '/admin/edit-course/:course',

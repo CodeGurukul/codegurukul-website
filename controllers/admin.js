@@ -65,9 +65,9 @@ exports.getAttendees = function(req, res) {
 
 exports.changeAttendeeStatus = function (req, res) {
   if (req.params.cslug && req.params.sid) {
-    if (req.body.status == "completed" ||
-        req.body.status == "incomplete" ||
-        req.body.status == "cancelled") {
+    if (req.body.progressStatus == "completed" ||
+        req.body.progressStatus == "incomplete" ||
+        req.body.progressStatus == "cancelled") {
       Course.findOne({slug: req.params.cslug}, function (err, course) {
         if (err) res.status(400).send(err);
         else if (!course) res.status(404).send('Course Not Found');
@@ -76,12 +76,12 @@ exports.changeAttendeeStatus = function (req, res) {
           var result = [];
           for (var i = 0; i < req.body.users.length; i++) {
             if(course.slots.id(req.params.sid).attendees.id(req.body.users[i])) {
-              course.slots.id(req.params.sid).attendees.id(req.body.users[i]).status = req.body.status; 
-              if (req.body.status == "completed") 
+              course.slots.id(req.params.sid).attendees.id(req.body.users[i]).progressStatus = req.body.progressStatus; 
+              if (req.body.progressStatus == "completed") 
                 course.slots.id(req.params.sid).attendees.id(req.body.users[i]).completionDate = Date.now();
               result.push({
                 id: req.body.users[i],
-                status: req.body.status
+                status: req.body.progressStatus
               })
             } else {
               result.push({
@@ -103,8 +103,10 @@ exports.changeAttendeeStatus = function (req, res) {
 }
 
 exports.addPayment = function (req, res, next) {
-  if (req.params.cslug && req.params.sid && req.body.mop && req.body.amount && req.body.status) {
+  if (req.params.cslug && req.params.sid && req.body.mop && req.body.amount && req.body.paymentStatus) {
     if (req.body.uid) {
+      if (req.body.mop != "Cash")
+        if (!req.body.payment_id) return res.status(400).send("Payment ID required for non-cash payment");
       Course.findOne({slug: req.params.cslug}, function (err, course) {
         if (err) res.status(400).send(err);
         else if (!course) res.status(404).send('Course Not Found');
@@ -114,7 +116,7 @@ exports.addPayment = function (req, res, next) {
           course.slots.id(req.params.sid).attendees.id(req.body.uid).mop = req.body.mop;
           course.slots.id(req.params.sid).attendees.id(req.body.uid).amount = req.body.amount;
           course.slots.id(req.params.sid).attendees.id(req.body.uid).payment_id = req.body.payment_id;
-          course.slots.id(req.params.sid).attendees.id(req.body.uid).status = req.body.status;
+          course.slots.id(req.params.sid).attendees.id(req.body.uid).paymentStatus = req.body.paymentStatus;
           course.save(function (err, course) {
             if (err) return res.status(400).send(err);
             else {
@@ -125,7 +127,7 @@ exports.addPayment = function (req, res, next) {
                   req.to = user.email;
                   req.name = user.profile.fullname;
                   req.pay = true;
-                  req.status = req.body.status;
+                  req.paymentStatus = req.body.paymentStatus;
                   req.coursePrice = req.body.amount;
                   req.userId = req.body.uid;
                   req.mop = req.body.mop;
@@ -284,7 +286,7 @@ exports.joinPrep = function (req, res, next) {
     req.admin = true;
     req.pay = true;
     req.mop = req.body.mop;
-    req.status = req.body.paymentStatus;
+    req.paymentStatus = req.body.paymentStatus;
     req.coursePrice = req.body.amount;
     if (req.body.newUser) {
       if (req.body.fullname && req.body.username && req.body.mobile ) {

@@ -132,7 +132,8 @@ exports.signup = function(req, res, next) {
     else {
       if(!req.admin) res.status(200).send(msg.signup);
       email.sendSignupEmail(user.email, user.username, user.verificationCode); 
-      if (req.body.lead.cslug && req.body.lead.sid) course.addLead(user.id, req.body.lead.cslug, req.body.lead.sid);
+      if (req.body.lead) 
+        if (req.body.lead.cslug && req.body.lead.sid) course.addLead(user.id, req.body.lead.cslug, req.body.lead.sid);
       if (req.admin) {
         email.sendPassword(user.email, user.username, req.body.password);     
         req.user = user;
@@ -421,7 +422,7 @@ exports.getUser = function(req, res) {
         }
       });
   } else {
-    res.status(401).send(msg.unauth);
+    res.status(404).send(msg.unauth);
   }
 };
 
