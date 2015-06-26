@@ -110,21 +110,21 @@ angular.module('Codegurukul', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.
         templateUrl: 'views/all-courses.html',
         controller: 'AllCoursesCtrl'
     })
-        .state('payment', {
-        url: "/payment",
-        templateUrl: "payment.html"
+//        .state('payment', {
+//        url: "/payment",
+//        templateUrl: "payment.html"
+//    })
+        .state('success', {
+        url: '/success',
+        templateUrl: 'views/payment-success.html'
     })
-        .state('payment.success', {
-        url: "/success",
-        templateUrl: "payment.success.html"
+        .state('failure', {
+        url: '/failure',
+        templateUrl: 'views/payment-failure.html'
     })
-        .state('payment.failure', {
-        url: "/failure",
-        templateUrl: "payment.failure.html"
-    })
-        .state('payment.cancelled', {
-        url: "/cancelled",
-        templateUrl: "payment.cancelled.html"
+        .state('cancelled', {
+        url: '/cancelled',
+        templateUrl: 'views/payment-cancelled.html'
     })
 
 })
