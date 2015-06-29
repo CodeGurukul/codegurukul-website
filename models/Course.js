@@ -9,52 +9,59 @@ var courseSchema = new mongoose.Schema({
   shortDescription: String,
   thumb: String,
   slug: String,
+  status: {
+    type: String,
+    default: 'unpublished',
+    enum: ['unpublished', 'published']
+  },
   price: Number,
   tech: String,                  //cant use domain clashes with node
   duration: String,
   inviteOnly: Boolean,
   inviteMessage: String,
   slots: [{
-      startDate: Date,
-      city: String,
-      batchSize: Number,
-      location: String,
+    startDate: Date,
+    city: String,
+    batchSize: Number,
+    location: String,
+    status: {
+      type: String,
+      default: 'unpublished',
+      enum: ['unpublished', 'new', 'closed', 'open']
+    },
+    attendees: [{
+      _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+      completionDate: Date,
+      mop: String,
+      payment_id: String,        //Cheque no., DD, NEFT transaction no, Razorpay transaction ID etc
+      amount: Number,
+      paymentStatus: {
+        type: String,
+        default: 'registered',
+        enum: ['registered', 'processing', 'paid']
+      },
+      progressStatus: {
+        type: String,
+        default: 'incomplete',
+        enum: ['cancelled', 'completed', 'incomplete']
+      }
+    }],
+    leads: [{
+      _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+      creationDate: Date,
       status: {
         type: String,
-        default: 'unpublished',
-        enum: ['unpublished', 'new', 'closed', 'open']
-      },
-      attendees: [{
-        _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-        completionDate: Date,
-        mop: String,
-        payment_id: String,        //Cheque no., DD, NEFT transaction no, Razorpay transaction ID etc
-        amount: Number,
-        paymentStatus: {
-          type: String,
-          default: 'registered',
-          enum: ['registered', 'processing', 'paid']
-        },
-        progressStatus: {
-          type: String,
-          default: 'incomplete',
-          enum: ['cancelled', 'completed', 'incomplete']
-        }
-      }],
-      leads: [{
-        _id : {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-        creationDate: Date,
-        status: {
-          type: String,
-          default: 'new',
-          enum: ['new', 'cancelled', 'converted' ]
-        }
-      }]  
-    }],
+        default: 'new',
+        enum: ['new', 'cancelled', 'converted' ]
+      }
+    }]  
+  }],
   mentors:[{
     name: String,
     description: String,
     signature: String,
+    facebook: String,
+    linkedin: String,
     designation: String,
     image: String
   }],

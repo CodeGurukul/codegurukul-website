@@ -3,6 +3,7 @@ var User = require('../models/User');
 var secret = require('../config/secrets');
 var config = new secret();
 var mongoose = require('mongoose');
+var moment = require('moment');
 
 exports.getUsers = function (req, res) {
   User.find().select('-password').exec(function (err, users) {
@@ -197,82 +198,210 @@ exports.createCourse = function (req, res) {
 };
 
 exports.updateCourse = function (req, res) {
-  Course.findOne({
-    cslug: req.body.cslug
-  }, function (err, course) {
-    if (err) return res.status(400).send(err);
-    if (!course) return res.status(404).send("Course not found");
-    else {
-      course.description = req.body.description;
-      course.shortDescription = req.body.shortDescription;
-      if (!isNumber(req.body.price)) return res.status(400).send("Price should be a number");
-      course.price = req.body.price;
-      course.tech = req.body.tech;
-      course.duration = req.body.duration;
-      course.date = req.body.date;
-      if (!isNumber(req.body.batchSize)) return res.status(400).send("Batch size should a number");
-      course.batchSize = req.body.batchSize;
-      course.inviteOnly = req.body.inviteOnly;
-      if (course.inviteOnly) course.inviteMessage = req.body.inviteMessage;
-      for (var i = 0; i <= req.body.mentors.length - 1; i++) {
-        if (req.body.mentors[i]._id) {
-          if(course.mentors.id(req.body.mentors[i]._id)){
-            course.mentors.id(req.body.mentors[i]._id).title = req.body.mentors[i].title;
-            course.mentors.id(req.body.mentors[i]._id).description = req.body.mentors[i].description;
-          }
-          else{
-            res.status(412).send('Invalid testimonial Id');
-          }
-        } else {
-          course.mentors.push({
-            title: req.body.mentors[i].title,
-            description: req.body.mentors[i].description
-          });
+  if (req.body.type && req.params.cslug) {
+    Course.findOne({
+      slug: req.params.cslug
+    }, function (err, course) {
+      if (err) return res.status(400).send(err);
+      if (!course) return res.status(404).send("Course not found");  
+      switch(req.body.type){
+        case 'det':{
+          updateDetails(req, res, course);
+          break;
         }
-      };
-      for (var i = 0; i <= req.body.content.length - 1; i++) {
-        if (req.body.content[i]._id) {
-          if(course.content.id(req.body.content[i]._id)){
-            course.content.id(req.body.content[i]._id).title = req.body.content[i].title;
-            course.content.id(req.body.content[i]._id).duration = req.body.content[i].duration;
-            course.content.id(req.body.content[i]._id).difficulty = req.body.content[i].difficulty;
-            course.content.id(req.body.content[i]._id).description = req.body.content[i].description;
-          }
-          else{
-            res.status(412).send('Invalid content Id');
-          }
-        } else {
-          course.content.push({
-            title: req.body.content[i].title,
-            duration: req.body.content[i].duration,
-            difficulty: req.body.content[i].difficulty,
-            description: req.body.content[i].description,
-          });
+        case 'stat': {
+          updateStatus(req, res, course);
+          break;
         }
-      };
-      for (var i = 0; i <= req.body.testimonials.length - 1; i++) {
-        if (req.body.testimonials[i]._id) {
-          if(course.testimonials.id(req.body.testimonials[i]._id)){
-            course.testimonials.id(req.body.testimonials[i]._id).title = req.body.testimonials[i].title;
-            course.testimonials.id(req.body.testimonials[i]._id).description = req.body.testimonials[i].description;
-          }
-          else{
-            res.status(412).send('Invalid testimonial Id');
-          }
-        } else {
-          course.testimonials.push({
-            title: req.body.testimonials[i].title,
-            description: req.body.testimonials[i].description
-          });
+        case 'slot': {
+          updateSlot(req, res, course);
+          break;
         }
-      };
+        case 'ment': {
+          updateMentor(req, res, course);
+          break;
+        }
+        case 'part': {
+          updatePartner(req, res, course);
+          break;
+        }
+        case 'cont': {
+          updateContent(req, res, course);
+          break;
+        }
+        case 'test': {
+          updateTestimonial(req, res, course);
+          break;
+        }
+        default: {
+          return res.status(400).send("Invalid type");    
+        }
+      }
+    })
+  } else return res.status(400).send("Type & course slug required");
+}
 
-      course.save(function (err, course) {
-        if (err) return res.status(400).send(err);
-        else {
-          res.status(200).send("Course updated successfully");
-        }
-      })
+var updateDetails = function (req, res, course) {
+  course.description = req.body.description;
+  course.shortDescription = req.body.shortDescription;
+  if (!isNumber(req.body.price)) return res.status(400).send("Price should be a positive number");
+  course.price = req.body.price;
+  course.tech = req.body.tech;
+  course.duration = req.body.duration;
+  course.inviteOnly = req.body.inviteOnly;
+  if (course.inviteOnly) course.inviteMessage = req.body.inviteMessage;
+  saveCourse(req, res, course);
+}
+
+var updateStatus = function (req, res, course) {
+  if (req.body.status == "published") {
+    if (course.description && 
+    course.shortDescription && 
+    course.price && 
+    course.tech &&
+    course.duration &&
+    course.slots.length) {
+      course.status = req.body.status;
+      saveCourse(req, res, course);
+    } else return res.status(400).send("Fill all required course details before publishing");
+  } else if (req.body.status == "unpublished") {
+    course.status = req.body.status;
+    saveCourse(req, res, course);
+  } else return res.status(400).send("Invalid status");
+}
+
+var updateSlot = function (req, res, course) {
+  if (req.body.slotId) { //existing slot
+    if (course.slots.id(req.body.slotId)) {
+      if (req.body.startDate) {
+        var now = moment();
+        if (moment(req.body.startDate).isBefore(now)) 
+          return res.status(400).send("Start date can not be in the past");
+        else
+          course.slots.id(req.body.slotId).startDate = req.body.startDate;      
+      };
+      course.slots.id(req.body.slotId).city = req.body.city;
+      if (!isNumber(req.body.batchSize)) return res.status(400).send("Batch size should be a positive number");
+      course.slots.id(req.body.slotId).batchSize = req.body.batchSize;
+      course.slots.id(req.body.slotId).location = req.body.location;
+      if (req.body.status) {
+        if (req.body.status == "unpublished" ||
+        req.body.status == "new" ||
+        req.body.status == "closed" ||
+        req.body.status == "open") {
+          course.slots.id(req.body.slotId).status = req.body.status;
+        } else return res.status(400).send("Invalid slot status");
+      }; 
+      saveCourse(req, res, course);
+    } else return res.status(400).send("Invalid slot ID");
+  } else { //new slot
+    if (req.body.status) {
+      if (req.body.status == "unpublished" ||
+      req.body.status == "new" ||
+      req.body.status == "closed" ||
+      req.body.status == "open") {
+        //nothing
+      } else return res.status(400).send("Invalid slot status");
+    }; 
+    if (req.body.startDate) {
+      var now = moment();
+      if (moment(req.body.startDate).isBefore(now)) 
+        return res.status(400).send("Start date can not be in the past");     
+    };
+    course.slots.push({
+      startDate: req.body.startDate,
+      city: req.body.city,
+      batchSize: req.body.batchSize,
+      location: req.body.location,
+      status: req.body.status
+    });
+    saveCourse(req, res, course);
+  }
+}
+
+var updateMentor = function (req, res, course) {
+  if (!req.body.name) return res.status(400).send("Mentor name required");     
+  if (req.body.mentorId) {
+    if (course.mentors.id(req.body.mentorId)) {
+      course.mentors.id(req.body.mentorId).name = req.body.name;
+      course.mentors.id(req.body.mentorId).description = req.body.description;
+      course.mentors.id(req.body.mentorId).designation = req.body.designation;
+      course.mentors.id(req.body.mentorId).facebook = req.body.facebook;
+      course.mentors.id(req.body.mentorId).linkedin = req.body.linkedin;
+      saveCourse(req, res, course);
+    } else return res.status(400).send("Invalid mentor ID");
+  } else {
+    course.mentors.push({
+      name: req.body.name,
+      description: req.body.description,
+      facebook: req.body.facebook,
+      linkedin: req.body.linkedin,
+      designation: req.body.designation
+    });
+    saveCourse(req, res, course);
+  }
+}
+
+var updatePartner = function (req, res, course) {
+  if (!req.body.name) return res.status(400).send("Partner name required");     
+  if (req.body.partnerId) {
+    if (course.partners.id(req.body.partnerId)) {
+      course.partners.id(req.body.partnerId).name = req.body.name;
+      course.partners.id(req.body.partnerId).link = req.body.link;
+      saveCourse(req, res, course);
+    } else return res.status(400).send("Invalid partner ID");
+  } else {
+    course.partners.push({
+      name: req.body.name,
+      link: req.body.link
+    });
+    saveCourse(req, res, course);
+  }
+}
+
+var updateContent = function (req, res, course) {
+  if (!req.body.title) return res.status(400).send("Content title required");     
+  if (req.body.contentId) {
+    if (course.content.id(req.body.contentId)) {
+      course.content.id(req.body.contentId).title = req.body.title;
+      course.content.id(req.body.contentId).description = req.body.description;
+      course.content.id(req.body.contentId).duration = req.body.duration;
+      course.content.id(req.body.contentId).difficulty = req.body.difficulty;
+      saveCourse(req, res, course);
+    } else return res.status(400).send("Invalid content ID");
+  } else {
+    course.contents.push({
+      title: req.body.title,
+      description: req.body.description,
+      duration: req.body.duration,
+      difficulty: req.body.difficulty
+    });
+    saveCourse(req, res, course);
+  }
+}
+
+var updateTestimonial = function (req, res, course) {
+  if (!req.body.name) return res.status(400).send("Testimonial name required");     
+  if (req.body.testimonialId) {
+    if (course.testimonials.id(req.body.testimonialId)) {
+      course.testimonials.id(req.body.testimonialId).name = req.body.name;
+      course.testimonials.id(req.body.testimonialId).description = req.body.description;
+      saveCourse(req, res, course);
+    } else return res.status(400).send("Invalid testimonial ID");
+  } else {
+    course.testimonials.push({
+      name: req.body.name,
+      description: req.body.description
+    });
+    saveCourse(req, res, course);
+  }
+}
+
+var saveCourse = function (req, res, course) {
+  course.save(function (err, course) {
+    if (err) return res.status(400).send(err);
+    else {
+      res.status(200).send("Course updated successfully");
     }
   })
 }
@@ -312,7 +441,7 @@ exports.joinPrep = function (req, res, next) {
 
 
 function isNumber(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
+  return !isNaN(parseFloat(n)) && isFinite(n) && n > -1;
 }
 
 function codeGen(len) {
