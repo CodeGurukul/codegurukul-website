@@ -46,6 +46,21 @@ angular.module('Codegurukul')
             });
         });
     };
+    
+    $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+        $rootScope.previousState = from.name;
+        $rootScope.previousCourseParams = fromParams.course;
+        $rootScope.previousSlotParams = fromParams.slot;
+    });
+    
+    $rootScope.previousPage = function(){
+        $state.go($rootScope.previousState,{
+            course: $rootScope.previousCourseParams,
+            slot: $rootScope.previousSlotParams
+        });
+    }
+    
+
 
 });
 
@@ -54,12 +69,25 @@ angular.module('Codegurukul')
 
     Admin.users.query(function(data) {
         $scope.users = data;
-        console.log($scope.users);
+//        console.log($scope.users);
     })
     
     $scope.goToAllCourses = function(){
         $state.go('admin-all-courses');
     };
+    
+    $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+        $rootScope.previousState = from.name;
+        $rootScope.previousCourseParams = fromParams.course;
+        $rootScope.previousSlotParams = fromParams.slot;
+    });
+    
+    $rootScope.previousPage = function(){
+        $state.go($rootScope.previousState,{
+            course: $rootScope.previousCourseParams,
+            slot: $rootScope.previousSlotParams
+        });
+    }
 
 
 });

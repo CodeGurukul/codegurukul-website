@@ -200,7 +200,8 @@ exports.login = function(req, res) {
       var token = createJwtToken(user);
       var temp = {
         username: user.username,
-        slug: user.slug
+        slug: user.slug,
+        role: user.role
       };
       console.log(temp);
       res.send({

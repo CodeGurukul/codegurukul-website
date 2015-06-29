@@ -16,7 +16,10 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-2 col-sm-offset-5">
+            <div class="col-sm-2">
+                <button class="btn btn-primary btn-md toggle-leads-attendees" ng-click="previousPage()" ng-if="previousState"> Previous page</button>
+            </div>
+            <div class="col-sm-2 col-sm-offset-8">
                 <button class="btn btn-primary btn-md toggle-leads-attendees" ng-click="goToAllUsers()">View All Users</button>
             </div>
         </div>

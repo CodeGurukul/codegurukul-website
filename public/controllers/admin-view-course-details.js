@@ -1,7 +1,6 @@
 angular.module('Codegurukul')
     .controller('AdminCourseDetailsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams, $state) {
 
-    console.log("asdasdas");
     $scope.newUser = true;
 
     Admin.attendees.get({
@@ -9,7 +8,7 @@ angular.module('Codegurukul')
         sid: $stateParams.slot
     }, function(data) {
         $scope.attendees = data.attendees;
-        console.log($scope.attendees);
+        //        console.log($scope.attendees);
     });
 
     Admin.leads.get({
@@ -192,6 +191,19 @@ angular.module('Codegurukul')
                 });
             })
         }
+    }
+
+    $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+        $rootScope.previousState = from.name;
+        $rootScope.previousCourseParams = fromParams.course;
+        $rootScope.previousSlotParams = fromParams.slot;
+    });
+    
+    $rootScope.previousPage = function(){
+        $state.go($rootScope.previousState,{
+            course: $rootScope.previousCourseParams,
+            slot: $rootScope.previousSlotParams
+        });
     }
 
 
