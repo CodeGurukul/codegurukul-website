@@ -303,6 +303,7 @@ var updateSlot = function (req, res, course) {
         //nothing
       } else return res.status(400).send("Invalid slot status");
     }; 
+    if (!isNumber(req.body.batchSize)) return res.status(400).send("Batch size should be a positive number");
     if (req.body.startDate) {
       var now = moment();
       if (moment(req.body.startDate).isBefore(now)) 
@@ -370,7 +371,7 @@ var updateContent = function (req, res, course) {
       saveCourse(req, res, course);
     } else return res.status(400).send("Invalid content ID");
   } else {
-    course.contents.push({
+    course.content.push({
       title: req.body.title,
       description: req.body.description,
       duration: req.body.duration,
@@ -406,6 +407,95 @@ var saveCourse = function (req, res, course) {
   })
 }
 
+exports.deleteCourse = function (req, res) {
+  if (req.body.type && req.params.cslug) {
+    Course.findOne({
+      slug: req.params.cslug
+    }, function (err, course) {
+      if (err) return res.status(400).send(err);
+      if (!course) return res.status(404).send("Course not found");  
+      switch(req.body.type){
+        case 'slot': {
+          deleteSlot(req, res, course);
+          break;
+        }
+        case 'ment': {
+          deleteMentor(req, res, course);
+          break;
+        }
+        case 'part': {
+          deletePartner(req, res, course);
+          break;
+        }
+        case 'cont': {
+          deleteContent(req, res, course);
+          break;
+        }
+        case 'test': {
+          deleteTestimonial(req, res, course);
+          break;
+        }
+        case 'course': {
+          course.remove(function (err, course) {
+            if (err) return res.status(400).send(err);
+            else {
+              res.status(200).send("Course deleted");
+            }
+          })
+          break;
+        }
+        default: {
+          return res.status(400).send("Invalid type");    
+        }
+      }
+    })
+  } else return res.status(400).send("Type & course slug required");
+}
+
+var deleteSlot = function (req, res, course) {
+  if (req.body.slotId) {
+    if (course.slots.id(req.body.slotId)) {
+      course.slots.pull({_id: req.body.slotId})
+      saveCourse(req, res, course);
+    } else return res.status(400).send("Invalid slot ID");
+  } else return res.status(400).send("Slot ID required");
+}
+
+var deleteMentor = function (req, res, course) {
+  if (req.body.mentorId) {
+    if (course.mentors.id(req.body.mentorId)) {
+      course.mentors.pull({_id: req.body.mentorId})
+      saveCourse(req, res, course);
+    } else return res.status(400).send("Invalid mentor ID");
+  } else return res.status(400).send("Mentor ID required");
+}
+
+var deletePartner = function (req, res, course) {
+  if (req.body.partnerId) {
+    if (course.partners.id(req.body.partnerId)) {
+      course.partners.pull({_id: req.body.partnerId})
+      saveCourse(req, res, course);
+    } else return res.status(400).send("Invalid partner ID");
+  } else return res.status(400).send("Partner ID required");
+}
+
+var deleteContent = function (req, res, course) {
+  if (req.body.contentId) {
+    if (course.content.id(req.body.contentId)) {
+      course.content.pull({_id: req.body.contentId})
+      saveCourse(req, res, course);
+    } else return res.status(400).send("Invalid content ID");
+  } else return res.status(400).send("Content ID required");
+}
+
+var deleteTestimonial = function (req, res, course) {
+  if (req.body.testimonialId) {
+    if (course.testimonials.id(req.body.testimonialId)) {
+      course.testimonials.pull({_id: req.body.testimonialId})
+      saveCourse(req, res, course);
+    } else return res.status(400).send("Invalid testimonial ID");
+  } else return res.status(400).send("Testimonial ID required");
+}
 
 exports.joinPrep = function (req, res, next) {
   if (req.body.email && req.body.mop && req.body.amount 
