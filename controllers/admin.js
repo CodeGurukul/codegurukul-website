@@ -4,6 +4,8 @@ var secret = require('../config/secrets');
 var config = new secret();
 var mongoose = require('mongoose');
 var moment = require('moment');
+var fs = require('fs');
+
 
 exports.getUsers = function (req, res) {
   User.find().select('-password').exec(function (err, users) {
@@ -529,6 +531,20 @@ exports.joinPrep = function (req, res, next) {
   } else return res.status(400).send("Enter all required fields");
 }
 
+exports.uploadImages = function(req, res) {
+    var file = req.files.file;
+    console.log(req.params.cslug);
+    console.log(req.body.type);
+    console.log(req.body.mentorId);
+    console.log(req.files.file);
+
+    fs.readFile(file.path, function(err, image) {
+      if (err) res.send(err);
+      else {
+        console.log(image);
+      }
+    });
+};
 
 
 function isNumber(n) {
