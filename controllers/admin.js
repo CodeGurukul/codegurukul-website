@@ -408,6 +408,7 @@ var saveCourse = function (req, res, course) {
 }
 
 exports.deleteCourse = function (req, res) {
+    console.log(req.body.type + " "+ req.params.cslug);
   if (req.body.type && req.params.cslug) {
     Course.findOne({
       slug: req.params.cslug

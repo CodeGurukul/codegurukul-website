@@ -14,106 +14,338 @@
 <!-- ========== TITLE END ========== -->
 
 <section>
-    <h2 class="text-center">{{course.name}}</h2>
 
-    <div class="container jumbotron">
-        <form>
-            <h5 class="text-center">Course Details</h5>
-            <div class="form-group">
-                <label>Course Name:</label>
-                <input type="text" class="form-control input-md" ng-model="course.name" readonly>
-            </div>
-            <div class="form-group">
-                <label>Course Desription:</label>
-                <textarea type="text" class="form-control input-md" ng-model="course.description"></textarea>
-            </div>
-            <div class="form-group">
-                <label>Course Image Path:</label>
-                <input type="text" class="form-control input-md">
-            </div>
-            <div class="form-group">
-                <label>Course Price:</label>
-                <input type="text" class="form-control input-md" ng-model="course.price">
-            </div>
-            <div class="form-group">
-                <label>Course Technology:</label>
-                <input type="text" class="form-control input-md" ng-model="course.tech">
-            </div>
-            <div class="form-group">
-                <label>Course Duration:</label>
-                <input type="text" class="form-control input-md" ng-model="course.duration">
-            </div>
-            <div class="form-group">
-                <label>Course Date:</label>
-                <input type="date" class="form-control input-md" ng-model="course.date">
-            </div>
-            <div class="form-group">
-                <label>Course Batch Size:</label>
-                <input type="number" class="form-control input-md" ng-model="course.batchSize">
-            </div>
-            <div class="form-group">
-                <label>Course Place:</label>
-                <input type="text" class="form-control input-md" ng-model="course.place">
-            </div>
-            <div class="form-group">
-                <label>Invite Only:</label>
-                <select class="form-control input-md" ng-model="course.inviteOnly">
-                    <option value="true">True</option>
-                    <option value="false">False</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Invite Message:</label>
-                <textarea type="text" class="form-control input-md" ng-model="course.inviteMessage"></textarea>
-            </div>
-            <hr>
-            <hr>
-            <h5 class="text-center">Mentors</h5>
-            <div class="form-group" ng-repeat="mentor in course.mentors">
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <label>Mentor Name:</label>
-                    <input type="text" class="form-control input-md" ng-model="mentor.name"><br>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <label>Profile Link:</label>
-                    <input type="text" class="form-control input-md" ng-model="mentor.profile"><br>
-                </div>
-                <div class="col-md-12 col-xs-12 custom-padding-bottom-20">
-                    <label>Description:</label>
-                    <input type="text" class="form-control input-md" ng-model="mentor.description">
-                </div>
-                <hr>
-            </div>
+    <div class="container">
+        <tabset justified="true">
+            <tab heading="Details">
 
-            <hr>
-            <hr>
-            <h5>Course Contents</h5>
-            <div class="form-group" ng-repeat="content in course.content">
-                <div class="col-md-12">
-                    <label> Module Number {{$index + 1}}</label>
+                <div class="tab-section-one" ng-controller="AdminEditCourseDetailsCtrl">
+                    <div class="col-md-12">
+                        <form class="form-horizontal" name="updateDetailsForm">
+                            <div class="form-group">
+                                <label class="col-md-12 text-left">Name:</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control custom-margin-bottom-15" ng-model="course.name" ng-disabled="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12 text-left">Description</label>
+                                <div class="col-md-12">
+                                    <text-angular class="custom-margin-bottom-15" placeholder="Description" ng-model="course.description" ta-toolbar="[
+                                                                                                                                                      ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre'],
+                                                                                                                                                      ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+                                                                                                                                                      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+                                                                                                                                                      ['wordcount', 'charcount']]"></text-angular>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-12 text-left">Short Description</label>
+                                <div class="col-md-12">
+                                    <textarea class="form-control input-md custom-margin-bottom-15" placeholder="Description" ng-model="course.shortDescription" rows="2"></textarea>
+                                </div>
+                            </div>
+
+                            <div ng-class="{ &quot;has-error&quot; : updateDetailsForm.price.$invalid &amp;&amp; updateDetailsForm.price.$dirty }" class="form-group has-feedback">
+                                <label class="col-md-12 text-left">Price</label>
+                                <div class="col-md-12">
+                                    <input type="number" class="form-control input-md custom-margin-bottom-15" name="price" placeholder="Price" ng-model="course.price" min="0">
+                                </div>
+                                <div ng-if="updateDetailsForm.price.$dirty" ng-messages="updateDetailsForm.price.$error" class="help-block text-danger text-center">
+                                    <div ng-message="number">Please enter a valid price.</div>
+                                    <div ng-message="min">Price cannot be negative. Please enter a positive value for the price.</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-12 text-left">Technology</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control input-md custom-margin-bottom-15" placeholder="Technology" ng-model="course.tech">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-12 text-left">Duration</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control input-md custom-margin-bottom-15" placeholder="Duration" ng-model="course.duration">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-12 text-left">Invite Only</label>
+                                <div class="col-md-12">
+                                    <select class="form-control" ng-model="course.inviteOnly">
+                                        <option value="" selected disabled>Select an option</option>
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-12 text-left">Invite Message</label>
+                                <div class="col-md-12">
+                                    <textarea class="form-control custom-margin-bottom-15" placeholder="Invite message" ng-model="course.inviteMessage" rows="2" ng-disabled="course.inviteOnly == 'false'"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 col-md-offset-5">
+                                <button class="btn btn-primary" ng-disabled="updateDetailsForm.$invalid" ng-click="updateDetailsTab(course.description,course.shortDescription,course.price,course.tech,course.duration,course.inviteOnly,course.inviteMessage)">Update</button>
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <label>Title</label>
-                    <input type="text" class="form-control input-md" ng-model="content.title">
+
+            </tab>
+
+            <tab heading="Mentors">
+                <div class="tab-section-one" ng-controller="AdminEditCourseMentorsCtrl">
+                    <div ng-repeat="mentor in course.mentors">
+                        <form class="form" name="updateMentorForm">
+                            <div class="col-md-12">
+                                <label>Mentor Name</label>
+                            </div>
+                            <div class="col-md-12">
+                                <div ng-class="{ &quot;has-error&quot; : updateMentorForm.name.$invalid &amp;&amp; updateMentorForm.name.$dirty }" class="form-group has-feedback">
+                                    <input type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.name" name="name" required>
+                                    <div ng-if="updateMentorForm.name.$dirty" ng-messages="updateMentorForm.name.$error" class="help-block text-danger text-center">
+                                        <div ng-message="required">Mentor name is required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Mentor Designation</label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.designation">
+                            </div>
+                            <div class="col-md-12">
+                                <label>Mentor Description</label>
+                            </div>
+                            <div class="col-md-12">
+                                <textarea type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.description" rows="2"></textarea>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Facebook Link</label>
+                            </div>
+                            <div class="col-md-12">
+                                <div ng-class="{ &quot;has-error&quot; : updateMentorForm.facebook.$invalid &amp;&amp; updateMentorForm.facebook.$dirty }" class="form-group has-feedback">
+                                    <input type="url" class="form-control custom-margin-bottom-15" ng-model="mentor.facebook" name="facebook">
+                                    <div ng-if="updateMentorForm.facebook.$dirty" ng-messages="updateMentorForm.facebook.$error" class="help-block text-danger text-center">
+                                        <div ng-message="url">Please enter a valid Facebook URL.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label>LinkedIn Link</label>
+                            </div>
+                            <div class="col-md-12">
+                                <div ng-class="{ &quot;has-error&quot; : updateMentorForm.name.$invalid &amp;&amp; updateMentorForm.linkedin.$dirty }" class="form-group has-feedback">
+                                    <input type="url" class="form-control custom-margin-bottom-15" ng-model="mentor.linkedin" name="linkedin">
+                                    <div ng-if="updateMentorForm.linkedin.$dirty" ng-messages="updateMentorForm.linkedin.$error" class="text-danger text-center">
+                                        <div ng-message="url">Please enter a valid LinkedIn URL.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-md-offset-4">
+                                <button class="btn btn-primary" type="submit" ng-disabled="updateMentorForm.$invalid" ng-click="updateMentor(mentor._id,mentor.name,mentor.designation,mentor.description,mentor.facebook,mentor.linkedin)">Update Mentor</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" ng-click="deleteMentor(mentor._id)">Delete Partner</button>
+                            </div>
+                        </form>
+                        <div class="col-md-12">
+                            <hr>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <label>Difficulty</label>
-                    <select class="form-control input-md" ng-model="content.difficulty">
-                        <option value="Easy" selected>Easy</option>
-                        <option value="Intermediate" selected>Intermediate</option>
-                        <option value="Hard" selected>Hard</option>
-                    </select>
+                <div class="col-md-2 col-md-offset-5">
+                    <button class="btn btn-primary" type="submit" ng-click="addMentor()">Add a new Mentor</button>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <label>Time</label>
-                    <input type="text" class="form-control input-md" ng-model="content.time">
+            </tab>
+
+            <tab heading="Testimonials">
+                <div class="tab-section-one" ng-controller="AdminEditCourseTestimonialsCtrl">
+                    <div class="col-md-12" ng-repeat="testimonial in course.testimonials">
+
+                        <div class="col-md-12">
+                            <label>Name</label>
+                        </div>
+                        <input type="text" class="form-control custom-margin-bottom-15" ng-model="testimonial.name">
+                        <div class="col-md-12">
+                            <label>Description</label>
+                        </div>
+                        <textarea rows="3" type="text" class="form-control custom-margin-bottom-15" ng-model="testimonial.description"></textarea>
+                        <div class="col-md-2 col-md-offset-5">
+                            <button class="btn btn-primary" ng-click="updateTestimonial(testimonial._id, testimonial.name, testimonial.description)">Update Testimonial</button>
+                        </div>
+                        <div class="col-md-12">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-md-offset-5">
+                        <button class="btn btn-primary" type="submit" ng-click="addTestimonial()">Add a new testimonial</button>
+                    </div>
                 </div>
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <label>Description</label>
-                    <textarea type="text" class="form-control input-md" ng-model="content.description"></textarea>
+            </tab>
+
+            <tab heading="Slots">
+                <div class="tab-section-one" ng-controller="AdminEditCourseSlotsCtrl">
+                    <div class="col-md-12" ng-repeat="slot in course.slots">
+                        <form class="form" name="updateSlotForm">
+                            <div class="col-md-12">
+                                <label>City</label>
+                            </div>
+                            <input type="text" class="form-control custom-margin-bottom-15" ng-model="slot.city">
+                            <div class="col-md-12">
+                                <label>Location</label>
+                            </div>
+                            <input type="text" class="form-control custom-margin-bottom-15" ng-model="slot.location">
+                            <div ng-class="{ &quot;has-error&quot; : updateSlotForm.batchSize.$invalid &amp;&amp; updateSlotForm.batchSize.$dirty }" class="form-group has-feedback">
+                                <div class="col-md-12">
+                                    <label>Batch Size</label>
+                                </div>
+                                <input type="number" class="form-control custom-margin-bottom-15" ng-model="slot.batchSize" min="0" name="batchSize">
+                                <div ng-if="updateSlotForm.batchSize.$dirty" ng-messages="updateSlotForm.batchSize.$error" class="help-block text-danger text-center">
+                                    <div ng-message="number">Please enter a valid batch size.</div>
+                                    <div ng-message="min">Batch size cannot be negative. Please enter a positive value for the batch size.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Start Date</label>
+                            </div>
+                            <div ng-class="{ &quot;has-error&quot; : updateSlotForm.startDate.$invalid &amp;&amp; updateSlotForm.startDate.$dirty }" class="form-group has-feedback">
+                                <input type="date" class="form-control custom-margin-bottom-15" ng-model="slot.startDate" value="{{slot.startDate | date:format:'dd-MM-yyy'}}" name="startDate" min="{{currentDate}}">
+                                <div ng-if="updateSlotForm.startDate.$dirty" ng-messages="updateSlotForm.startDate.$error" class="help-block text-danger text-center">
+                                    <div ng-message="min">Slot start date cannot be in the past. Please enter a valid start date for the slot.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Slot Status</label>
+                            </div>
+                            <select class="form-control custom-margin-bottom-15" ng-model="slot.status">
+                                <option value="unpublished" selected>Unpublished</option>
+                                <option value="new">New</option>
+                                <option value="closed">Closed</option>
+                                <option value="open">Open</option>
+                            </select>
+                            <div class="col-md-2 col-md-offset-4">
+                                <button class="btn btn-primary" ng-click="updateSlot(slot._id, slot.city, slot.location, slot.batchSize, slot.startDate, slot.status)" ng-disabled="updateSlotForm.$invalid">Update Slot</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" ng-click="deleteSlot(slot._id)">Delete Slot</button>
+                            </div>
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+                            </div>
+                        </form>
+                    <div class="col-md-2 col-md-offset-5">
+                        <button class="btn btn-primary" type="submit" ng-click="addSlot()">Add a New Slot</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </tab>
+
+            <tab heading="Partners">
+                <div class="tab-section-one" ng-controller="AdminEditCoursePartnersCtrl">
+                    <div class="col-md-12" ng-repeat="partner in course.partners">
+                        <form name="updatePartnerForm">
+                            <div class="col-md-12">
+                                <label>Partner Name</label>
+                            </div>
+                            <div ng-class="{ &quot;has-error&quot; : updatePartnerForm.partnerName.$invalid &amp;&amp; updatePartnerForm.partnerName.$dirty }" class="form-group has-feedback">
+                                <input type="text" class="form-control custom-margin-bottom-15" ng-model="partner.name" name="partnerName" required>
+                                <div ng-if="updatePartnerForm.partnerName.$dirty" ng-messages="updatePartnerForm.partnerName.$error" class="help-block text-danger text-center">
+                                    <div ng-message="required">Partner name is required.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Partner Link</label>
+                            </div>
+                            <input type="url" class="form-control custom-margin-bottom-15" ng-model="partner.link">
+                            <div class="col-md-2 col-md-offset-4">
+                                <button class="btn btn-primary" ng-click="updatePartner(partner._id, partner.name, partner.link)" ng-disabled="updatePartnerForm.$invalid">Update Partner</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" ng-click="deletePartner(partner._id)">Delete Partner</button>
+                            </div>
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2 col-md-offset-5">
+                        <button class="btn btn-primary" type="submit" ng-click="addPartner()">Add a New Partner</button>
+                    </div>
+                </div>
+            </tab>
+
+            <tab heading="Content">
+                <div class="tab-section-one" ng-controller="AdminEditCourseContentCtrl">
+                    <div class="col-md-12" ng-repeat="content in course.content">
+                        <form name="updateContentForm">
+                            <div class="col-md-12">
+                                <label>Title</label>
+                            </div>
+                            <div ng-class="{ &quot;has-error&quot; : updateContentForm.title.$invalid &amp;&amp; updateContentForm.title.$dirty }" class="form-group has-feedback">
+                                <input type="text" class="form-control custom-margin-bottom-15" ng-model="content.title" name="title" required>
+                                <div ng-if="updateContentForm.title.$dirty" ng-messages="updateContentForm.title.$error" class="help-block text-danger text-center">
+                                    <div ng-message="required">Module title is required.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Description</label>
+                            </div>
+                            <textarea type="text" class="form-control custom-margin-bottom-15" ng-model="content.description" rows="3"></textarea>
+                            <div class="col-md-12">
+                                <label>Duration</label>
+                            </div>
+                            <input type="text" class="form-control custom-margin-bottom-15" ng-model="content.duration">
+                            <div class="col-md-12">
+                                <label>Difficulty</label>
+                            </div>
+                            <select class="form-control custom-margin-bottom-15" ng-model="content.difficulty">
+                                <option value="Easy" selected>Easy</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Hard">Hard</option>
+                            </select>
+                            <div class="col-md-2 col-md-offset-4">
+                                <button class="btn btn-primary" ng-click="updateContent(content._id, content.title, content.description, content.duration, content.difficulty)" ng-disabled="updateContentForm.$invalid">Update Module</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" ng-click="deleteModule(content._id)">Delete Partner</button>
+                            </div>
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2 col-md-offset-5">
+                        <button class="btn btn-primary" type="submit" ng-click="addModule()">Add a New Module</button>
+                    </div>
+                </div>
+            </tab>
+
+            <tab heading="Status">
+                <div class="tab-section-one" ng-controller="AdminEditCourseStatusCtrl">
+                    <div class="col-md-12">
+                        <label>Course Status</label>
+                        <select class="form-control custom-margin-bottom-15" ng-model="course.status">
+                            <option value="unpublished" selected>Unpublished</option>
+                            <option value="published" >Published</option>
+                        </select>
+                        <div class="col-md-2 col-md-offset-5">
+                            <button class="btn btn-primary" ng-click="updateStatus(course.status)">Update Status</button>
+                        </div>
+                        <div class="col-md-12">
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </tab>
+
+        </tabset>
     </div>
 
 </section>

@@ -31,7 +31,8 @@ gulp.task('css', function(){
         'public/vendor/ngModal/dist/ng-modal.css',
         'public/vendor/angular-tooltips/src/css/angular-tooltips.css',
         'public/vendor/slick-carousel/slick/slick.css',
-        'public/vendor/slick-carousel/slick/slick-theme.css'
+        'public/vendor/slick-carousel/slick/slick-theme.css',
+        'public/vendor/textAngular/dist/textAngular.css'
     ])
         .pipe(plumber({
         errorHandler: onError
@@ -63,6 +64,8 @@ gulp.task('compress', function() {
         'public/vendor/angular-validation-match/dist/angular-input-match.min.js',
         'public/vendor/angular-slick/dist/slick.min.js',
         'public/vendor/slick-carousel/slick/slick.min.js',
+        'public/vendor/textAngular/dist/textAngular-rangy.min.js',
+        'public/vendor/textAngular/dist/textAngular.min.js',
         'public/js/retina-1.1.0.min.js',
         'public/js/jquery.easing.1.3.js',
         'public/js/jquery.animate-enhanced.min.js',
