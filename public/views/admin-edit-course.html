@@ -152,7 +152,7 @@
                                 <button class="btn btn-primary" type="submit" ng-disabled="updateMentorForm.$invalid" ng-click="updateMentor(mentor._id,mentor.name,mentor.designation,mentor.description,mentor.facebook,mentor.linkedin)">Update Mentor</button>
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" ng-click="deleteMentor(mentor._id)">Delete Partner</button>
+                                <button class="btn btn-primary" ng-click="deleteMentor(mentor._id)">Delete Mentor</button>
                             </div>
                         </form>
                         <div class="col-md-12">
@@ -177,8 +177,11 @@
                             <label>Description</label>
                         </div>
                         <textarea rows="3" type="text" class="form-control custom-margin-bottom-15" ng-model="testimonial.description"></textarea>
-                        <div class="col-md-2 col-md-offset-5">
+                        <div class="col-md-2 col-md-offset-4">
                             <button class="btn btn-primary" ng-click="updateTestimonial(testimonial._id, testimonial.name, testimonial.description)">Update Testimonial</button>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary" ng-click="deleteTestimonial(testimonial._id)">Delete testimonial</button>
                         </div>
                         <div class="col-md-12">
                             <hr>
@@ -314,7 +317,7 @@
                                 <button class="btn btn-primary" ng-click="updateContent(content._id, content.title, content.description, content.duration, content.difficulty)" ng-disabled="updateContentForm.$invalid">Update Module</button>
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" ng-click="deleteModule(content._id)">Delete Partner</button>
+                                <button class="btn btn-primary" ng-click="deleteModule(content._id)">Delete Module</button>
                             </div>
                             <div class="col-md-12">
                                 <hr>

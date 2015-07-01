@@ -18,23 +18,28 @@ angular.module('Codegurukul')
     });
 
     $scope.addMentor = function(){
-        $scope.course.mentors.length = $scope.course.mentors.length+1;
+        $scope.newMentor= $scope.course.mentors.length+1;
+        $scope.course.mentors.push($scope.newMentor);
     }
 
     $scope.addTestimonial = function(){
-        $scope.course.testimonials.length = $scope.course.testimonials.length+1;
+        $scope.newTestimonial = $scope.course.testimonials.length+1;
+        $scope.course.testimonials.push($scope.newTestimonial);
     }
 
     $scope.addSlot = function(){
-        $scope.course.slots.length = $scope.course.slots.length+1;
+        $scope.newSlot = $scope.course.slots.length+1;
+        $scope.course.slots.push($scope.newSlot);
     }
 
     $scope.addPartner = function(){
-        $scope.course.partners.length = $scope.course.partners.length+1;
+        $scope.newPartner = $scope.course.partners.length+1;
+        $scope.course.partners.push($scope.newPartner);
     }
 
     $scope.addModule = function(){
-        $scope.course.content.length = $scope.course.content.length+1;
+        $scope.newContent = $scope.course.content.length+1;
+        $scope.course.content.push($scope.newContent);
     }
 
 });
