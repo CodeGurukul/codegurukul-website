@@ -408,14 +408,14 @@ var saveCourse = function (req, res, course) {
 }
 
 exports.deleteCourse = function (req, res) {
-    console.log(req.body.type + " "+ req.params.cslug);
-  if (req.body.type && req.params.cslug) {
+    console.log(req.query.type + " "+ req.params.cslug);
+  if (req.query.type && req.params.cslug) {
     Course.findOne({
       slug: req.params.cslug
     }, function (err, course) {
       if (err) return res.status(400).send(err);
       if (!course) return res.status(404).send("Course not found");  
-      switch(req.body.type){
+      switch(req.query.type){
         case 'slot': {
           deleteSlot(req, res, course);
           break;
@@ -454,45 +454,45 @@ exports.deleteCourse = function (req, res) {
 }
 
 var deleteSlot = function (req, res, course) {
-  if (req.body.slotId) {
-    if (course.slots.id(req.body.slotId)) {
-      course.slots.pull({_id: req.body.slotId})
+  if (req.query.slotId) {
+    if (course.slots.id(req.query.slotId)) {
+      course.slots.pull({_id: req.query.slotId})
       saveCourse(req, res, course);
     } else return res.status(400).send("Invalid slot ID");
   } else return res.status(400).send("Slot ID required");
 }
 
 var deleteMentor = function (req, res, course) {
-  if (req.body.mentorId) {
-    if (course.mentors.id(req.body.mentorId)) {
-      course.mentors.pull({_id: req.body.mentorId})
+  if (req.query.mentorId) {
+    if (course.mentors.id(req.query.mentorId)) {
+      course.mentors.pull({_id: req.query.mentorId})
       saveCourse(req, res, course);
     } else return res.status(400).send("Invalid mentor ID");
   } else return res.status(400).send("Mentor ID required");
 }
 
 var deletePartner = function (req, res, course) {
-  if (req.body.partnerId) {
-    if (course.partners.id(req.body.partnerId)) {
-      course.partners.pull({_id: req.body.partnerId})
+  if (req.query.partnerId) {
+    if (course.partners.id(req.query.partnerId)) {
+      course.partners.pull({_id: req.query.partnerId})
       saveCourse(req, res, course);
     } else return res.status(400).send("Invalid partner ID");
   } else return res.status(400).send("Partner ID required");
 }
 
 var deleteContent = function (req, res, course) {
-  if (req.body.contentId) {
-    if (course.content.id(req.body.contentId)) {
-      course.content.pull({_id: req.body.contentId})
+  if (req.query.contentId) {
+    if (course.content.id(req.query.contentId)) {
+      course.content.pull({_id: req.query.contentId})
       saveCourse(req, res, course);
     } else return res.status(400).send("Invalid content ID");
   } else return res.status(400).send("Content ID required");
 }
 
 var deleteTestimonial = function (req, res, course) {
-  if (req.body.testimonialId) {
-    if (course.testimonials.id(req.body.testimonialId)) {
-      course.testimonials.pull({_id: req.body.testimonialId})
+  if (req.query.testimonialId) {
+    if (course.testimonials.id(req.query.testimonialId)) {
+      course.testimonials.pull({_id: req.query.testimonialId})
       saveCourse(req, res, course);
     } else return res.status(400).send("Invalid testimonial ID");
   } else return res.status(400).send("Testimonial ID required");
