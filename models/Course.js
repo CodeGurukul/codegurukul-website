@@ -80,6 +80,9 @@ var courseSchema = new mongoose.Schema({
     name: String,
     image: String,
     description: String
+  }],
+  badges:[{
+    _id : {type: mongoose.Schema.Types.ObjectId, ref: 'Badge' }
   }]
 })
 
