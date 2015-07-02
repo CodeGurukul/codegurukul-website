@@ -11,6 +11,7 @@ var logger = require('morgan');
 var errorHandler = require('errorhandler');
 var methodOverride = require('method-override');
 
+var multipart = require('connect-multiparty');
 
 var _ = require('lodash');
 var path = require('path');
@@ -50,6 +51,10 @@ var hour = 3600000;
 var day = hour * 24;
 var week = day * 7;
 
+app.use(multipart({
+	uploadDir: path.join(__dirname, 'temp')
+}));
+var multipartMiddleWare = multipart();
 
 /**
  * Express configuration.

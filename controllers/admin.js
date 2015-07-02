@@ -5,6 +5,7 @@ var config = new secret();
 var mongoose = require('mongoose');
 var moment = require('moment');
 var fs = require('fs');
+var path = require('path');
 
 
 exports.getUsers = function (req, res) {
@@ -521,7 +522,7 @@ exports.joinPrep = function (req, res, next) {
       req.existingUser = true
       User.findOne({email: req.body.email}, function (err, user) {
         if (err) res.send(err);
-        else if (!user) res.status(404).send('User not found.');
+        else if (!user) res.status(404).send("User not found");
         else {
           req.user = user;
           next();
@@ -532,20 +533,104 @@ exports.joinPrep = function (req, res, next) {
 }
 
 exports.uploadImages = function(req, res) {
-    var file = req.files.file;
-    console.log(req.params.cslug);
-    console.log(req.body.type);
-    console.log(req.body.mentorId);
-    console.log(req.files.file);
-
-    fs.readFile(file.path, function(err, image) {
-      if (err) res.send(err);
-      else {
-        console.log(image);
-      }
-    });
+  
+  if (req.body.type && req.params.cslug) {
+    Course.findOne({
+      slug: req.params.cslug
+    }, function (err, course) {
+      if (err) return res.status(400).send(err);
+      if (!course) return res.status(404).send("Course not found");  
+      var file = req.files.file;
+      var filename = path.basename(file.path);
+      var dir = path.dirname(file.path);
+      var newPath = path.resolve(dir,"..") + "/public/img/course/" + course.slug + "/" + filename;
+      var newDir = path.resolve(dir,"..") + "/public/img/course/" + course.slug;
+        // Query the entry
+      fs.stat(newDir, function (err) {
+        if (err)
+          if(err.errno = 34) {
+            fs.mkdirSync(newDir);
+          } else return res.status(400).send(err);
+        fs.rename(file.path, newPath, function (err) {
+          if (err) return res.status(400).send(err);
+          else {
+            switch(req.body.type){
+            case 'course': {
+              if (req.body.imageType) {
+                courseImage(req, res, course);
+              } else return res.status(400).send("Course image type required");  
+              break;
+            }
+            case 'ment': {
+              // if (req.body.imageType) {
+                mentorImage(req, res, course);
+              // } else return res.status(400).send("Mentor image type required");  
+              break;
+            }
+            case 'part': {
+              partnerImage(req, res, course);
+              break;
+            }
+            case 'test': {
+              testimonialImage(req, res, course);
+              break;
+            }
+            default: {
+              return res.status(400).send("Invalid type");    
+            }
+          }
+          }
+        })
+      });
+      
+    })
+  } else return res.status(400).send("Type & course slug required");
 };
 
+var courseImage = function (req, res, course) {
+    var filename = path.basename(req.files.file.path);
+    if (req.body.imageType == "thumb"){
+      course.thumb = "/img/course/" + course.slug + "/" + filename;
+    } else return res.status(400).send("Invalid course image type");    
+    saveCourse(req, res, course);
+}
+
+var mentorImage = function (req, res, course) {
+  if (req.body.mentorId) {
+    if (course.mentors.id(req.body.mentorId)) {
+      var filename = path.basename(req.files.file.path);
+      if (req.body.imageType == "dp"){
+        course.mentors.id(req.body.mentorId).image = "/img/course/" + course.slug + "/" + filename;
+      } else if (req.body.imageType == "sig") {
+        course.mentors.id(req.body.mentorId).signature = "/img/course/" + course.slug + "/" + filename;
+      } else return res.status(400).send("Invalid mentor image type");    
+      saveCourse(req, res, course);
+    } else return res.status(400).send("Invalid mentor ID");
+
+  } else return res.status(400).send("Mentor ID required");
+}
+
+var partnerImage = function (req, res, course) {
+  if (req.body.partnerId) {
+    if (course.partners.id(req.body.partnerId)) {
+      var filename = path.basename(req.files.file.path);
+      course.partners.id(req.body.partnerId).image = "/img/course/" + course.slug + "/" + filename;
+      saveCourse(req, res, course);
+    } else return res.status(400).send("Invalid partner ID");
+
+  } else return res.status(400).send("Partner ID required");
+}
+
+var testimonialImage = function (req, res, course) {
+  if (req.body.testimonialId) {
+    if (course.testimonials.id(req.body.testimonialId)) {
+      var filename = path.basename(req.files.file.path);
+      course.testimonials.id(req.body.testimonialId).image = "/img/course/" + course.slug + "/" + filename;
+      saveCourse(req, res, course);
+    } else return res.status(400).send("Invalid testimonial ID");
+
+  } else return res.status(400).send("Testimonial ID required");
+}
 
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n) && n > -1;
