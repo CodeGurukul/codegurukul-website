@@ -1,212 +1,264 @@
 <div class="tab-section-one" ng-controller="AdminEditCourseMentorsCtrl">
-    <table class="table table-striped">
-        <tbody>
-            <tr ng-repeat="mentor in course.mentors">
-                <td class="col-md-11">
-                    <form class="form" name="updateMentorForm">
-                        <div class="col-md-12">
-                            <label>Mentor Name:</label>
-                            <span ng-show="!edit"><p>{{mentor.name}}</p></span>
-                        </div>
-                        <div class="col-md-12" ng-show="edit">
-                            <div ng-class="{ &quot;has-error&quot; : updateMentorForm.name.$invalid &amp;&amp; updateMentorForm.name.$dirty }" class="form-group has-feedback">
-                                <input type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.name" name="name" required>
-                                <div ng-if="updateMentorForm.name.$dirty" ng-messages="updateMentorForm.name.$error" class="help-block text-danger text-center">
-                                    <div ng-message="required">Mentor name is required.</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <label>Mentor Designation:</label>
-                            <span ng-show="!edit"><p>{{mentor.designation}}</p></span>
-                        </div>
-                        <div class="col-md-12" ng-show="edit">
-                            <input type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.designation">
-                        </div>
-                        <div class="col-md-12">
-                            <label>Mentor Description:</label>
-                            <span ng-show="!edit"><p>{{mentor.description}}</p></span>
-                        </div>
-                        <div class="col-md-12" ng-show="edit">
-                            <textarea type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.description" rows="2"></textarea>
-                        </div>
-                        <div class="col-md-12">
-                            <label>Facebook Link:</label>
-                            <span ng-show="!edit"><p>{{mentor.facebook}}</p></span>
-                        </div>
-                        <div class="col-md-12" ng-show="edit">
-                            <div ng-class="{ &quot;has-error&quot; : updateMentorForm.facebook.$invalid &amp;&amp; updateMentorForm.facebook.$dirty }" class="form-group has-feedback">
-                                <input type="url" class="form-control custom-margin-bottom-15" ng-model="mentor.facebook" name="facebook">
-                                <div ng-if="updateMentorForm.facebook.$dirty" ng-messages="updateMentorForm.facebook.$error" class="help-block text-danger text-center">
-                                    <div ng-message="url">Please enter a valid Facebook URL.</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <label>LinkedIn Link:</label>
-                            <span ng-show="!edit"><p>{{mentor.linkedin}}</p></span>
-                        </div>
-                        <div class="col-md-12" ng-show="edit">
-                            <div ng-class="{ &quot;has-error&quot; : updateMentorForm.name.$invalid &amp;&amp; updateMentorForm.linkedin.$dirty }" class="form-group has-feedback">
-                                <input type="url" class="form-control custom-margin-bottom-15" ng-model="mentor.linkedin" name="linkedin">
-                                <div ng-if="updateMentorForm.linkedin.$dirty" ng-messages="updateMentorForm.linkedin.$error" class="text-danger text-center">
-                                    <div ng-message="url">Please enter a valid LinkedIn URL.</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <label>Image</label>
-                            <span ng-show="!edit"><p>{{mentor.image}}</p></span>
-                        </div>
-                        <div class="input-group  custom-margin-bottom-15" ng-show="edit">
-                            <input type="file" nv-file-select uploader="uploader" class="form-control">
-<!--
-                            <div class="input-group-addon" >
-                                                                <a><i class="fa fa-upload"></i></a>
-                                <button class="btn btn-primary btn-xs" ng-click="item.upload()">upload</button>
-                            </div>
--->
-                        </div>
-
-                        <table ng-show="edit">
-                            <thead>
-                                <tr>
-                                    <th width="50%">Name</th>
-                                    <th ng-show="uploader.isHTML5">Size</th>
-                                    <th ng-show="uploader.isHTML5">Progress</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tr ng-repeat="item in uploader.queue">
-                                <td><strong>{{ item.file.name }}</strong>
-                                    <!-- Image preview-->
-                                    <!-- auto height-->
-                                    <!-- <div ng-thumb="{ file: item.file, width: 100 }"></div>-->
-                                    <!-- auto width-->
-                                    <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
-                                    <!-- fixed width and height-->
-                                    <!-- <div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
-                                </td>
-                                <td ng-show="uploader.isHTML5" nowrap="">{{ item.file.size/1024/1024|number:2 }} MB</td>
-                                <td ng-show="uploader.isHTML5">
-                                    <div style="margin-bottom: 0;" class="progress">
-                                        <div role="progressbar" ng-style="{ 'width': item.progress + '%' }" class="progress-bar"></div>
-                                    </div>
-                                </td>
-                                <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>
-                                <td nowrap="">
-                                    <button type="button" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-upload"></span> Upload</button>
-                                    <button type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-ban-circle"></span> Cancel</button>
-                                    <button type="button" ng-click="item.remove()" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span> Remove</button>
-                                </td>
-                            </tr>
-
-                        </table>
-
-                        <div class="col-md-2 col-md-offset-4" ng-show="edit">
-                            <button class="btn btn-primary" type="submit" ng-disabled="updateMentorForm.$invalid" ng-click="updateMentor(mentor._id,mentor.name,mentor.designation,mentor.description,mentor.facebook,mentor.linkedin)">Update Mentor</button>
-                        </div>
-                        <div class="col-md-2" ng-show="edit">
-                            <button class="btn btn-primary" ng-click="deleteMentor(mentor._id)">Delete Mentor</button>
-                        </div>
-                    </form>
-                </td>
-                <td class="col-md-1">
-                    <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil pull-right"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times pull-right"></i> </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="col-md-12">
-        <hr>
-    </div>
-
-    <div class="col-md-2 col-md-offset-5" ng-show="!addNewMentor">
-        <button class="btn btn-primary" type="submit" ng-click="addNewMentor=!addNewMentor">Add a new Mentor</button>
-    </div>
-
-    <form class="form" name="updateMentorForm" ng-show="addNewMentor">
-        <div class="col-md-12">
-            <label>Mentor Name</label>
-        </div>
-        <div class="col-md-12">
-            <div ng-class="{ &quot;has-error&quot; : updateMentorForm.name.$invalid &amp;&amp; updateMentorForm.name.$dirty }" class="form-group has-feedback">
-                <input type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.name" name="name" ng-required="addNewMentor">
-                <div ng-if="updateMentorForm.name.$dirty" ng-messages="updateMentorForm.name.$error" class="help-block text-danger text-center">
-                    <div ng-message="required">Mentor name is required.</div>
-                </div>
+  <table class="table table-striped">
+    <tbody>
+      <tr ng-repeat="mentor in course.mentors">
+        <td class="col-md-11">
+          <form class="form" name="updateMentorForm">
+            <div class="col-md-12">
+              <label>Mentor Name:</label>
+              <span ng-show="!edit"><p>{{mentor.name}}</p></span>
             </div>
-        </div>
-        <div class="col-md-12">
-            <label>Mentor Designation</label>
-        </div>
-        <div class="col-md-12">
-            <input type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.designation">
-        </div>
-        <div class="col-md-12">
-            <label>Mentor Description</label>
-        </div>
-        <div class="col-md-12">
-            <textarea type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.description" rows="2"></textarea>
-        </div>
-        <div class="col-md-12">
-            <label>Facebook Link</label>
-        </div>
-        <div class="col-md-12">
-            <div ng-class="{ &quot;has-error&quot; : updateMentorForm.facebook.$invalid &amp;&amp; updateMentorForm.facebook.$dirty }" class="form-group has-feedback">
+            <div class="col-md-12" ng-show="edit">
+              <div ng-class="{ &quot;has-error&quot; : updateMentorForm.name.$invalid &amp;&amp; updateMentorForm.name.$dirty }" class="form-group has-feedback">
+                <input type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.name" name="name" required>
+                <div ng-if="updateMentorForm.name.$dirty" ng-messages="updateMentorForm.name.$error" class="help-block text-danger text-center">
+                  <div ng-message="required">Mentor name is required.</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <label>Mentor Designation:</label>
+              <span ng-show="!edit"><p>{{mentor.designation}}</p></span>
+            </div>
+            <div class="col-md-12" ng-show="edit">
+              <input type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.designation">
+            </div>
+            <div class="col-md-12">
+              <label>Mentor Description:</label>
+              <span ng-show="!edit"><p>{{mentor.description}}</p></span>
+            </div>
+            <div class="col-md-12" ng-show="edit">
+              <textarea type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.description" rows="2"></textarea>
+            </div>
+            <div class="col-md-12">
+              <label>Facebook Link:</label>
+              <span ng-show="!edit"><p>{{mentor.facebook}}</p></span>
+            </div>
+            <div class="col-md-12" ng-show="edit">
+              <div ng-class="{ &quot;has-error&quot; : updateMentorForm.facebook.$invalid &amp;&amp; updateMentorForm.facebook.$dirty }" class="form-group has-feedback">
                 <input type="url" class="form-control custom-margin-bottom-15" ng-model="mentor.facebook" name="facebook">
                 <div ng-if="updateMentorForm.facebook.$dirty" ng-messages="updateMentorForm.facebook.$error" class="help-block text-danger text-center">
-                    <div ng-message="url">Please enter a valid Facebook URL.</div>
+                  <div ng-message="url">Please enter a valid Facebook URL.</div>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="col-md-12">
-            <label>LinkedIn Link</label>
-        </div>
-        <div class="col-md-12">
-            <div ng-class="{ &quot;has-error&quot; : updateMentorForm.name.$invalid &amp;&amp; updateMentorForm.linkedin.$dirty }" class="form-group has-feedback">
+            <div class="col-md-12">
+              <label>LinkedIn Link:</label>
+              <span ng-show="!edit"><p>{{mentor.linkedin}}</p></span>
+            </div>
+            <div class="col-md-12" ng-show="edit">
+              <div ng-class="{ &quot;has-error&quot; : updateMentorForm.name.$invalid &amp;&amp; updateMentorForm.linkedin.$dirty }" class="form-group has-feedback">
                 <input type="url" class="form-control custom-margin-bottom-15" ng-model="mentor.linkedin" name="linkedin">
                 <div ng-if="updateMentorForm.linkedin.$dirty" ng-messages="updateMentorForm.linkedin.$error" class="text-danger text-center">
-                    <div ng-message="url">Please enter a valid LinkedIn URL.</div>
+                  <div ng-message="url">Please enter a valid LinkedIn URL.</div>
                 </div>
+              </div>
             </div>
-        </div>
 
-        <div class="col-md-12">
-            <label>Image</label>
-        </div>
-        <div class="input-group  custom-margin-bottom-15" ng-show="edit">
-            <input type="file" nv-file-select uploader="uploader" class="form-control">
-            <div class="input-group-addon">
-                <a ng-click="item.upload()"><i class="fa fa-upload"></i></a>
+            <div class="col-md-12">
+              <label>Image URL:  </label>
+              <span class="pull-right" ng-show="edit"><a href="" ng-click="uploadImage = !uploadImage"> <i class="fa fa-pencil fa-lg" ng-show="!uploadImage"></i><i class="fa fa-times fa-lg" ng-show="uploadImage"></i> </a></span>
+              <span ng-show="!uploadImage"><p ng-model="mentor.image"> {{mentor.image}} </p></span>
             </div>
-        </div>
+            <div class="input-group  custom-margin-bottom-15" ng-show="uploadImage">
+              <input type="file" nv-file-select uploader="uploader" class="form-control">
 
-        <div class="col-md-2 col-md-offset-4">
-            <button class="btn btn-primary" type="submit" ng-disabled="updateMentorForm.$invalid" ng-click="updateMentor(mentor._id,mentor.name,mentor.designation,mentor.description,mentor.facebook,mentor.linkedin)">Update Mentor</button>
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-primary" ng-click="addNewMentor=!addNewMentor">Cancel</button>
-        </div>
-    </form>
+              <div class="input-group-addon input-md">
+                <i class="fa fa-upload"></i>
 
-    <modal-dialog show="imageCrop" dialog-title="Crop Image" height="auto" width="auto">
-        <div class="addMemberModalDiv col-md-12">
-            <div ng-repeat="item in uploader.queue">
-                <div class="cropArea">
-                    <img-crop image="item.image" result-image="item.croppedImage" area-type="square" result-image-size="300"></img-crop>
-                </div><img ng-src="{{item.croppedImage}}" class="croppedImage"/>
-                <div class="progress">
-                    <div role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" class="progress-bar"></div>
-                </div>
-                <button ng-click="item.upload()" class="btn btn-md addMemberModalButton">Upload Image</button>
-                <button ng-click="imageCrop = !imageCrop" class="btn btn-md addMemberModalButton">Cancel</button>
+              </div>
             </div>
+
+            <table class="table" ng-show="uploader.queue.length !='0' && edit && uploadImage">
+              <thead >
+                <tr>
+                  <th width="20%">Name</th>
+                  <th width="20%" ng-show="uploader.isHTML5">Size</th>
+                  <th width="30%" ng-show="uploader.isHTML5">Progress</th>
+                  <!--              <th width="20%">Status</th>-->
+                  <th width="30%">Actions</th>
+                </tr>
+              </thead>
+              <tr ng-repeat="item in uploader.queue">
+                <td><strong>{{ item.file.name }}</strong>
+                  <!-- Image preview-->
+                  <!-- auto height-->
+                  <!-- <div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+                  <!-- auto width-->
+                  <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                  <!-- fixed width and height-->
+                  <!-- <div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+                </td>
+                <td ng-show="uploader.isHTML5" nowrap="">{{ item.file.size/1024/1024|number:2 }} MB</td>
+                <td ng-show="uploader.isHTML5">
+                  <div style="margin-bottom: 0;" class="progress">
+                    <div role="progressbar" ng-style="{ 'width': item.progress + '%' }" class="progress-bar"></div>
+                  </div>
+                </td>
+                <!--            <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>-->
+                <td nowrap="">
+                  <button type="button" ng-click="sendData(mentor._id,'dp');item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" class="btn btn-success btn-xs"><span class="fa fa-upload"></span> Upload</button>
+                  <button type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading" class="btn btn-warning btn-xs"><span class="fa fa-times"></span> Cancel</button>
+                  <button type="button" ng-click="item.remove()" class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> Remove</button>
+                </td>
+              </tr>
+
+            </table>
+
+            
+            
+            <div class="col-md-12">
+              <label>Mentor Signature URL:  </label>
+              <span class="pull-right" ng-show="edit"><a href="" ng-click="uploadSignature = !uploadSignature"> <i class="fa fa-pencil fa-lg" ng-show="!uploadSignature"></i><i class="fa fa-times fa-lg" ng-show="uploadSignature"></i> </a></span>
+              <span ng-show="!uploadSignature"><p> {{mentor.signature}} </p></span>
+            </div>
+            <div class="input-group  custom-margin-bottom-15" ng-show="uploadSignature">
+              <input type="file" nv-file-select uploader="uploader" class="form-control">
+
+              <div class="input-group-addon input-md">
+                <i class="fa fa-upload"></i>
+
+              </div>
+            </div>
+
+            <table class="table" ng-show="uploader.queue.length !='0' && edit && uploadSignature">
+              <thead >
+                <tr>
+                  <th width="20%">Name</th>
+                  <th width="20%" ng-show="uploader.isHTML5">Size</th>
+                  <th width="30%" ng-show="uploader.isHTML5">Progress</th>
+                  <!--              <th width="20%">Status</th>-->
+                  <th width="30%">Actions</th>
+                </tr>
+              </thead>
+              <tr ng-repeat="item in uploader.queue">
+                <td><strong>{{ item.file.name }}</strong>
+                  <!-- Image preview-->
+                  <!-- auto height-->
+                  <!-- <div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+                  <!-- auto width-->
+                  <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                  <!-- fixed width and height-->
+                  <!-- <div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+                </td>
+                <td ng-show="uploader.isHTML5" nowrap="">{{ item.file.size/1024/1024|number:2 }} MB</td>
+                <td ng-show="uploader.isHTML5">
+                  <div style="margin-bottom: 0;" class="progress">
+                    <div role="progressbar" ng-style="{ 'width': item.progress + '%' }" class="progress-bar"></div>
+                  </div>
+                </td>
+                <!--            <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>-->
+                <td nowrap="">
+                  <button type="button" ng-click="sendData(mentor._id,'sig');item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" class="btn btn-success btn-xs"><span class="fa fa-upload"></span> Upload</button>
+                  <button type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading" class="btn btn-warning btn-xs"><span class="fa fa-times"></span> Cancel</button>
+                  <button type="button" ng-click="item.remove()" class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> Remove</button>
+                </td>
+              </tr>
+
+            </table>
+
+            <div class="col-md-2 col-md-offset-4" ng-show="edit">
+              <button class="btn btn-primary" type="submit" ng-disabled="updateMentorForm.$invalid" ng-click="updateMentor(mentor._id,mentor.name,mentor.designation,mentor.description,mentor.facebook,mentor.linkedin)">Update Mentor</button>
+            </div>
+            <div class="col-md-2" ng-show="edit">
+              <button class="btn btn-primary" ng-click="deleteMentor(mentor._id)">Delete Mentor</button>
+            </div>
+          </form>
+        </td>
+        <td class="col-md-1">
+          <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil pull-right"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times pull-right"></i> </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="col-md-12">
+    <hr>
+  </div>
+
+  <div class="col-md-2 col-md-offset-5" ng-show="!addNewMentor">
+    <button class="btn btn-primary" type="submit" ng-click="addNewMentor=!addNewMentor">Add a new Mentor</button>
+  </div>
+
+  <form class="form" name="updateMentorForm" ng-show="addNewMentor">
+    <div class="col-md-12">
+      <label>Mentor Name</label>
+    </div>
+    <div class="col-md-12">
+      <div ng-class="{ &quot;has-error&quot; : updateMentorForm.name.$invalid &amp;&amp; updateMentorForm.name.$dirty }" class="form-group has-feedback">
+        <input type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.name" name="name" ng-required="addNewMentor">
+        <div ng-if="updateMentorForm.name.$dirty" ng-messages="updateMentorForm.name.$error" class="help-block text-danger text-center">
+          <div ng-message="required">Mentor name is required.</div>
         </div>
-    </modal-dialog>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <label>Mentor Designation</label>
+    </div>
+    <div class="col-md-12">
+      <input type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.designation">
+    </div>
+    <div class="col-md-12">
+      <label>Mentor Description</label>
+    </div>
+    <div class="col-md-12">
+      <textarea type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.description" rows="2"></textarea>
+    </div>
+    <div class="col-md-12">
+      <label>Facebook Link</label>
+    </div>
+    <div class="col-md-12">
+      <div ng-class="{ &quot;has-error&quot; : updateMentorForm.facebook.$invalid &amp;&amp; updateMentorForm.facebook.$dirty }" class="form-group has-feedback">
+        <input type="url" class="form-control custom-margin-bottom-15" ng-model="mentor.facebook" name="facebook">
+        <div ng-if="updateMentorForm.facebook.$dirty" ng-messages="updateMentorForm.facebook.$error" class="help-block text-danger text-center">
+          <div ng-message="url">Please enter a valid Facebook URL.</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <label>LinkedIn Link</label>
+    </div>
+    <div class="col-md-12">
+      <div ng-class="{ &quot;has-error&quot; : updateMentorForm.name.$invalid &amp;&amp; updateMentorForm.linkedin.$dirty }" class="form-group has-feedback">
+        <input type="url" class="form-control custom-margin-bottom-15" ng-model="mentor.linkedin" name="linkedin">
+        <div ng-if="updateMentorForm.linkedin.$dirty" ng-messages="updateMentorForm.linkedin.$error" class="text-danger text-center">
+          <div ng-message="url">Please enter a valid LinkedIn URL.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <label>Image</label>
+    </div>
+    <div class="input-group  custom-margin-bottom-15" ng-show="edit">
+      <input type="file" nv-file-select uploader="uploader" class="form-control">
+      <div class="input-group-addon">
+        <a ng-click="item.upload()"><i class="fa fa-upload"></i></a>
+      </div>
+    </div>
+
+    <div class="col-md-2 col-md-offset-4">
+      <button class="btn btn-primary" type="submit" ng-disabled="updateMentorForm.$invalid" ng-click="updateMentor(mentor._id,mentor.name,mentor.designation,mentor.description,mentor.facebook,mentor.linkedin)">Update Mentor</button>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-primary" ng-click="addNewMentor=!addNewMentor">Cancel</button>
+    </div>
+  </form>
+
+  <modal-dialog show="imageCrop" dialog-title="Crop Image" height="auto" width="auto">
+    <div class="addMemberModalDiv col-md-12">
+      <div ng-repeat="item in uploader.queue">
+        <div class="cropArea">
+          <img-crop image="item.image" result-image="item.croppedImage" area-type="square" result-image-size="300"></img-crop>
+        </div><img ng-src="{{item.croppedImage}}" class="croppedImage"/>
+        <div class="progress">
+          <div role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" class="progress-bar"></div>
+        </div>
+        <button ng-click="item.upload()" class="btn btn-md addMemberModalButton">Upload Image</button>
+        <button ng-click="imageCrop = !imageCrop" class="btn btn-md addMemberModalButton">Cancel</button>
+      </div>
+    </div>
+  </modal-dialog>
 </div>
 
 

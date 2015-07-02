@@ -1,5 +1,5 @@
 angular.module('Codegurukul')
-  .controller('AdminEditCourseCtrl', function($scope, $alert, $rootScope, Admin, $stateParams) {
+  .controller('AdminEditCourseCtrl', function($scope, $alert, $rootScope, Admin, $stateParams, $state) {
 
     Admin.course.get({
       cslug: $stateParams.course
@@ -41,11 +41,112 @@ angular.module('Codegurukul')
     }];
     $scope.tabs.activeTab = 0;
 
+    $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+      $rootScope.previousState = from.name;
+      $rootScope.previousCourseParams = fromParams.course;
+      $rootScope.previousSlotParams = fromParams.slot;
+    });
+
+    $rootScope.previousPage = function() {
+      $state.go($rootScope.previousState, {
+        course: $rootScope.previousCourseParams,
+        slot: $rootScope.previousSlotParams
+      });
+    }
 
   });
 
 angular.module('Codegurukul')
-  .controller('AdminEditCourseDetailsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams) {
+  .controller('AdminEditCourseDetailsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams, $window, FileUploader) {
+
+    $scope.upload = false;
+
+    var uploader = $scope.uploader = new FileUploader({
+      url: '/api/admin/courses/' + $stateParams.course + '/image',
+      method: 'PUT',
+      headers: {
+        Authorization: $window.localStorage.token
+      }
+    });
+
+    /*angular-file-upload start*/
+
+    // FILTERS
+
+    uploader.filters.push({
+      name: 'imageFilter',
+      fn: function(item /*{File|FileLikeObject}*/ , options) {
+        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+        if ('|jpg|png|jpeg|bmp|gif|'.indexOf(type) == -1) {
+          $alert({
+            content: 'Please select an image file.',
+            placement: 'right',
+            type: 'danger',
+            duration: 5
+          });
+          return false;
+        };
+        if (item.size > 1000000) {
+          $alert({
+            content: 'Image cannot be more than 1MB',
+            placement: 'right',
+            type: 'danger',
+            duration: 5
+          });
+          return false;
+        }
+        return true;
+      }
+    });
+
+    uploader.filters.push({
+      name: 'singleFileFilter',
+      fn: function(item /*{File|FileLikeObject}*/ , options) {
+        if (this.queue.length == 1) {
+          this.clearQueue();
+        }
+        return true;
+      }
+    });
+
+    uploader.onBeforeUploadItem = function(item) {
+      formData = [{
+        cslug: $stateParams.course,
+        type: 'course',
+        imageType: "thumb"
+      }];
+      Array.prototype.push.apply(item.formData, formData);
+    };
+    uploader.onSuccessItem = function(fileItem, response, status, headers) {
+      $alert({
+        content: "Course image was successfuly updated.",
+        placement: 'right',
+        type: 'success',
+        duration: 5
+      });
+      uploader.clearQueue();
+      $scope.upload = false;
+      Admin.course.get({
+        cslug: $stateParams.course
+      }, function(data) {
+        $scope.course = data;
+      });
+    };
+    uploader.onErrorItem = function(fileItem, response, status, headers) {
+      console.log(response);
+      console.log(fileItem);
+      console.log(status);
+      console.log(headers);
+      $alert({
+        content: "There was an error please try again later.",
+        placement: 'right',
+        type: 'danger',
+        duration: 5
+      });
+      uploader.clearQueue();
+    };
+
+    /*angular-file-upload end*/
 
     $scope.updateDetailsTab = function(description, shortDescription, price, tech, duration, inviteOnly, inviteMessage) {
       Admin.update.save({
@@ -91,6 +192,10 @@ angular.module('Codegurukul')
 angular.module('Codegurukul')
   .controller('AdminEditCourseMentorsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams, FileUploader, $window) {
 
+    $scope.uploadImage = false;
+    $scope.uploadSignature = false;
+
+
     var uploader = $scope.uploader = new FileUploader({
       url: '/api/admin/courses/' + $stateParams.course + '/image',
       method: 'PUT',
@@ -116,9 +221,9 @@ angular.module('Codegurukul')
           });
           return false;
         };
-        if (item.size > 500000) {
+        if (item.size > 1000000) {
           $alert({
-            content: 'Image cannot be more than 500KB',
+            content: 'Image cannot be more than 1MB',
             placement: 'right',
             type: 'danger',
             duration: 5
@@ -129,24 +234,39 @@ angular.module('Codegurukul')
       }
     });
 
+    uploader.filters.push({
+      name: 'singleFileFilter',
+      fn: function(item /*{File|FileLikeObject}*/ , options) {
+        if (this.queue.length == 1) {
+          this.clearQueue();
+        }
+        return true;
+      }
+    });
+
+    $scope.sendData = function(id, type) {
+      $scope.mentorIdForImage = id;
+      $scope.mentorimageType = type;
+    }
+
     uploader.onBeforeUploadItem = function(item) {
       formData = [{
-        //        name: $scope.spo.name,
-        //        title: $scope.spo.title,
-        //        description: $scope.spo.description,
-        type: 'ment'
+        mentorId: $scope.mentorIdForImage,
+        type: 'ment',
+        imageType: $scope.mentorimageType
       }];
       Array.prototype.push.apply(item.formData, formData);
-      console.log("cleared 1")
     };
     uploader.onSuccessItem = function(fileItem, response, status, headers) {
       $alert({
-        content: "Sponsor was successfuly updated.",
+        content: "Image successfuly updated.",
         placement: 'right',
         type: 'success',
         duration: 5
       });
       uploader.clearQueue();
+      $scope.uploadImage = false;
+      $scope.uploadSignature = false;
     };
     uploader.onErrorItem = function(fileItem, response, status, headers) {
       console.log(response);
@@ -240,7 +360,107 @@ angular.module('Codegurukul')
 
 
 angular.module('Codegurukul')
-  .controller('AdminEditCourseTestimonialsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams) {
+  .controller('AdminEditCourseTestimonialsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams, $window, FileUploader) {
+
+    $scope.upload = false;
+
+    var uploader = $scope.uploader = new FileUploader({
+      url: '/api/admin/courses/' + $stateParams.course + '/image',
+      method: 'PUT',
+      headers: {
+        Authorization: $window.localStorage.token
+      }
+    });
+
+    /*angular-file-upload start*/
+
+    // FILTERS
+
+    uploader.filters.push({
+      name: 'imageFilter',
+      fn: function(item /*{File|FileLikeObject}*/ , options) {
+        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+        if ('|jpg|png|jpeg|bmp|gif|'.indexOf(type) == -1) {
+          $alert({
+            content: 'Please select an image file.',
+            placement: 'right',
+            type: 'danger',
+            duration: 5
+          });
+          return false;
+        };
+        if (item.size > 1000000) {
+          $alert({
+            content: 'Image cannot be more than 1MB',
+            placement: 'right',
+            type: 'danger',
+            duration: 5
+          });
+          return false;
+        }
+        return true;
+      }
+    });
+
+    uploader.filters.push({
+      name: 'singleFileFilter',
+      fn: function(item /*{File|FileLikeObject}*/ , options) {
+        if (this.queue.length == 1) {
+          this.clearQueue();
+        }
+        return true;
+      }
+    });
+
+    $scope.sendData = function(id) {
+      $scope.testimonialIdForImage = id;
+    }
+
+    uploader.onBeforeUploadItem = function(item) {
+      formData = [{
+        cslug: $stateParams.course,
+        testimonialId: $scope.testimonialIdForImage,
+        type: 'test'
+      }];
+      Array.prototype.push.apply(item.formData, formData);
+    };
+    uploader.onSuccessItem = function(fileItem, response, status, headers) {
+      $alert({
+        content: "Testimonial image was successfuly updated.",
+        placement: 'right',
+        type: 'success',
+        duration: 5
+      });
+      uploader.clearQueue();
+      $scope.upload = false;
+      Admin.course.get({
+        cslug: $stateParams.course
+      }, function(data) {
+        $scope.course = data;
+      });
+    };
+    uploader.onErrorItem = function(fileItem, response, status, headers) {
+      console.log(response);
+      console.log(fileItem);
+      console.log(status);
+      console.log(headers);
+      $alert({
+        content: "There was an error please try again later.",
+        placement: 'right',
+        type: 'danger',
+        duration: 5
+      });
+      uploader.clearQueue();
+      $scope.upload = false;
+      Admin.course.get({
+        cslug: $stateParams.course
+      }, function(data) {
+        $scope.course = data;
+      });
+    };
+
+    /*angular-file-upload end*/
+
 
     $scope.edit = false;
     $scope.addNewTestimonial = false;
@@ -312,7 +532,107 @@ angular.module('Codegurukul')
 
 
 angular.module('Codegurukul')
-  .controller('AdminEditCoursePartnersCtrl', function($scope, $alert, $rootScope, Admin, $stateParams) {
+  .controller('AdminEditCoursePartnersCtrl', function($scope, $alert, $rootScope, Admin, $stateParams, $window, FileUploader) {
+
+    $scope.upload = false;
+
+    var uploader = $scope.uploader = new FileUploader({
+      url: '/api/admin/courses/' + $stateParams.course + '/image',
+      method: 'PUT',
+      headers: {
+        Authorization: $window.localStorage.token
+      }
+    });
+
+    /*angular-file-upload start*/
+
+    // FILTERS
+
+    uploader.filters.push({
+      name: 'imageFilter',
+      fn: function(item /*{File|FileLikeObject}*/ , options) {
+        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+        if ('|jpg|png|jpeg|bmp|gif|'.indexOf(type) == -1) {
+          $alert({
+            content: 'Please select an image file.',
+            placement: 'right',
+            type: 'danger',
+            duration: 5
+          });
+          return false;
+        };
+        if (item.size > 1000000) {
+          $alert({
+            content: 'Image cannot be more than 1MB',
+            placement: 'right',
+            type: 'danger',
+            duration: 5
+          });
+          return false;
+        }
+        return true;
+      }
+    });
+
+    uploader.filters.push({
+      name: 'singleFileFilter',
+      fn: function(item /*{File|FileLikeObject}*/ , options) {
+        if (this.queue.length == 1) {
+          this.clearQueue();
+        }
+        return true;
+      }
+    });
+
+    $scope.sendData = function(id) {
+      $scope.testimonialIdForImage = id;
+    }
+
+    uploader.onBeforeUploadItem = function(item) {
+      formData = [{
+        cslug: $stateParams.course,
+        partnerId: $scope.testimonialIdForImage,
+        type: 'part'
+      }];
+      Array.prototype.push.apply(item.formData, formData);
+    };
+    uploader.onSuccessItem = function(fileItem, response, status, headers) {
+      $alert({
+        content: "Testimonial image was successfuly updated.",
+        placement: 'right',
+        type: 'success',
+        duration: 5
+      });
+      uploader.clearQueue();
+      $scope.upload = false;
+      Admin.course.get({
+        cslug: $stateParams.course
+      }, function(data) {
+        $scope.course = data;
+      });
+    };
+    uploader.onErrorItem = function(fileItem, response, status, headers) {
+      console.log(response);
+      console.log(fileItem);
+      console.log(status);
+      console.log(headers);
+      $alert({
+        content: "There was an error please try again later.",
+        placement: 'right',
+        type: 'danger',
+        duration: 5
+      });
+      uploader.clearQueue();
+      $scope.upload = false;
+      Admin.course.get({
+        cslug: $stateParams.course
+      }, function(data) {
+        $scope.course = data;
+      });
+    };
+
+    /*angular-file-upload end*/
+
 
     $scope.edit = false;
     $scope.addNewPartner = false;

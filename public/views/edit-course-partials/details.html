@@ -1,77 +1,126 @@
 <div class="tab-section-one" ng-controller="AdminEditCourseDetailsCtrl">
-    <div class="col-md-12">
-        <form class="form-horizontal" name="updateDetailsForm">
-            <div class="form-group">
-                <label class="col-md-12 text-left">Name:</label>
-                <div class="col-md-12">
-                    <input type="text" class="form-control custom-margin-bottom-15" ng-model="course.name" ng-disabled="true">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-12 text-left">Description</label>
-                <div class="col-md-12">
-                    <text-angular class="custom-margin-bottom-15" placeholder="Description" ng-model="course.description" ta-toolbar="[
-                                                                                                                                      ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre'],
-                                                                                                                                      ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
-                                                                                                                                      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
-                                                                                                                                      ['wordcount', 'charcount']]"></text-angular>
-                </div>
-            </div>
+  <div class="col-md-12">
+    <form class="form-horizontal" name="updateDetailsForm">
+      <div class="form-group">
+        <label class="col-md-12 text-left">Name:</label>
+        <div class="col-md-12">
+          <input type="text" class="form-control custom-margin-bottom-15" ng-model="course.name" ng-disabled="true">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-12 text-left">Description</label>
+        <div class="col-md-12">
+          <text-angular class="custom-margin-bottom-15" placeholder="Description" ng-model="course.description" ta-toolbar="[
+                                                                                                                            ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre'],
+                                                                                                                            ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+                                                                                                                            ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+                                                                                                                            ['wordcount', 'charcount']]"></text-angular>
+        </div>
+      </div>
 
-            <div class="form-group">
-                <label class="col-md-12 text-left">Short Description</label>
-                <div class="col-md-12">
-                    <textarea class="form-control input-md custom-margin-bottom-15" placeholder="Description" ng-model="course.shortDescription" rows="2"></textarea>
-                </div>
-            </div>
+      <div class="form-group">
+        <label class="col-md-12 text-left">Short Description</label>
+        <div class="col-md-12">
+          <textarea class="form-control input-md custom-margin-bottom-15" placeholder="Description" ng-model="course.shortDescription" rows="2"></textarea>
+        </div>
+      </div>
 
-            <div ng-class="{ &quot;has-error&quot; : updateDetailsForm.price.$invalid &amp;&amp; updateDetailsForm.price.$dirty }" class="form-group has-feedback">
-                <label class="col-md-12 text-left">Price</label>
-                <div class="col-md-12">
-                    <input type="number" class="form-control input-md custom-margin-bottom-15" name="price" placeholder="Price" ng-model="course.price" min="0">
-                </div>
-                <div ng-if="updateDetailsForm.price.$dirty" ng-messages="updateDetailsForm.price.$error" class="help-block text-danger text-center">
-                    <div ng-message="number">Please enter a valid price.</div>
-                    <div ng-message="min">Price cannot be negative. Please enter a positive value for the price.</div>
-                </div>
-            </div>
+      <div ng-class="{ &quot;has-error&quot; : updateDetailsForm.price.$invalid &amp;&amp; updateDetailsForm.price.$dirty }" class="form-group has-feedback">
+        <label class="col-md-12 text-left">Price</label>
+        <div class="col-md-12">
+          <input type="number" class="form-control input-md custom-margin-bottom-15" name="price" placeholder="Price" ng-model="course.price" min="0">
+        </div>
+        <div ng-if="updateDetailsForm.price.$dirty" ng-messages="updateDetailsForm.price.$error" class="help-block text-danger text-center">
+          <div ng-message="number">Please enter a valid price.</div>
+          <div ng-message="min">Price cannot be negative. Please enter a positive value for the price.</div>
+        </div>
+      </div>
 
-            <div class="form-group">
-                <label class="col-md-12 text-left">Technology</label>
-                <div class="col-md-12">
-                    <input type="text" class="form-control input-md custom-margin-bottom-15" placeholder="Technology" ng-model="course.tech">
-                </div>
-            </div>
+      <div class="form-group">
+        <label class="col-md-12 text-left">Technology</label>
+        <div class="col-md-12">
+          <input type="text" class="form-control input-md custom-margin-bottom-15" placeholder="Technology" ng-model="course.tech">
+        </div>
+      </div>
 
-            <div class="form-group">
-                <label class="col-md-12 text-left">Duration</label>
-                <div class="col-md-12">
-                    <input type="text" class="form-control input-md custom-margin-bottom-15" placeholder="Duration" ng-model="course.duration">
-                </div>
-            </div>
+      <div class="form-group">
+        <label class="col-md-12 text-left">Duration</label>
+        <div class="col-md-12">
+          <input type="text" class="form-control input-md custom-margin-bottom-15" placeholder="Duration" ng-model="course.duration">
+        </div>
+      </div>
 
-            <div class="form-group">
-                <label class="col-md-12 text-left">Invite Only</label>
-                <div class="col-md-12">
-                    <select class="form-control" ng-model="course.inviteOnly">
-                        <option value="" selected disabled>Select an option</option>
-                        <option value="true">True</option>
-                        <option value="false">False</option>
-                    </select>
-                </div>
-            </div>
+      <div class="form-group">
+        <label class="col-md-12 text-left">Invite Only</label>
+        <div class="col-md-12">
+          <select class="form-control" ng-model="course.inviteOnly">
+            <option value="" selected disabled>Select an option</option>
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
+        </div>
+      </div>
 
-            <div class="form-group">
-                <label class="col-md-12 text-left">Invite Message</label>
-                <div class="col-md-12">
-                    <textarea class="form-control custom-margin-bottom-15" placeholder="Invite message" ng-model="course.inviteMessage" rows="2" ng-disabled="course.inviteOnly == 'false'"></textarea>
-                </div>
-            </div>
+      <div class="form-group">
+        <label class="col-md-12 text-left">Invite Message:</label>
+        <div class="col-md-12">
+          <textarea class="form-control custom-margin-bottom-15" placeholder="Invite message" ng-model="course.inviteMessage" rows="2" ng-disabled="course.inviteOnly == 'false'"></textarea>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label>Image URL:  </label>
+        <span class="pull-right"><a href="" ng-click="upload = !upload"> <i class="fa fa-pencil fa-lg" ng-show="!upload"></i><i class="fa fa-times fa-lg" ng-show="upload"></i> </a></span>
+        <span ng-show="!upload"><p> {{course.thumb}} </p></span>
+      </div>
+      <div class="input-group  custom-margin-bottom-15" ng-show="upload">
+        <input type="file" nv-file-select uploader="uploader" class="form-control">
 
-            <div class="col-md-2 col-md-offset-5">
-                <button class="btn btn-primary" ng-disabled="updateDetailsForm.$invalid" ng-click="updateDetailsTab(course.description,course.shortDescription,course.price,course.tech,course.duration,course.inviteOnly,course.inviteMessage)">Update</button>
-            </div>
+        <div class="input-group-addon input-md">
+          <i class="fa fa-upload"></i>
+
+        </div>
+      </div>
+
+        <table class="table">
+          <thead ng-show="uploader.queue.length !='0'">
+            <tr>
+              <th width="20%">Name</th>
+              <th width="20%" ng-show="uploader.isHTML5">Size</th>
+              <th width="30%" ng-show="uploader.isHTML5">Progress</th>
+<!--              <th width="20%">Status</th>-->
+              <th width="30%">Actions</th>
+            </tr>
+          </thead>
+          <tr ng-repeat="item in uploader.queue">
+            <td><strong>{{ item.file.name }}</strong>
+              <!-- Image preview-->
+              <!-- auto height-->
+              <!-- <div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+              <!-- auto width-->
+              <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+              <!-- fixed width and height-->
+              <!-- <div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+            </td>
+            <td ng-show="uploader.isHTML5" nowrap="">{{ item.file.size/1024/1024|number:2 }} MB</td>
+            <td ng-show="uploader.isHTML5">
+              <div style="margin-bottom: 0;" class="progress">
+                <div role="progressbar" ng-style="{ 'width': item.progress + '%' }" class="progress-bar"></div>
+              </div>
+            </td>
+<!--            <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>-->
+            <td nowrap="">
+              <button type="button" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" class="btn btn-success btn-xs"><span class="fa fa-upload"></span> Upload</button>
+              <button type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading" class="btn btn-warning btn-xs"><span class="fa fa-times"></span> Cancel</button>
+              <button type="button" ng-click="item.remove()" class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> Remove</button>
+            </td>
+          </tr>
+
+        </table>
+
+        <div class="col-md-2 col-md-offset-5">
+          <button class="btn btn-primary" ng-disabled="updateDetailsForm.$invalid" ng-click="updateDetailsTab(course.description,course.shortDescription,course.price,course.tech,course.duration,course.inviteOnly,course.inviteMessage)">Update</button>
+        </div>
         </form>
 
-    </div>
-</div>
+      </div>
+  </div>

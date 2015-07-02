@@ -1,72 +1,124 @@
 <div class="tab-section-one" ng-controller="AdminEditCourseTestimonialsCtrl">
 
-    <table class="table table-striped">
-        <tbody>
-            <tr ng-repeat="testimonial in course.testimonials">
-                <td class="col-md-11">
-                    <form name="updateTestimonialForm">
-                        <div class="col-md-12">
-                            <label>Name</label>
-                            <span ng-show="!edit"><p>{{testimonial.name}}</p></span>
-                        </div>
-                        <div ng-class="{ &quot;has-error&quot; : updateTestimonialForm.name.$invalid &amp;&amp; updateTestimonialForm.name.$dirty }" class="form-group has-feedback">
-                            <input type="text" class="form-control custom-margin-bottom-15" ng-model="testimonial.name" required name="name" ng-show="edit">
-                            <div ng-if="updateTestimonialForm.name.$dirty" ng-messages="updateTestimonialForm.name.$error" class="help-block text-danger text-center">
-                                <div ng-message="required">Testimonial name is required.</div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <label>Description</label>
-                            <span ng-show="!edit"><p>{{testimonial.description}}</p></span>
-                        </div>
-                        <textarea rows="3" type="text" class="form-control custom-margin-bottom-15" ng-model="testimonial.description" ng-show="edit"></textarea>
-
-                        <div class="col-md-2 col-md-offset-4" ng-show="edit">
-                            <button class="btn btn-primary" ng-click="updateTestimonial(testimonial._id, testimonial.name, testimonial.description)">Update</button>
-                        </div>
-                        <div class="col-md-2" ng-show="edit">
-                            <button class="btn btn-primary" ng-click="deleteTestimonial(testimonial._id)">Delete</button>
-                        </div>
-                    </form>
-                </td>
-                <td class="col-md-1">
-                    <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil pull-right"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times pull-right"></i> </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="col-md-12">
-        <hr>
-    </div>
-
-    <div class="col-md-2 col-md-offset-5" ng-show="!addNewTestimonial">
-        <button class="btn btn-primary" type="submit" ng-click="addNewTestimonial=!addNewTestimonial">Add a new testimonial</button>
-    </div>
-
-    <div class="col-md-12" ng-show="addNewTestimonial">
-        <form name="updateTestimonialForm">
+  <table class="table table-striped">
+    <tbody>
+      <tr ng-repeat="testimonial in course.testimonials">
+        <td class="col-md-11">
+          <form name="updateTestimonialForm">
             <div class="col-md-12">
-                <label>Name</label>
+              <label>Name</label>
+              <span ng-show="!edit"><p>{{testimonial.name}}</p></span>
             </div>
             <div ng-class="{ &quot;has-error&quot; : updateTestimonialForm.name.$invalid &amp;&amp; updateTestimonialForm.name.$dirty }" class="form-group has-feedback">
-                <input type="text" class="form-control custom-margin-bottom-15" ng-model="testimonial.name" ng-required="addNewTestimonial" name="name">
-                <div ng-if="updateTestimonialForm.name.$dirty" ng-messages="updateTestimonialForm.name.$error" class="help-block text-danger text-center">
-                    <div ng-message="required">Testimonial name is required.</div>
-                </div>
+              <input type="text" class="form-control custom-margin-bottom-15" ng-model="testimonial.name" required name="name" ng-show="edit">
+              <div ng-if="updateTestimonialForm.name.$dirty" ng-messages="updateTestimonialForm.name.$error" class="help-block text-danger text-center">
+                <div ng-message="required">Testimonial name is required.</div>
+              </div>
             </div>
             <div class="col-md-12">
-                <label>Description</label>
+              <label>Description</label>
+              <span ng-show="!edit"><p>{{testimonial.description}}</p></span>
             </div>
-            <textarea rows="3" type="text" class="form-control custom-margin-bottom-15" ng-model="testimonial.description"></textarea>
-            <div class="col-md-2 col-md-offset-4">
-                <button class="btn btn-primary" ng-click="updateTestimonial(testimonial._id, testimonial.name, testimonial.description)">Update</button>
-            </div>
-            <div class="col-md-2">
-                <button class="btn btn-primary" ng-click="addNewTestimonial=!addNewTestimonial">Cancel</button>
-            </div>
-        </form>
+            <textarea rows="3" type="text" class="form-control custom-margin-bottom-15" ng-model="testimonial.description" ng-show="edit"></textarea>
 
-    </div>
+            <div class="col-md-12">
+              <label>Image URL:  </label>
+              <span class="pull-right" ng-show="edit"><a href="" ng-click="upload = !upload"> <i class="fa fa-pencil fa-lg" ng-show="!upload"></i><i class="fa fa-times fa-lg" ng-show="upload"></i> </a></span>
+              <span ng-show="!upload"><p> {{testimonial.image}} </p></span>
+            </div>
+            <div class="input-group  custom-margin-bottom-15" ng-show="upload">
+              <input type="file" nv-file-select uploader="uploader" class="form-control" ng-model="testimonial.image">
+
+              <div class="input-group-addon input-md">
+                <i class="fa fa-upload"></i>
+
+              </div>
+            </div>
+
+            <table class="table" ng-show="uploader.queue.length !='0' && edit">
+              <thead >
+                <tr>
+                  <th width="20%">Name</th>
+                  <th width="20%" ng-show="uploader.isHTML5">Size</th>
+                  <th width="30%" ng-show="uploader.isHTML5">Progress</th>
+                  <!--              <th width="20%">Status</th>-->
+                  <th width="30%">Actions</th>
+                </tr>
+              </thead>
+              <tr ng-repeat="item in uploader.queue">
+                <td><strong>{{ item.file.name }}</strong>
+                  <!-- Image preview-->
+                  <!-- auto height-->
+                  <!-- <div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+                  <!-- auto width-->
+                  <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                  <!-- fixed width and height-->
+                  <!-- <div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+                </td>
+                <td ng-show="uploader.isHTML5" nowrap="">{{ item.file.size/1024/1024|number:2 }} MB</td>
+                <td ng-show="uploader.isHTML5">
+                  <div style="margin-bottom: 0;" class="progress">
+                    <div role="progressbar" ng-style="{ 'width': item.progress + '%' }" class="progress-bar"></div>
+                  </div>
+                </td>
+                <!--            <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>-->
+                <td nowrap="">
+                  <button type="button" ng-click="sendData(testimonial._id);item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" class="btn btn-success btn-xs"><span class="fa fa-upload"></span> Upload</button>
+                  <button type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading" class="btn btn-warning btn-xs"><span class="fa fa-times"></span> Cancel</button>
+                  <button type="button" ng-click="item.remove()" class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> Remove</button>
+                </td>
+              </tr>
+
+            </table>
+
+
+
+            <div class="col-md-2 col-md-offset-4" ng-show="edit">
+              <button class="btn btn-primary" ng-click="updateTestimonial(testimonial._id, testimonial.name, testimonial.description)">Update</button>
+            </div>
+            <div class="col-md-2" ng-show="edit">
+              <button class="btn btn-primary" ng-click="deleteTestimonial(testimonial._id)">Delete</button>
+            </div>
+          </form>
+        </td>
+        <td class="col-md-1">
+          <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil pull-right"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times pull-right"></i> </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="col-md-12">
+    <hr>
+  </div>
+
+  <div class="col-md-2 col-md-offset-5" ng-show="!addNewTestimonial">
+    <button class="btn btn-primary" type="submit" ng-click="addNewTestimonial=!addNewTestimonial">Add a new testimonial</button>
+  </div>
+
+  <div class="col-md-12" ng-show="addNewTestimonial">
+    <form name="updateTestimonialForm">
+      <div class="col-md-12">
+        <label>Name</label>
+      </div>
+      <div ng-class="{ &quot;has-error&quot; : updateTestimonialForm.name.$invalid &amp;&amp; updateTestimonialForm.name.$dirty }" class="form-group has-feedback">
+        <input type="text" class="form-control custom-margin-bottom-15" ng-model="testimonial.name" ng-required="addNewTestimonial" name="name">
+        <div ng-if="updateTestimonialForm.name.$dirty" ng-messages="updateTestimonialForm.name.$error" class="help-block text-danger text-center">
+          <div ng-message="required">Testimonial name is required.</div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label>Description</label>
+      </div>
+      <textarea rows="3" type="text" class="form-control custom-margin-bottom-15" ng-model="testimonial.description"></textarea>
+      <div class="col-md-2 col-md-offset-4">
+        <button class="btn btn-primary" ng-click="updateTestimonial(testimonial._id, testimonial.name, testimonial.description)">Update</button>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary" ng-click="addNewTestimonial=!addNewTestimonial">Cancel</button>
+      </div>
+    </form>
+
+  </div>
 
 </div>

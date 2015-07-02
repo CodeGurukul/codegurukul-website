@@ -18,6 +18,56 @@
                                 <label>Partner Link:</label><span ng-show="!edit"><p>{{partner.link}}</p></span>
                             </div>
                             <input type="url" class="form-control custom-margin-bottom-15" ng-model="partner.link" ng-show="edit">
+                          
+                          <div class="col-md-12">
+              <label>Image URL:  </label>
+              <span class="pull-right" ng-show="edit"><a href="" ng-click="upload = !upload"> <i class="fa fa-pencil fa-lg" ng-show="!upload"></i><i class="fa fa-times fa-lg" ng-show="upload"></i> </a></span>
+              <span ng-show="!upload"><p> {{partner.image}} </p></span>
+            </div>
+            <div class="input-group  custom-margin-bottom-15" ng-show="upload">
+              <input type="file" nv-file-select uploader="uploader" class="form-control" ng-model="testimonial.image">
+
+              <div class="input-group-addon input-md">
+                <i class="fa fa-upload"></i>
+
+              </div>
+            </div>
+
+            <table class="table" ng-show="uploader.queue.length !='0' && edit">
+              <thead >
+                <tr>
+                  <th width="20%">Name</th>
+                  <th width="20%" ng-show="uploader.isHTML5">Size</th>
+                  <th width="30%" ng-show="uploader.isHTML5">Progress</th>
+                  <!--              <th width="20%">Status</th>-->
+                  <th width="30%">Actions</th>
+                </tr>
+              </thead>
+              <tr ng-repeat="item in uploader.queue">
+                <td><strong>{{ item.file.name }}</strong>
+                  <!-- Image preview-->
+                  <!-- auto height-->
+                  <!-- <div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+                  <!-- auto width-->
+                  <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                  <!-- fixed width and height-->
+                  <!-- <div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+                </td>
+                <td ng-show="uploader.isHTML5" nowrap="">{{ item.file.size/1024/1024|number:2 }} MB</td>
+                <td ng-show="uploader.isHTML5">
+                  <div style="margin-bottom: 0;" class="progress">
+                    <div role="progressbar" ng-style="{ 'width': item.progress + '%' }" class="progress-bar"></div>
+                  </div>
+                </td>
+                <!--            <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>-->
+                <td nowrap="">
+                  <button type="button" ng-click="sendData(partner._id);item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" class="btn btn-success btn-xs"><span class="fa fa-upload"></span> Upload</button>
+                  <button type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading" class="btn btn-warning btn-xs"><span class="fa fa-times"></span> Cancel</button>
+                  <button type="button" ng-click="item.remove()" class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> Remove</button>
+                </td>
+              </tr>
+
+            </table>
 
                             <div class="col-md-2 col-md-offset-4" ng-show="edit">
                                 <button class="btn btn-primary" ng-click="updatePartner(partner._id, partner.name, partner.link)" ng-disabled="updatePartnerForm.$invalid">Update Partner</button>
