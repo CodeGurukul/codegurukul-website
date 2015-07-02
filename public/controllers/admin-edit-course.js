@@ -502,6 +502,7 @@ angular.module('Codegurukul')
             }
         }
         else if(status == 'unpublished'){
+            $scope.showStatusError = false;
             Admin.update.save({
                 cslug: $stateParams.course,
                 type: 'stat',
