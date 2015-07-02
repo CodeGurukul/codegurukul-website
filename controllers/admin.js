@@ -562,9 +562,9 @@ exports.uploadImages = function(req, res) {
               break;
             }
             case 'ment': {
-              // if (req.body.imageType) {
+              if (req.body.imageType) {
                 mentorImage(req, res, course);
-              // } else return res.status(400).send("Mentor image type required");  
+              } else return res.status(400).send("Mentor image type required");  
               break;
             }
             case 'part': {
