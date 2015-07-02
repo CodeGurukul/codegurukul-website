@@ -1,0 +1,65 @@
+<div class="tab-section-one" ng-controller="AdminEditCoursePartnersCtrl">
+        <table class="table table-striped">
+            <tbody>
+                <tr ng-repeat="partner in course.partners">
+                    <td class="col-md-11">
+                        <form name="updatePartnerForm">
+                            <div class="col-md-12">
+                                <label>Partner Name:</label>
+                                <span ng-show="!edit"><p>{{partner.name}}</p></span>
+                            </div>
+                            <div ng-class="{ &quot;has-error&quot; : updatePartnerForm.partnerName.$invalid &amp;&amp; updatePartnerForm.partnerName.$dirty }" class="form-group has-feedback">
+                                <input type="text" class="form-control custom-margin-bottom-15" ng-model="partner.name" name="partnerName" required ng-show="edit">
+                                <div ng-if="updatePartnerForm.partnerName.$dirty" ng-messages="updatePartnerForm.partnerName.$error" class="help-block text-danger text-center">
+                                    <div ng-message="required">Partner name is required.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Partner Link:</label><span ng-show="!edit"><p>{{partner.link}}</p></span>
+                            </div>
+                            <input type="url" class="form-control custom-margin-bottom-15" ng-model="partner.link" ng-show="edit">
+
+                            <div class="col-md-2 col-md-offset-4" ng-show="edit">
+                                <button class="btn btn-primary" ng-click="updatePartner(partner._id, partner.name, partner.link)" ng-disabled="updatePartnerForm.$invalid">Update Partner</button>
+                            </div>
+                            <div class="col-md-2" ng-show="edit">
+                                <button class="btn btn-primary" ng-click="deletePartner(partner._id)">Delete Partner</button>
+                            </div>
+                        </form>
+                    </td>
+                    <td class="col-md-1">
+                        <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil pull-right"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times pull-right"></i> </a> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+    
+    <div class="col-md-12" ng-show="addNewPartner">
+        <form name="updatePartnerForm">
+                            <div class="col-md-12">
+                                <label>Partner Name:</label>
+                            </div>
+                            <div ng-class="{ &quot;has-error&quot; : updatePartnerForm.partnerName.$invalid &amp;&amp; updatePartnerForm.partnerName.$dirty }" class="form-group has-feedback">
+                                <input type="text" class="form-control custom-margin-bottom-15" ng-model="partner.name" name="partnerName" ng-required="addNewPartner">
+                                <div ng-if="updatePartnerForm.partnerName.$dirty" ng-messages="updatePartnerForm.partnerName.$error" class="help-block text-danger text-center">
+                                    <div ng-message="required">Partner name is required.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Partner Link:</label>
+                            </div>
+                            <input type="url" class="form-control custom-margin-bottom-15" ng-model="partner.link">
+
+                            <div class="col-md-2 col-md-offset-4">
+                                <button class="btn btn-primary" ng-click="updatePartner(partner._id, partner.name, partner.link)" ng-disabled="updatePartnerForm.$invalid">Add Partner</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" ng-click="addNewPartner=!addNewPartner">Cancel</button>
+                            </div>
+                        </form>
+    </div>
+    <div class="col-md-2 col-md-offset-5">
+        <button class="btn btn-primary" type="submit" ng-click="addNewPartner=!addNewPartner" ng-show="!addNewPartner">Add Partner</button>
+    </div>
+</div>

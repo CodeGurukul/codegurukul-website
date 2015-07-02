@@ -17,30 +17,30 @@ angular.module('Codegurukul')
         }
     });
 
-    $scope.addMentor = function(){
-        $scope.newMentor= $scope.course.mentors.length+1;
-        $scope.course.mentors.push($scope.newMentor);
-    }
+    $scope.tabs =  [{
+        title: 'Details',
+        page: '../views/edit-course-partials/details.html'
+    }, {
+        title: 'Mentors',
+        page: '../views/edit-course-partials/mentors.html'
+    }, {
+        title: 'Testimonials',
+        page: '../views/edit-course-partials/testimonials.html'
+    }, {
+        title: 'Slots',
+        page: '../views/edit-course-partials/slots.html'
+    }, {
+        title: 'Partners',
+        page: '../views/edit-course-partials/partners.html'
+    }, {
+        title: 'Content',
+        page: '../views/edit-course-partials/content.html'
+    }, {
+        title: 'Status',
+        page: '../views/edit-course-partials/status.html'
+    }];
+    $scope.tabs.activeTab = 0;
 
-    $scope.addTestimonial = function(){
-        $scope.newTestimonial = $scope.course.testimonials.length+1;
-        $scope.course.testimonials.push($scope.newTestimonial);
-    }
-
-    $scope.addSlot = function(){
-        $scope.newSlot = $scope.course.slots.length+1;
-        $scope.course.slots.push($scope.newSlot);
-    }
-
-    $scope.addPartner = function(){
-        $scope.newPartner = $scope.course.partners.length+1;
-        $scope.course.partners.push($scope.newPartner);
-    }
-
-    $scope.addModule = function(){
-        $scope.newContent = $scope.course.content.length+1;
-        $scope.course.content.push($scope.newContent);
-    }
 
 });
 
@@ -64,14 +64,24 @@ angular.module('Codegurukul')
                 placement: 'right',
                 type: 'success',
                 duration: 5
-            })
+            });
+            Admin.course.get({
+                cslug: $stateParams.course
+            }, function(data) {
+                $scope.course = data;
+            });
         },function(err){
             $alert({
                 content: err.data,
                 placement: 'right',
                 type: 'danger',
                 duration: 5
-            })
+            });
+            Admin.course.get({
+                cslug: $stateParams.course
+            }, function(data) {
+                $scope.course = data;
+            });
         })
     }
 
@@ -80,6 +90,9 @@ angular.module('Codegurukul')
 
 angular.module('Codegurukul')
     .controller('AdminEditCourseMentorsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams) {
+
+    $scope.edit = false;
+    $scope.addNewMentor = false;
 
     $scope.updateMentor = function(id, name, designation, description, facebook, linkedin){
         Admin.update.save({
@@ -100,10 +113,16 @@ angular.module('Codegurukul')
             });
             Admin.course.get({
                 cslug: $stateParams.course
-
             }, function(data) {
                 $scope.course = data;
             });
+            $scope.addNewMentor = false;
+            $scope.mentor.name = '';
+            $scope.mentor.designation = '';
+            $scope.mentor.description = '';
+            $scope.mentor.facebook = '';
+            $scope.mentor.linkedin = '';
+            $scope.updateMentorForm.$setPristine(true);
         },function(err){
             $alert({
                 content: err.data,
@@ -128,7 +147,6 @@ angular.module('Codegurukul')
             });
             Admin.course.get({
                 cslug: $stateParams.course
-
             }, function(data) {
                 $scope.course = data;
             });
@@ -149,6 +167,9 @@ angular.module('Codegurukul')
 angular.module('Codegurukul')
     .controller('AdminEditCourseTestimonialsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams) {
 
+    $scope.edit = false;
+    $scope.addNewTestimonial = false;
+
     $scope.updateTestimonial = function(id, name, description){
         Admin.update.save({
             cslug: $stateParams.course,
@@ -165,10 +186,13 @@ angular.module('Codegurukul')
             });
             Admin.course.get({
                 cslug: $stateParams.course
-
             }, function(data) {
                 $scope.course = data;
             });
+            $scope.addNewTestimonial = false;
+            $scope.testimonial.name = '';
+            $scope.testimonial.description = '';
+            $scope.updateTestimonialForm.$setPristine(true);
         },function(err){
             $alert({
                 content: err.data,
@@ -195,7 +219,6 @@ angular.module('Codegurukul')
             });
             Admin.course.get({
                 cslug: $stateParams.course
-
             }, function(data) {
                 $scope.course = data;
             });
@@ -216,6 +239,9 @@ angular.module('Codegurukul')
 angular.module('Codegurukul')
     .controller('AdminEditCoursePartnersCtrl', function($scope, $alert, $rootScope, Admin, $stateParams) {
 
+    $scope.edit = false;
+    $scope.addNewPartner = false;
+
     $scope.updatePartner = function(id, name, link){
         Admin.update.save({
             cslug: $stateParams.course,
@@ -232,10 +258,13 @@ angular.module('Codegurukul')
             });
             Admin.course.get({
                 cslug: $stateParams.course
-
             }, function(data) {
                 $scope.course = data;
             });
+            $scope.addNewPartner = false;
+            $scope.partner.name = '';
+            $scope.partner.link = '';
+            $scope.updatePartnerForm.$setPristine(true);
         },function(err){
             $alert({
                 content: err.data,
@@ -249,8 +278,7 @@ angular.module('Codegurukul')
 
     $scope.deletePartner = function(id){
         Admin.update.delete({
-            cslug: $stateParams.course
-        },{
+            cslug: $stateParams.course,
             type: 'part',
             partnerId: id
         },function(){
@@ -262,7 +290,6 @@ angular.module('Codegurukul')
             });
             Admin.course.get({
                 cslug: $stateParams.course
-
             }, function(data) {
                 $scope.course = data;
             });
@@ -284,6 +311,9 @@ angular.module('Codegurukul')
     .controller('AdminEditCourseSlotsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams) {
 
     $scope.currentDate = new Date();
+    $scope.edit = false;
+    $scope.addNewSlot = false;
+
 
     $scope.updateSlot = function(id, city, location, batchSize, startDate, status){
 
@@ -305,16 +335,22 @@ angular.module('Codegurukul')
             });
             Admin.course.get({
                 cslug: $stateParams.course
-
             }, function(data) {
                 $scope.course = data;
                 for(var i=0; i< $scope.course.slots.length; i++){
-            if($scope.course.slots[i].startDate){
-                var stringDate = $scope.course.slots[i].startDate;
-                $scope.course.slots[i].startDate = new Date(stringDate);
-            }
-        }
+                    if($scope.course.slots[i].startDate){
+                        var stringDate = $scope.course.slots[i].startDate;
+                        $scope.course.slots[i].startDate = new Date(stringDate);
+                    }
+                }
             });
+            $scope.addNewSlot = false;
+            $scope.slot.city = '';
+            $scope.slot.location = '';
+            $scope.slot.batchSize = '';
+            $scope.slot.startDate = '';
+            $scope.slot.status = '';
+            $scope.updateSlotForm.$setPristine(true);
         },function(err){
             $alert({
                 content: err.data,
@@ -340,9 +376,14 @@ angular.module('Codegurukul')
             });
             Admin.course.get({
                 cslug: $stateParams.course
-
             }, function(data) {
                 $scope.course = data;
+                for(var i=0; i< $scope.course.slots.length; i++){
+                    if($scope.course.slots[i].startDate){
+                        var stringDate = $scope.course.slots[i].startDate;
+                        $scope.course.slots[i].startDate = new Date(stringDate);
+                    }
+                }
             });
         },function(err){
             $alert({
@@ -378,7 +419,6 @@ angular.module('Codegurukul')
             });
             Admin.course.get({
                 cslug: $stateParams.course
-
             }, function(data) {
                 $scope.course = data;
             });
@@ -407,7 +447,6 @@ angular.module('Codegurukul')
             });
             Admin.course.get({
                 cslug: $stateParams.course
-
             }, function(data) {
                 $scope.course = data;
             });
@@ -428,26 +467,63 @@ angular.module('Codegurukul')
 angular.module('Codegurukul')
     .controller('AdminEditCourseStatusCtrl', function($scope, $alert, $rootScope, Admin, $stateParams, $state) {
 
+    $scope.showStatusError = false;
+
     $scope.updateStatus = function(status){
-        Admin.update.save({
-            cslug: $stateParams.course,
-            type: 'stat',
-            status: status
-        },function(){
-            $alert({
-                content: 'Course status updated succesfully',
-                placement: 'right',
-                type: 'success',
-                duration: 5
-            })
-        },function(err){
-            $alert({
-                content: err.data,
-                placement: 'right',
-                type: 'danger',
-                duration: 5
-            })
-        })
+        Admin.course.get({
+            cslug: $stateParams.course
+        }, function(data) {
+            $scope.course = data;
+        });
+        if(status == 'published'){
+            if($scope.course.description && $scope.course.shortDescription && $scope.course.price && $scope.course.tech && $scope.course.duration && $scope.course.slots.length!='0'){
+                Admin.update.save({
+                    cslug: $stateParams.course,
+                    type: 'stat',
+                    status: status
+                },function(){
+                    $alert({
+                        content: 'Course status updated succesfully',
+                        placement: 'right',
+                        type: 'success',
+                        duration: 5
+                    })
+                },function(err){
+                    $alert({
+                        content: err.data,
+                        placement: 'right',
+                        type: 'danger',
+                        duration: 5
+                    })
+                }) 
+            }
+            else{
+                $scope.showStatusError = true;
+            }
+        }
+        else if(status == 'unpublished'){
+            Admin.update.save({
+                cslug: $stateParams.course,
+                type: 'stat',
+                status: status
+            },function(){
+                $alert({
+                    content: 'Course status updated succesfully',
+                    placement: 'right',
+                    type: 'success',
+                    duration: 5
+                })
+            },function(err){
+                $alert({
+                    content: err.data,
+                    placement: 'right',
+                    type: 'danger',
+                    duration: 5
+                })
+            }) 
+        }
+
+
     }
 
     $scope.deleteCourse = function(id){

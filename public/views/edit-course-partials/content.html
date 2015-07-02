@@ -1,0 +1,43 @@
+<div class="tab-section-one" ng-controller="AdminEditCourseContentCtrl">
+    <div class="col-md-12" ng-repeat="content in course.content">
+        <form name="updateContentForm">
+            <div class="col-md-12">
+                <label>Title</label>
+            </div>
+            <div ng-class="{ &quot;has-error&quot; : updateContentForm.title.$invalid &amp;&amp; updateContentForm.title.$dirty }" class="form-group has-feedback">
+                <input type="text" class="form-control custom-margin-bottom-15" ng-model="content.title" name="title" required>
+                <div ng-if="updateContentForm.title.$dirty" ng-messages="updateContentForm.title.$error" class="help-block text-danger text-center">
+                    <div ng-message="required">Module title is required.</div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label>Description</label>
+            </div>
+            <textarea type="text" class="form-control custom-margin-bottom-15" ng-model="content.description" rows="3"></textarea>
+            <div class="col-md-12">
+                <label>Duration</label>
+            </div>
+            <input type="text" class="form-control custom-margin-bottom-15" ng-model="content.duration">
+            <div class="col-md-12">
+                <label>Difficulty</label>
+            </div>
+            <select class="form-control custom-margin-bottom-15" ng-model="content.difficulty">
+                <option value="Easy" selected>Easy</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Hard">Hard</option>
+            </select>
+            <div class="col-md-2 col-md-offset-4">
+                <button class="btn btn-primary" ng-click="updateContent(content._id, content.title, content.description, content.duration, content.difficulty)" ng-disabled="updateContentForm.$invalid">Update Module</button>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" ng-click="deleteModule(content._id)">Delete Module</button>
+            </div>
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-2 col-md-offset-5">
+        <button class="btn btn-primary" type="submit" ng-click="addModule()">Add a New Module</button>
+    </div>
+</div>

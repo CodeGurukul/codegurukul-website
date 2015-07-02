@@ -2126,3 +2126,7 @@ Optional CSS for partners
 .tab-section-one{
     margin-top: 20px;
 }
+
+.nav, .pagination, .carousel, .panel-title a {
+    cursor: pointer; 
+}

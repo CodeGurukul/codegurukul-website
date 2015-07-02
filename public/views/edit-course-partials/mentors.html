@@ -1,0 +1,134 @@
+<div class="tab-section-one" ng-controller="AdminEditCourseMentorsCtrl">
+    <table class="table table-striped">
+        <tbody>
+            <tr ng-repeat="mentor in course.mentors">
+                <td class="col-md-11">
+                    <form class="form" name="updateMentorForm">
+                        <div class="col-md-12">
+                            <label>Mentor Name:</label>
+                            <span ng-show="!edit"><p>{{mentor.name}}</p></span>
+                        </div>
+                        <div class="col-md-12" ng-show="edit">
+                            <div ng-class="{ &quot;has-error&quot; : updateMentorForm.name.$invalid &amp;&amp; updateMentorForm.name.$dirty }" class="form-group has-feedback">
+                                <input type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.name" name="name" required>
+                                <div ng-if="updateMentorForm.name.$dirty" ng-messages="updateMentorForm.name.$error" class="help-block text-danger text-center">
+                                    <div ng-message="required">Mentor name is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Mentor Designation:</label>
+                            <span ng-show="!edit"><p>{{mentor.designation}}</p></span>
+                        </div>
+                        <div class="col-md-12" ng-show="edit">
+                            <input type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.designation">
+                        </div>
+                        <div class="col-md-12">
+                            <label>Mentor Description:</label>
+                            <span ng-show="!edit"><p>{{mentor.description}}</p></span>
+                        </div>
+                        <div class="col-md-12" ng-show="edit">
+                            <textarea type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.description" rows="2"></textarea>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Facebook Link:</label>
+                            <span ng-show="!edit"><p>{{mentor.facebook}}</p></span>
+                        </div>
+                        <div class="col-md-12" ng-show="edit">
+                            <div ng-class="{ &quot;has-error&quot; : updateMentorForm.facebook.$invalid &amp;&amp; updateMentorForm.facebook.$dirty }" class="form-group has-feedback">
+                                <input type="url" class="form-control custom-margin-bottom-15" ng-model="mentor.facebook" name="facebook">
+                                <div ng-if="updateMentorForm.facebook.$dirty" ng-messages="updateMentorForm.facebook.$error" class="help-block text-danger text-center">
+                                    <div ng-message="url">Please enter a valid Facebook URL.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label>LinkedIn Link:</label>
+                            <span ng-show="!edit"><p>{{mentor.linkedin}}</p></span>
+                        </div>
+                        <div class="col-md-12" ng-show="edit">
+                            <div ng-class="{ &quot;has-error&quot; : updateMentorForm.name.$invalid &amp;&amp; updateMentorForm.linkedin.$dirty }" class="form-group has-feedback">
+                                <input type="url" class="form-control custom-margin-bottom-15" ng-model="mentor.linkedin" name="linkedin">
+                                <div ng-if="updateMentorForm.linkedin.$dirty" ng-messages="updateMentorForm.linkedin.$error" class="text-danger text-center">
+                                    <div ng-message="url">Please enter a valid LinkedIn URL.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-md-offset-4" ng-show="edit">
+                            <button class="btn btn-primary" type="submit" ng-disabled="updateMentorForm.$invalid" ng-click="updateMentor(mentor._id,mentor.name,mentor.designation,mentor.description,mentor.facebook,mentor.linkedin)">Update Mentor</button>
+                        </div>
+                        <div class="col-md-2" ng-show="edit">
+                            <button class="btn btn-primary" ng-click="deleteMentor(mentor._id)">Delete Mentor</button>
+                        </div>
+                    </form>
+                </td>
+                <td class="col-md-1">
+                    <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil pull-right"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times pull-right"></i> </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="col-md-12">
+        <hr>
+    </div>
+
+    <div class="col-md-2 col-md-offset-5" ng-show="!addNewMentor">
+        <button class="btn btn-primary" type="submit" ng-click="addNewMentor=!addNewMentor">Add a new Mentor</button>
+    </div>
+
+    <form class="form" name="updateMentorForm" ng-show="addNewMentor">
+        <div class="col-md-12">
+            <label>Mentor Name</label>
+        </div>
+        <div class="col-md-12">
+            <div ng-class="{ &quot;has-error&quot; : updateMentorForm.name.$invalid &amp;&amp; updateMentorForm.name.$dirty }" class="form-group has-feedback">
+                <input type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.name" name="name" ng-required="addNewMentor">
+                <div ng-if="updateMentorForm.name.$dirty" ng-messages="updateMentorForm.name.$error" class="help-block text-danger text-center">
+                    <div ng-message="required">Mentor name is required.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label>Mentor Designation</label>
+        </div>
+        <div class="col-md-12">
+            <input type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.designation">
+        </div>
+        <div class="col-md-12">
+            <label>Mentor Description</label>
+        </div>
+        <div class="col-md-12">
+            <textarea type="text" class="form-control custom-margin-bottom-15" ng-model="mentor.description" rows="2"></textarea>
+        </div>
+        <div class="col-md-12">
+            <label>Facebook Link</label>
+        </div>
+        <div class="col-md-12">
+            <div ng-class="{ &quot;has-error&quot; : updateMentorForm.facebook.$invalid &amp;&amp; updateMentorForm.facebook.$dirty }" class="form-group has-feedback">
+                <input type="url" class="form-control custom-margin-bottom-15" ng-model="mentor.facebook" name="facebook">
+                <div ng-if="updateMentorForm.facebook.$dirty" ng-messages="updateMentorForm.facebook.$error" class="help-block text-danger text-center">
+                    <div ng-message="url">Please enter a valid Facebook URL.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label>LinkedIn Link</label>
+        </div>
+        <div class="col-md-12">
+            <div ng-class="{ &quot;has-error&quot; : updateMentorForm.name.$invalid &amp;&amp; updateMentorForm.linkedin.$dirty }" class="form-group has-feedback">
+                <input type="url" class="form-control custom-margin-bottom-15" ng-model="mentor.linkedin" name="linkedin">
+                <div ng-if="updateMentorForm.linkedin.$dirty" ng-messages="updateMentorForm.linkedin.$error" class="text-danger text-center">
+                    <div ng-message="url">Please enter a valid LinkedIn URL.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-md-offset-4">
+            <button class="btn btn-primary" type="submit" ng-disabled="updateMentorForm.$invalid" ng-click="updateMentor(mentor._id,mentor.name,mentor.designation,mentor.description,mentor.facebook,mentor.linkedin)">Update Mentor</button>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary" ng-click="addNewMentor=!addNewMentor">Cancel</button>
+        </div>
+    </form>
+
+</div>

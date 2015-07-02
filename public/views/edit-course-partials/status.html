@@ -1,0 +1,21 @@
+<div class="tab-section-one" ng-controller="AdminEditCourseStatusCtrl">
+    <div class="col-md-12">
+        <label>Course Status</label>
+        <select class="form-control custom-margin-bottom-15" ng-model="course.status">
+            <option value="unpublished" selected>Unpublished</option>
+            <option value="published" >Published</option>
+        </select>
+        <div class="col-md-12 text-danger text-center">
+            <div ng-show="showStatusError">Status cannot be set to 'Published' until all fields have been properly filled out.
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-5">
+                <button class="btn btn-primary" ng-click="updateStatus(course.status)">Update Status</button>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+</div>

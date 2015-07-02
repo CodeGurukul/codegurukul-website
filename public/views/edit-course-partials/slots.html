@@ -1,0 +1,120 @@
+<div class="tab-section-one" ng-controller="AdminEditCourseSlotsCtrl">
+
+    <table class="table table-striped">
+        <tbody>
+            <tr ng-repeat="slot in course.slots">
+                <td class="col-md-11">
+                    <form class="form" name="updateSlotForm">
+                        <div class="col-md-12">
+                            <label>City</label>
+                            <span ng-show="!edit"><p>{{slot.city}}</p></span>
+                        </div>
+                        <input type="text" class="form-control custom-margin-bottom-15" ng-model="slot.city" ng-show="edit">
+                        <div class="col-md-12">
+                            <label>Location</label>
+                            <span ng-show="!edit"><p>{{slot.location}}</p></span>
+                        </div>
+                        <input type="text" class="form-control custom-margin-bottom-15" ng-model="slot.location" ng-show="edit">
+                        <div ng-class="{ &quot;has-error&quot; : updateSlotForm.batchSize.$invalid &amp;&amp; updateSlotForm.batchSize.$dirty }" class="form-group has-feedback">
+                            <div class="col-md-12">
+                                <label>Batch Size</label>
+                                <span ng-show="!edit"><p>{{slot.batchSize}}</p></span>
+                            </div>
+                            <input type="number" class="form-control custom-margin-bottom-15" ng-model="slot.batchSize" min="0" name="batchSize" ng-show="edit">
+                            <div ng-if="updateSlotForm.batchSize.$dirty" ng-messages="updateSlotForm.batchSize.$error" class="help-block text-danger text-center">
+                                <div ng-message="number">Please enter a valid batch size.</div>
+                                <div ng-message="min">Batch size cannot be negative. Please enter a positive value for the batch size.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Start Date</label>
+                            <span ng-show="!edit"><p>{{slot.startDate|date:format:'longDate'}}</p></span>
+                        </div>
+                        <div ng-class="{ &quot;has-error&quot; : updateSlotForm.startDate.$invalid &amp;&amp; updateSlotForm.startDate.$dirty }" class="form-group has-feedback">
+                            <input type="date" class="form-control custom-margin-bottom-15" ng-model="slot.startDate" value="{{slot.startDate | date:format:'dd-MM-yyy'}}" name="startDate" min="{{currentDate}}" ng-show="edit">
+                            <div ng-if="updateSlotForm.startDate.$dirty" ng-messages="updateSlotForm.startDate.$error" class="help-block text-danger text-center">
+                                <div ng-message="min">Slot start date cannot be in the past. Please enter a valid start date for the slot.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Slot Status</label>
+                            <span ng-show="!edit"><p>{{slot.status}}</p></span>
+                        </div>
+                        <select class="form-control custom-margin-bottom-15" ng-model="slot.status" ng-show="edit">
+                            <option value="unpublished" selected>Unpublished</option>
+                            <option value="new">New</option>
+                            <option value="closed">Closed</option>
+                            <option value="open">Open</option>
+                        </select>
+                        <div class="col-md-2 col-md-offset-4" ng-show="edit">
+                            <button class="btn btn-primary" ng-click="updateSlot(slot._id, slot.city, slot.location, slot.batchSize, slot.startDate, slot.status)" ng-disabled="updateSlotForm.$invalid">Update Slot</button>
+                        </div>
+                        <div class="col-md-2" ng-show="edit">
+                            <button class="btn btn-primary" ng-click="deleteSlot(slot._id)">Delete Slot</button>
+                        </div>
+                    </form>
+
+                </td>
+                <td class="col-md-1">
+                    <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil pull-right"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times pull-right"></i> </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="col-md-12">
+        <hr>
+    </div>
+
+    <div class="col-md-2 col-md-offset-5" ng-show="!addNewSlot">
+        <button class="btn btn-primary" type="submit" ng-click="addNewSlot=!addNewSlot">Add a New Slot</button>
+    </div>
+
+    <div class="col-md-12" ng-show="addNewSlot">
+        <form class="form" name="updateSlotForm">
+            <div class="col-md-12">
+                <label>City</label>
+            </div>
+            <input type="text" class="form-control custom-margin-bottom-15" ng-model="slot.city">
+            <div class="col-md-12">
+                <label>Location</label>
+            </div>
+            <input type="text" class="form-control custom-margin-bottom-15" ng-model="slot.location">
+            <div ng-class="{ &quot;has-error&quot; : updateSlotForm.batchSize.$invalid &amp;&amp; updateSlotForm.batchSize.$dirty }" class="form-group has-feedback">
+                <div class="col-md-12">
+                    <label>Batch Size</label>
+                </div>
+                <input type="number" class="form-control custom-margin-bottom-15" ng-model="slot.batchSize" min="0" name="batchSize">
+                <div ng-if="updateSlotForm.batchSize.$dirty" ng-messages="updateSlotForm.batchSize.$error" class="help-block text-danger text-center">
+                    <div ng-message="number">Please enter a valid batch size.</div>
+                    <div ng-message="min">Batch size cannot be negative. Please enter a positive value for the batch size.</div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label>Start Date</label>
+            </div>
+            <div ng-class="{ &quot;has-error&quot; : updateSlotForm.startDate.$invalid &amp;&amp; updateSlotForm.startDate.$dirty }" class="form-group has-feedback">
+                <input type="date" class="form-control custom-margin-bottom-15" ng-model="slot.startDate" value="{{slot.startDate | date:format:'dd-MM-yyy'}}" name="startDate" min="{{currentDate}}">
+                <div ng-if="updateSlotForm.startDate.$dirty" ng-messages="updateSlotForm.startDate.$error" class="help-block text-danger text-center">
+                    <div ng-message="min">Slot start date cannot be in the past. Please enter a valid start date for the slot.</div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label>Slot Status</label>
+            </div>
+            <select class="form-control custom-margin-bottom-15" ng-model="slot.status">
+                <option value="unpublished" selected>Unpublished</option>
+                <option value="new">New</option>
+                <option value="closed">Closed</option>
+                <option value="open">Open</option>
+            </select>
+            <div class="col-md-2 col-md-offset-4">
+                <button class="btn btn-primary" ng-click="updateSlot(slot._id, slot.city, slot.location, slot.batchSize, slot.startDate, slot.status)" ng-disabled="updateSlotForm.$invalid">Update Slot</button>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" ng-click="addNewSlot=!addNewSlot">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+</div>
