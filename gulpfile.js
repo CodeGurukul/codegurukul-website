@@ -64,6 +64,7 @@ gulp.task('compress', function() {
         'public/vendor/angular-validation-match/dist/angular-input-match.min.js',
         'public/vendor/angular-slick/dist/slick.min.js',
         'public/vendor/slick-carousel/slick/slick.min.js',
+        'public/vendor/angular-file-upload/angular-file-upload.min.js',
         'public/vendor/textAngular/dist/textAngular-rangy.min.js',
         'public/vendor/textAngular/dist/textAngular.min.js',
         'public/js/retina-1.1.0.min.js',

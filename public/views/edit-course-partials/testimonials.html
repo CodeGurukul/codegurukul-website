@@ -20,6 +20,7 @@
                             <span ng-show="!edit"><p>{{testimonial.description}}</p></span>
                         </div>
                         <textarea rows="3" type="text" class="form-control custom-margin-bottom-15" ng-model="testimonial.description" ng-show="edit"></textarea>
+
                         <div class="col-md-2 col-md-offset-4" ng-show="edit">
                             <button class="btn btn-primary" ng-click="updateTestimonial(testimonial._id, testimonial.name, testimonial.description)">Update</button>
                         </div>

@@ -9,6 +9,13 @@ angular.module('Codegurukul')
         update: $resource('/api/admin/courses/:cslug/update',{
             cslug: '@cslug'
         }),
+        image: $resource('/api/admin/courses/:cslug/image',{
+            cslug: '@cslug'
+        }, {
+            update:{
+                method: 'PUT'
+            }
+        }),
         create: $resource('/api/admin/createCourse'),
         addAttendee: $resource('/api/admin/courses/join'),
         changeAttendeeStatus: $resource('/api/admin/courses/:cslug/:sid/attendees/status',{

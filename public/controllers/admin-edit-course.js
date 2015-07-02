@@ -89,8 +89,83 @@ angular.module('Codegurukul')
 
 
 angular.module('Codegurukul')
-    .controller('AdminEditCourseMentorsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams) {
+    .controller('AdminEditCourseMentorsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams, FileUploader, $window) {
 
+     var uploader = $scope.uploader = new FileUploader({
+      url: '/api/admin/courses/'+$stateParams.course+'/image',
+      method: 'PUT',
+      headers: {
+        Authorization:$window.localStorage.token 
+      }
+  });
+    
+     /*angular-file-upload start*/
+    
+    // FILTERS
+ 
+    uploader.filters.push({
+        name: 'imageFilter',
+        fn: function(item /*{File|FileLikeObject}*/, options) {
+          var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+          if ('|jpg|png|jpeg|bmp|gif|'.indexOf(type) == -1) {
+            $alert({
+              content: 'Please select an image file.',
+              placement: 'right',
+              type: 'danger',
+              duration: 5
+            });
+            return false;
+          };
+          if (item.size > 500000) {
+            $alert({
+              content: 'Image cannot be more than 500KB',
+              placement: 'right',
+              type: 'danger',
+              duration: 5
+            });
+            return false;
+          }
+          return true;
+        }
+    });
+    
+    uploader.onBeforeUploadItem = function(item) {
+      formData = [{
+//        name: $scope.spo.name,
+//        title: $scope.spo.title,
+//        description: $scope.spo.description,
+        type: 'ment'
+      }];
+      Array.prototype.push.apply(item.formData, formData);
+        console.log("cleared 1")
+    };
+    uploader.onSuccessItem = function(fileItem, response, status, headers) {
+      $alert({
+        content: "Sponsor was successfuly updated.",
+        placement: 'right',
+        type: 'success',
+        duration: 5
+      });
+      uploader.clearQueue();
+    };
+    uploader.onErrorItem = function(fileItem, response, status, headers) {
+      console.log(response);
+      console.log(fileItem);
+      console.log(status);
+      console.log(headers);
+      $alert({
+        content: "There was an error please try again later.",
+        placement: 'right',
+        type: 'danger',
+        duration: 5
+      });
+      uploader.clearQueue();
+    };
+ 
+    // CALLBACKS
+ 
+/*angular-file-upload end*/
+    
     $scope.edit = false;
     $scope.addNewMentor = false;
 
@@ -166,7 +241,7 @@ angular.module('Codegurukul')
 
 angular.module('Codegurukul')
     .controller('AdminEditCourseTestimonialsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams) {
-
+    
     $scope.edit = false;
     $scope.addNewTestimonial = false;
 
