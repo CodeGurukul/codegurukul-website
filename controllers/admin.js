@@ -468,6 +468,10 @@ var deleteSlot = function (req, res, course) {
 var deleteMentor = function (req, res, course) {
   if (req.query.mentorId) {
     if (course.mentors.id(req.query.mentorId)) {
+      if (course.mentors.id(req.query.mentorId).image) 
+        deleteFile(course.mentors.id(req.query.mentorId).image);
+      if (course.mentors.id(req.query.mentorId).signature) 
+        deleteFile(course.mentors.id(req.query.mentorId).signature);
       course.mentors.pull({_id: req.query.mentorId})
       saveCourse(req, res, course);
     } else return res.status(400).send("Invalid mentor ID");
@@ -477,6 +481,8 @@ var deleteMentor = function (req, res, course) {
 var deletePartner = function (req, res, course) {
   if (req.query.partnerId) {
     if (course.partners.id(req.query.partnerId)) {
+      if (course.partners.id(req.query.partnerId).image)
+        deleteFile(course.partners.id(req.query.partnerId).image);
       course.partners.pull({_id: req.query.partnerId})
       saveCourse(req, res, course);
     } else return res.status(400).send("Invalid partner ID");
@@ -495,6 +501,8 @@ var deleteContent = function (req, res, course) {
 var deleteTestimonial = function (req, res, course) {
   if (req.query.testimonialId) {
     if (course.testimonials.id(req.query.testimonialId)) {
+      if (course.testimonials.id(req.query.testimonialId).image)
+        deleteFile(course.testimonials.id(req.query.testimonialId).image);
       course.testimonials.pull({_id: req.query.testimonialId})
       saveCourse(req, res, course);
     } else return res.status(400).send("Invalid testimonial ID");
@@ -590,7 +598,7 @@ exports.uploadImages = function(req, res) {
 var courseImage = function (req, res, course) {
     var filename = path.basename(req.files.file.path);
     if (req.body.imageType == "thumb"){
-      course.thumb = "/img/course/" + course.slug + "/" + filename;
+      course.thumb = "img/course/" + course.slug + "/" + filename;
     } else return res.status(400).send("Invalid course image type");    
     saveCourse(req, res, course);
 }
@@ -600,9 +608,9 @@ var mentorImage = function (req, res, course) {
     if (course.mentors.id(req.body.mentorId)) {
       var filename = path.basename(req.files.file.path);
       if (req.body.imageType == "dp"){
-        course.mentors.id(req.body.mentorId).image = "/img/course/" + course.slug + "/" + filename;
+        course.mentors.id(req.body.mentorId).image = "img/course/" + course.slug + "/" + filename;
       } else if (req.body.imageType == "sig") {
-        course.mentors.id(req.body.mentorId).signature = "/img/course/" + course.slug + "/" + filename;
+        course.mentors.id(req.body.mentorId).signature = "img/course/" + course.slug + "/" + filename;
       } else return res.status(400).send("Invalid mentor image type");    
       saveCourse(req, res, course);
     } else return res.status(400).send("Invalid mentor ID");
@@ -614,7 +622,7 @@ var partnerImage = function (req, res, course) {
   if (req.body.partnerId) {
     if (course.partners.id(req.body.partnerId)) {
       var filename = path.basename(req.files.file.path);
-      course.partners.id(req.body.partnerId).image = "/img/course/" + course.slug + "/" + filename;
+      course.partners.id(req.body.partnerId).image = "img/course/" + course.slug + "/" + filename;
       saveCourse(req, res, course);
     } else return res.status(400).send("Invalid partner ID");
 
@@ -625,11 +633,116 @@ var testimonialImage = function (req, res, course) {
   if (req.body.testimonialId) {
     if (course.testimonials.id(req.body.testimonialId)) {
       var filename = path.basename(req.files.file.path);
-      course.testimonials.id(req.body.testimonialId).image = "/img/course/" + course.slug + "/" + filename;
+      course.testimonials.id(req.body.testimonialId).image = "img/course/" + course.slug + "/" + filename;
       saveCourse(req, res, course);
     } else return res.status(400).send("Invalid testimonial ID");
 
   } else return res.status(400).send("Testimonial ID required");
+}
+
+exports.deleteImages = function(req, res) {
+  
+  if (req.query.type && req.params.cslug) {
+    Course.findOne({
+      slug: req.params.cslug
+    }, function (err, course) {
+      if (err) return res.status(400).send(err);
+      if (!course) return res.status(404).send("Course not found");  
+      switch(req.query.type){
+        case 'course': {
+          if (req.query.imageType) {
+            deleteCourseImage(req, res, course);
+          } else return res.status(400).send("Course image type required");  
+          break;
+        }
+        case 'ment': {
+          if (req.query.imageType) {
+            deleteMentorImage(req, res, course);
+          } else return res.status(400).send("Mentor image type required");  
+          break;
+        }
+        case 'part': {
+          deletePartnerImage(req, res, course);
+          break;
+        }
+        case 'test': {
+          deleteTestimonialImage(req, res, course);
+          break;
+        }
+        default: {
+          return res.status(400).send("Invalid type");    
+        }
+      }
+    })
+  } else return res.status(400).send("Type & course slug required");
+};
+
+var deleteCourseImage = function (req, res, course) {
+    if (req.query.imageType == "thumb"){
+      if(course.thumb) {
+        deleteFile(course.thumb);
+        course.thumb = undefined;
+        saveCourse(req, res, course);
+      } else return res.status(400).send("No image exists");
+    } else return res.status(400).send("Invalid course image type");
+}
+
+var deleteMentorImage = function (req, res, course) {
+  if (req.query.mentorId) {
+    if (course.mentors.id(req.query.mentorId)) {
+      if (req.query.imageType == "dp"){
+        if(course.mentors.id(req.query.mentorId).image) {
+          deleteFile(course.mentors.id(req.query.mentorId).image);
+          course.mentors.id(req.query.mentorId).image = undefined;
+          saveCourse(req, res, course);
+        } else return res.status(400).send("No image exists");
+      } else if (req.query.imageType == "sig") {
+        if(course.mentors.id(req.query.mentorId).signature) {
+          deleteFile(course.mentors.id(req.query.mentorId).signature);
+          course.mentors.id(req.query.mentorId).signature = undefined;
+          saveCourse(req, res, course);
+        } else return res.status(400).send("No image exists");
+
+      } else return res.status(400).send("Invalid mentor image type");    
+
+    } else return res.status(400).send("Invalid mentor ID");
+
+  } else return res.status(400).send("Mentor ID required");
+}
+
+var deletePartnerImage = function (req, res, course) {
+  if (req.query.partnerId) {
+    if (course.partners.id(req.query.partnerId)) {
+      if(course.partners.id(req.query.partnerId).image) {
+        deleteFile(course.partners.id(req.query.partnerId).image);
+        course.partners.id(req.query.partnerId).image = undefined;
+        saveCourse(req, res, course);
+      } else return res.status(400).send("No image exists");
+
+    } else return res.status(400).send("Invalid partner ID");
+
+  } else return res.status(400).send("Partner ID required");
+}
+
+var deleteTestimonialImage = function (req, res, course) {
+  if (req.query.testimonialId) {
+    if (course.testimonials.id(req.query.testimonialId)) {
+      if(course.testimonials.id(req.query.testimonialId).image) {
+        deleteFile(course.testimonials.id(req.query.testimonialId).image);
+        course.testimonials.id(req.query.testimonialId).image = undefined;
+        saveCourse(req, res, course);
+      } else return res.status(400).send("No image exists");
+
+    } else return res.status(400).send("Invalid testimonial ID");
+
+  } else return res.status(400).send("Testimonial ID required");
+}
+
+var deleteFile = function (file) {
+  fs.unlink(path.resolve('public/', file), function (err) {
+    if (err) console.log(err);
+    else console.log('successfully deleted');
+  });
 }
 
 function isNumber(n) {
@@ -641,7 +754,7 @@ function codeGen(len) {
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     for( var i=0; i < len; i++ )
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
 
     return text;
 }
