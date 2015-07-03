@@ -2,7 +2,107 @@
   <table class="table table-striped">
     <tbody>
       <tr ng-repeat="mentor in course.mentors">
-        <td class="col-md-11">
+        <td class="col-md-3">
+          <label>Mentor Image:</label>
+          <p ng-show="!mentor.image"> No image uploaded yet </p>
+          <img ng-show="mentor.image" src="{{mentor.image}}" width="200px"/><br><br>
+          <span class="pull-left"><a href="" ng-click="uploadImage = !uploadImage"> <i class="fa fa-pencil fa-lg" ng-show="!uploadImage"></i><i class="fa fa-times fa-lg" ng-show="uploadImage"></i> </a><a href="" ng-show="mentor.image" ng-click="confirmDelete(mentor._id,'mentor image')"> <i class="fa fa-trash-o fa-lg" ng-show="!upload"></i></a></span><br>
+          <div class="input-group  custom-margin-bottom-15" ng-show="uploadImage">
+            <div class="input-group-addon input-md">
+              <i class="fa fa-upload"></i>
+            </div>
+            <div class="input-group-addon input-md">
+              <input type="file" nv-file-select uploader="uploader" class="choose-image-file">
+            </div>
+          </div>
+
+          <table class="table" ng-show="uploader.queue.length !='0' && uploadImage">
+            <thead >
+              <tr>
+                <th width="20%">Name</th>
+                <th width="20%" ng-show="uploader.isHTML5">Size</th>
+                <th width="30%" ng-show="uploader.isHTML5">Progress</th>
+                <!--              <th width="20%">Status</th>-->
+                <th width="30%">Actions</th>
+              </tr>
+            </thead>
+            <tr ng-repeat="item in uploader.queue">
+              <td><strong>{{ item.file.name }}</strong>
+                <!-- Image preview-->
+                <!-- auto height-->
+                <!-- <div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+                <!-- auto width-->
+                <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                <!-- fixed width and height-->
+                <!-- <div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+              </td>
+              <td ng-show="uploader.isHTML5" nowrap="">{{ item.file.size/1024/1024|number:2 }} MB</td>
+              <td ng-show="uploader.isHTML5">
+                <div style="margin-bottom: 0;" class="progress">
+                  <div role="progressbar" ng-style="{ 'width': item.progress + '%' }" class="progress-bar"></div>
+                </div>
+              </td>
+              <!--            <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>-->
+              <td nowrap="">
+                <button type="button" ng-click="sendData(mentor._id, 'dp');item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" class="btn btn-success btn-xs"><span class="fa fa-upload"></span> Upload</button>
+                <button type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading" class="btn btn-warning btn-xs"><span class="fa fa-times"></span> Cancel</button>
+                <button type="button" ng-click="item.remove()" class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> Remove</button>
+              </td>
+            </tr>
+
+          </table>
+          <br>
+          <label>Mentor Signature:</label>
+          <p ng-show="!mentor.signature"> No signature uploaded yet </p>
+          <img ng-show="mentor.signature" src="{{mentor.signature}}" width="200px"/><br><br>
+          <span class="pull-left"><a href="" ng-click="uploadSignature = !uploadSignature"> <i class="fa fa-pencil fa-lg" ng-show="!uploadSignature"></i><i class="fa fa-times fa-lg" ng-show="uploadSignature"></i> </a><a href="" ng-show="mentor.signature" ng-click="confirmDelete(mentor._id,'mentor signature')"> <i class="fa fa-trash-o fa-lg" ng-show="!uploadSignature"></i></a></span><br>
+          <div class="input-group  custom-margin-bottom-15" ng-show="uploadSignature">
+            <div class="input-group-addon input-md">
+              <i class="fa fa-upload"></i>
+            </div>
+            <div class="input-group-addon input-md">
+              <input type="file" nv-file-select uploader="uploader" class="choose-image-file">
+            </div>
+          </div>
+
+          <table class="table" ng-show="uploader.queue.length !='0' && uploadSignature">
+            <thead >
+              <tr>
+                <th width="20%">Name</th>
+                <th width="20%" ng-show="uploader.isHTML5">Size</th>
+                <th width="30%" ng-show="uploader.isHTML5">Progress</th>
+                <!--              <th width="20%">Status</th>-->
+                <th width="30%">Actions</th>
+              </tr>
+            </thead>
+            <tr ng-repeat="item in uploader.queue">
+              <td><strong>{{ item.file.name }}</strong>
+                <!-- Image preview-->
+                <!-- auto height-->
+                <!-- <div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+                <!-- auto width-->
+                <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                <!-- fixed width and height-->
+                <!-- <div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+              </td>
+              <td ng-show="uploader.isHTML5" nowrap="">{{ item.file.size/1024/1024|number:2 }} MB</td>
+              <td ng-show="uploader.isHTML5">
+                <div style="margin-bottom: 0;" class="progress">
+                  <div role="progressbar" ng-style="{ 'width': item.progress + '%' }" class="progress-bar"></div>
+                </div>
+              </td>
+              <!--            <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>-->
+              <td nowrap="">
+                <button type="button" ng-click="sendData(mentor._id, 'sig');item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" class="btn btn-success btn-xs"><span class="fa fa-upload"></span> Upload</button>
+                <button type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading" class="btn btn-warning btn-xs"><span class="fa fa-times"></span> Cancel</button>
+                <button type="button" ng-click="item.remove()" class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> Remove</button>
+              </td>
+            </tr>
+
+          </table>
+
+        </td>
+        <td class="col-md-8">
           <form class="form" name="updateMentorForm">
             <div class="col-md-12">
               <label>Mentor Name:</label>
@@ -55,113 +155,12 @@
               </div>
             </div>
 
-            <div class="col-md-12">
-              <label>Image URL:  </label>
-              <span class="pull-right" ng-show="edit"><a href="" ng-click="uploadImage = !uploadImage"> <i class="fa fa-pencil fa-lg" ng-show="!uploadImage"></i><i class="fa fa-times fa-lg" ng-show="uploadImage"></i> </a></span>
-              <span ng-show="!uploadImage"><p ng-model="mentor.image"> {{mentor.image}} </p></span>
-            </div>
-            <div class="input-group  custom-margin-bottom-15" ng-show="uploadImage">
-              <input type="file" nv-file-select uploader="uploader" class="form-control">
-
-              <div class="input-group-addon input-md">
-                <i class="fa fa-upload"></i>
-
-              </div>
-            </div>
-
-            <table class="table" ng-show="uploader.queue.length !='0' && edit && uploadImage">
-              <thead >
-                <tr>
-                  <th width="20%">Name</th>
-                  <th width="20%" ng-show="uploader.isHTML5">Size</th>
-                  <th width="30%" ng-show="uploader.isHTML5">Progress</th>
-                  <!--              <th width="20%">Status</th>-->
-                  <th width="30%">Actions</th>
-                </tr>
-              </thead>
-              <tr ng-repeat="item in uploader.queue">
-                <td><strong>{{ item.file.name }}</strong>
-                  <!-- Image preview-->
-                  <!-- auto height-->
-                  <!-- <div ng-thumb="{ file: item.file, width: 100 }"></div>-->
-                  <!-- auto width-->
-                  <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
-                  <!-- fixed width and height-->
-                  <!-- <div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
-                </td>
-                <td ng-show="uploader.isHTML5" nowrap="">{{ item.file.size/1024/1024|number:2 }} MB</td>
-                <td ng-show="uploader.isHTML5">
-                  <div style="margin-bottom: 0;" class="progress">
-                    <div role="progressbar" ng-style="{ 'width': item.progress + '%' }" class="progress-bar"></div>
-                  </div>
-                </td>
-                <!--            <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>-->
-                <td nowrap="">
-                  <button type="button" ng-click="sendData(mentor._id,'dp');item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" class="btn btn-success btn-xs"><span class="fa fa-upload"></span> Upload</button>
-                  <button type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading" class="btn btn-warning btn-xs"><span class="fa fa-times"></span> Cancel</button>
-                  <button type="button" ng-click="item.remove()" class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> Remove</button>
-                </td>
-              </tr>
-
-            </table>
-
-            
-            
-            <div class="col-md-12">
-              <label>Mentor Signature URL:  </label>
-              <span class="pull-right" ng-show="edit"><a href="" ng-click="uploadSignature = !uploadSignature"> <i class="fa fa-pencil fa-lg" ng-show="!uploadSignature"></i><i class="fa fa-times fa-lg" ng-show="uploadSignature"></i> </a></span>
-              <span ng-show="!uploadSignature"><p> {{mentor.signature}} </p></span>
-            </div>
-            <div class="input-group  custom-margin-bottom-15" ng-show="uploadSignature">
-              <input type="file" nv-file-select uploader="uploader" class="form-control">
-
-              <div class="input-group-addon input-md">
-                <i class="fa fa-upload"></i>
-
-              </div>
-            </div>
-
-            <table class="table" ng-show="uploader.queue.length !='0' && edit && uploadSignature">
-              <thead >
-                <tr>
-                  <th width="20%">Name</th>
-                  <th width="20%" ng-show="uploader.isHTML5">Size</th>
-                  <th width="30%" ng-show="uploader.isHTML5">Progress</th>
-                  <!--              <th width="20%">Status</th>-->
-                  <th width="30%">Actions</th>
-                </tr>
-              </thead>
-              <tr ng-repeat="item in uploader.queue">
-                <td><strong>{{ item.file.name }}</strong>
-                  <!-- Image preview-->
-                  <!-- auto height-->
-                  <!-- <div ng-thumb="{ file: item.file, width: 100 }"></div>-->
-                  <!-- auto width-->
-                  <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
-                  <!-- fixed width and height-->
-                  <!-- <div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
-                </td>
-                <td ng-show="uploader.isHTML5" nowrap="">{{ item.file.size/1024/1024|number:2 }} MB</td>
-                <td ng-show="uploader.isHTML5">
-                  <div style="margin-bottom: 0;" class="progress">
-                    <div role="progressbar" ng-style="{ 'width': item.progress + '%' }" class="progress-bar"></div>
-                  </div>
-                </td>
-                <!--            <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>-->
-                <td nowrap="">
-                  <button type="button" ng-click="sendData(mentor._id,'sig');item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" class="btn btn-success btn-xs"><span class="fa fa-upload"></span> Upload</button>
-                  <button type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading" class="btn btn-warning btn-xs"><span class="fa fa-times"></span> Cancel</button>
-                  <button type="button" ng-click="item.remove()" class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> Remove</button>
-                </td>
-              </tr>
-
-            </table>
 
             <div class="col-md-2 col-md-offset-4" ng-show="edit">
-              <button class="btn btn-primary" type="submit" ng-disabled="updateMentorForm.$invalid" ng-click="updateMentor(mentor._id,mentor.name,mentor.designation,mentor.description,mentor.facebook,mentor.linkedin)">Update Mentor</button>
+              <button class="btn btn-primary" type="submit" ng-disabled="updateMentorForm.$invalid" ng-click="updateMentor(mentor._id,mentor.name,mentor.designation,mentor.description,mentor.facebook,mentor.linkedin)">Update</button>
             </div>
             <div class="col-md-2" ng-show="edit">
-              <button class="btn btn-primary" ng-click="deleteMentor(mentor._id)">Delete Mentor</button>
+              <button class="btn btn-primary" ng-click="confirmDelete(mentor._id, 'mentor')">Delete</button>
             </div>
           </form>
         </td>
@@ -245,17 +244,16 @@
     </div>
   </form>
 
-  <modal-dialog show="imageCrop" dialog-title="Crop Image" height="auto" width="auto">
-    <div class="addMemberModalDiv col-md-12">
-      <div ng-repeat="item in uploader.queue">
-        <div class="cropArea">
-          <img-crop image="item.image" result-image="item.croppedImage" area-type="square" result-image-size="300"></img-crop>
-        </div><img ng-src="{{item.croppedImage}}" class="croppedImage"/>
-        <div class="progress">
-          <div role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" class="progress-bar"></div>
-        </div>
-        <button ng-click="item.upload()" class="btn btn-md addMemberModalButton">Upload Image</button>
-        <button ng-click="imageCrop = !imageCrop" class="btn btn-md addMemberModalButton">Cancel</button>
+<modal-dialog class="inviteMessageModal" show='deleteModalShown' dialog-title="Confirmation" height="auto" width="350px">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="text-center">Are you sure you want to delete this {{modalInfo}}?</p>
+      </div>
+      <div class="col-md-6 text-center">
+        <button class="btn btn-primary btn-md" ng-click="delete()"> OK </button>
+      </div>
+      <div class="col-md-6 text-center">
+        <button class="btn btn-primary btn-md" ng-click="closeConfirmDelete()"> Cancel </button>
       </div>
     </div>
   </modal-dialog>

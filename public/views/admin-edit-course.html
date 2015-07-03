@@ -1,34 +1,108 @@
 <!-- ========== TITLE START ========== -->
 
 <div class="title">
-    <div class="title-image"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                ADMIN PAGE - EDIT COURSE
-            </div>
-        </div>
+  <div class="title-image"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        ADMIN PAGE - EDIT COURSE
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- ========== TITLE END ========== -->
 
 <section>
-   <div class="container">
-        <div class="row">
-            <div class="col-sm-2">
-                <button class="btn btn-primary btn-md toggle-leads-attendees" ng-click="previousPage()" ng-if="previousState"> Previous page</button>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2">
+        <button class="btn btn-primary btn-md toggle-leads-attendees" ng-click="previousPage()" ng-if="previousState"> Previous page</button>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 col-sm-12">
+        <label>Image:  </label>
+         <p ng-show="!course.thumb"> No image uploaded yet </p>
+        <span><p> <img ng-show="course.thumb" src="{{course.thumb}}" width="250px"/> </p></span>
+        <span><a href="" ng-click="upload = !upload"> <i class="fa fa-pencil fa-lg" ng-show="!upload"></i><i class="fa fa-times fa-lg" ng-show="upload"></i> </a><a href="" ng-show="course.thumb" ng-click="confirmDelete('course image')"> <i class="fa fa-trash-o fa-lg" ng-show="!upload"></i></a></span><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="input-group  custom-margin-bottom-15" ng-show="upload">
+          <div class="input-group-addon input-md">
+            <i class="fa fa-upload"></i>
+          </div>
+          <input type="text" class="form-control" ng-model="course.thumb" ng-disabled >
+          <div class="input-group-addon input-md">
+            <input type="file" nv-file-select uploader="uploader" class="choose-image-file">
+          </div>
         </div>
-        <hr>
+      </div>
     </div>
 
-    <div class="container">
 
-        <div bs-active-pane="tabs.activeTab" bs-tabs>
-            <div ng-repeat="tab in tabs" title="{{tab.title }}" name="{{tab.title}}" ng-bind="tab.content" bs-pane>
-            </div>
-            <div ng-include="" src="tabs[tabs.activeTab].page"></div>
+    <table class="table">
+      <thead ng-show="uploader.queue.length !='0'">
+        <tr>
+          <th width="20%">Name</th>
+          <th width="20%" ng-show="uploader.isHTML5">Size</th>
+          <th width="30%" ng-show="uploader.isHTML5">Progress</th>
+          <!--              <th width="20%">Status</th>-->
+          <th width="30%">Actions</th>
+        </tr>
+      </thead>
+      <tr ng-repeat="item in uploader.queue">
+        <td><strong>{{ item.file.name }}</strong>
+          <!-- Image preview-->
+          <!-- auto height-->
+          <!-- <div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+          <!-- auto width-->
+          <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+          <!-- fixed width and height-->
+          <!-- <div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+        </td>
+        <td ng-show="uploader.isHTML5" nowrap="">{{ item.file.size/1024/1024|number:2 }} MB</td>
+        <td ng-show="uploader.isHTML5">
+          <div style="margin-bottom: 0;" class="progress">
+            <div role="progressbar" ng-style="{ 'width': item.progress + '%' }" class="progress-bar"></div>
+          </div>
+        </td>
+        <!--            <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>-->
+        <td nowrap="">
+          <button type="button" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" class="btn btn-success btn-xs"><span class="fa fa-upload"></span> Upload</button>
+          <button type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading" class="btn btn-warning btn-xs"><span class="fa fa-times"></span> Cancel</button>
+          <button type="button" ng-click="item.remove()" class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> Remove</button>
+        </td>
+      </tr>
+
+    </table>
+    <hr>
+  </div>
+
+  <div class="container">
+
+    <div bs-active-pane="tabs.activeTab" bs-tabs>
+      <div ng-repeat="tab in tabs" title="{{tab.title }}" name="{{tab.title}}" ng-bind="tab.content" bs-pane>
+      </div>
+      <div ng-include="" src="tabs[tabs.activeTab].page"></div>
+    </div>
+    
+    <modal-dialog class="inviteMessageModal" show='deleteModalShown' dialog-title="Confirmation" height="auto" width="350px">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="text-center">Are you sure you want to delete this {{modalInfo}}?</p>
         </div>
-
-        </section>
+        <div class="col-md-6 text-center">
+          <button class="btn btn-primary btn-md" ng-click="delete()"> OK </button>
+        </div>
+        <div class="col-md-6 text-center">
+          <button class="btn btn-primary btn-md" ng-click="closeConfirmDelete()"> Cancel </button>
+        </div>
+      </div>
+    </modal-dialog>
+    </section>

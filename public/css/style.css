@@ -2130,3 +2130,7 @@ Optional CSS for partners
 .nav, .pagination, .carousel, .panel-title a {
     cursor: pointer; 
 }
+
+.choose-image-file{
+  width:86px;
+}
