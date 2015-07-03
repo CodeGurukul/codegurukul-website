@@ -278,10 +278,12 @@ var updateSlot = function (req, res, course) {
     if (course.slots.id(req.body.slotId)) {
       if (req.body.startDate) {
         var now = moment();
-        if (moment(req.body.startDate).isBefore(now)) 
-          return res.status(400).send("Start date can not be in the past");
-        else
-          course.slots.id(req.body.slotId).startDate = req.body.startDate;      
+        if (!moment(req.body.startDate).isSame(course.slots.id(req.body.slotId).startDate, "day")) {
+          if (moment(req.body.startDate).isBefore(now)) 
+            return res.status(400).send("Start date can not be in the past");
+          else
+            course.slots.id(req.body.slotId).startDate = req.body.startDate;      
+        }
       };
       course.slots.id(req.body.slotId).city = req.body.city;
       if (!isNumber(req.body.batchSize)) return res.status(400).send("Batch size should be a positive number");

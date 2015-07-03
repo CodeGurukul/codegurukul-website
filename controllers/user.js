@@ -37,8 +37,9 @@ exports.isLoginOptional = function(req, res, next) {
     //.split(' ')[1];
     try {
       var decoded = jwt.decode(token, tokenSecret);
-      if (decoded.exp <= Date.now()) {
-        res.status(400).send(msg.et);
+      if (decoded.exp >= Date.now()) {
+        console.log("token exp");
+        res.status(403).send(msg.et);
       } else {
         req.user = decoded.user;
         return next();
@@ -61,7 +62,7 @@ exports.isLogin = function(req, res, next) {
     try {
       var decoded = jwt.decode(token, tokenSecret);
       if (decoded.exp <= Date.now()) {
-        res.status(400).send(msg.et);
+        res.status(407).send(msg.et);
       } else {
         req.user = decoded.user;
         return next();
