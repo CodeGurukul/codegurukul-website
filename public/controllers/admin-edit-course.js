@@ -965,6 +965,7 @@ angular.module('Codegurukul')
 
   console.log("pre-validation "+$scope.currentDate);
   $scope.validation = false;
+  $scope.currentDateForAddNew = new Date();
 
   $scope.change = function(){
     $scope.validation = true;
@@ -975,13 +976,6 @@ angular.module('Codegurukul')
       console.log("validation "+$scope.currentDate);
     }
   }
-
-
-  //  $scope.validation = function(){
-  //    $scope.dateCheck = new Date();
-  //    $scope.currentDate = $scope.dateCheck;
-  //    console.log("validation "+$scope.currentDate);
-  //  }
 
 
   $scope.edit = false;
@@ -1039,7 +1033,7 @@ angular.module('Codegurukul')
     Admin.update.delete({
       cslug: $stateParams.course,
       type: 'slot',
-      slotId: id
+      slotId: $scope.slotIdToDelete
     }, function() {
       $alert({
         content: 'Course slot deleted succesfully',
@@ -1047,6 +1041,7 @@ angular.module('Codegurukul')
         type: 'success',
         duration: 5
       });
+      $scope.deleteModalShown = false;
       Admin.course.get({
         cslug: $stateParams.course
       }, function(data) {
@@ -1067,6 +1062,18 @@ angular.module('Codegurukul')
       })
     })
   }
+
+  $scope.deleteModalShown = false;
+
+  $scope.closeConfirmDelete = function(){
+    $scope.deleteModalShown = false;
+  }
+
+  $scope.confirmDelete = function(id){
+    $scope.slotIdToDelete = id;
+    $scope.deleteModalShown = !$scope.deleteModalShown
+  }
+
 
 });
 

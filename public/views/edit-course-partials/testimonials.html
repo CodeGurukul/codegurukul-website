@@ -83,16 +83,18 @@ Note: New image path will be displayed after clicking on "UPDATE" button
 </div>
 -->
 
-              <div class="col-md-2 col-md-offset-4" ng-show="edit">
+              <div class="col-md-2 col-md-offset-5" ng-show="edit">
                 <button class="btn btn-primary" ng-click="updateTestimonial(testimonial._id, testimonial.name, testimonial.description)">Update</button>
               </div>
+<!--
               <div class="col-md-2" ng-show="edit">
                 <button class="btn btn-primary" ng-click="confirmDelete(testimonial._id, 'testimonial')">Delete</button>
               </div>
+-->
               </form>
             </td>
         <td class="col-md-1">
-          <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil pull-right"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times pull-right"></i> </a>
+         <a href="" ng-show="!edit" ng-click="confirmDelete(testimonial._id, 'testimonial')"> <i class="fa fa-trash-o pull-right"></i> </a> <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil pull-right"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times pull-right"></i> </a>
         </td>
       </tr>
     </tbody>

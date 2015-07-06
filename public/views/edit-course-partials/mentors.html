@@ -156,16 +156,18 @@
             </div>
 
 
-            <div class="col-md-2 col-md-offset-4" ng-show="edit">
+            <div class="col-md-2 col-md-offset-5" ng-show="edit">
               <button class="btn btn-primary" type="submit" ng-disabled="updateMentorForm.$invalid" ng-click="updateMentor(mentor._id,mentor.name,mentor.designation,mentor.description,mentor.facebook,mentor.linkedin)">Update</button>
             </div>
+<!--
             <div class="col-md-2" ng-show="edit">
               <button class="btn btn-primary" ng-click="confirmDelete(mentor._id, 'mentor')">Delete</button>
             </div>
+-->
           </form>
         </td>
         <td class="col-md-1">
-          <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil pull-right"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times pull-right"></i> </a>
+           <a href="" ng-show="!edit" ng-click="confirmDelete(mentor._id, 'mentor')"> <i class="fa fa-trash-o pull-right"></i> </a><a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil pull-right"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times pull-right"></i> </a>
         </td>
       </tr>
     </tbody>
@@ -223,16 +225,6 @@
         <div ng-if="updateMentorForm.linkedin.$dirty" ng-messages="updateMentorForm.linkedin.$error" class="text-danger text-center">
           <div ng-message="url">Please enter a valid LinkedIn URL.</div>
         </div>
-      </div>
-    </div>
-
-    <div class="col-md-12">
-      <label>Image</label>
-    </div>
-    <div class="input-group  custom-margin-bottom-15" ng-show="edit">
-      <input type="file" nv-file-select uploader="uploader" class="form-control">
-      <div class="input-group-addon">
-        <a ng-click="item.upload()"><i class="fa fa-upload"></i></a>
       </div>
     </div>
 

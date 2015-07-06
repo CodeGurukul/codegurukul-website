@@ -55,17 +55,19 @@
                             <option value="closed">Closed</option>
                             <option value="open">Open</option>
                         </select>
-                        <div class="col-md-2 col-md-offset-4" ng-show="edit">
+                        <div class="col-md-2 col-md-offset-5" ng-show="edit">
                             <button class="btn btn-primary" ng-click="updateSlot(slot._id, slot.city, slot.location, slot.batchSize, slot.startDate, slot.status)" ng-disabled="updateSlotForm.$invalid">Update Slot</button>
                         </div>
+<!--
                         <div class="col-md-2" ng-show="edit">
                             <button class="btn btn-primary" ng-click="deleteSlot(slot._id)">Delete Slot</button>
                         </div>
+-->
                     </form>
 
                 </td>
                 <td class="col-md-1">
-                    <a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil pull-right"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times pull-right"></i> </a>
+                    <a href="" ng-show="!edit" ng-click="confirmDelete(slot._id)"> <i class="fa fa-trash-o pull-right"></i> </a><a href="" ng-show="!edit" ng-click="edit = !edit"> <i class="fa fa-pencil pull-right"></i> </a> <a href="" ng-show="edit" ng-click="edit = !edit"> <i class="fa fa-times pull-right"></i> </a>
                 </td>
             </tr>
         </tbody>
@@ -103,7 +105,7 @@
                 <label>Start Date</label>
             </div>
             <div ng-class="{ &quot;has-error&quot; : updateSlotForm.startDate.$invalid &amp;&amp; updateSlotForm.startDate.$dirty }" class="form-group has-feedback">
-                <input type="date" class="form-control custom-margin-bottom-15" ng-model="slot.startDate" value="{{slot.startDate | date:format:'dd-MM-yyy'}}" name="startDate" min="{{currentDate}}">
+                <input type="date" class="form-control custom-margin-bottom-15" ng-model="slot.startDate" value="{{slot.startDate | date:format:'dd-MM-yyyy'}}" name="startDate" min="{{currentDateForAddNew}}">
                 <div ng-if="updateSlotForm.startDate.$dirty" ng-messages="updateSlotForm.startDate.$error" class="help-block text-danger text-center">
                     <div ng-message="min">Slot start date cannot be in the past. Please enter a valid start date for the slot.</div>
                 </div>
@@ -118,12 +120,24 @@
                 <option value="open">Open</option>
             </select>
             <div class="col-md-2 col-md-offset-4">
-                <button class="btn btn-primary" ng-click="updateSlot(slot._id, slot.city, slot.location, slot.batchSize, slot.startDate, slot.status)" ng-disabled="updateSlotForm.$invalid">Update Slot</button>
+                <button class="btn btn-primary" ng-click="updateSlot(slot._id, slot.city, slot.location, slot.batchSize, slot.startDate, slot.status)" ng-disabled="updateSlotForm.$invalid">Add Slot</button>
             </div>
             <div class="col-md-2">
                 <button class="btn btn-primary" ng-click="addNewSlot=!addNewSlot">Cancel</button>
             </div>
         </form>
     </div>
-
+  <modal-dialog class="inviteMessageModal" show='deleteModalShown' dialog-title="Confirmation" height="auto" width="350px">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="text-center">Are you sure you want to delete this slot?</p>
+      </div>
+      <div class="col-md-6 text-center">
+        <button class="btn btn-primary btn-md" ng-click="deleteSlot()"> OK </button>
+      </div>
+      <div class="col-md-6 text-center">
+        <button class="btn btn-primary btn-md" ng-click="closeConfirmDelete()"> Cancel </button>
+      </div>
+    </div>
+  </modal-dialog>
 </div>
