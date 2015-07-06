@@ -31,11 +31,20 @@
                             <span ng-show="!edit"><p>{{slot.startDate|date:format:'longDate'}}</p></span>
                         </div>
                         <div ng-class="{ &quot;has-error&quot; : updateSlotForm.startDate.$invalid &amp;&amp; updateSlotForm.startDate.$dirty }" class="form-group has-feedback">
-                            <input type="date" class="form-control custom-margin-bottom-15" ng-model="slot.startDate" value="{{slot.startDate | date:format:'dd-MM-yyy'}}" name="startDate" min="{{currentDate}}" ng-show="edit">
+                            <input type="date" class="form-control custom-margin-bottom-15" ng-model="slot.startDate" value="{{slot.startDate | date:format:'dd-MM-yyyy'}}" name="startDate" ng-if="edit && validation==false" ng-change="change()">
+                          <input ng-if="edit && validation==true" type="date" class="form-control custom-margin-bottom-15" ng-model="slot.startDate" value="{{slot.startDate | date:format:'dd-MM-yyyy'}}" name="startDate" min="{{currentDate}}">
                             <div ng-if="updateSlotForm.startDate.$dirty" ng-messages="updateSlotForm.startDate.$error" class="help-block text-danger text-center">
                                 <div ng-message="min">Slot start date cannot be in the past. Please enter a valid start date for the slot.</div>
                             </div>
                         </div>
+<!--
+                      <div ng-class="{ &quot;has-error&quot; : updateSlotForm.startDate.$invalid &amp;&amp; updateSlotForm.startDate.$dirty }" class="form-group has-feedback">
+                            <input type="date" class="form-control custom-margin-bottom-15" ng-model="slot.startDate" value="{{slot.startDate | date:format:'dd-MM-yyyy'}}" name="startDate" min="{{currentDate}}" ng-show="edit" ng-change="validation= 'true'">
+                            <div ng-if="updateSlotForm.startDate.$dirty" ng-messages="updateSlotForm.startDate.$error" class="help-block text-danger text-center">
+                                <div ng-message="min">Slot start date cannot be in the past. Please enter a valid start date for the slot.</div>
+                            </div>
+                        </div>
+-->
                         <div class="col-md-12">
                             <label>Slot Status</label>
                             <span ng-show="!edit"><p>{{slot.status}}</p></span>

@@ -963,7 +963,27 @@ angular.module('Codegurukul')
 angular.module('Codegurukul')
   .controller('AdminEditCourseSlotsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams) {
 
-  $scope.currentDate = new Date();
+  console.log("pre-validation "+$scope.currentDate);
+  $scope.validation = false;
+
+  $scope.change = function(){
+    $scope.validation = true;
+    console.log("here");
+    if($scope.validation == true){
+      $scope.dateCheck = new Date();
+      $scope.currentDate = $scope.dateCheck;
+      console.log("validation "+$scope.currentDate);
+    }
+  }
+
+
+  //  $scope.validation = function(){
+  //    $scope.dateCheck = new Date();
+  //    $scope.currentDate = $scope.dateCheck;
+  //    console.log("validation "+$scope.currentDate);
+  //  }
+
+
   $scope.edit = false;
   $scope.addNewSlot = false;
 
