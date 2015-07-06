@@ -142,8 +142,8 @@ angular.module('Codegurukul')
   };
 
   /*angular-file-upload end*/
-  
-  
+
+
   $scope.deleteCourseImage = function(){
     Admin.image.delete({
       cslug: $stateParams.course,
@@ -416,8 +416,8 @@ angular.module('Codegurukul')
       })
     })
   }
-  
-  
+
+
   $scope.deleteMentorImage = function(){
     Admin.image.delete({
       cslug: $stateParams.course,
@@ -446,7 +446,7 @@ angular.module('Codegurukul')
       })
     })
   }
-  
+
   $scope.deleteMentorSignature = function(){
     Admin.image.delete({
       cslug: $stateParams.course,
@@ -677,7 +677,7 @@ angular.module('Codegurukul')
     })
   }
 
-  
+
   $scope.deleteTestimonialImage = function(){
     Admin.image.delete({
       cslug: $stateParams.course,
@@ -1054,6 +1054,8 @@ angular.module('Codegurukul')
 angular.module('Codegurukul')
   .controller('AdminEditCourseContentCtrl', function($scope, $alert, $rootScope, Admin, $stateParams) {
 
+  $scope.addNewModule = false;
+
   $scope.updateContent = function(id, title, description, duration, difficulty) {
     Admin.update.save({
       cslug: $stateParams.course,
@@ -1070,6 +1072,7 @@ angular.module('Codegurukul')
         type: 'success',
         duration: 5
       });
+      $scope.addNewModule = false;
       Admin.course.get({
         cslug: $stateParams.course
       }, function(data) {
@@ -1090,7 +1093,7 @@ angular.module('Codegurukul')
     Admin.update.delete({
       cslug: $stateParams.course,
       type: 'cont',
-      contentId: id
+      contentId: $scope.contentIdToDelete
     }, function() {
       $alert({
         content: 'Course module deleted succesfully',
@@ -1098,6 +1101,7 @@ angular.module('Codegurukul')
         type: 'success',
         duration: 5
       });
+      $scope.deleteModalShown = false;
       Admin.course.get({
         cslug: $stateParams.course
       }, function(data) {
@@ -1111,6 +1115,17 @@ angular.module('Codegurukul')
         duration: 5
       })
     })
+  }
+
+  $scope.deleteModalShown = false;
+
+  $scope.closeConfirmDelete = function(){
+    $scope.deleteModalShown = false;
+  }
+
+  $scope.confirmDelete = function(id){
+    $scope.contentIdToDelete = id;
+    $scope.deleteModalShown = !$scope.deleteModalShown
   }
 
 
