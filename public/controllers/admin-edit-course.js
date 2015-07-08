@@ -251,6 +251,13 @@ angular.module('Codegurukul')
   $scope.uploadImage = false;
   $scope.uploadSignature = false;
 
+  $scope.getCourseDetails = function(){
+    Admin.course.get({
+        cslug: $stateParams.course
+      }, function(data) {
+        $scope.course = data;
+      });
+  }
 
   var uploader = $scope.uploader = new FileUploader({
     url: '/api/admin/courses/' + $stateParams.course + '/image',
@@ -519,6 +526,14 @@ angular.module('Codegurukul')
 
   //  $scope.showImageHelpInfo = false;
   $scope.upload = false;
+  
+  $scope.getCourseDetails = function(){
+    Admin.course.get({
+        cslug: $stateParams.course
+      }, function(data) {
+        $scope.course = data;
+      });
+  }
 
   var uploader = $scope.uploader = new FileUploader({
     url: '/api/admin/courses/' + $stateParams.course + '/image',
@@ -743,6 +758,14 @@ angular.module('Codegurukul')
   .controller('AdminEditCoursePartnersCtrl', function($scope, $alert, $rootScope, Admin, $stateParams, $window, FileUploader) {
 
   $scope.upload = false;
+  
+  $scope.getCourseDetails = function(){
+    Admin.course.get({
+        cslug: $stateParams.course
+      }, function(data) {
+        $scope.course = data;
+      });
+  }
 
   var uploader = $scope.uploader = new FileUploader({
     url: '/api/admin/courses/' + $stateParams.course + '/image',
@@ -963,17 +986,24 @@ angular.module('Codegurukul')
 angular.module('Codegurukul')
   .controller('AdminEditCourseSlotsCtrl', function($scope, $alert, $rootScope, Admin, $stateParams) {
 
-  console.log("pre-validation "+$scope.currentDate);
-  $scope.validation = false;
   $scope.currentDateForAddNew = new Date();
+  $scope.past = false;
+  
+  $scope.getCourseDetails = function(){
+    Admin.course.get({
+        cslug: $stateParams.course
+      }, function(data) {
+        $scope.course = data;
+      });
+  }
 
-  $scope.change = function(){
-    $scope.validation = true;
-    console.log("here");
-    if($scope.validation == true){
-      $scope.dateCheck = new Date();
-      $scope.currentDate = $scope.dateCheck;
-      console.log("validation "+$scope.currentDate);
+  $scope.change = function(startDate){
+      $scope.currentDate = new Date();
+    if(startDate < $scope.currentDate){
+      $scope.past = true;
+    }
+    else{
+      $scope.past = false;
     }
   }
 
