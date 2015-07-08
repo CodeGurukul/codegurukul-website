@@ -2141,6 +2141,10 @@ opacity: 1;
   margin-bottom: 75px !important;
 }
 
-.padding-right-0{
+.padding-right-10{
   padding-right: 10px !important;
+}
+
+.custom-margin-right-10{
+  margin-right: 10px;
 }
