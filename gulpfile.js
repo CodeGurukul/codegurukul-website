@@ -49,7 +49,7 @@ gulp.task('compress', function() {
 });
 
 gulp.task('templates', function() {
-    gulp.src('public/views/**/*.html')
+    gulp.src('public/views/landing.html')
         .pipe(templateCache({ root: 'views', module: 'Codegurukul' }))
         .pipe(gulp.dest('public'));
 });
